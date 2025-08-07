@@ -1480,21 +1480,21 @@ class BMICalculator {
 
 ```mermaid
 flowchart TD
-    A[🎯 Start BMI Calculation] --> B[📝 Input: tinggi, berat]
+    A[🎯 Start BMI Calculation] --> B[📝 Input tinggi dan berat]
     B --> C[🔍 Validate Input]
     C --> D{❓ Input Valid?}
     D -->|Tidak| E[❌ Throw ValidationException]
     D -->|Ya| F[📏 Convert tinggi to meters]
-    F --> G[🧮 Calculate BMI = berat/(tinggi²)]
-    G --> H{❓ BMI < 17.0?}
-    H -->|Ya| I[🏷️ Category: Kurus Berat]
-    H -->|Tidak| J{❓ BMI < 18.5?}
-    J -->|Ya| K[🏷️ Category: Kurus Ringan]
-    J -->|Tidak| L{❓ BMI <= 25.0?}
-    L -->|Ya| M[🏷️ Category: Normal]
-    L -->|Tidak| N{❓ BMI <= 27.0?}
-    N -->|Ya| O[🏷️ Category: Gemuk Ringan]
-    N -->|Tidak| P[🏷️ Category: Gemuk Berat]
+    F --> G[🧮 Calculate BMI]
+    G --> H{❓ BMI less than 17?}
+    H -->|Ya| I[🏷️ Category Kurus Berat]
+    H -->|Tidak| J{❓ BMI less than 18.5?}
+    J -->|Ya| K[🏷️ Category Kurus Ringan]
+    J -->|Tidak| L{❓ BMI less equal 25?}
+    L -->|Ya| M[🏷️ Category Normal]
+    L -->|Tidak| N{❓ BMI less equal 27?}
+    N -->|Ya| O[🏷️ Category Gemuk Ringan]
+    N -->|Tidak| P[🏷️ Category Gemuk Berat]
     
     I --> Q[💡 Generate Recommendation]
     K --> Q
