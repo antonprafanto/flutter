@@ -1,3 +1,5 @@
+Anda benar! Saya akan menambahkan flow diagram yang hilang. Berikut adalah perbaikannya:
+
 # 🎨 Pertemuan 3: Flutter Widget System dan Layout
 
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
@@ -119,6 +121,24 @@ class MyApp extends StatelessWidget {
 
 **🔧 [Copy Code]** | **🌐 [Test di zapp.run](https://zapp.run/)**
 
+#### Alur StatelessWidget:
+
+```mermaid
+flowchart TD
+    A[🎯 StatelessWidget Created] --> B[🏗️ Constructor Called]
+    B --> C[📋 Set Properties]
+    C --> D[🎨 build Method Called]
+    D --> E[📱 Widget Displayed]
+    E --> F[✅ Widget Complete]
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style F fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+```
+
 #### 🔄 StatefulWidget - Data Bisa Berubah
 
 ```dart
@@ -233,6 +253,32 @@ class ContainerDemo extends StatelessWidget {
 
 **🔧 [Copy Code]** | **🌐 [Test di zapp.run](https://zapp.run/)**
 
+#### Alur Container Widget Rendering:
+
+```mermaid
+flowchart TD
+    A[🎯 Start ContainerDemo] --> B[🏗️ Build Scaffold]
+    B --> C[📋 Build AppBar]
+    C --> D[📐 Build Column]
+    D --> E[📦 Container 1: Basic Blue]
+    E --> F[📏 SizedBox Spacing]
+    F --> G[📦 Container 2: Styled Red]
+    G --> H[📏 SizedBox Spacing]
+    H --> I[📦 Container 3: Padding/Margin Green]
+    I --> J[📱 Render Complete UI]
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style J fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+```
+
 ### 📏 Row - Layout Horizontal
 
 ```dart
@@ -284,6 +330,54 @@ class RowDemo extends StatelessWidget {
 
 **🔧 [Copy Code]** | **🌐 [Test di zapp.run](https://zapp.run/)**
 
+#### Alur Row Widget Layout:
+
+```mermaid
+flowchart TD
+    A[🎯 Start RowDemo] --> B[🏗️ Build Scaffold & AppBar]
+    B --> C[📐 Build Main Column]
+    C --> D[➡️ Row 1: Basic Layout]
+    D --> E[📦 Red Container]
+    D --> F[📦 Green Container] 
+    D --> G[📦 Blue Container]
+    E --> H[📏 SizedBox Spacing]
+    F --> H
+    G --> H
+    H --> I[➡️ Row 2: SpaceEvenly Alignment]
+    I --> J[📝 Text: Kiri]
+    I --> K[📝 Text: Tengah]
+    I --> L[📝 Text: Kanan]
+    J --> M[📏 SizedBox Spacing]
+    K --> M
+    L --> M
+    M --> N[➡️ Row 3: CrossAxisAlignment Start]
+    N --> O[📦 Red 30h]
+    N --> P[📦 Green 60h]
+    N --> Q[📦 Blue 40h]
+    O --> R[📱 Render Complete]
+    P --> R
+    Q --> R
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style M fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style N fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style O fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style P fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style Q fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style R fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+```
+
 ### 📐 Column - Layout Vertical
 
 ```dart
@@ -324,6 +418,38 @@ class ColumnDemo extends StatelessWidget {
 ```
 
 **🔧 [Copy Code]** | **🌐 [Test di zapp.run](https://zapp.run/)**
+
+#### Alur Column Widget Layout:
+
+```mermaid
+flowchart TD
+    A[🎯 Start ColumnDemo] --> B[🏗️ Build Scaffold & AppBar]
+    B --> C[🎯 Center Widget]
+    C --> D[⬇️ Column with spaceAround]
+    D --> E[📦 Container Red 100w x 50h]
+    E --> F[📝 Text: Box 1]
+    E --> G[⬇️ Space Distribution]
+    G --> H[📦 Container Green 150w x 50h]
+    H --> I[📝 Text: Box 2]
+    H --> J[⬇️ Space Distribution]
+    J --> K[📦 Container Blue 80w x 50h]
+    K --> L[📝 Text: Box 3]
+    K --> M[📱 Render with Center Alignment]
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style I fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style L fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style M fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+```
 
 #### Row vs Column Alignment:
 
@@ -415,6 +541,50 @@ class ButtonDemo extends StatelessWidget {
 
 **🔧 [Copy Code]** | **🌐 [Test di zapp.run](https://zapp.run/)**
 
+#### Alur Button Widget Rendering:
+
+```mermaid
+flowchart TD
+    A[🎯 Start ButtonDemo] --> B[🏗️ Build Scaffold & AppBar]
+    B --> C[🎯 Center Widget]
+    C --> D[⬇️ Column SpaceEvenly]
+    D --> E[🔘 ElevatedButton]
+    E --> F{👆 User Press?}
+    F -->|Yes| G[📝 Print: ElevatedButton ditekan]
+    F -->|No| H[🔘 TextButton]
+    G --> H
+    H --> I{👆 User Press?}
+    I -->|Yes| J[📝 Print: TextButton ditekan]
+    I -->|No| K[🔘 OutlinedButton]
+    J --> K
+    K --> L{👆 User Press?}
+    L -->|Yes| M[📝 Print: OutlinedButton ditekan]
+    L -->|No| N[🔘 ElevatedButton.icon]
+    M --> N
+    N --> O{👆 User Press?}
+    O -->|Yes| P[📝 Print: Button dengan icon]
+    O -->|No| Q[📱 Display All Buttons]
+    P --> Q
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style J fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style M fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style N fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style O fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style P fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style Q fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+```
+
 ### 📝 Text Widgets - Menampilkan Text
 
 ```dart
@@ -480,6 +650,44 @@ class TextDemo extends StatelessWidget {
 
 **🔧 [Copy Code]** | **🌐 [Test di zapp.run](https://zapp.run/)**
 
+#### Alur Text Widget Rendering:
+
+```mermaid
+flowchart TD
+    A[🎯 Start TextDemo] --> B[🏗️ Build Scaffold & AppBar]
+    B --> C[📋 Padding Widget]
+    C --> D[⬇️ Column CrossAxis Start]
+    D --> E[📝 Text: Basic]
+    E --> F[📏 SizedBox 10h]
+    F --> G[📝 Text: Styled Blue Bold 20px]
+    G --> H[📏 SizedBox 10h]
+    H --> I[📝 Text: Long Text with Justify]
+    I --> J[📏 SizedBox 10h]
+    J --> K[📝 RichText: Multiple Styles]
+    K --> L[📝 TextSpan: Black Normal]
+    K --> M[📝 TextSpan: Red Bold]
+    K --> N[📝 TextSpan: Black Normal]
+    L --> O[📱 Render All Texts]
+    M --> O
+    N --> O
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style M fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style N fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style O fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+```
+
 ### 🖼️ Basic Image dan Icon
 
 ```dart
@@ -529,6 +737,44 @@ class ImageIconDemo extends StatelessWidget {
 
 **🔧 [Copy Code]** | **🌐 [Test di zapp.run](https://zapp.run/)**
 
+#### Alur Image & Icon Widget Rendering:
+
+```mermaid
+flowchart TD
+    A[🎯 Start ImageIconDemo] --> B[🏗️ Build Scaffold & AppBar]
+    B --> C[🎯 Center Widget]
+    C --> D[⬇️ Column SpaceEvenly]
+    D --> E[⭐ Icon: Star Yellow 50px]
+    E --> F[🔘 IconButton: Favorite Red 40px]
+    F --> G{👆 IconButton Press?}
+    G -->|Yes| H[📝 Print: Icon button ditekan]
+    G -->|No| I[➡️ Row SpaceEvenly]
+    H --> I
+    I --> J[🏠 Icon: Home 30px]
+    I --> K[🔍 Icon: Search 30px]
+    I --> L[⚙️ Icon: Settings 30px]
+    I --> M[👤 Icon: Person 30px]
+    J --> N[📱 Render All Icons]
+    K --> N
+    L --> N
+    M --> N
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style H fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style M fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style N fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+```
+
 ---
 
 ## 👨‍💻 Praktikum: Kartu Nama Digital
@@ -562,6 +808,24 @@ class KartuNamaApp extends StatelessWidget {
 ```
 
 **🔧 [Copy Code]** | **🌐 [Test di zapp.run](https://zapp.run/)**
+
+#### Alur App Initialization:
+
+```mermaid
+flowchart TD
+    A[🎯 main Function] --> B[🚀 runApp KartuNamaApp]
+    B --> C[🏗️ Build MaterialApp]
+    C --> D[🎨 Apply Theme]
+    D --> E[🏠 Set Home: KartuNamaPage]
+    E --> F[📱 App Ready to Display]
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+```
 
 ### 🎨 Step 2: Buat Widget Kartu Nama
 
@@ -842,7 +1106,7 @@ class _KartuNamaInteraktifState extends State<KartuNamaInteraktif> {
 
 **🔧 [Copy Code]** | **🌐 [Test di zapp.run](https://zapp.run/)**
 
-#### Alur Interaktivity State Management:
+#### Alur Interactivity State Management:
 
 ```mermaid
 flowchart TD
