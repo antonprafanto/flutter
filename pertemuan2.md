@@ -557,6 +557,41 @@ void main() {
 
 **🔧 [Copy Code]** | **🌐 [Test di zapp.run](https://zapp.run/)**
 
+#### Alur Operations pada Sets:
+
+```mermaid
+flowchart TD
+    A[🎯 Start Program] --> B[🎯 Initialize Sets]
+    B --> C[📊 Remove Duplicates Auto]
+    C --> D[📋 Display Unique Elements]
+    D --> E[➕ Add New Elements]
+    E --> F[🔍 Check Duplicates Ignored]
+    F --> G[🤝 Set Intersection]
+    G --> H[🔗 Set Union] 
+    H --> I[➖ Set Difference]
+    I --> J[❓ Check Membership]
+    J --> K{❓ Element Exists?}
+    K -->|Ya| L[✅ Display Found]
+    K -->|Tidak| M[❌ Display Not Found]
+    L --> N[✅ End Program]
+    M --> N
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style L fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style M fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style N fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+```
+
 ---
 
 ## ⚡ Async Programming Fundamentals
@@ -747,6 +782,49 @@ Future<void> downloadFile(String fileName, int seconds) async {
 ```
 
 **🔧 [Copy Code]** | **🌐 [Test di zapp.run](https://zapp.run/)**
+
+#### Alur Parallel vs Sequential Download:
+
+```mermaid
+flowchart TD
+    A[🎯 Start Comparison] --> B[⏱️ Start Timer 1]
+    B --> C[📥 Sequential Download]
+    C --> D[📄 Download File 1 - 2s]
+    D --> E[📄 Download File 2 - 1s]
+    E --> F[📄 Download File 3 - 3s]
+    F --> G[⏱️ Stop Timer 1: 6s total]
+    
+    G --> H[⏱️ Start Timer 2]
+    H --> I[📥 Parallel Download]
+    I --> J[🔄 Start All Downloads Simultaneously]
+    J --> K[📄 File 1 - 2s]
+    J --> L[📄 File 2 - 1s] 
+    J --> M[📄 File 3 - 3s]
+    K --> N[⏳ Wait All Complete]
+    L --> N
+    M --> N
+    N --> O[⏱️ Stop Timer 2: 3s total]
+    O --> P[📊 Compare Results]
+    P --> Q[✅ Parallel 3s Faster!]
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style M fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style N fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style O fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style P fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style Q fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+```
 
 ---
 
@@ -1101,6 +1179,40 @@ class BMIResult {
 
 **🔧 [Copy Code]** | **🌐 [Test di zapp.run](https://zapp.run/)**
 
+#### Alur Class Structure BMI Calculator:
+
+```mermaid
+flowchart TD
+    A[🎯 Define Base Person Class] --> B[📋 Add Properties: nama, umur, jenisKelamin]
+    B --> C[🏗️ Create Constructor]
+    C --> D[📊 Add displayInfo Method]
+    D --> E[👨‍🎓 Define Mahasiswa Child Class]
+    E --> F[➕ Add Additional Properties: nim, jurusan, universitas]
+    F --> G[🏗️ Create Child Constructor with super]
+    G --> H[🔄 Override displayInfo Method]
+    H --> I[❌ Define Custom Exceptions]
+    I --> J[📊 Define BMIResult Class]
+    J --> K[🗂️ Add Properties: bmi, category, status, etc]
+    K --> L[📋 Add toMap Method]
+    L --> M[📝 Add toString Override]
+    M --> N[✅ Class Structure Complete]
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style I fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style M fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style N fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+```
+
 ### 🧮 Step 2: BMI Calculator Logic
 
 ```dart
@@ -1276,6 +1388,63 @@ class BMICalculator {
 
 **🔧 [Copy Code]** | **🌐 [Test di zapp.run](https://zapp.run/)**
 
+#### Alur BMI Calculation Logic:
+
+```mermaid
+flowchart TD
+    A[🎯 Start BMI Calculation] --> B[📝 Input: tinggi, berat]
+    B --> C[🔍 Validate Input]
+    C --> D{❓ Input Valid?}
+    D -->|Tidak| E[❌ Throw ValidationException]
+    D -->|Ya| F[📏 Convert tinggi to meters]
+    F --> G[🧮 Calculate BMI = berat/(tinggi²)]
+    G --> H{❓ BMI < 17.0?}
+    H -->|Ya| I[🏷️ Category: Kurus Berat]
+    H -->|Tidak| J{❓ BMI < 18.5?}
+    J -->|Ya| K[🏷️ Category: Kurus Ringan]
+    J -->|Tidak| L{❓ BMI <= 25.0?}
+    L -->|Ya| M[🏷️ Category: Normal]
+    L -->|Tidak| N{❓ BMI <= 27.0?}
+    N -->|Ya| O[🏷️ Category: Gemuk Ringan]
+    N -->|Tidak| P[🏷️ Category: Gemuk Berat]
+    
+    I --> Q[💡 Generate Recommendation]
+    K --> Q
+    M --> Q
+    O --> Q
+    P --> Q
+    
+    Q --> R[📊 Create BMIResult Object]
+    R --> S[💾 Save to History]
+    S --> T[📈 Update Statistics]
+    T --> U[✅ Return BMIResult]
+    
+    E --> V[❌ Handle Error]
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style I fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style K fill:#fff8e1,stroke:#f57f17,stroke-width:2px,color:#000
+    style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style M fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style N fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style O fill:#fff8e1,stroke:#f57f17,stroke-width:2px,color:#000
+    style P fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style Q fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style R fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style S fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style T fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style U fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style V fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+```
+
 ### 💾 Step 3: Async Data Operations
 
 ```dart
@@ -1372,6 +1541,62 @@ class BMIDataManager {
 ```
 
 **🔧 [Copy Code]** | **🌐 [Test di zapp.run](https://zapp.run/)**
+
+#### Alur Async Data Operations:
+
+```mermaid
+flowchart TD
+    A[🎯 Start Data Operation] --> B{❓ Save or Load?}
+    
+    B -->|Save| C[💾 saveData Function]
+    C --> D[📊 Print saving message]
+    D --> E[⏱️ Simulate delay 2s]
+    E --> F[🔄 Convert BMIResult to JSON]
+    F --> G[✅ Print save success]
+    
+    B -->|Load| H[📥 loadData Function]
+    H --> I[📊 Print loading message]
+    I --> J[⏱️ Simulate delay 1s]
+    J --> K[📋 Create sample data]
+    K --> L[🔄 Convert JSON to BMIResult]
+    L --> M[✅ Return loaded data]
+    
+    B -->|Backup| N[☁️ backupToCloud Function]
+    N --> O[📊 Print backup message]
+    O --> P[⏱️ Simulate upload delay 3s]
+    P --> Q[🎲 Random success/failure]
+    Q --> R{❓ Success?}
+    R -->|Ya| S[✅ Print backup success]
+    R -->|Tidak| T[❌ Throw BMIException]
+    
+    G --> U[✅ Operation Complete]
+    M --> U
+    S --> U
+    T --> V[❌ Handle Error]
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style M fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style N fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style O fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style P fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style Q fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style R fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style S fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style T fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style U fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style V fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+```
 
 ### 🚀 Step 4: Main Application
 
