@@ -213,7 +213,7 @@ void buatProfilMahasiswa({
 
 ```mermaid
 flowchart TD
-    A[🎯 Start main()] --> B[📞 Call sapaPengguna]
+    A[🎯 Start main] --> B[📞 Call sapaPengguna]
     B --> C[📝 Print welcome message]
     C --> D[📞 Call buatSalam]
     D --> E[🔄 Return greeting string]
@@ -294,7 +294,7 @@ void cekCuaca(String kondisiCuaca) {
 ```mermaid
 flowchart TD
     A[🎯 Start Program] --> B[📝 Set cuaca = hujan]
-    B --> C[📞 Call cekCuaca()]
+    B --> C[📞 Call cekCuaca]
     C --> D{❓ cuaca == cerah?}
     D -->|Tidak| E{❓ cuaca == hujan?}
     D -->|Ya| F[☀️ Print cerah message]
@@ -737,7 +737,7 @@ class HomePage extends StatelessWidget {
 
 ```mermaid
 flowchart TD
-    A[🎯 main() Function] --> B[🚀 runApp()]
+    A[🎯 main Function] --> B[🚀 runApp]
     B --> C[📱 HelloIndonesiaApp]
     C --> D[🎨 MaterialApp Widget]
     D --> E[🏠 HomePage Widget]
