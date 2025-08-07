@@ -1025,6 +1025,94 @@ String categorizeAge(int age) {
 
 **🔧 [Copy Code]** | **🌐 [Test di zapp.run](https://zapp.run/)**
 
+#### Alur Comprehensive Exception Handling Tests:
+
+```mermaid
+flowchart TD
+    A[🎯 Start Exception Tests] --> B[🧮 Test Division Error]
+    B --> C[🔄 Loop Through Numbers]
+    C --> D[🔢 Try Division Operation]
+    D --> E{❓ Division Success?}
+    E -->|Ya| F[✅ Print Result]
+    E -->|Tidak| G[❌ Catch Exception]
+    F --> H{❓ More Numbers?}
+    G --> H
+    H -->|Ya| C
+    H -->|Tidak| I[🌐 Test Network Error]
+    
+    I --> J[🔄 Loop Through URLs]
+    J --> K[📡 Try Network Request]
+    K --> L{❓ Request Success?}
+    L -->|Ya| M[✅ Print Success]
+    L -->|NetworkException| N[🌐 Handle Network Error]
+    L -->|TimeoutException| O[⏱️ Handle Timeout Error]
+    L -->|Other| P[❓ Handle Unknown Error]
+    
+    M --> Q[🔄 Finally Block Cleanup]
+    N --> Q
+    O --> Q
+    P --> Q
+    Q --> R{❓ More URLs?}
+    R -->|Ya| J
+    R -->|Tidak| S[📁 Test File Error]
+    
+    S --> T[🔄 Loop Through Files]
+    T --> U[📖 Try File Read]
+    U --> V{❓ File Found?}
+    V -->|Ya| W[✅ Print File Content]
+    V -->|Tidak| X[📁 Handle FileNotFoundException]
+    X --> Y[🔄 Create Default File]
+    W --> Z{❓ More Files?}
+    Y --> Z
+    Z -->|Ya| T
+    Z -->|Tidak| AA[📝 Test Validation Error]
+    
+    AA --> BB[🔄 Loop Through Inputs]
+    BB --> CC[✅ Try Validate Input]
+    CC --> DD{❓ Input Valid?}
+    DD -->|Ya| EE[✅ Print Valid Result]
+    DD -->|Tidak| FF[📝 Handle ValidationException]
+    EE --> GG{❓ More Inputs?}
+    FF --> GG
+    GG -->|Ya| BB
+    GG -->|Tidak| HH[✅ All Tests Complete]
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style G fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style M fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style N fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style O fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style P fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style Q fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style R fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style S fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style T fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style U fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style V fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style W fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style X fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style Y fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style Z fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style AA fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style BB fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style CC fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style DD fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style EE fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style FF fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style GG fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style HH fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+```
+
 #### Alur Exception Handling:
 
 ```mermaid
