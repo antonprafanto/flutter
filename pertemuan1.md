@@ -121,10 +121,25 @@ void main() {
 
 **📊 Flow Diagram - Deklarasi Variables:**
 
-```
-[START] → [Tentukan Tipe Data] → [Berikan Nama Variable] → [Assign Value] → [Variable Siap Digunakan] → [END]
-    ↓
-[String/int/double/bool/var] → [namaVariable] → [= nilai] → [Dapat digunakan dalam program]
+```mermaid
+flowchart TD
+    A[START] --> B[Tentukan Tipe Data]
+    B --> C[Berikan Nama Variable]
+    C --> D[Assign Value]
+    D --> E[Variable Siap Digunakan]
+    E --> F[END]
+    
+    B --> B1[String]
+    B --> B2[int]
+    B --> B3[double]
+    B --> B4[bool]
+    B --> B5[var]
+    
+    style A fill:#e1f5fe
+    style F fill:#c8e6c9
+    style B fill:#fff3e0
+    style C fill:#fff3e0
+    style D fill:#fff3e0
 ```
 
 #### **2.2.2 Functions**
@@ -168,10 +183,25 @@ void main() {
 
 **📊 Flow Diagram - Function Execution:**
 
-```
-[Function Call] → [Parameter Checking] → [Function Body Execution] → [Return Value (jika ada)] → [Continue Program]
-        ↓
-[sapaMahasiswa('Budi', 'Informatika')] → [nama='Budi', prodi='Informatika'] → [print statement] → [void] → [Next line]
+```mermaid
+flowchart TD
+    A[Function Call] --> B[Parameter Checking]
+    B --> C[Function Body Execution]
+    C --> D{Ada Return Value?}
+    D -->|Ya| E[Return Value]
+    D -->|Tidak| F[void]
+    E --> G[Continue Program]
+    F --> G
+    
+    H[sapaMahasiswa] --> I[nama='Budi'<br/>prodi='Informatika']
+    I --> J[print statement]
+    J --> K[void]
+    K --> L[Next line]
+    
+    style A fill:#e3f2fd
+    style G fill:#e8f5e8
+    style H fill:#fff3e0
+    style L fill:#e8f5e8
 ```
 
 #### **2.2.3 Control Flow**
@@ -234,12 +264,30 @@ void main() {
 
 **📊 Flow Diagram - Control Flow:**
 
-```
-[START] → [Condition Check] → [True/False] → [Execute Block] → [Continue/Exit]
-    ↓
-[if (nilai >= 85)] → [True] → [print('Grade A')] → [End if]
-                  ↓
-                [False] → [Check next condition]
+```mermaid
+flowchart TD
+    A[START] --> B{Condition Check<br/>nilai >= 85?}
+    B -->|True| C[print 'Grade A']
+    B -->|False| D{nilai >= 70?}
+    D -->|True| E[print 'Grade B']
+    D -->|False| F{nilai >= 60?}
+    F -->|True| G[print 'Grade C']
+    F -->|False| H[print 'Mengulang']
+    
+    C --> I[END]
+    E --> I
+    G --> I
+    H --> I
+    
+    style A fill:#e1f5fe
+    style I fill:#c8e6c9
+    style B fill:#fff3e0
+    style D fill:#fff3e0
+    style F fill:#fff3e0
+    style C fill:#e8f5e8
+    style E fill:#fff9c4
+    style G fill:#ffecb3
+    style H fill:#ffcdd2
 ```
 
 ---
@@ -261,6 +309,33 @@ void main() {
 - **Processor**: Intel i5 10th gen+ / AMD Ryzen 5
 
 ### **3.2 Langkah-langkah Instalasi**
+
+**📊 Flow Diagram - Setup Process:**
+
+```mermaid
+flowchart TD
+    A[Download Flutter SDK] --> B[Extract to Directory]
+    B --> C[Add to PATH Environment]
+    C --> D[Install VS Code]
+    D --> E[Install Flutter Extension]
+    E --> F[Run flutter doctor]
+    F --> G{All Checks Pass?}
+    G -->|No| H[Fix Issues]
+    H --> F
+    G -->|Yes| I[Create First Project]
+    I --> J[Run flutter run]
+    J --> K{App Runs Successfully?}
+    K -->|No| L[Troubleshoot]
+    L --> J
+    K -->|Yes| M[Setup Complete! 🎉]
+    
+    style A fill:#e1f5fe
+    style M fill:#c8e6c9
+    style G fill:#fff3e0
+    style K fill:#fff3e0
+    style H fill:#ffecb3
+    style L fill:#ffecb3
+```
 
 #### **Step 1: Download Flutter SDK**
 
@@ -527,14 +602,36 @@ class HelloIndonesiaHomePage extends StatelessWidget {
 
 **📊 Flow Diagram - Flutter App Structure:**
 
-```
-[main()] → [runApp()] → [HelloIndonesiaApp] → [MaterialApp] → [HelloIndonesiaHomePage]
-    ↓           ↓              ↓                    ↓                     ↓
-[Entry Point] [Start App] [Root Widget] [App Configuration] [Home Page Widget]
-                                              ↓
-                                        [Scaffold] → [AppBar + Body + FAB]
-                                              ↓
-                                        [UI Components] → [Rendered on Screen]
+```mermaid
+flowchart TD
+    A[main Function] --> B[runApp]
+    B --> C[HelloIndonesiaApp<br/>StatelessWidget]
+    C --> D[MaterialApp<br/>App Configuration]
+    D --> E[HelloIndonesiaHomePage<br/>Home Widget]
+    E --> F[Scaffold<br/>Page Structure]
+    
+    F --> G[AppBar<br/>Top Navigation]
+    F --> H[Body<br/>Main Content]
+    F --> I[FloatingActionButton<br/>Action Button]
+    
+    H --> J[Container<br/>Layout Container]
+    J --> K[Column<br/>Vertical Layout]
+    K --> L[Text Widgets]
+    K --> M[Card Widget]
+    K --> N[ElevatedButton]
+    
+    L --> O[Rendered UI]
+    M --> O
+    N --> O
+    G --> O
+    I --> O
+    
+    style A fill:#e1f5fe
+    style O fill:#c8e6c9
+    style C fill:#fff3e0
+    style D fill:#fff3e0
+    style E fill:#fff3e0
+    style F fill:#ffecb3
 ```
 
 ### **4.4 Menjalankan Aplikasi**
@@ -610,6 +707,33 @@ Scaffold(
 - **appBar**: Bar di bagian atas
 - **body**: Konten utama halaman
 - **floatingActionButton**: Tombol melayang
+
+**📊 Flow Diagram - Widget Hierarchy:**
+
+```mermaid
+flowchart TD
+    A[Scaffold] --> B[AppBar]
+    A --> C[Body: Container]
+    A --> D[FloatingActionButton]
+    
+    C --> E[Decoration: BoxDecoration]
+    C --> F[Child: Center]
+    
+    F --> G[Column]
+    G --> H[Icon]
+    G --> I[Text Widgets]
+    G --> J[Card]
+    G --> K[ElevatedButton]
+    
+    J --> L[Padding]
+    L --> M[Column]
+    M --> N[Text Elements]
+    
+    style A fill:#e3f2fd
+    style C fill:#fff3e0
+    style G fill:#e8f5e8
+    style J fill:#f3e5f5
+```
 
 ---
 
@@ -697,6 +821,33 @@ R  # Hot restart (restart app)
 q  # Quit
 ```
 
+**📊 Flow Diagram - Flutter Development Workflow:**
+
+```mermaid
+flowchart TD
+    A[Write Code] --> B[Save File<br/>Ctrl+S]
+    B --> C[Hot Reload<br/>Press 'r']
+    C --> D{Code Valid?}
+    D -->|Yes| E[UI Updates<br/>Instantly]
+    D -->|No| F[Show Error<br/>in Console]
+    
+    E --> G{Need Changes?}
+    G -->|Yes| A
+    G -->|No| H[Testing]
+    
+    F --> I[Fix Error]
+    I --> A
+    
+    H --> J{Bug Found?}
+    J -->|Yes| A
+    J -->|No| K[Deploy/Release]
+    
+    style A fill:#e1f5fe
+    style E fill:#c8e6c9
+    style F fill:#ffcdd2
+    style K fill:#e8f5e8
+```
+
 ### **6.2 Debug Console**
 
 ```dart
@@ -769,6 +920,43 @@ flutter run --debug
 ---
 
 ## 🔧 **Troubleshooting Common Issues**
+
+**📊 Flow Diagram - Troubleshooting Process:**
+
+```mermaid
+flowchart TD
+    A[Encountered Error] --> B{Error Type?}
+    
+    B -->|Flutter Doctor| C[Run flutter doctor]
+    B -->|VS Code Extension| D[Restart VS Code]
+    B -->|Emulator Issues| E[Check Emulator Status]
+    B -->|Hot Reload| F[Check Syntax Errors]
+    
+    C --> C1[Accept Android Licenses]
+    C1 --> C2[Install Missing Components]
+    
+    D --> D1[Reinstall Flutter Extension]
+    D1 --> D2[Check Dart SDK Path]
+    
+    E --> E1[Create/Launch Emulator]
+    E1 --> E2[Check Device Connection]
+    
+    F --> F1[Fix Syntax Errors]
+    F1 --> F2[Save File & Retry]
+    
+    C2 --> G[Test Solution]
+    D2 --> G
+    E2 --> G
+    F2 --> G
+    
+    G --> H{Problem Solved?}
+    H -->|Yes| I[Continue Development 🎉]
+    H -->|No| J[Seek Help from Community]
+    
+    style A fill:#ffcdd2
+    style I fill:#c8e6c9
+    style J fill:#fff3e0
+```
 
 ### **Issue 1: Flutter Doctor Errors**
 
@@ -861,6 +1049,36 @@ void main() {
 ---
 
 ## 🚀 **Persiapan Pertemuan Selanjutnya**
+
+**📊 Learning Path Diagram:**
+
+```mermaid
+flowchart TD
+    A[Pertemuan 1<br/>Flutter Fundamentals] --> B[Pertemuan 2<br/>Dart OOP & Collections]
+    B --> C[Pertemuan 3<br/>Widget System & Layout]
+    C --> D[Pertemuan 4<br/>Navigation & State]
+    
+    A1[✅ Environment Setup] --> A
+    A2[✅ Dart Basics] --> A
+    A3[✅ Hello Indonesia App] --> A
+    
+    B1[Classes & Objects] --> B
+    B2[Collections & Maps] --> B
+    B3[Exception Handling] --> B
+    
+    C1[Widget Tree] --> C
+    C2[Material Design] --> C
+    C3[Responsive Layouts] --> C
+    
+    D1[Multi-screen Apps] --> D
+    D2[State Management] --> D
+    D3[Form Handling] --> D
+    
+    style A fill:#c8e6c9
+    style B fill:#fff3e0
+    style C fill:#fff3e0
+    style D fill:#fff3e0
+```
 
 ### **Yang Harus Dikuasai:**
 - [x] Flutter development environment setup
