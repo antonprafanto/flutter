@@ -213,16 +213,16 @@ void buatProfilMahasiswa({
 
 ```mermaid
 flowchart TD
-    A[🎯 Start main()] --> B[📞 Call sapaPengguna()]
+    A[🎯 Start main()] --> B[📞 Call sapaPengguna]
     B --> C[📝 Print welcome message]
-    C --> D[📞 Call buatSalam()]
+    C --> D[📞 Call buatSalam]
     D --> E[🔄 Return greeting string]
     E --> F[📊 Print hasil]
-    F --> G[📞 Call hitungTotal()]
+    F --> G[📞 Call hitungTotal]
     G --> H[➕ Calculate sum]
     H --> I[🔄 Return total]
     I --> J[📊 Print total]
-    J --> K[📞 Call buatProfilMahasiswa()]
+    J --> K[📞 Call buatProfilMahasiswa]
     K --> L[📋 Print profile data]
     L --> M[✅ End Program]
     
