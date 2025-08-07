@@ -139,6 +139,34 @@ void main() {
 - `final` untuk nilai yang hanya bisa di-set sekali saat runtime
 - `$variableName` untuk string interpolation
 
+#### 📊 Flow Diagram: Variables dan Data Types
+
+```mermaid
+flowchart TD
+    A[Start Program] --> B[Deklarasi String nama = "Budi Santoso"]
+    B --> C[Deklarasi int umur = 20]
+    C --> D[Deklarasi double ipk = 3.85]
+    D --> E[Deklarasi bool lulusTepat = true]
+    E --> F[Auto-inference var universitas = "Universitas Indonesia"]
+    F --> G[Auto-inference var tahunMasuk = 2022]
+    G --> H[Konstanta const String kota = "Jakarta"]
+    H --> I[Final DateTime sekarang = DateTime.now()]
+    I --> J[Print nama dengan string interpolation]
+    J --> K[Print umur]
+    K --> L[Print IPK]
+    L --> M[Print status kelulusan]
+    M --> N[Print universitas]
+    N --> O[Print kota]
+    O --> P[End Program]
+    
+    style A fill:#e1f5fe
+    style P fill:#f3e5f5
+    style B fill:#fff3e0
+    style C fill:#fff3e0
+    style D fill:#fff3e0
+    style E fill:#fff3e0
+```
+
 #### 2. Collections (List, Map, Set)
 
 ```dart
@@ -179,6 +207,34 @@ void main() {
   print("Data mahasiswa: $mahasiswa");
   print("Hobi baru: $hobi");
 }
+```
+
+#### 📊 Flow Diagram: Collections (List, Map, Set)
+
+```mermaid
+flowchart TD
+    A[Start Program] --> B[Inisialisasi List mataKuliah dengan 4 elemen]
+    B --> C[Inisialisasi Map mahasiswa dengan data lengkap]
+    C --> D[Inisialisasi Set hobi tanpa duplikat]
+    D --> E[Print mata kuliah pertama - mataKuliah[0]]
+    E --> F[Print nama mahasiswa - mahasiswa['nama']]
+    F --> G[Print semua hobi]
+    G --> H[Tambah elemen baru ke List - add()]
+    H --> I[Tambah key-value baru ke Map]
+    I --> J[Tambah elemen baru ke Set]
+    J --> K[Print total mata kuliah - length]
+    K --> L[Print data mahasiswa lengkap]
+    L --> M[Print hobi yang sudah diupdate]
+    M --> N[End Program]
+    
+    style A fill:#e1f5fe
+    style N fill:#f3e5f5
+    style B fill:#fff8e1
+    style C fill:#fff8e1
+    style D fill:#fff8e1
+    style H fill:#e8f5e8
+    style I fill:#e8f5e8
+    style J fill:#e8f5e8
 ```
 
 #### 3. Functions
@@ -282,6 +338,119 @@ void main() {
 String getStatusMahasiswa(int semester) {
   return semester <= 4 ? "junior" : "senior";
 }
+```
+
+#### 📊 Flow Diagram: Control Flow
+
+```mermaid
+flowchart TD
+    A[Start Program] --> B[Initialize semester = 5]
+    B --> C[Initialize List mataKuliah]
+    C --> D{semester >= 7?}
+    D -->|Yes| E[Print "Sudah boleh mengambil skripsi"]
+    D -->|No| F{semester >= 5?}
+    F -->|Yes| G[Print "Bisa mengambil mata kuliah pilihan"]
+    F -->|No| H[Print "Focus pada mata kuliah wajib"]
+    
+    E --> I[Call getStatusMahasiswa(semester)]
+    G --> I
+    H --> I
+    
+    I --> I1{semester <= 4?}
+    I1 -->|Yes| I2[Return "junior"]
+    I1 -->|No| I3[Return "senior"]
+    
+    I2 --> J[status = returned value]
+    I3 --> J
+    J --> K{Switch status}
+    K -->|"junior"| L[Print "Mahasiswa tingkat awal"]
+    K -->|"senior"| M[Print "Mahasiswa tingkat akhir"]
+    K -->|default| N[Print "Status tidak dikenal"]
+    
+    L --> O[Print header "Mata kuliah semester ini"]
+    M --> O
+    N --> O
+    O --> P[Initialize i = 0]
+    P --> Q{i < mataKuliah.length?}
+    Q -->|Yes| R[Print numbered mata kuliah]
+    R --> S[i++]
+    S --> Q
+    Q -->|No| T[Print header "Dengan enhanced for"]
+    T --> U[For each mk in mataKuliah]
+    U --> V[Print mk with bullet]
+    V --> W{More elements?}
+    W -->|Yes| U
+    W -->|No| X[Initialize nilai = 0]
+    X --> Y[Print "Hitung mundur"]
+    Y --> Z{nilai < 5?}
+    Z -->|Yes| AA[Print nilai]
+    AA --> BB[nilai++]
+    BB --> Z
+    Z -->|No| CC[End Program]
+    
+    style A fill:#e1f5fe
+    style CC fill:#f3e5f5
+    style D fill:#fff3e0
+    style F fill:#fff3e0
+    style I1 fill:#fff3e0
+    style K fill:#ffebee
+    style Q fill:#e8f5e8
+    style W fill:#e8f5e8
+    style Z fill:#e8f5e8
+```
+
+#### 📊 Flow Diagram: Functions
+
+```mermaid
+flowchart TD
+    A[Start main function] --> B[Call sapa("Andi")]
+    B --> B1[Function sapa executed]
+    B1 --> B2[Print greeting message]
+    B2 --> C[Call hitungIPK([3.5, 4.0, 3.75, 3.25])]
+    
+    C --> C1{nilaiList.isEmpty?}
+    C1 -->|Yes| C2[Return 0.0]
+    C1 -->|No| C3[Initialize total = 0]
+    C3 --> C4[Loop through nilaiList]
+    C4 --> C5[Add nilai to total]
+    C5 --> C6{More elements?}
+    C6 -->|Yes| C4
+    C6 -->|No| C7[Return total/length]
+    
+    C2 --> D[hasil = returned value]
+    C7 --> D
+    D --> E[Print IPK dengan 2 decimal places]
+    E --> F[Call tentukanGrade(hasil)]
+    
+    F --> F1{sistem == "4.0"?}
+    F1 -->|No| F2[Return "Sistem tidak dikenal"]
+    F1 -->|Yes| F3{ipk >= 3.5?}
+    F3 -->|Yes| F4[Return "Cum Laude"]
+    F3 -->|No| F5{ipk >= 3.0?}
+    F5 -->|Yes| F6[Return "Sangat Memuaskan"]
+    F5 -->|No| F7{ipk >= 2.5?}
+    F7 -->|Yes| F8[Return "Memuaskan"]
+    F7 -->|No| F9[Return "Cukup"]
+    
+    F2 --> G[grade = returned value]
+    F4 --> G
+    F6 --> G
+    F8 --> G
+    F9 --> G
+    G --> H[Print grade]
+    H --> I[Define arrow function kuadrat]
+    I --> J[Call kuadrat(5)]
+    J --> K[Print result]
+    K --> L[End Program]
+    
+    style A fill:#e1f5fe
+    style L fill:#f3e5f5
+    style B1 fill:#ffebee
+    style C1 fill:#fff3e0
+    style F1 fill:#fff3e0
+    style F3 fill:#fff3e0
+    style F5 fill:#fff3e0
+    style F7 fill:#fff3e0
 ```
 
 ### 📊 Diagram Alir Dart Basics
@@ -670,7 +839,117 @@ class InfoRow extends StatelessWidget {
 }
 ```
 
-### 📊 Diagram Struktur Widget
+### 📊 Flow Diagram: Flutter Hello Indonesia App
+
+#### A. App Initialization Flow
+
+```mermaid
+flowchart TD
+    A[main() function] --> B[runApp(HelloIndonesiaApp())]
+    B --> C[HelloIndonesiaApp extends StatelessWidget]
+    C --> D[build() method called]
+    D --> E[Return MaterialApp]
+    E --> F[Set title: 'Hello Indonesia']
+    F --> G[Configure theme with red primarySwatch]
+    G --> H[Set home: HomePage()]
+    H --> I[Disable debug banner]
+    I --> J[MaterialApp created]
+    
+    style A fill:#e1f5fe
+    style J fill:#f3e5f5
+    style C fill:#ffebee
+    style E fill:#fff3e0
+```
+
+#### B. HomePage Widget Tree Flow
+
+```mermaid
+flowchart TD
+    A[HomePage extends StatelessWidget] --> B[build() method]
+    B --> C[Return Scaffold]
+    C --> D[AppBar with title and styling]
+    C --> E[Body: Container with gradient]
+    
+    E --> F[Gradient: red to white]
+    E --> G[Center widget]
+    G --> H[Column with mainAxisAlignment center]
+    
+    H --> I[Circle Container with flag icon]
+    H --> J[SizedBox height: 30]
+    H --> K[Welcome Text with styling]
+    H --> L[SizedBox height: 10]
+    H --> M[Subtitle Text]
+    H --> N[SizedBox height: 40]
+    H --> O[Info Card]
+    H --> P[SizedBox height: 30]
+    H --> Q[Elevated Button]
+    
+    O --> R[Card with elevation and rounded corners]
+    R --> S[Padding widget]
+    S --> T[Column with Indonesia info]
+    T --> U[Title: 'Indonesia']
+    T --> V[InfoRow: Ibukota - Jakarta]
+    T --> W[InfoRow: Populasi - 273+ Juta]
+    T --> X[InfoRow: Bahasa - Bahasa Indonesia]
+    T --> Y[InfoRow: Pulau - 17.508 Pulau]
+    
+    Q --> Z[Button with onPressed action]
+    Z --> AA[Print 'Button ditekan!']
+    
+    style A fill:#e1f5fe
+    style C fill:#ffebee
+    style H fill:#fff3e0
+    style O fill:#e8f5e8
+    style Q fill:#f3e5f5
+```
+
+#### C. InfoRow Custom Widget Flow
+
+```mermaid
+flowchart TD
+    A[InfoRow Widget Called] --> B[Receive icon, label, value parameters]
+    B --> C[build() method]
+    C --> D[Return Padding widget]
+    D --> E[Vertical padding: 5]
+    E --> F[Row widget]
+    F --> G[Icon with color and size]
+    F --> H[SizedBox width: 10]
+    F --> I[Text label with bold font]
+    F --> J[Text value with gray color]
+    J --> K[InfoRow rendered]
+    
+    style A fill:#e1f5fe
+    style K fill:#f3e5f5
+    style F fill:#fff3e0
+```
+
+#### D. Complete App Flow Overview
+
+```mermaid
+flowchart LR
+    A[App Start] --> B[main()]
+    B --> C[MaterialApp]
+    C --> D[HomePage]
+    D --> E[Scaffold Structure]
+    E --> F[AppBar]
+    E --> G[Body Container]
+    G --> H[Gradient Background]
+    G --> I[UI Components]
+    I --> J[Circle Avatar]
+    I --> K[Welcome Texts]
+    I --> L[Info Card]
+    I --> M[Action Button]
+    L --> N[4x InfoRow Widgets]
+    M --> O[Print Debug]
+    
+    style A fill:#e1f5fe
+    style C fill:#ffebee
+    style D fill:#fff3e0
+    style E fill:#e8f5e8
+    style I fill:#f3e5f5
+```
+
+### 📊 Diagram Struktur Widget (Legacy)
 
 ```mermaid
 graph TD
