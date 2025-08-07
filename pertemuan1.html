@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 1 - Pengenalan Flutter dan Setup Environment</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fafafa;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .course-info {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pertemuan-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Learning Objectives */
+        .objectives {
+            padding: 3rem 0;
+            background: white;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .objective-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #1a1a1a;
+        }
+
+        .objective-card i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 3rem 0;
+        }
+
+        .content-section:nth-child(even) {
+            background: white;
+        }
+
+        .expandable-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            background: #1a1a1a;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .section-header:hover {
+            background: #333;
+        }
+
+        .section-header h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .expand-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .section-header.active .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            padding: 2rem;
+            display: none;
+        }
+
+        .section-content.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Code Blocks */
+        .code-block {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+
+        .code-header {
+            background: #2d3748;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .copy-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .copy-btn.copied {
+            background: #10b981;
+            border-color: #10b981;
+        }
+
+        .zapp-suggestion {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #4f46e5;
+        }
+
+        .zapp-suggestion i {
+            color: #fbbf24;
+        }
+
+        .zapp-link {
+            color: #fbbf24;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .zapp-link:hover {
+            color: #f59e0b;
+            text-decoration: underline;
+        }
+
+        pre {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0 0 8px 8px;
+            overflow-x: auto;
+            margin: 0;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            line-height: 1.5;
+        }
+
+        /* Flowchart */
+        .flowchart {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .flow-step {
+            background: #f8f9fa;
+            border: 2px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem;
+            display: inline-block;
+            min-width: 200px;
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin: 0.5rem;
+        }
+
+        /* Glossary */
+        .glossary {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .glossary-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .glossary-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .glossary-term {
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Project Card */
+        .project-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .project-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* References */
+        .references {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .reference-list {
+            list-style: none;
+            counter-reset: reference-counter;
+        }
+
+        .reference-list li {
+            counter-increment: reference-counter;
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .reference-list li::before {
+            content: counter(reference-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #1a1a1a;
+            color: white;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .objectives-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fab fa-flutter"></i>
+                    Flutter Course
+                </div>
+                <div class="course-info">
+                    PPB-FLT-101 | 3 SKS | Semester 5/6
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="pertemuan-badge">
+                <i class="fas fa-calendar-alt"></i>
+                Pertemuan 1
+            </div>
+            <h1>Pengenalan Flutter dan Setup Environment</h1>
+            <p>Memahami konsep cross-platform development, menguasai fundamental Dart programming, dan menyiapkan environment development Flutter yang siap digunakan.</p>
+        </div>
+    </section>
+
+    <!-- Learning Objectives -->
+    <section class="objectives">
+        <div class="container">
+            <h2 class="section-title">Tujuan Pembelajaran</h2>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h4>Cross-Platform Development</h4>
+                    <p>Memahami konsep pengembangan aplikasi lintas platform dan keunggulan Flutter dibandingkan teknologi lainnya.</p>
+                </div>
+                <div class="objective-card">
+                    <i class="fas fa-code"></i>
+                    <h4>Dart Programming</h4>
+                    <p>Menguasai fundamental bahasa pemrograman Dart termasuk variables, data types, functions, dan control flow.</p>
+                </div>
+                <div class="objective-card">
+                    <i class="fas fa-tools"></i>
+                    <h4>Environment Setup</h4>
+                    <p>Berhasil melakukan instalasi dan konfigurasi Flutter SDK serta menjalankan aplikasi Flutter pertama.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Materi Teoritis -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Materi Teoritis</h2>
+
+            <!-- 1. History Flutter -->
+            <div class="expandable-section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h3><i class="fas fa-history"></i> Sejarah dan Ekosistem Flutter di Indonesia</h3>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="section-content">
+                    <h4>Sejarah Singkat Flutter</h4>
+                    <p>Flutter adalah framework UI toolkit yang dikembangkan oleh Google. Pertama kali diumumkan pada Google I/O 2017 dan mencapai versi stabil 1.0 pada Desember 2018. Flutter memungkinkan pengembangan aplikasi mobile, web, dan desktop dari satu codebase.</p>
+                    
+                    <h4>Ekosistem Flutter di Indonesia</h4>
+                    <p>Indonesia memiliki komunitas Flutter yang sangat aktif dengan beberapa perusahaan teknologi besar seperti:</p>
+                    <ul style="margin: 1rem 0; padding-left: 2rem;">
+                        <li><strong>Gojek</strong> - Menggunakan Flutter untuk beberapa fitur dalam aplikasi Super App mereka</li>
+                        <li><strong>Tokopedia</strong> - Implementasi Flutter untuk fitur-fitur tertentu</li>
+                        <li><strong>OY! Indonesia</strong> - Menggunakan Flutter untuk pengembangan aplikasi fintech</li>
+                        <li><strong>Komunitas Flutter Indonesia</strong> - Aktif di GitHub, Discord, dan Telegram</li>
+                    </ul>
+
+                    <div class="flowchart">
+                        <h4>Timeline Perkembangan Flutter</h4>
+                        <div class="flow-step">2017<br>Announcement</div>
+                        <i class="fas fa-arrow-right flow-arrow"></i>
+                        <div class="flow-step">2018<br>Flutter 1.0</div>
+                        <i class="fas fa-arrow-right flow-arrow"></i>
+                        <div class="flow-step">2021<br>Flutter 2.0<br>(Web & Desktop)</div>
+                        <i class="fas fa-arrow-right flow-arrow"></i>
+                        <div class="flow-step">2024<br>Flutter 3.24+<br>(Current)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Perbandingan Teknologi -->
+            <div class="expandable-section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h3><i class="fas fa-balance-scale"></i> Flutter vs Native vs React Native</h3>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="section-content">
+                    <h4>Perbandingan Teknologi Mobile Development</h4>
+                    
+                    <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                        <thead>
+                            <tr style="background: #f8f9fa;">
+                                <th style="padding: 1rem; border: 1px solid #ddd;">Aspek</th>
+                                <th style="padding: 1rem; border: 1px solid #ddd;">Native</th>
+                                <th style="padding: 1rem; border: 1px solid #ddd;">Flutter</th>
+                                <th style="padding: 1rem; border: 1px solid #ddd;">React Native</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 1rem; border: 1px solid #ddd;"><strong>Performance</strong></td>
+                                <td style="padding: 1rem; border: 1px solid #ddd;">⭐⭐⭐⭐⭐</td>
+                                <td style="padding: 1rem; border: 1px solid #ddd;">⭐⭐⭐⭐⭐</td>
+                                <td style="padding: 1rem; border: 1px solid #ddd;">⭐⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 1rem; border: 1px solid #ddd;"><strong>Development Speed</strong></td>
+                                <td style="padding: 1rem; border: 1px solid #ddd;">⭐⭐</td>
+                                <td style="padding: 1rem; border: 1px solid #ddd;">⭐⭐⭐⭐⭐</td>
+                                <td style="padding: 1rem; border: 1px solid #ddd;">⭐⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 1rem; border: 1px solid #ddd;"><strong>Learning Curve</strong></td>
+                                <td style="padding: 1rem; border: 1px solid #ddd;">⭐⭐</td>
+                                <td style="padding: 1rem; border: 1px solid #ddd;">⭐⭐⭐⭐</td>
+                                <td style="padding: 1rem; border: 1px solid #ddd;">⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 1rem; border: 1px solid #ddd;"><strong>Code Reusability</strong></td>
+                                <td style="padding: 1rem; border: 1px solid #ddd;">⭐</td>
+                                <td style="padding: 1rem; border: 1px solid #ddd;">⭐⭐⭐⭐⭐</td>
+                                <td style="padding: 1rem; border: 1px solid #ddd;">⭐⭐⭐⭐</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Mengapa Memilih Flutter?</h4>
+                    <ul style="margin: 1rem 0; padding-left: 2rem;">
+                        <li><strong>Single Codebase</strong> - Satu kode untuk multiple platform</li>
+                        <li><strong>Hot Reload</strong> - Development yang sangat cepat</li>
+                        <li><strong>Native Performance</strong> - Kompilasi langsung ke native code</li>
+                        <li><strong>Rich Widgets</strong> - UI components yang lengkap</li>
+                        <li><strong>Google Backing</strong> - Dukungan penuh dari Google</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. Dart Language Basics -->
+            <div class="expandable-section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h3><i class="fab fa-dart-lang"></i> Fundamental Bahasa Pemrograman Dart</h3>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="section-content">
+                    <h4>Pengenalan Dart</h4>
+                    <p>Dart adalah bahasa pemrograman yang dikembangkan oleh Google, dirancang khusus untuk pengembangan aplikasi client-side. Dart mendukung paradigma Object-Oriented Programming (OOP) dan memiliki syntax yang familiar bagi developer yang sudah menguasai Java, JavaScript, atau C#.</p>
+
+                    <h4>1. Variables dan Data Types</h4>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fab fa-dart-lang"></i> Variables.dart</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'variables-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="variables-code">// Deklarasi variable dengan type inference
+var nama = 'John Doe';           // String
+var umur = 25;                   // int
+var tinggi = 175.5;              // double
+var isStudent = true;            // bool
+
+// Deklarasi variable dengan explicit type
+String alamat = 'Jakarta';
+int jumlahSKS = 144;
+double ipk = 3.75;
+bool lulus = false;
+
+// Konstanta
+final String universitas = 'Universitas Indonesia';  // Runtime constant
+const double pi = 3.14159;                           // Compile-time constant
+
+// Nullable variables (null safety)
+String? nomorTelepon;  // Bisa null
+int? nilaiUjian;       // Bisa null
+
+// Late initialization
+late String tokenAPI;  // Akan diinisialisasi nanti
+
+void main() {
+  print('Nama: $nama');
+  print('Umur: $umur tahun');
+  print('Tinggi: $tinggi cm');
+  print('Status Mahasiswa: $isStudent');
+}</pre>
+                    </div>
+
+                    <div class="zapp-suggestion">
+                        <i class="fas fa-rocket"></i> <strong>Coba Langsung!</strong><br>
+                        Copy code di atas dan coba jalankan di <a href="https://zapp.run/" target="_blank" class="zapp-link">zapp.run</a> untuk eksperimen langsung dengan Dart variables tanpa perlu setup environment!
+                    </div>
+
+                    <h4>2. Functions</h4>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fab fa-dart-lang"></i> Functions.dart</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'functions-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="functions-code">// Function dasar
+String sapaPengguna(String nama) {
+  return 'Halo, $nama! Selamat datang di Flutter Course.';
+}
+
+// Function dengan optional parameters
+double hitungIPK(double totalNilai, int jumlahMatkul, [double bonus = 0.0]) {
+  return (totalNilai + bonus) / jumlahMatkul;
+}
+
+// Function dengan named parameters
+String buatProfilMahasiswa({
+  required String nama,
+  required String nim,
+  int semester = 1,
+  String? jurusan,
+}) {
+  return 'Nama: $nama, NIM: $nim, Semester: $semester, Jurusan: ${jurusan ?? "Belum ditentukan"}';
+}
+
+// Arrow function (untuk function sederhana)
+double luasLingkaran(double radius) => 3.14159 * radius * radius;
+
+// Function sebagai first-class object
+Function tambah = (int a, int b) => a + b;
+
+void main() {
+  // Penggunaan functions
+  print(sapaPengguna('Ahmad'));
+  print('IPK: ${hitungIPK(320.0, 8)}');
+  
+  var profil = buatProfilMahasiswa(
+    nama: 'Sari Dewi',
+    nim: '2021001234',
+    semester: 5,
+    jurusan: 'Teknik Informatika'
+  );
+  print(profil);
+  
+  print('Luas lingkaran: ${luasLingkaran(7.0)}');
+  print('Hasil penjumlahan: ${tambah(5, 3)}');
+}</pre>
+                    </div>
+
+                    <div class="zapp-suggestion">
+                        <i class="fas fa-play-circle"></i> <strong>Test Functions Online!</strong><br>
+                        Jalankan code functions ini di <a href="https://zapp.run/" target="_blank" class="zapp-link">zapp.run</a> dan coba modifikasi parameter untuk memahami konsep functions dengan lebih baik!
+                    </div>
+
+                    <h4>3. Control Flow</h4>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fab fa-dart-lang"></i> ControlFlow.dart</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'control-flow-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="control-flow-code">void main() {
+  // If-else statement
+  double ipk = 3.75;
+  String predikat;
+  
+  if (ipk >= 3.75) {
+    predikat = 'Summa Cum Laude';
+  } else if (ipk >= 3.50) {
+    predikat = 'Magna Cum Laude';
+  } else if (ipk >= 3.25) {
+    predikat = 'Cum Laude';
+  } else {
+    predikat = 'Memuaskan';
+  }
+  print('Predikat kelulusan: $predikat');
+
+  // Switch-case statement
+  int semester = 5;
+  String status;
+  
+  switch (semester) {
+    case 1:
+    case 2:
+      status = 'Mahasiswa Baru';
+      break;
+    case 3:
+    case 4:
+      status = 'Mahasiswa Tingkat Menengah';
+      break;
+    case 5:
+    case 6:
+      status = 'Mahasiswa Tingkat Atas';
+      break;
+    case 7:
+    case 8:
+      status = 'Mahasiswa Tingkat Akhir';
+      break;
+    default:
+      status = 'Status Tidak Dikenal';
+  }
+  print('Status: $status');
+
+  // For loop
+  print('\nDaftar Semester:');
+  for (int i = 1; i <= 8; i++) {
+    print('Semester $i');
+  }
+
+  // Enhanced for loop (for-in)
+  List<String> mataKuliah = ['Algoritma', 'Database', 'Web Programming', 'Mobile Programming'];
+  print('\nMata Kuliah:');
+  for (String matkul in mataKuliah) {
+    print('- $matkul');
+  }
+
+  // While loop
+  int jumlahSKS = 0;
+  int targetSKS = 144;
+  int semesterSekarang = 1;
+  
+  while (jumlahSKS < targetSKS) {
+    jumlahSKS += 20; // Asumsi 20 SKS per semester
+    print('Semester $semesterSekarang: Total SKS = $jumlahSKS');
+    semesterSekarang++;
+  }
+  
+  print('Lulus setelah ${semesterSekarang - 1} semester!');
+}</pre>
+                    </div>
+
+                    <div class="zapp-suggestion">
+                        <i class="fas fa-code"></i> <strong>Eksperimen Control Flow!</strong><br>
+                        Copy code ke <a href="https://zapp.run/" target="_blank" class="zapp-link">zapp.run</a> dan coba ubah nilai IPK atau semester untuk melihat bagaimana control flow bekerja dalam berbagai kondisi!
+                    </div>
+
+                    <div class="flowchart">
+                        <h4>Alur Pembelajaran Dart Fundamentals</h4>
+                        <div class="flow-step">Variables<br>& Data Types</div>
+                        <i class="fas fa-arrow-down flow-arrow"></i>
+                        <div class="flow-step">Functions<br>& Parameters</div>
+                        <i class="fas fa-arrow-down flow-arrow"></i>
+                        <div class="flow-step">Control Flow<br>& Loops</div>
+                        <i class="fas fa-arrow-down flow-arrow"></i>
+                        <div class="flow-step">Ready for<br>Flutter!</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Flutter Architecture -->
+            <div class="expandable-section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h3><i class="fas fa-sitemap"></i> Arsitektur Flutter dan Rendering Engine</h3>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="section-content">
+                    <h4>Arsitektur Flutter</h4>
+                    <p>Flutter menggunakan arsitektur berlapis yang terdiri dari tiga layer utama:</p>
+                    
+                    <div class="flowchart">
+                        <h4>Layer Arsitektur Flutter</h4>
+                        <div class="flow-step" style="background: #e3f2fd;">Framework Layer<br>(Dart)<br>Widgets, Animation, Gestures</div>
+                        <i class="fas fa-arrow-down flow-arrow"></i>
+                        <div class="flow-step" style="background: #f3e5f5;">Engine Layer<br>(C++)<br>Skia Graphics, Dart Runtime</div>
+                        <i class="fas fa-arrow-down flow-arrow"></i>
+                        <div class="flow-step" style="background: #e8f5e8;">Platform Layer<br>(Platform-specific)<br>iOS, Android, Web, Desktop</div>
+                    </div>
+
+                    <h4>Rendering Engine</h4>
+                    <ul style="margin: 1rem 0; padding-left: 2rem;">
+                        <li><strong>Skia Graphics Engine</strong> - Engine grafis yang sama digunakan Chrome dan Android</li>
+                        <li><strong>Dart VM</strong> - Menjalankan kode Dart dengan Just-In-Time (JIT) compilation untuk development</li>
+                        <li><strong>AOT Compilation</strong> - Ahead-Of-Time compilation untuk production builds</li>
+                        <li><strong>Widget Tree</strong> - Representasi hierarkis dari UI components</li>
+                    </ul>
+
+                    <h4>Keunggulan Arsitektur Flutter</h4>
+                    <ol style="margin: 1rem 0; padding-left: 2rem;">
+                        <li><strong>Performa Native</strong> - Tidak menggunakan bridge seperti React Native</li>
+                        <li><strong>Konsistensi UI</strong> - Tampilan sama di semua platform</li>
+                        <li><strong>Hot Reload</strong> - Perubahan code langsung terlihat tanpa restart</li>
+                        <li><strong>Customizable</strong> - Kontrol penuh terhadap setiap pixel</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Setup Environment -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Setup Development Environment</h2>
+
+            <div class="zapp-suggestion" style="margin-bottom: 2rem;">
+                <i class="fas fa-info-circle"></i> <strong>Pembelajaran Hybrid: Local + Online!</strong><br>
+                Untuk pembelajaran optimal, gunakan <a href="https://zapp.run/" target="_blank" class="zapp-link">zapp.run</a> untuk eksperimen cepat dan prototype, kemudian gunakan local environment untuk development project yang lebih complex. Kedua approach ini saling melengkapi!
+            </div>
+
+            <div class="expandable-section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h3><i class="fas fa-download"></i> Instalasi Flutter SDK</h3>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="section-content">
+                    <h4>System Requirements</h4>
+                    <p><strong>Minimum:</strong> Intel i5/Ryzen 5, 8GB RAM, 256GB SSD, Windows 10/macOS Catalina/Ubuntu 18.04</p>
+                    <p><strong>Recommended:</strong> Intel i5 10th gen+/Ryzen 5, 16GB RAM, 512GB SSD</p>
+
+                    <h4>Langkah-langkah Instalasi</h4>
+                    
+                    <h5>1. Download Flutter SDK</h5>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fas fa-terminal"></i> Download Commands</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'download-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="download-code"># Windows - PowerShell
+Invoke-WebRequest -Uri https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.24.5-stable.zip -OutFile flutter_windows.zip
+
+# macOS - Terminal
+curl -O https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_3.24.5-stable.zip
+
+# Linux - Terminal
+wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.24.5-stable.tar.xz</pre>
+                    </div>
+
+                    <h5>2. Extract dan Setup PATH</h5>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fas fa-terminal"></i> PATH Configuration</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'path-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="path-code"># Windows - Extract ke C:\flutter
+# Tambahkan C:\flutter\bin ke PATH environment variable
+
+# macOS/Linux - Extract dan tambahkan ke PATH
+export PATH="$PATH:`pwd`/flutter/bin"
+
+# Untuk permanent, tambahkan ke ~/.bashrc atau ~/.zshrc
+echo 'export PATH="$PATH:/path/to/flutter/bin"' >> ~/.bashrc</pre>
+                    </div>
+
+                    <h5>3. Verifikasi Instalasi</h5>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fas fa-terminal"></i> Verification</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'verify-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="verify-code"># Jalankan flutter doctor untuk memeriksa setup
+flutter doctor
+
+# Output yang diharapkan:
+# Doctor summary (to see all details, run flutter doctor -v):
+# [✓] Flutter (Channel stable, 3.24.5, on Microsoft Windows)
+# [✓] Windows Version (Installed version of Windows is version 10 or higher)
+# [✓] Android toolchain - develop for Android devices
+# [✓] Chrome - develop for the web
+# [✓] Visual Studio Code (version 1.95.0)
+# [✓] Connected device (2 available)</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h3><i class="fas fa-code"></i> Setup IDE (VS Code)</h3>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="section-content">
+                    <h4>Instalasi VS Code Extensions</h4>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fas fa-plug"></i> Required Extensions</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'extensions-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="extensions-code"># Install via Command Palette (Ctrl+Shift+P):
+# 1. Flutter - Official Flutter extension
+# 2. Dart - Official Dart language support
+# 3. Flutter Widget Snippets - Widget shortcuts
+# 4. Awesome Flutter Snippets - Additional snippets
+# 5. Flutter Tree - Widget tree visualization
+
+# Install via command line:
+code --install-extension Dart-Code.flutter
+code --install-extension Dart-Code.dart-code</pre>
+                    </div>
+
+                    <h4>Konfigurasi VS Code Settings</h4>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fas fa-cog"></i> settings.json</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'settings-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="settings-code">{
+  // Flutter & Dart Settings
+  "dart.flutterSdkPath": "C:\\flutter", // Sesuaikan path
+  "dart.checkForSdkUpdates": true,
+  "dart.enableCompletionCommitCharacters": true,
+  
+  // Editor Settings
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  
+  // Flutter Hot Reload
+  "dart.hotReloadOnSave": "always",
+  
+  // Emulator Settings
+  "flutter.defaultLaunchDevice": "android",
+  
+  // Theme (opsional)
+  "workbench.colorTheme": "Dart Dark",
+  
+  // File Associations
+  "files.associations": {
+    "*.dart": "dart"
+  }
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h3><i class="fas fa-mobile-alt"></i> Setup Android Development</h3>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="section-content">
+                    <h4>Android Studio & SDK Setup</h4>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fas fa-terminal"></i> Android Setup Commands</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'android-setup-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="android-setup-code"># 1. Download dan install Android Studio
+# https://developer.android.com/studio
+
+# 2. Install Android SDK melalui Android Studio:
+# - Android SDK Platform-Tools
+# - Android SDK Build-Tools
+# - Android SDK (API level 30+)
+
+# 3. Setup Android SDK PATH
+# Windows:
+set ANDROID_HOME=C:\Users\%USERNAME%\AppData\Local\Android\Sdk
+set PATH=%PATH%;%ANDROID_HOME%\tools;%ANDROID_HOME%\platform-tools
+
+# macOS/Linux:
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+# 4. Accept Android licenses
+flutter doctor --android-licenses</pre>
+                    </div>
+
+                    <h4>Setup Android Emulator</h4>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fas fa-terminal"></i> Emulator Setup</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'emulator-setup-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="emulator-setup-code"># Membuat AVD (Android Virtual Device) via command line
+# 1. List available system images
+avdmanager list target
+
+# 2. Create AVD
+avdmanager create avd -n "Flutter_AVD" -k "system-images;android-30;google_apis;x86_64"
+
+# 3. Start emulator
+emulator -avd Flutter_AVD
+
+# Atau gunakan Flutter command:
+flutter emulators --launch Flutter_AVD
+
+# List available emulators
+flutter emulators</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Praktikum -->
+    <section class="content-section">
+        <div class="container">
+            <div class="project-card">
+                <h3><i class="fas fa-project-diagram"></i> Praktikum: "Hello Indonesia" App</h3>
+                <p>Membuat aplikasi Flutter pertama dengan tema Indonesia, menampilkan informasi dasar dan styling yang menarik.</p>
+            </div>
+
+            <div class="expandable-section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h3><i class="fas fa-rocket"></i> Membuat Project Flutter Pertama</h3>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="section-content">
+                    <h4>1. Create New Flutter Project</h4>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fas fa-terminal"></i> Terminal Commands</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'create-project-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="create-project-code"># Navigate ke direktori kerja
+cd C:\workspace  # Windows
+# cd ~/workspace  # macOS/Linux
+
+# Create new Flutter project
+flutter create hello_indonesia
+
+# Navigate ke project directory
+cd hello_indonesia
+
+# Open project di VS Code
+code .</pre>
+                    </div>
+
+                    <h4>2. Struktur Project Flutter</h4>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fas fa-folder-tree"></i> Project Structure</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'structure-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="structure-code">hello_indonesia/
+├── android/          # Android-specific files
+├── ios/              # iOS-specific files  
+├── lib/              # Main Dart code
+│   └── main.dart     # Entry point aplikasi
+├── test/             # Unit tests
+├── web/              # Web-specific files
+├── pubspec.yaml      # Dependencies & assets
+├── pubspec.lock      # Lock file for dependencies
+└── README.md         # Project documentation
+
+Key Files:
+- lib/main.dart: File utama aplikasi
+- pubspec.yaml: Configuration dan dependencies
+- android/app/src/main/AndroidManifest.xml: Android config
+- ios/Runner/Info.plist: iOS config</pre>
+                    </div>
+
+                    <h4>3. Menjalankan Aplikasi</h4>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fas fa-play"></i> Run Commands</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'run-app-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="run-app-code"># Check available devices
+flutter devices
+
+# Run di debug mode (development)
+flutter run
+
+# Run di release mode (production-like)
+flutter run --release
+
+# Run dengan hot reload enabled (default di debug)
+flutter run --hot
+
+# Specific device
+flutter run -d android
+flutter run -d chrome</pre>
+                    </div>
+
+                    <div class="flowchart">
+                        <h4>Alur Development Flutter</h4>
+                        <div class="flow-step">flutter create<br>my_app</div>
+                        <i class="fas fa-arrow-right flow-arrow"></i>
+                        <div class="flow-step">Edit Code<br>lib/main.dart</div>
+                        <i class="fas fa-arrow-right flow-arrow"></i>
+                        <div class="flow-step">flutter run<br>(Hot Reload)</div>
+                        <i class="fas fa-arrow-right flow-arrow"></i>
+                        <div class="flow-step">Test & Debug</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h3><i class="fas fa-code"></i> Implementasi "Hello Indonesia" App</h3>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="section-content">
+                    <h4>Complete Code: main.dart</h4>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fab fa-dart-lang"></i> lib/main.dart</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'main-dart-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="main-dart-code">import 'package:flutter/material.dart';
+
+// Entry point aplikasi Flutter
+void main() {
+  runApp(HelloIndonesiaApp());
+}
+
+// Root widget aplikasi
+class HelloIndonesiaApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Hello Indonesia',           // Judul aplikasi
+      theme: ThemeData(
+        primarySwatch: Colors.red,        // Warna merah (bendera Indonesia)
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: HomePage(),                   // Halaman utama
+      debugShowCheckedModeBanner: false, // Hilangkan debug banner
+    );
+  }
+}
+
+// Widget halaman utama
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Hello Indonesia 🇮🇩',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.red,
+        elevation: 4.0,
+      ),
+      body: Container(
+        // Background gradient dengan warna bendera Indonesia
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.red.shade100,
+              Colors.white,
+              Colors.red.shade100,
+            ],
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Icon Indonesia
+              Icon(
+                Icons.location_on,
+                size: 80.0,
+                color: Colors.red,
+              ),
+              SizedBox(height: 20.0),
+              
+              // Judul utama
+              Text(
+                'Selamat Datang di',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.grey[700],
+                ),
+              ),
+              
+              // Judul Indonesia
+              Text(
+                'INDONESIA',
+                style: TextStyle(
+                  fontSize: 36.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                  letterSpacing: 2.0,
+                ),
+              ),
+              
+              SizedBox(height: 30.0),
+              
+              // Card informasi
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 40.0),
+                padding: EdgeInsets.all(20.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      spreadRadius: 2,
+                      blurRadius: 10,
+                      offset: Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    _buildInfoRow('Negara:', 'Republik Indonesia'),
+                    _buildInfoRow('Ibu Kota:', 'Jakarta'),
+                    _buildInfoRow('Jumlah Pulau:', '17.508 pulau'),
+                    _buildInfoRow('Populasi:', '270+ juta jiwa'),
+                    _buildInfoRow('Bahasa:', 'Bahasa Indonesia'),
+                  ],
+                ),
+              ),
+              
+              SizedBox(height: 30.0),
+              
+              // Tombol aksi
+              ElevatedButton(
+                onPressed: () {
+                  // Action ketika tombol ditekan
+                  _showWelcomeDialog(context);
+                },
+                child: Text(
+                  'Jelajahi Indonesia',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                  padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 15.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                  elevation: 5.0,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  
+  // Widget helper untuk membuat baris informasi
+  Widget _buildInfoRow(String label, String value) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 5.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.grey[700],
+            ),
+          ),
+          Text(
+            value,
+            style: TextStyle(
+              color: Colors.red,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+  
+  // Function untuk menampilkan dialog
+  void _showWelcomeDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Selamat Datang! 🎉'),
+          content: Text(
+            'Terima kasih telah menggunakan aplikasi Hello Indonesia. '
+            'Ini adalah aplikasi Flutter pertama Anda!',
+          ),
+          actions: [
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop(); // Tutup dialog
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+}</pre>
+                    </div>
+
+                    <div class="zapp-suggestion">
+                        <i class="fas fa-mobile-alt"></i> <strong>Lihat Aplikasi Berjalan Langsung!</strong><br>
+                        Copy seluruh code <strong>Hello Indonesia App</strong> di atas ke <a href="https://zapp.run/" target="_blank" class="zapp-link">zapp.run</a> dan lihat aplikasi Flutter pertama Anda berjalan langsung di browser! Anda bisa mencoba memodifikasi text, warna, atau styling untuk eksperimen lebih lanjut.
+                    </div>
+
+                    <h4>Penjelasan Code</h4>
+                    <ol style="margin: 1rem 0; padding-left: 2rem;">
+                        <li><strong>main() function</strong> - Entry point aplikasi, menjalankan HelloIndonesiaApp</li>
+                        <li><strong>MaterialApp</strong> - Root widget yang menyediakan Material Design theming</li>
+                        <li><strong>Scaffold</strong> - Struktur dasar halaman (AppBar + Body + FloatingActionButton)</li>
+                        <li><strong>Container</strong> - Widget untuk styling dan layout (background, padding, margin)</li>
+                        <li><strong>Column & Row</strong> - Widget layout untuk menyusun child widgets</li>
+                        <li><strong>Text</strong> - Widget untuk menampilkan text dengan styling</li>
+                        <li><strong>ElevatedButton</strong> - Tombol dengan elevation dan styling modern</li>
+                        <li><strong>AlertDialog</strong> - Dialog popup untuk interaksi user</li>
+                    </ol>
+
+                    <div class="flowchart">
+                        <h4>Widget Tree "Hello Indonesia" App</h4>
+                        <div class="flow-step">MaterialApp</div>
+                        <i class="fas fa-arrow-down flow-arrow"></i>
+                        <div class="flow-step">Scaffold</div>
+                        <i class="fas fa-arrow-down flow-arrow"></i>
+                        <div class="flow-step">Container (Body)</div>
+                        <i class="fas fa-arrow-down flow-arrow"></i>
+                        <div class="flow-step">Column<br>(Icon, Text, Card, Button)</div>
+                    </div>
+
+                    <div class="zapp-suggestion">
+                        <i class="fas fa-lightbulb"></i> <strong>Pro Tip untuk Mahasiswa!</strong><br>
+                        Sebelum menjalankan <code>flutter run</code> di local environment, selalu coba code Anda dulu di <a href="https://zapp.run/" target="_blank" class="zapp-link">zapp.run</a> untuk debugging cepat dan melihat hasilnya secara instant. Ini sangat menghemat waktu development!
+                    </div>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h3><i class="fas fa-paint-brush"></i> Customization dan Styling</h3>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="section-content">
+                    <h4>Menambahkan Assets dan Fonts</h4>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fas fa-file-code"></i> pubspec.yaml</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'pubspec-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="pubspec-code">name: hello_indonesia
+description: Aplikasi Flutter pertama dengan tema Indonesia
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  
+  # Assets (images, icons, dll)
+  assets:
+    - assets/images/
+    - assets/icons/
+  
+  # Custom fonts
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700</pre>
+                    </div>
+
+                    <h4>Advanced Styling dengan Theme</h4>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fab fa-dart-lang"></i> Custom Theme</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'theme-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="theme-code">// Dalam MaterialApp
+theme: ThemeData(
+  // Primary colors (warna utama aplikasi)
+  primarySwatch: Colors.red,
+  primaryColor: Color(0xFFFF0000),  // Merah bendera Indonesia
+  
+  // Font family
+  fontFamily: 'Poppins',
+  
+  // Text theme
+  textTheme: TextTheme(
+    headlineLarge: TextStyle(
+      fontSize: 32.0,
+      fontWeight: FontWeight.bold,
+      color: Colors.red,
+    ),
+    bodyLarge: TextStyle(
+      fontSize: 16.0,
+      color: Colors.grey[800],
+    ),
+  ),
+  
+  // AppBar theme
+  appBarTheme: AppBarTheme(
+    backgroundColor: Colors.red,
+    foregroundColor: Colors.white,
+    elevation: 4.0,
+    centerTitle: true,
+  ),
+  
+  // Button theme
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Colors.red,
+      foregroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(25.0),
+      ),
+    ),
+  ),
+  
+  // Card theme
+  cardTheme: CardTheme(
+    elevation: 8.0,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15.0),
+    ),
+  ),
+),</pre>
+                    </div>
+
+                    <div class="zapp-suggestion">
+                        <i class="fas fa-palette"></i> <strong>Eksperimen Styling!</strong><br>
+                        Gabungkan theme code ini dengan Hello Indonesia App di <a href="https://zapp.run/" target="_blank" class="zapp-link">zapp.run</a> dan coba ubah warna, font, atau styling untuk melihat efeknya secara real-time!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Glossary -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Daftar Istilah dan Singkatan</h2>
+            
+            <div class="glossary">
+                <div class="glossary-item">
+                    <div class="glossary-term">AOT (Ahead-Of-Time) Compilation</div>
+                    <div>Proses kompilasi kode sebelum runtime, menghasilkan performa lebih baik untuk production builds.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">API (Application Programming Interface)</div>
+                    <div>Antarmuka yang memungkinkan komunikasi antara berbagai komponen software.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">AVD (Android Virtual Device)</div>
+                    <div>Emulator Android yang berjalan di komputer untuk testing aplikasi mobile.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Cross-Platform Development</div>
+                    <div>Pendekatan pengembangan aplikasi yang dapat berjalan di multiple platform dari satu codebase.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Dart</div>
+                    <div>Bahasa pemrograman yang dikembangkan Google, digunakan untuk membuat aplikasi Flutter.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Flutter SDK</div>
+                    <div>Software Development Kit yang berisi tools, libraries, dan documentation untuk Flutter development.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Hot Reload</div>
+                    <div>Fitur Flutter yang memungkinkan developer melihat perubahan code secara real-time tanpa restart aplikasi.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">JIT (Just-In-Time) Compilation</div>
+                    <div>Proses kompilasi kode saat runtime, digunakan Flutter untuk development mode dengan hot reload.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Material Design</div>
+                    <div>Design system yang dikembangkan Google untuk menciptakan user interface yang konsisten dan intuitif.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Native Development</div>
+                    <div>Pengembangan aplikasi menggunakan bahasa dan tools khusus untuk platform tertentu (Swift untuk iOS, Java/Kotlin untuk Android).</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Scaffold</div>
+                    <div>Widget Flutter yang menyediakan struktur dasar halaman (AppBar, Body, FloatingActionButton, dll).</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Skia</div>
+                    <div>Graphics engine open-source yang digunakan Flutter untuk rendering, juga digunakan Chrome dan Android.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Widget</div>
+                    <div>Building block utama Flutter UI, setiap elemen visual dalam Flutter adalah widget.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Widget Tree</div>
+                    <div>Struktur hierarkis widget-widget dalam aplikasi Flutter, menentukan layout dan appearance UI.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- References -->
+    <section class="references">
+        <div class="container">
+            <h2 class="section-title">Daftar Referensi</h2>
+            
+            <ol class="reference-list">
+                <li>Flutter Team. (2024). <em>Flutter Documentation: Get Started</em>. Google LLC. Retrieved from https://docs.flutter.dev/get-started</li>
+                
+                <li>Windmill, E. (2024). <em>Flutter in Action</em>. Manning Publications.</li>
+                
+                <li>Google Developers. (2024). <em>Dart Language Tour</em>. Retrieved from https://dart.dev/guides/language/language-tour</li>
+                
+                <li>Flutter Indonesia Community. (2024). <em>Flutter Tutorial Bahasa Indonesia</em>. Retrieved from https://flutter.id</li>
+                
+                <li>Dicoding Indonesia. (2024). <em>Belajar Membuat Aplikasi Flutter untuk Pemula</em>. Dicoding Academy.</li>
+                
+                <li>Moroney, L. (2024). <em>Programming Flutter: Native, Cross-Platform Apps the Easy Way</em>. O'Reilly Media.</li>
+                
+                <li>BuildWithAngga. (2024). <em>Flutter Tutorial Tips untuk Pemula</em>. Retrieved from https://buildwithangga.com</li>
+                
+                <li>Petani Kode. (2024). <em>Tutorial Flutter: Pengenalan dan Persiapan</em>. Retrieved from https://www.petanikode.com/flutter-linux</li>
+                
+                <li>Material Design Team. (2024). <em>Material Design Guidelines</em>. Google. Retrieved from https://material.io/design</li>
+                
+                <li>Flutter Community. (2024). <em>Flutter Packages</em>. Retrieved from https://pub.dev</li>
+            </ol>
+        </div>
+    </section>
+
+    <script>
+        // Toggle expandable sections
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.expand-icon');
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                header.classList.remove('active');
+            } else {
+                content.classList.add('active');
+                header.classList.add('active');
+            }
+        }
+
+        // Copy code functionality
+        function copyCode(button, codeId) {
+            const code = document.getElementById(codeId).textContent;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        // Auto-expand first section
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.expandable-section .section-header');
+            if (firstSection) {
+                toggleSection(firstSection);
+            }
+        });
+    </script>
+</body>
+</html>

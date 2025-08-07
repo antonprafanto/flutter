@@ -1,0 +1,3144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 2 - Dart Programming dan OOP Concepts</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fafafa;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .course-info {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pertemuan-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Learning Objectives */
+        .objectives {
+            padding: 3rem 0;
+            background: white;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .objective-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #1a1a1a;
+        }
+
+        .objective-card i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 3rem 0;
+        }
+
+        .content-section:nth-child(even) {
+            background: white;
+        }
+
+        .expandable-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            background: #1a1a1a;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .section-header:hover {
+            background: #333;
+        }
+
+        .section-header h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .expand-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .section-header.active .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            padding: 2rem;
+            display: none;
+        }
+
+        .section-content.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Code Blocks */
+        .code-block {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+
+        .code-header {
+            background: #2d3748;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .copy-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .copy-btn.copied {
+            background: #10b981;
+            border-color: #10b981;
+        }
+
+        .zapp-suggestion {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #4f46e5;
+        }
+
+        .zapp-suggestion i {
+            color: #fbbf24;
+        }
+
+        .zapp-link {
+            color: #fbbf24;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .zapp-link:hover {
+            color: #f59e0b;
+            text-decoration: underline;
+        }
+
+        pre {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0 0 8px 8px;
+            overflow-x: auto;
+            margin: 0;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            line-height: 1.5;
+        }
+
+        /* Flowchart */
+        .flowchart {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .flow-step {
+            background: #f8f9fa;
+            border: 2px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem;
+            display: inline-block;
+            min-width: 200px;
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin: 0.5rem;
+        }
+
+        /* Diagram Boxes */
+        .diagram-container {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .oop-diagram {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .oop-box {
+            background: white;
+            border: 2px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 1rem;
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .oop-box h5 {
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+
+        /* Glossary */
+        .glossary {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .glossary-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .glossary-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .glossary-term {
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Project Card */
+        .project-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .project-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* References */
+        .references {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .reference-list {
+            list-style: none;
+            counter-reset: reference-counter;
+        }
+
+        .reference-list li {
+            counter-increment: reference-counter;
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .reference-list li::before {
+            content: counter(reference-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #1a1a1a;
+            color: white;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .objectives-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .oop-diagram {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fab fa-flutter"></i>
+                    Flutter Course
+                </div>
+                <div class="course-info">
+                    PPB-FLT-101 | 3 SKS | Semester 5/6
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="pertemuan-badge">
+                <i class="fas fa-calendar-alt"></i>
+                Pertemuan 2
+            </div>
+            <h1>Dart Programming dan OOP Concepts</h1>
+            <p>Menguasai Object-Oriented Programming dalam Dart, memahami collections dan data structures, serta menerapkan exception handling dan async programming fundamentals.</p>
+        </div>
+    </section>
+
+    <!-- Learning Objectives -->
+    <section class="objectives">
+        <div class="container">
+            <h2 class="section-title">Tujuan Pembelajaran</h2>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <i class="fas fa-cube"></i>
+                    <h4>Object-Oriented Programming</h4>
+                    <p>Menguasai konsep OOP dalam Dart: classes, objects, inheritance, encapsulation, dan polymorphism.</p>
+                </div>
+                <div class="objective-card">
+                    <i class="fas fa-layer-group"></i>
+                    <h4>Collections & Data Structures</h4>
+                    <p>Memahami Lists, Maps, Sets dan teknik manipulasi data untuk pengelolaan informasi yang efisien.</p>
+                </div>
+                <div class="objective-card">
+                    <i class="fas fa-sync-alt"></i>
+                    <h4>Async Programming & Error Handling</h4>
+                    <p>Menerapkan Future, async/await fundamentals dan exception handling untuk aplikasi yang robust.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Materi Teoritis -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Materi Teoritis</h2>
+
+            <!-- 1. OOP Fundamentals -->
+            <div class="expandable-section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h3><i class="fas fa-cube"></i> Object-Oriented Programming Fundamentals</h3>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="section-content">
+                    <h4>Konsep Dasar OOP</h4>
+                    <p>Object-Oriented Programming (OOP) adalah paradigma pemrograman yang mengorganisir kode dalam bentuk objek yang memiliki atribut (properties) dan perilaku (methods). OOP membantu dalam membuat kode yang modular, reusable, dan mudah di-maintain.</p>
+                    
+                    <div class="diagram-container">
+                        <h4>4 Pilar OOP</h4>
+                        <div class="oop-diagram">
+                            <div class="oop-box">
+                                <h5>Encapsulation</h5>
+                                <p>Menyembunyikan detail implementasi dan memberikan akses melalui interface yang terkontrol</p>
+                            </div>
+                            <div class="oop-box">
+                                <h5>Inheritance</h5>
+                                <p>Kemampuan class untuk mewarisi properties dan methods dari parent class</p>
+                            </div>
+                            <div class="oop-box">
+                                <h5>Polymorphism</h5>
+                                <p>Kemampuan objek untuk memiliki banyak bentuk dan berperilaku berbeda</p>
+                            </div>
+                            <div class="oop-box">
+                                <h5>Abstraction</h5>
+                                <p>Menyembunyikan kompleksitas dan menampilkan hanya fitur essential</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4>Classes dan Objects dalam Dart</h4>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fab fa-dart-lang"></i> BasicClass.dart</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'basic-class-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="basic-class-code">// Definisi class sederhana untuk Mahasiswa
+class Mahasiswa {
+  // Properties (attributes)
+  String nama;
+  String nim;
+  int semester;
+  double ipk;
+  
+  // Constructor
+  Mahasiswa(this.nama, this.nim, this.semester, this.ipk);
+  
+  // Named constructor untuk mahasiswa baru
+  Mahasiswa.mahasiswaBaru(String nama, String nim) 
+    : this.nama = nama,
+      this.nim = nim,
+      this.semester = 1,
+      this.ipk = 0.0;
+  
+  // Methods (functions)
+  void tampilkanInfo() {
+    print('=== INFO MAHASISWA ===');
+    print('Nama: $nama');
+    print('NIM: $nim');
+    print('Semester: $semester');
+    print('IPK: ${ipk.toStringAsFixed(2)}');
+  }
+  
+  // Method untuk update IPK
+  void updateIPK(double ipkBaru) {
+    if (ipkBaru >= 0.0 && ipkBaru <= 4.0) {
+      ipk = ipkBaru;
+      print('IPK berhasil diupdate menjadi: ${ipk.toStringAsFixed(2)}');
+    } else {
+      print('Error: IPK harus antara 0.0 - 4.0');
+    }
+  }
+  
+  // Method untuk naik semester
+  void naikSemester() {
+    if (semester < 8) {
+      semester++;
+      print('Selamat! $nama naik ke semester $semester');
+    } else {
+      print('$nama sudah di semester maksimal');
+    }
+  }
+  
+  // Getter untuk status kelulusan
+  String get statusKelulusan {
+    if (semester >= 8 && ipk >= 2.0) {
+      return 'Lulus';
+    } else if (semester >= 8 && ipk < 2.0) {
+      return 'Tidak Lulus';
+    } else {
+      return 'Masih Kuliah';
+    }
+  }
+  
+  // Method untuk menentukan predikat
+  String getPredikat() {
+    if (ipk >= 3.75) return 'Summa Cum Laude';
+    if (ipk >= 3.50) return 'Magna Cum Laude';
+    if (ipk >= 3.25) return 'Cum Laude';
+    if (ipk >= 2.75) return 'Sangat Memuaskan';
+    if (ipk >= 2.00) return 'Memuaskan';
+    return 'Tidak Memenuhi Syarat';
+  }
+}
+
+void main() {
+  // Membuat object dari class Mahasiswa
+  var mahasiswa1 = Mahasiswa('Ahmad Rizki', '2021001234', 5, 3.75);
+  var mahasiswa2 = Mahasiswa.mahasiswaBaru('Sari Dewi', '2024001111');
+  
+  // Menggunakan methods
+  mahasiswa1.tampilkanInfo();
+  print('Predikat: ${mahasiswa1.getPredikat()}');
+  print('Status: ${mahasiswa1.statusKelulusan}');
+  
+  print('\n' + '='*40 + '\n');
+  
+  mahasiswa2.tampilkanInfo();
+  mahasiswa2.updateIPK(3.8);
+  mahasiswa2.naikSemester();
+}</pre>
+                    </div>
+
+                    <div class="zapp-suggestion">
+                        <i class="fas fa-graduation-cap"></i> <strong>Praktek OOP Langsung!</strong><br>
+                        Copy code class Mahasiswa di atas ke <a href="https://zapp.run/" target="_blank" class="zapp-link">zapp.run</a> dan eksperimen dengan membuat object mahasiswa, memanggil method, dan modifikasi properties untuk memahami konsep OOP!
+                    </div>
+
+                    <div class="flowchart">
+                        <h4>Hubungan Class dan Object</h4>
+                        <div class="flow-step">Class Mahasiswa<br>(Blueprint)</div>
+                        <i class="fas fa-arrow-right flow-arrow"></i>
+                        <div class="flow-step">Object mahasiswa1<br>(Instance)</div>
+                        <i class="fas fa-arrow-right flow-arrow"></i>
+                        <div class="flow-step">Object mahasiswa2<br>(Instance)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Inheritance dan Polymorphism -->
+            <div class="expandable-section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h3><i class="fas fa-sitemap"></i> Inheritance dan Polymorphism</h3>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="section-content">
+                    <h4>Inheritance (Pewarisan)</h4>
+                    <p>Inheritance memungkinkan sebuah class (child/subclass) untuk mewarisi properties dan methods dari class lain (parent/superclass). Ini membantu dalam code reusability dan menciptakan hierarki yang logical.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fab fa-dart-lang"></i> Inheritance.dart</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'inheritance-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="inheritance-code">// Parent class (Superclass)
+abstract class Person {
+  String nama;
+  int umur;
+  String email;
+  
+  Person(this.nama, this.umur, this.email);
+  
+  // Abstract method - harus diimplementasi di child class
+  void tampilkanPeran();
+  
+  // Concrete method - bisa digunakan langsung
+  void tampilkanInfoDasar() {
+    print('Nama: $nama');
+    print('Umur: $umur tahun');
+    print('Email: $email');
+  }
+  
+  void kirimEmail(String pesan) {
+    print('Email terkirim ke $email: $pesan');
+  }
+}
+
+// Child class 1: Mahasiswa
+class MahasiswaLanjutan extends Person {
+  String nim;
+  String jurusan;
+  int semester;
+  double ipk;
+  
+  MahasiswaLanjutan(
+    String nama, 
+    int umur, 
+    String email, 
+    this.nim, 
+    this.jurusan, 
+    this.semester, 
+    this.ipk
+  ) : super(nama, umur, email);
+  
+  @override
+  void tampilkanPeran() {
+    print('Peran: Mahasiswa $jurusan');
+  }
+  
+  void tampilkanInfoLengkap() {
+    tampilkanInfoDasar();
+    tampilkanPeran();
+    print('NIM: $nim');
+    print('Semester: $semester');
+    print('IPK: ${ipk.toStringAsFixed(2)}');
+  }
+  
+  void daftarMataKuliah(List<String> mataKuliah) {
+    print('$nama mendaftar mata kuliah:');
+    for (String mk in mataKuliah) {
+      print('- $mk');
+    }
+  }
+}
+
+// Child class 2: Dosen
+class Dosen extends Person {
+  String nip;
+  String fakultas;
+  List<String> mataKuliahDiajar;
+  
+  Dosen(
+    String nama, 
+    int umur, 
+    String email, 
+    this.nip, 
+    this.fakultas, 
+    this.mataKuliahDiajar
+  ) : super(nama, umur, email);
+  
+  @override
+  void tampilkanPeran() {
+    print('Peran: Dosen Fakultas $fakultas');
+  }
+  
+  void tampilkanInfoLengkap() {
+    tampilkanInfoDasar();
+    tampilkanPeran();
+    print('NIP: $nip');
+    print('Mata Kuliah yang Diajar:');
+    for (String mk in mataKuliahDiajar) {
+      print('- $mk');
+    }
+  }
+  
+  void berikanNilai(MahasiswaLanjutan mahasiswa, String mataKuliah, double nilai) {
+    print('$nama memberikan nilai $nilai untuk $mataKuliah kepada ${mahasiswa.nama}');
+  }
+}
+
+// Child class 3: Staff
+class Staff extends Person {
+  String nip;
+  String bagian;
+  String jabatan;
+  
+  Staff(
+    String nama, 
+    int umur, 
+    String email, 
+    this.nip, 
+    this.bagian, 
+    this.jabatan
+  ) : super(nama, umur, email);
+  
+  @override
+  void tampilkanPeran() {
+    print('Peran: $jabatan di Bagian $bagian');
+  }
+  
+  void tampilkanInfoLengkap() {
+    tampilkanInfoDasar();
+    tampilkanPeran();
+    print('NIP: $nip');
+  }
+  
+  void prosesDokumen(String jenisDokumen) {
+    print('$nama memproses dokumen: $jenisDokumen');
+  }
+}
+
+void main() {
+  // Membuat objects dari different classes
+  var mahasiswa = MahasiswaLanjutan(
+    'Budi Santoso', 20, 'budi@student.univ.ac.id',
+    '2021001234', 'Teknik Informatika', 5, 3.6
+  );
+  
+  var dosen = Dosen(
+    'Dr. Ani Wijaya', 45, 'ani.wijaya@univ.ac.id',
+    '198501012010012001', 'Teknik',
+    ['Algoritma Pemrograman', 'Mobile Programming', 'Database']
+  );
+  
+  var staff = Staff(
+    'Eko Prasetyo', 35, 'eko@admin.univ.ac.id',
+    '198801012012011001', 'Akademik', 'Koordinator Akademik'
+  );
+  
+  // Demonstrasi polymorphism
+  List<Person> orangKampus = [mahasiswa, dosen, staff];
+  
+  print('=== DAFTAR ORANG DI KAMPUS ===');
+  for (Person orang in orangKampus) {
+    print('\n--- ${orang.nama} ---');
+    orang.tampilkanPeran(); // Polymorphism: method sama, behavior berbeda
+    orang.kirimEmail('Pengumuman penting dari rektorat');
+  }
+  
+  print('\n=== DETAIL INFORMASI ===');
+  mahasiswa.tampilkanInfoLengkap();
+  mahasiswa.daftarMataKuliah(['Mobile Programming', 'Artificial Intelligence']);
+  
+  print('\n');
+  dosen.berikanNilai(mahasiswa, 'Mobile Programming', 85.5);
+}</pre>
+                    </div>
+
+                    <div class="zapp-suggestion">
+                        <i class="fas fa-family"></i> <strong>Eksplor Inheritance!</strong><br>
+                        Jalankan code inheritance di <a href="https://zapp.run/" target="_blank" class="zapp-link">zapp.run</a> dan coba tambahkan child class baru seperti "Alumni" atau "Mahasiswa Transfer" untuk memahami konsep pewarisan!
+                    </div>
+
+                    <div class="flowchart">
+                        <h4>Hierarki Inheritance</h4>
+                        <div class="flow-step">Person<br>(Abstract Class)</div>
+                        <i class="fas fa-arrow-down flow-arrow"></i>
+                        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                            <div class="flow-step">MahasiswaLanjutan</div>
+                            <div class="flow-step">Dosen</div>
+                            <div class="flow-step">Staff</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Collections dan Data Structures -->
+            <div class="expandable-section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h3><i class="fas fa-layer-group"></i> Collections dan Data Structures</h3>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="section-content">
+                    <h4>Tipe-tipe Collections dalam Dart</h4>
+                    <p>Dart menyediakan beberapa built-in collection types yang powerful untuk mengelola kumpulan data secara efisien.</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Collection Type</th>
+                                <th>Karakteristik</th>
+                                <th>Use Case</th>
+                                <th>Performance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>List</strong></td>
+                                <td>Ordered, dapat duplikasi, indexed</td>
+                                <td>Sequential data, array-like</td>
+                                <td>O(1) access, O(n) search</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Set</strong></td>
+                                <td>Unordered, unique elements</td>
+                                <td>Unique collections, fast lookup</td>
+                                <td>O(1) lookup, add, remove</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Map</strong></td>
+                                <td>Key-value pairs, unique keys</td>
+                                <td>Dictionary, lookup tables</td>
+                                <td>O(1) key lookup</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>List - Mengelola Data Terurut</h4>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fab fa-dart-lang"></i> Lists.dart</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'lists-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="lists-code">void main() {
+  // === DEKLARASI LIST ===
+  
+  // List dengan tipe data eksplisit
+  List<String> mahasiswaIF = ['Ahmad', 'Budi', 'Citra', 'Dewi'];
+  List<int> nilaiUjian = [85, 92, 78, 95, 88];
+  List<double> ipkMahasiswa = [3.4, 3.8, 3.2, 3.9, 3.6];
+  
+  // List campuran (tidak direkomendasikan untuk production)
+  List<dynamic> dataCampuran = ['Ahmad', 20, 3.5, true];
+  
+  // List kosong
+  List<String> daftarHadir = [];
+  List<Map<String, dynamic>> databaseMahasiswa = [];
+  
+  print('=== OPERASI DASAR LIST ===');
+  
+  // Menambah element
+  mahasiswaIF.add('Eko');
+  mahasiswaIF.addAll(['Fitri', 'Galih']);
+  print('Daftar mahasiswa: $mahasiswaIF');
+  
+  // Mengakses element
+  print('Mahasiswa pertama: ${mahasiswaIF[0]}');
+  print('Mahasiswa terakhir: ${mahasiswaIF.last}');
+  print('Jumlah mahasiswa: ${mahasiswaIF.length}');
+  
+  // === MANIPULASI DATA ===
+  
+  // Insert di posisi tertentu
+  mahasiswaIF.insert(2, 'Hani'); // Insert di index 2
+  print('Setelah insert: $mahasiswaIF');
+  
+  // Remove element
+  mahasiswaIF.remove('Budi'); // Remove by value
+  mahasiswaIF.removeAt(0);    // Remove by index
+  print('Setelah remove: $mahasiswaIF');
+  
+  // === ITERASI DAN PENCARIAN ===
+  
+  print('\n=== DAFTAR MAHASISWA DAN NILAI ===');
+  for (int i = 0; i < mahasiswaIF.length && i < nilaiUjian.length; i++) {
+    print('${i + 1}. ${mahasiswaIF[i]}: ${nilaiUjian[i]}');
+  }
+  
+  // Enhanced for loop
+  print('\n=== MAHASISWA DENGAN IPK ===');
+  for (int i = 0; i < mahasiswaIF.length && i < ipkMahasiswa.length; i++) {
+    String nama = mahasiswaIF[i];
+    double ipk = ipkMahasiswa[i];
+    String predikat = getPredikatIPK(ipk);
+    print('$nama - IPK: ${ipk.toStringAsFixed(2)} ($predikat)');
+  }
+  
+  // === FUNCTIONAL PROGRAMMING STYLE ===
+  
+  // Where (filter)
+  var mahasiswaTinggi = ipkMahasiswa.where((ipk) => ipk >= 3.5).toList();
+  print('\nIPK >= 3.5: $mahasiswaTinggi');
+  
+  // Map (transform)
+  var nilaiHuruf = nilaiUjian.map((nilai) => getNilaiHuruf(nilai)).toList();
+  print('Nilai huruf: $nilaiHuruf');
+  
+  // Reduce (aggregate)
+  double totalIPK = ipkMahasiswa.reduce((a, b) => a + b);
+  double rataRataIPK = totalIPK / ipkMahasiswa.length;
+  print('Rata-rata IPK: ${rataRataIPK.toStringAsFixed(2)}');
+  
+  // === SORTING ===
+  
+  List<int> nilaiCopy = [...nilaiUjian]; // Spread operator untuk copy
+  nilaiCopy.sort(); // Ascending
+  print('\nNilai terurut ascending: $nilaiCopy');
+  
+  nilaiCopy.sort((a, b) => b.compareTo(a)); // Descending
+  print('Nilai terurut descending: $nilaiCopy');
+  
+  // === LIST COMPREHENSION STYLE ===
+  
+  // Membuat list mahasiswa berprestasi
+  List<Map<String, dynamic>> mahasiswaBerprestasi = [];
+  for (int i = 0; i < mahasiswaIF.length && i < ipkMahasiswa.length; i++) {
+    if (ipkMahasiswa[i] >= 3.5) {
+      mahasiswaBerprestasi.add({
+        'nama': mahasiswaIF[i],
+        'ipk': ipkMahasiswa[i],
+        'predikat': getPredikatIPK(ipkMahasiswa[i])
+      });
+    }
+  }
+  
+  print('\n=== MAHASISWA BERPRESTASI ===');
+  for (var mahasiswa in mahasiswaBerprestasi) {
+    print('${mahasiswa['nama']}: IPK ${mahasiswa['ipk']} (${mahasiswa['predikat']})');
+  }
+}
+
+// Helper functions
+String getPredikatIPK(double ipk) {
+  if (ipk >= 3.75) return 'Summa Cum Laude';
+  if (ipk >= 3.50) return 'Magna Cum Laude';
+  if (ipk >= 3.25) return 'Cum Laude';
+  if (ipk >= 3.00) return 'Sangat Memuaskan';
+  return 'Memuaskan';
+}
+
+String getNilaiHuruf(int nilai) {
+  if (nilai >= 90) return 'A';
+  if (nilai >= 80) return 'B';
+  if (nilai >= 70) return 'C';
+  if (nilai >= 60) return 'D';
+  return 'E';
+}</pre>
+                    </div>
+
+                    <h4>Maps - Key-Value Data Management</h4>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fab fa-dart-lang"></i> Maps.dart</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'maps-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="maps-code">void main() {
+  // === DEKLARASI MAP ===
+  
+  // Map sederhana: NIM -> Nama
+  Map<String, String> daftarMahasiswa = {
+    '2021001001': 'Ahmad Rizki',
+    '2021001002': 'Budi Santoso',
+    '2021001003': 'Citra Dewi',
+    '2021001004': 'Dian Sari',
+  };
+  
+  // Map kompleks: NIM -> Data Mahasiswa
+  Map<String, Map<String, dynamic>> dataMahasiswa = {
+    '2021001001': {
+      'nama': 'Ahmad Rizki',
+      'jurusan': 'Teknik Informatika',
+      'semester': 5,
+      'ipk': 3.75,
+      'alamat': 'Jakarta',
+      'mataKuliah': ['Mobile Programming', 'AI', 'Database']
+    },
+    '2021001002': {
+      'nama': 'Budi Santoso',
+      'jurusan': 'Sistem Informasi',
+      'semester': 6,
+      'ipk': 3.42,
+      'alamat': 'Bandung',
+      'mataKuliah': ['Web Programming', 'Data Mining', 'Networking']
+    },
+    '2021001003': {
+      'nama': 'Citra Dewi',
+      'jurusan': 'Teknik Informatika',
+      'semester': 4,
+      'ipk': 3.88,
+      'alamat': 'Surabaya',
+      'mataKuliah': ['OOP', 'Algorithm', 'Mobile Programming']
+    },
+  };
+  
+  // Map untuk menyimpan nilai per mata kuliah
+  Map<String, Map<String, double>> nilaiMataKuliah = {
+    'Mobile Programming': {
+      '2021001001': 85.5,
+      '2021001003': 92.0,
+    },
+    'Database': {
+      '2021001001': 88.5,
+      '2021001002': 79.0,
+    },
+  };
+  
+  print('=== OPERASI DASAR MAP ===');
+  
+  // Mengakses data
+  print('Mahasiswa ${daftarMahasiswa['2021001001']}');
+  print('IPK Ahmad: ${dataMahasiswa['2021001001']?['ipk']}');
+  
+  // Menambah data baru
+  daftarMahasiswa['2021001005'] = 'Eko Prasetyo';
+  dataMahasiswa['2021001005'] = {
+    'nama': 'Eko Prasetyo',
+    'jurusan': 'Teknik Komputer',
+    'semester': 3,
+    'ipk': 3.25,
+    'alamat': 'Yogyakarta',
+    'mataKuliah': ['Digital Logic', 'Computer Architecture']
+  };
+  
+  // Update data
+  dataMahasiswa['2021001001']?['semester'] = 6;
+  dataMahasiswa['2021001001']?['ipk'] = 3.80;
+  
+  print('\n=== ITERASI MAP ===');
+  
+  // Iterasi keys
+  for (String nim in dataMahasiswa.keys) {
+    var data = dataMahasiswa[nim]!;
+    print('NIM: $nim - ${data['nama']} (${data['jurusan']})');
+  }
+  
+  // Iterasi entries (key-value pairs)
+  print('\n=== DETAIL MAHASISWA ===');
+  dataMahasiswa.forEach((nim, data) {
+    print('\n--- ${data['nama']} ---');
+    print('NIM: $nim');
+    print('Jurusan: ${data['jurusan']}');
+    print('Semester: ${data['semester']}');
+    print('IPK: ${data['ipk']}');
+    print('Alamat: ${data['alamat']}');
+    print('Mata Kuliah: ${data['mataKuliah'].join(', ')}');
+  });
+  
+  // === FILTERING DAN SEARCHING ===
+  
+  // Cari mahasiswa berdasarkan kriteria
+  print('\n=== MAHASISWA TEKNIK INFORMATIKA ===');
+  var mahasiswaIF = dataMahasiswa.entries
+      .where((entry) => entry.value['jurusan'] == 'Teknik Informatika')
+      .map((entry) => entry.value)
+      .toList();
+  
+  for (var mahasiswa in mahasiswaIF) {
+    print('- ${mahasiswa['nama']} (IPK: ${mahasiswa['ipk']})');
+  }
+  
+  // Cari mahasiswa dengan IPK tinggi
+  print('\n=== MAHASISWA BERPRESTASI (IPK >= 3.5) ===');
+  var mahasiswaBerprestasi = dataMahasiswa.entries
+      .where((entry) => entry.value['ipk'] >= 3.5)
+      .toList();
+      
+  mahasiswaBerprestasi.sort((a, b) => 
+      b.value['ipk'].compareTo(a.value['ipk'])); // Sort by IPK descending
+  
+  for (var entry in mahasiswaBerprestasi) {
+    var data = entry.value;
+    print('${data['nama']}: IPK ${data['ipk']} (${getPredikatIPK(data['ipk'])})');
+  }
+  
+  // === OPERASI LANJUTAN ===
+  
+  // Menghitung statistik
+  print('\n=== STATISTIK MAHASISWA ===');
+  var semuaIPK = dataMahasiswa.values.map((data) => data['ipk'] as double).toList();
+  double rataRataIPK = semuaIPK.reduce((a, b) => a + b) / semuaIPK.length;
+  double maxIPK = semuaIPK.reduce((a, b) => a > b ? a : b);
+  double minIPK = semuaIPK.reduce((a, b) => a < b ? a : b);
+  
+  print('Jumlah mahasiswa: ${dataMahasiswa.length}');
+  print('Rata-rata IPK: ${rataRataIPK.toStringAsFixed(2)}');
+  print('IPK tertinggi: $maxIPK');
+  print('IPK terendah: $minIPK');
+  
+  // Grouping berdasarkan jurusan
+  Map<String, List<Map<String, dynamic>>> mahasiswaPerJurusan = {};
+  
+  dataMahasiswa.forEach((nim, data) {
+    String jurusan = data['jurusan'];
+    if (!mahasiswaPerJurusan.containsKey(jurusan)) {
+      mahasiswaPerJurusan[jurusan] = [];
+    }
+    mahasiswaPerJurusan[jurusan]!.add(data);
+  });
+  
+  print('\n=== MAHASISWA PER JURUSAN ===');
+  mahasiswaPerJurusan.forEach((jurusan, listMahasiswa) {
+    print('\n$jurusan (${listMahasiswa.length} mahasiswa):');
+    for (var mahasiswa in listMahasiswa) {
+      print('  - ${mahasiswa['nama']} (IPK: ${mahasiswa['ipk']})');
+    }
+  });
+  
+  // === NESTED MAP OPERATIONS ===
+  
+  print('\n=== NILAI MATA KULIAH ===');
+  nilaiMataKuliah.forEach((mataKuliah, nilaiMahasiswa) {
+    print('\n$mataKuliah:');
+    nilaiMahasiswa.forEach((nim, nilai) {
+      String namaMahasiswa = daftarMahasiswa[nim] ?? 'Unknown';
+      String nilaiHuruf = getNilaiHuruf(nilai.round());
+      print('  $namaMahasiswa ($nim): $nilai ($nilaiHuruf)');
+    });
+  });
+}
+
+// Helper functions
+String getPredikatIPK(double ipk) {
+  if (ipk >= 3.75) return 'Summa Cum Laude';
+  if (ipk >= 3.50) return 'Magna Cum Laude';
+  if (ipk >= 3.25) return 'Cum Laude';
+  if (ipk >= 3.00) return 'Sangat Memuaskan';
+  return 'Memuaskan';
+}
+
+String getNilaiHuruf(int nilai) {
+  if (nilai >= 90) return 'A';
+  if (nilai >= 80) return 'B';
+  if (nilai >= 70) return 'C';
+  if (nilai >= 60) return 'D';
+  return 'E';
+}</pre>
+                    </div>
+
+                    <h4>Sets - Unique Collections</h4>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fab fa-dart-lang"></i> Sets.dart</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'sets-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="sets-code">void main() {
+  // === DEKLARASI SET ===
+  
+  // Set dengan data initial
+  Set<String> mataKuliahWajib = {
+    'Algoritma Pemrograman',
+    'Struktur Data',
+    'Database',
+    'Pemrograman Web',
+    'Mobile Programming'
+  };
+  
+  Set<String> mataKuliahPilihan = {
+    'Artificial Intelligence',
+    'Machine Learning',
+    'Cyber Security',
+    'Game Development',
+    'Mobile Programming' // Duplikasi akan diabaikan
+  };
+  
+  // Set kosong
+  Set<String> mataKuliahDiambil = <String>{};
+  Set<String> mahasiswaAktif = {};
+  
+  print('=== OPERASI DASAR SET ===');
+  
+  // Menambah element
+  mataKuliahDiambil.add('Database');
+  mataKuliahDiambil.add('Mobile Programming');
+  mataKuliahDiambil.add('Database'); // Duplikasi diabaikan
+  
+  print('Mata kuliah diambil: $mataKuliahDiambil');
+  print('Jumlah mata kuliah: ${mataKuliahDiambil.length}');
+  
+  // Mengecek keberadaan element
+  bool adaDatabase = mataKuliahDiambil.contains('Database');
+  print('Sudah ambil Database? $adaDatabase');
+  
+  // === SET OPERATIONS ===
+  
+  print('\n=== OPERASI SET ===');
+  
+  // Union (gabungan)
+  Set<String> semuaMataKuliah = mataKuliahWajib.union(mataKuliahPilihan);
+  print('Semua mata kuliah tersedia: ${semuaMataKuliah.length}');
+  semuaMataKuliah.forEach((mk) => print('- $mk'));
+  
+  // Intersection (irisan)
+  Set<String> mataKuliahDuplikat = mataKuliahWajib.intersection(mataKuliahPilihan);
+  print('\nMata kuliah yang ada di kedua kategori: $mataKuliahDuplikat');
+  
+  // Difference (selisih)
+  Set<String> hanyaWajib = mataKuliahWajib.difference(mataKuliahPilihan);
+  Set<String> hanyaPilihan = mataKuliahPilihan.difference(mataKuliahWajib);
+  
+  print('\nHanya di mata kuliah wajib: $hanyaWajib');
+  print('Hanya di mata kuliah pilihan: $hanyaPilihan');
+  
+  // === APLIKASI PRAKTIS: SISTEM AKADEMIK ===
+  
+  // Simulasi mahasiswa dan mata kuliah yang diambil
+  Map<String, Set<String>> mahasiswaKuliah = {
+    'Ahmad': {'Database', 'Mobile Programming', 'Artificial Intelligence'},
+    'Budi': {'Database', 'Pemrograman Web', 'Cyber Security'},
+    'Citra': {'Mobile Programming', 'Machine Learning', 'Game Development'},
+    'Dian': {'Database', 'Struktur Data', 'Pemrograman Web'},
+    'Eko': {'Artificial Intelligence', 'Machine Learning', 'Cyber Security'},
+  };
+  
+  print('\n=== ANALISIS PENGAMBILAN MATA KULIAH ===');
+  
+  // Mata kuliah paling populer
+  Map<String, int> hitungMataKuliah = {};
+  
+  mahasiswaKuliah.forEach((mahasiswa, mataKuliah) {
+    for (String mk in mataKuliah) {
+      hitungMataKuliah[mk] = (hitungMataKuliah[mk] ?? 0) + 1;
+    }
+  });
+  
+  // Sort berdasarkan popularitas
+  var mataKuliahPopuler = hitungMataKuliah.entries.toList()
+    ..sort((a, b) => b.value.compareTo(a.value));
+  
+  print('\nMata kuliah paling populer:');
+  for (var entry in mataKuliahPopuler) {
+    print('${entry.key}: ${entry.value} mahasiswa');
+  }
+  
+  // Cari mahasiswa yang mengambil mata kuliah serupa
+  print('\n=== REKOMENDASI TEMAN KULIAH ===');
+  
+  mahasiswaKuliah.forEach((mahasiswa1, mk1) {
+    Set<String> temanSerupa = {};
+    
+    mahasiswaKuliah.forEach((mahasiswa2, mk2) {
+      if (mahasiswa1 != mahasiswa2) {
+        int mataKuliahSama = mk1.intersection(mk2).length;
+        if (mataKuliahSama >= 2) { // Minimal 2 mata kuliah sama
+          temanSerupa.add(mahasiswa2);
+        }
+      }
+    });
+    
+    if (temanSerupa.isNotEmpty) {
+      print('$mahasiswa1 bisa berteman dengan: ${temanSerupa.join(', ')}');
+    }
+  });
+  
+  // === VALIDASI DAN PENGECEKAN ===
+  
+  print('\n=== VALIDASI KURIKULUM ===');
+  
+  // Cek apakah semua mata kuliah wajib sudah diambil
+  mahasiswaKuliah.forEach((mahasiswa, mataKuliah) {
+    Set<String> wajibBelumAmbil = mataKuliahWajib.difference(mataKuliah);
+    
+    if (wajibBelumAmbil.isEmpty) {
+      print('✅ $mahasiswa sudah menyelesaikan semua mata kuliah wajib');
+    } else {
+      print('❌ $mahasiswa belum ambil: ${wajibBelumAmbil.join(', ')}');
+    }
+  });
+  
+  // Hitung total SKS (asumsi setiap mata kuliah 3 SKS)
+  print('\n=== PERHITUNGAN SKS ===');
+  mahasiswaKuliah.forEach((mahasiswa, mataKuliah) {
+    int totalSKS = mataKuliah.length * 3;
+    print('$mahasiswa: ${mataKuliah.length} mata kuliah = $totalSKS SKS');
+  });
+  
+  // === SET SEBAGAI FILTER ===
+  
+  // Daftar mahasiswa yang mengambil mata kuliah tertentu
+  String cariMataKuliah = 'Database';
+  Set<String> mahasiswaDatabase = {};
+  
+  mahasiswaKuliah.forEach((mahasiswa, mataKuliah) {
+    if (mataKuliah.contains(cariMataKuliah)) {
+      mahasiswaDatabase.add(mahasiswa);
+    }
+  });
+  
+  print('\nMahasiswa yang mengambil $cariMataKuliah: $mahasiswaDatabase');
+  
+  // Cari mahasiswa yang hanya mengambil mata kuliah pilihan
+  print('\n=== MAHASISWA FOKUS MATA KULIAH PILIHAN ===');
+  mahasiswaKuliah.forEach((mahasiswa, mataKuliah) {
+    Set<String> hanyaPilihan = mataKuliah.intersection(mataKuliahPilihan);
+    Set<String> adaWajib = mataKuliah.intersection(mataKuliahWajib);
+    
+    if (hanyaPilihan.isNotEmpty && adaWajib.isEmpty) {
+      print('$mahasiswa fokus ke: ${hanyaPilihan.join(', ')}');
+    }
+  });
+}</pre>
+                    </div>
+
+                    <div class="zapp-suggestion">
+                        <i class="fas fa-database"></i> <strong>Eksperimen Collections!</strong><br>
+                        Copy kode Lists, Maps, atau Sets ke <a href="https://zapp.run/" target="_blank" class="zapp-link">zapp.run</a> dan coba modifikasi data atau tambahkan operasi baru untuk memahami berbagai collection types!
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Exception Handling dan Async Programming -->
+            <div class="expandable-section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h3><i class="fas fa-sync-alt"></i> Exception Handling dan Async Programming</h3>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="section-content">
+                    <h4>Exception Handling</h4>
+                    <p>Exception handling adalah mekanisme untuk menangani error yang mungkin terjadi saat runtime, memastikan aplikasi tidak crash dan memberikan user experience yang baik.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fab fa-dart-lang"></i> ExceptionHandling.dart</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'exception-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="exception-code">// Custom exception classes
+class InvalidNIMException implements Exception {
+  final String message;
+  InvalidNIMException(this.message);
+  
+  @override
+  String toString() => 'InvalidNIMException: $message';
+}
+
+class InvalidIPKException implements Exception {
+  final String message;
+  InvalidIPKException(this.message);
+  
+  @override
+  String toString() => 'InvalidIPKException: $message';
+}
+
+class MahasiswaNotFoundException implements Exception {
+  final String nim;
+  MahasiswaNotFoundException(this.nim);
+  
+  @override
+  String toString() => 'MahasiswaNotFoundException: Mahasiswa dengan NIM $nim tidak ditemukan';
+}
+
+// Class untuk mengelola data mahasiswa dengan error handling
+class MahasiswaManager {
+  Map<String, Map<String, dynamic>> _dataMahasiswa = {};
+  
+  // Validasi format NIM
+  bool _isValidNIM(String nim) {
+    // NIM harus 10 digit dan dimulai dengan 20 (tahun 2020+)
+    RegExp nimPattern = RegExp(r'^20\d{8}$');
+    return nimPattern.hasMatch(nim);
+  }
+  
+  // Validasi IPK
+  bool _isValidIPK(double ipk) {
+    return ipk >= 0.0 && ipk <= 4.0;
+  }
+  
+  // Menambah mahasiswa dengan validation
+  void tambahMahasiswa({
+    required String nim,
+    required String nama,
+    required String jurusan,
+    required int semester,
+    required double ipk,
+  }) {
+    try {
+      // Validasi NIM
+      if (!_isValidNIM(nim)) {
+        throw InvalidNIMException('Format NIM tidak valid. NIM harus 10 digit dan dimulai dengan 20');
+      }
+      
+      // Validasi IPK
+      if (!_isValidIPK(ipk)) {
+        throw InvalidIPKException('IPK harus antara 0.0 - 4.0, diberikan: $ipk');
+      }
+      
+      // Validasi semester
+      if (semester < 1 || semester > 14) {
+        throw ArgumentError('Semester harus antara 1-14, diberikan: $semester');
+      }
+      
+      // Validasi nama tidak kosong
+      if (nama.trim().isEmpty) {
+        throw ArgumentError('Nama tidak boleh kosong');
+      }
+      
+      // Cek duplikasi NIM
+      if (_dataMahasiswa.containsKey(nim)) {
+        throw StateError('Mahasiswa dengan NIM $nim sudah terdaftar');
+      }
+      
+      // Tambah data jika semua validasi passed
+      _dataMahasiswa[nim] = {
+        'nama': nama.trim(),
+        'jurusan': jurusan.trim(),
+        'semester': semester,
+        'ipk': ipk,
+        'tanggalDaftar': DateTime.now(),
+      };
+      
+      print('✅ Mahasiswa $nama berhasil ditambahkan dengan NIM $nim');
+      
+    } catch (e) {
+      print('❌ Error menambah mahasiswa: $e');
+      rethrow; // Re-throw untuk handling di level atas
+    }
+  }
+  
+  // Mencari mahasiswa dengan error handling
+  Map<String, dynamic> cariMahasiswa(String nim) {
+    try {
+      if (!_dataMahasiswa.containsKey(nim)) {
+        throw MahasiswaNotFoundException(nim);
+      }
+      
+      return Map<String, dynamic>.from(_dataMahasiswa[nim]!);
+      
+    } on MahasiswaNotFoundException {
+      print('❌ Mahasiswa dengan NIM $nim tidak ditemukan');
+      rethrow;
+    } catch (e) {
+      print('❌ Error tidak terduga saat mencari mahasiswa: $e');
+      rethrow;
+    }
+  }
+  
+  // Update IPK dengan validation
+  void updateIPK(String nim, double ipkBaru) {
+    try {
+      // Cari mahasiswa dulu
+      var mahasiswa = cariMahasiswa(nim);
+      
+      // Validasi IPK baru
+      if (!_isValidIPK(ipkBaru)) {
+        throw InvalidIPKException('IPK baru tidak valid: $ipkBaru');
+      }
+      
+      double ipkLama = mahasiswa['ipk'];
+      _dataMahasiswa[nim]!['ipk'] = ipkBaru;
+      
+      print('✅ IPK ${mahasiswa['nama']} berhasil diupdate dari $ipkLama ke $ipkBaru');
+      
+    } catch (e) {
+      print('❌ Error update IPK: $e');
+    }
+  }
+  
+  // Hapus mahasiswa
+  bool hapusMahasiswa(String nim) {
+    try {
+      var mahasiswa = cariMahasiswa(nim);
+      _dataMahasiswa.remove(nim);
+      print('✅ Mahasiswa ${mahasiswa['nama']} berhasil dihapus');
+      return true;
+      
+    } catch (e) {
+      print('❌ Error hapus mahasiswa: $e');
+      return false;
+    }
+  }
+  
+  // Operasi bulk dengan error handling
+  void tambahMahasiswaBulk(List<Map<String, dynamic>> dataMahasiswa) {
+    int berhasil = 0;
+    int gagal = 0;
+    
+    for (var data in dataMahasiswa) {
+      try {
+        tambahMahasiswa(
+          nim: data['nim'] ?? '',
+          nama: data['nama'] ?? '',
+          jurusan: data['jurusan'] ?? '',
+          semester: data['semester'] ?? 0,
+          ipk: data['ipk'] ?? 0.0,
+        );
+        berhasil++;
+      } catch (e) {
+        gagal++;
+        print('Gagal menambah mahasiswa: ${data['nama']} - $e');
+      }
+    }
+    
+    print('\n📊 Hasil bulk insert: $berhasil berhasil, $gagal gagal');
+  }
+  
+  // Display semua mahasiswa
+  void tampilkanSemuaMahasiswa() {
+    if (_dataMahasiswa.isEmpty) {
+      print('Tidak ada data mahasiswa');
+      return;
+    }
+    
+    print('\n=== DAFTAR SEMUA MAHASISWA ===');
+    _dataMahasiswa.forEach((nim, data) {
+      print('NIM: $nim');
+      print('Nama: ${data['nama']}');
+      print('Jurusan: ${data['jurusan']}');
+      print('Semester: ${data['semester']}');
+      print('IPK: ${data['ipk']}');
+      print('Tanggal Daftar: ${data['tanggalDaftar']}');
+      print('---');
+    });
+  }
+}
+
+// Fungsi untuk simulasi pembacaan file dengan error handling
+List<Map<String, dynamic>> bacaDataMahasiswaFromFile(String filename) {
+  try {
+    // Simulasi pembacaan file yang mungkin error
+    if (filename.isEmpty) {
+      throw ArgumentError('Nama file tidak boleh kosong');
+    }
+    
+    if (!filename.endsWith('.csv')) {
+      throw FormatException('File harus berformat CSV');
+    }
+    
+    // Simulasi data yang dibaca dari file
+    return [
+      {'nim': '2021001001', 'nama': 'Ahmad Rizki', 'jurusan': 'Teknik Informatika', 'semester': 5, 'ipk': 3.75},
+      {'nim': '2021001002', 'nama': 'Budi Santoso', 'jurusan': 'Sistem Informasi', 'semester': 6, 'ipk': 3.42},
+      {'nim': '2021001003', 'nama': 'Citra Dewi', 'jurusan': 'Teknik Informatika', 'semester': 4, 'ipk': 3.88},
+      {'nim': '202100100X', 'nama': 'Data Invalid', 'jurusan': 'Test', 'semester': 1, 'ipk': 5.0}, // Invalid data untuk testing
+    ];
+    
+  } on ArgumentError catch (e) {
+    print('❌ Argument Error: $e');
+    rethrow;
+  } on FormatException catch (e) {
+    print('❌ Format Error: $e');
+    rethrow;
+  } catch (e) {
+    print('❌ Unexpected error reading file: $e');
+    return [];
+  }
+}
+
+void main() {
+  print('=== DEMONSTRATION: EXCEPTION HANDLING ===\n');
+  
+  var manager = MahasiswaManager();
+  
+  // Test 1: Menambah mahasiswa valid
+  print('1. Menambah mahasiswa valid:');
+  try {
+    manager.tambahMahasiswa(
+      nim: '2021001001',
+      nama: 'Ahmad Rizki',
+      jurusan: 'Teknik Informatika',
+      semester: 5,
+      ipk: 3.75,
+    );
+  } catch (e) {
+    print('Error: $e');
+  }
+  
+  // Test 2: Menambah mahasiswa dengan NIM invalid
+  print('\n2. Menambah mahasiswa dengan NIM invalid:');
+  try {
+    manager.tambahMahasiswa(
+      nim: '123456789', // Invalid NIM format
+      nama: 'Budi Invalid',
+      jurusan: 'Test',
+      semester: 1,
+      ipk: 3.0,
+    );
+  } catch (e) {
+    print('Caught exception: $e');
+  }
+  
+  // Test 3: Menambah mahasiswa dengan IPK invalid
+  print('\n3. Menambah mahasiswa dengan IPK invalid:');
+  try {
+    manager.tambahMahasiswa(
+      nim: '2021001002',
+      nama: 'Citra Invalid',
+      jurusan: 'Test',
+      semester: 1,
+      ipk: 5.0, // Invalid IPK
+    );
+  } catch (e) {
+    print('Caught exception: $e');
+  }
+  
+  // Test 4: Mencari mahasiswa yang tidak ada
+  print('\n4. Mencari mahasiswa yang tidak ada:');
+  try {
+    var data = manager.cariMahasiswa('2021999999');
+    print('Data ditemukan: $data');
+  } catch (e) {
+    print('Caught exception: $e');
+  }
+  
+  // Test 5: Update IPK
+  print('\n5. Update IPK:');
+  try {
+    manager.updateIPK('2021001001', 3.85);
+    manager.updateIPK('2021001001', 4.5); // Invalid IPK
+  } catch (e) {
+    print('Caught exception: $e');
+  }
+  
+  // Test 6: Bulk insert dengan mixed valid/invalid data
+  print('\n6. Bulk insert data (mixed valid/invalid):');
+  try {
+    var bulkData = bacaDataMahasiswaFromFile('mahasiswa.csv');
+    manager.tambahMahasiswaBulk(bulkData);
+  } catch (e) {
+    print('Error reading file: $e');
+  }
+  
+  // Test 7: Multiple exception types
+  print('\n7. Testing multiple exception types:');
+  
+  List<Map<String, dynamic>> testCases = [
+    {'nim': '', 'nama': 'Empty NIM', 'jurusan': 'Test', 'semester': 1, 'ipk': 3.0},
+    {'nim': '2021001004', 'nama': '', 'jurusan': 'Test', 'semester': 1, 'ipk': 3.0},
+    {'nim': '2021001005', 'nama': 'Invalid Semester', 'jurusan': 'Test', 'semester': 20, 'ipk': 3.0},
+    {'nim': '2021001006', 'nama': 'Valid Student', 'jurusan': 'Teknik Informatika', 'semester': 3, 'ipk': 3.2},
+  ];
+  
+  for (var testCase in testCases) {
+    try {
+      manager.tambahMahasiswa(
+        nim: testCase['nim'],
+        nama: testCase['nama'],
+        jurusan: testCase['jurusan'],
+        semester: testCase['semester'],
+        ipk: testCase['ipk'],
+      );
+    } on InvalidNIMException catch (e) {
+      print('Invalid NIM: $e');
+    } on InvalidIPKException catch (e) {
+      print('Invalid IPK: $e');
+    } on ArgumentError catch (e) {
+      print('Argument Error: $e');
+    } on StateError catch (e) {
+      print('State Error: $e');
+    } catch (e) {
+      print('Unexpected error: $e');
+    }
+  }
+  
+  // Display final results
+  print('\n8. Data mahasiswa yang berhasil disimpan:');
+  manager.tampilkanSemuaMahasiswa();
+}</pre>
+                    </div>
+
+                    <h4>Async Programming dengan Future</h4>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fab fa-dart-lang"></i> AsyncProgramming.dart</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'async-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="async-code">import 'dart:math';
+
+// Simulasi database service
+class DatabaseService {
+  // Simulasi delay network
+  static Future<void> _simulateNetworkDelay([int milliseconds = 1000]) {
+    return Future.delayed(Duration(milliseconds: milliseconds));
+  }
+  
+  // Simulasi fetch data mahasiswa dari database
+  static Future<Map<String, dynamic>> fetchMahasiswa(String nim) async {
+    print('🔄 Mencari mahasiswa dengan NIM: $nim...');
+    
+    // Simulasi network delay
+    await _simulateNetworkDelay(1500);
+    
+    // Simulasi random error (20% chance)
+    if (Random().nextDouble() < 0.2) {
+      throw Exception('Database connection failed');
+    }
+    
+    // Simulasi data not found (30% chance untuk NIM tertentu)
+    if (nim.endsWith('999')) {
+      throw Exception('Mahasiswa dengan NIM $nim tidak ditemukan');
+    }
+    
+    // Return mock data
+    return {
+      'nim': nim,
+      'nama': 'Student ${nim.substring(7)}',
+      'jurusan': Random().nextBool() ? 'Teknik Informatika' : 'Sistem Informasi',
+      'semester': Random().nextInt(8) + 1,
+      'ipk': (Random().nextDouble() * 2 + 2).toStringAsFixed(2), // IPK 2.0 - 4.0
+      'timestamp': DateTime.now().toIso8601String(),
+    };
+  }
+  
+  // Simulasi fetch multiple mahasiswa
+  static Future<List<Map<String, dynamic>>> fetchMahasiswaBatch(List<String> nimList) async {
+    print('🔄 Mengambil data ${nimList.length} mahasiswa...');
+    
+    List<Map<String, dynamic>> results = [];
+    
+    for (String nim in nimList) {
+      try {
+        var data = await fetchMahasiswa(nim);
+        results.add(data);
+        print('✅ Data ${data['nama']} berhasil diambil');
+      } catch (e) {
+        print('❌ Error mengambil data NIM $nim: $e');
+        // Continue dengan mahasiswa lainnya
+      }
+    }
+    
+    return results;
+  }
+  
+  // Simulasi save data ke database
+  static Future<bool> saveMahasiswa(Map<String, dynamic> data) async {
+    print('🔄 Menyimpan data ${data['nama']}...');
+    
+    await _simulateNetworkDelay(800);
+    
+    // Simulasi random error (15% chance)
+    if (Random().nextDouble() < 0.15) {
+      throw Exception('Failed to save data to database');
+    }
+    
+    print('✅ Data ${data['nama']} berhasil disimpan');
+    return true;
+  }
+}
+
+// Service untuk operasi API external
+class ApiService {
+  // Simulasi fetch data dari API external (misal: data universitas)
+  static Future<Map<String, dynamic>> fetchUniversityInfo() async {
+    print('🔄 Mengambil informasi universitas dari API...');
+    
+    await DatabaseService._simulateNetworkDelay(2000);
+    
+    return {
+      'nama': 'Universitas Indonesia',
+      'kode': 'UI',
+      'alamat': 'Depok, Jawa Barat',
+      'website': 'https://ui.ac.id',
+      'jumlahMahasiswa': 47000,
+      'jumlahFakultas': 14,
+      'updateTime': DateTime.now(),
+    };
+  }
+  
+  // Simulasi validate NIM dengan API eksternal
+  static Future<bool> validateNIM(String nim) async {
+    print('🔄 Validating NIM $nim dengan sistem pusat...');
+    
+    await DatabaseService._simulateNetworkDelay(500);
+    
+    // Simulasi validation logic
+    return nim.length == 10 && nim.startsWith('20');
+  }
+}
+
+// Class untuk mengelola operasi async
+class MahasiswaAsyncManager {
+  List<Map<String, dynamic>> _cachedData = [];
+  
+  // Method dengan async/await
+  Future<void> loadMahasiswaData(String nim) async {
+    try {
+      print('\n=== LOADING MAHASISWA DATA ===');
+      
+      // Step 1: Validate NIM
+      bool isValid = await ApiService.validateNIM(nim);
+      if (!isValid) {
+        throw Exception('NIM format tidak valid');
+      }
+      
+      // Step 2: Fetch data dari database
+      var mahasiswaData = await DatabaseService.fetchMahasiswa(nim);
+      
+      // Step 3: Cache data
+      _cachedData.add(mahasiswaData);
+      
+      print('📦 Data mahasiswa berhasil dimuat dan di-cache');
+      print('Data: ${mahasiswaData['nama']} - ${mahasiswaData['jurusan']}');
+      
+    } catch (e) {
+      print('❌ Error loading mahasiswa data: $e');
+    }
+  }
+  
+  // Method dengan Future.wait untuk parallel processing
+  Future<void> loadMultipleMahasiswa(List<String> nimList) async {
+    try {
+      print('\n=== PARALLEL LOADING MULTIPLE MAHASISWA ===');
+      
+      // Create list of futures
+      List<Future<Map<String, dynamic>>> futures = nimList
+          .map((nim) => DatabaseService.fetchMahasiswa(nim))
+          .toList();
+      
+      // Wait for all futures to complete
+      print('🔄 Memuat ${nimList.length} mahasiswa secara parallel...');
+      
+      List<Map<String, dynamic>> results = await Future.wait(futures, eagerError: false);
+      
+      _cachedData.addAll(results);
+      
+      print('✅ Semua data berhasil dimuat dalam cache');
+      print('Total data di cache: ${_cachedData.length}');
+      
+    } catch (e) {
+      print('❌ Error dalam parallel loading: $e');
+    }
+  }
+  
+  // Method dengan timeout
+  Future<void> loadWithTimeout(String nim, {int timeoutSeconds = 3}) async {
+    try {
+      print('\n=== LOADING WITH TIMEOUT ===');
+      
+      var future = DatabaseService.fetchMahasiswa(nim);
+      var result = await future.timeout(
+        Duration(seconds: timeoutSeconds),
+        onTimeout: () {
+          throw TimeoutException('Request timeout setelah $timeoutSeconds detik');
+        },
+      );
+      
+      _cachedData.add(result);
+      print('✅ Data loaded successfully within timeout');
+      
+    } on TimeoutException catch (e) {
+      print('⏰ Timeout: $e');
+    } catch (e) {
+      print('❌ Error: $e');
+    }
+  }
+  
+  // Method dengan error handling dan retry logic
+  Future<Map<String, dynamic>?> loadWithRetry(String nim, {int maxRetries = 3}) async {
+    int attempts = 0;
+    
+    while (attempts < maxRetries) {
+      try {
+        print('\n🔄 Attempt ${attempts + 1} untuk NIM $nim');
+        
+        var result = await DatabaseService.fetchMahasiswa(nim);
+        print('✅ Berhasil pada attempt ${attempts + 1}');
+        return result;
+        
+      } catch (e) {
+        attempts++;
+        print('❌ Attempt $attempts gagal: $e');
+        
+        if (attempts < maxRetries) {
+          int delay = attempts * 1000; // Exponential backoff
+          print('⏳ Retry dalam $delay ms...');
+          await Future.delayed(Duration(milliseconds: delay));
+        }
+      }
+    }
+    
+    print('💥 Semua attempts gagal untuk NIM $nim');
+    return null;
+  }
+  
+  // Method untuk async data processing
+  Future<Map<String, dynamic>> processAndSaveData(String nim) async {
+    try {
+      print('\n=== PROCESS AND SAVE DATA ===');
+      
+      // Step 1: Fetch data
+      var data = await DatabaseService.fetchMahasiswa(nim);
+      
+      // Step 2: Process data (add computed fields)
+      data['predikat'] = _hitungPredikat(double.parse(data['ipk']));
+      data['statusKelulusan'] = _hitungStatusKelulusan(data['semester'], double.parse(data['ipk']));
+      data['processedAt'] = DateTime.now().toIso8601String();
+      
+      // Step 3: Save processed data
+      await DatabaseService.saveMahasiswa(data);
+      
+      // Step 4: Update cache
+      _cachedData.add(data);
+      
+      return data;
+      
+    } catch (e) {
+      print('❌ Error processing data: $e');
+      rethrow;
+    }
+  }
+  
+  // Helper methods
+  String _hitungPredikat(double ipk) {
+    if (ipk >= 3.75) return 'Summa Cum Laude';
+    if (ipk >= 3.50) return 'Magna Cum Laude';
+    if (ipk >= 3.25) return 'Cum Laude';
+    if (ipk >= 3.00) return 'Sangat Memuaskan';
+    return 'Memuaskan';
+  }
+  
+  String _hitungStatusKelulusan(int semester, double ipk) {
+    if (semester >= 8 && ipk >= 2.0) return 'Lulus';
+    if (semester >= 8 && ipk < 2.0) return 'Tidak Lulus';
+    return 'Aktif';
+  }
+  
+  // Display cached data
+  void displayCachedData() {
+    print('\n=== CACHED DATA ===');
+    if (_cachedData.isEmpty) {
+      print('Tidak ada data di cache');
+      return;
+    }
+    
+    for (var data in _cachedData) {
+      print('${data['nama']} (${data['nim']}) - ${data['jurusan']} - IPK: ${data['ipk']}');
+    }
+  }
+}
+
+// Main function untuk demonstrasi
+void main() async {
+  print('🚀 DEMONSTRASI ASYNC PROGRAMMING DART\n');
+  
+  var manager = MahasiswaAsyncManager();
+  
+  // Test 1: Basic async/await
+  print('1️⃣ TEST: Basic Async/Await');
+  await manager.loadMahasiswaData('2021001001');
+  
+  // Test 2: Parallel loading
+  print('\n2️⃣ TEST: Parallel Loading');
+  await manager.loadMultipleMahasiswa(['2021001002', '2021001003', '2021001004']);
+  
+  // Test 3: Loading with timeout
+  print('\n3️⃣ TEST: Loading with Timeout');
+  await manager.loadWithTimeout('2021001005', timeoutSeconds: 2);
+  
+  // Test 4: Retry logic
+  print('\n4️⃣ TEST: Retry Logic');
+  var retryResult = await manager.loadWithRetry('2021001006', maxRetries: 3);
+  if (retryResult != null) {
+    print('Retry berhasil: ${retryResult['nama']}');
+  }
+  
+  // Test 5: Process and save
+  print('\n5️⃣ TEST: Process and Save');
+  try {
+    var processedData = await manager.processAndSaveData('2021001007');
+    print('Data berhasil diproses: ${processedData['predikat']}');
+  } catch (e) {
+    print('Error processing: $e');
+  }
+  
+  // Test 6: Multiple async operations dengan Future
+  print('\n6️⃣ TEST: Multiple Async Operations');
+  
+  // Start multiple operations concurrently
+  var universityFuture = ApiService.fetchUniversityInfo();
+  var validationFuture = ApiService.validateNIM('2021001008');
+  var mahasiswaFuture = DatabaseService.fetchMahasiswa('2021001008');
+  
+  try {
+    // Wait for all to complete
+    var results = await Future.wait([
+      universityFuture,
+      validationFuture,
+      mahasiswaFuture,
+    ]);
+    
+    var universityInfo = results[0] as Map<String, dynamic>;
+    var isValidNIM = results[1] as bool;
+    var mahasiswaData = results[2] as Map<String, dynamic>;
+    
+    print('✅ Semua operasi async selesai:');
+    print('   University: ${universityInfo['nama']}');
+    print('   NIM Valid: $isValidNIM');
+    print('   Mahasiswa: ${mahasiswaData['nama']}');
+    
+  } catch (e) {
+    print('❌ Error in concurrent operations: $e');
+  }
+  
+  // Test 7: Stream simulation (future enhancement)
+  print('\n7️⃣ TEST: Future Stream Concepts');
+  
+  // Simulasi sequential vs parallel timing
+  var stopwatch = Stopwatch()..start();
+  
+  // Sequential execution
+  print('Sequential execution:');
+  var seqStart = stopwatch.elapsedMilliseconds;
+  await DatabaseService.fetchMahasiswa('2021001009');
+  await DatabaseService.fetchMahasiswa('2021001010');
+  await DatabaseService.fetchMahasiswa('2021001011');
+  var seqEnd = stopwatch.elapsedMilliseconds;
+  
+  // Parallel execution
+  print('\nParallel execution:');
+  var parStart = stopwatch.elapsedMilliseconds;
+  await Future.wait([
+    DatabaseService.fetchMahasiswa('2021001012'),
+    DatabaseService.fetchMahasiswa('2021001013'),
+    DatabaseService.fetchMahasiswa('2021001014'),
+  ]);
+  var parEnd = stopwatch.elapsedMilliseconds;
+  
+  print('\n📊 Performance Comparison:');
+  print('Sequential: ${seqEnd - seqStart}ms');
+  print('Parallel: ${parEnd - parStart}ms');
+  print('Speed improvement: ${((seqEnd - seqStart) / (parEnd - parStart)).toStringAsFixed(2)}x');
+  
+  // Display final cached data
+  manager.displayCachedData();
+  
+  print('\n🎯 ASYNC PROGRAMMING DEMO COMPLETED!');
+}
+
+// Custom exception for timeout
+class TimeoutException implements Exception {
+  final String message;
+  TimeoutException(this.message);
+  
+  @override
+  String toString() => 'TimeoutException: $message';
+}</pre>
+                    </div>
+
+                    <div class="zapp-suggestion">
+                        <i class="fas fa-clock"></i> <strong>Coba Async Programming!</strong><br>
+                        Copy code Exception Handling atau Async Programming ke <a href="https://zapp.run/" target="_blank" class="zapp-link">zapp.run</a> untuk melihat bagaimana error handling dan async operations bekerja secara real-time!
+                    </div>
+
+                    <div class="flowchart">
+                        <h4>Async Programming Flow</h4>
+                        <div class="flow-step">Start Operation</div>
+                        <i class="fas fa-arrow-down flow-arrow"></i>
+                        <div class="flow-step">await Future</div>
+                        <i class="fas fa-arrow-down flow-arrow"></i>
+                        <div class="flow-step">Handle Result<br>or Exception</div>
+                        <i class="fas fa-arrow-down flow-arrow"></i>
+                        <div class="flow-step">Continue Execution</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Praktikum -->
+    <section class="content-section">
+        <div class="container">
+            <div class="project-card">
+                <h3><i class="fas fa-calculator"></i> Praktikum: "BMI Calculator Indonesia"</h3>
+                <p>Membuat aplikasi kalkulator BMI dengan implementasi OOP, collections, error handling, dan validasi data untuk konteks kesehatan Indonesia.</p>
+            </div>
+
+            <div class="expandable-section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h3><i class="fas fa-heartbeat"></i> Implementasi BMI Calculator dengan OOP</h3>
+                    <i class="fas fa-chevron-down expand-icon"></i>
+                </div>
+                <div class="section-content">
+                    <h4>Complete Implementation: BMI Calculator Indonesia</h4>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span><i class="fab fa-dart-lang"></i> BMICalculatorIndonesia.dart</span>
+                            <button class="copy-btn" onclick="copyCode(this, 'bmi-calculator-code')">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre id="bmi-calculator-code">import 'dart:math';
+
+// Custom Exceptions
+class InvalidHeightException implements Exception {
+  final String message;
+  InvalidHeightException(this.message);
+  @override
+  String toString() => 'InvalidHeightException: $message';
+}
+
+class InvalidWeightException implements Exception {
+  final String message;
+  InvalidWeightException(this.message);
+  @override
+  String toString() => 'InvalidWeightException: $message';
+}
+
+class InvalidAgeException implements Exception {
+  final String message;
+  InvalidAgeException(this.message);
+  @override
+  String toString() => 'InvalidAgeException: $message';
+}
+
+// Enum untuk kategori BMI
+enum BMICategory {
+  underweight,
+  normal,
+  overweight,
+  obeseClass1,
+  obeseClass2,
+  obeseClass3
+}
+
+// Enum untuk jenis kelamin
+enum Gender { male, female }
+
+// Enum untuk tingkat aktivitas
+enum ActivityLevel {
+  sedentary,      // Sedentari
+  lightlyActive,  // Sedikit aktif
+  moderatelyActive, // Moderat aktif
+  veryActive,     // Sangat aktif
+  extraActive     // Ekstra aktif
+}
+
+// Base class untuk Person
+abstract class Person {
+  String _name;
+  int _age;
+  Gender _gender;
+  
+  Person(this._name, this._age, this._gender) {
+    _validateAge(_age);
+  }
+  
+  // Getters
+  String get name => _name;
+  int get age => _age;
+  Gender get gender => _gender;
+  
+  // Setters dengan validation
+  set name(String value) {
+    if (value.trim().isEmpty) {
+      throw ArgumentError('Nama tidak boleh kosong');
+    }
+    _name = value.trim();
+  }
+  
+  set age(int value) {
+    _validateAge(value);
+    _age = value;
+  }
+  
+  set gender(Gender value) {
+    _gender = value;
+  }
+  
+  void _validateAge(int age) {
+    if (age < 2 || age > 120) {
+      throw InvalidAgeException('Umur harus antara 2-120 tahun, diberikan: $age');
+    }
+  }
+  
+  // Abstract methods
+  double calculateBMR(); // Basal Metabolic Rate
+  Map<String, dynamic> getHealthProfile();
+  
+  // Concrete methods
+  void displayBasicInfo() {
+    print('Nama: $_name');
+    print('Umur: $_age tahun');
+    print('Jenis Kelamin: ${_gender == Gender.male ? "Laki-laki" : "Perempuan"}');
+  }
+}
+
+// BMI Calculator Class
+class BMICalculator extends Person {
+  double _height; // dalam cm
+  double _weight; // dalam kg
+  ActivityLevel _activityLevel;
+  List<Map<String, dynamic>> _bmiHistory = [];
+  
+  BMICalculator({
+    required String name,
+    required int age,
+    required Gender gender,
+    required double height,
+    required double weight,
+    ActivityLevel activityLevel = ActivityLevel.sedentary,
+  }) : _height = height, 
+       _weight = weight, 
+       _activityLevel = activityLevel,
+       super(name, age, gender) {
+    _validateMeasurements();
+    _recordBMI();
+  }
+  
+  // Getters
+  double get height => _height;
+  double get weight => _weight;
+  ActivityLevel get activityLevel => _activityLevel;
+  List<Map<String, dynamic>> get bmiHistory => List.unmodifiable(_bmiHistory);
+  
+  // Setters dengan validation
+  set height(double value) {
+    _validateHeight(value);
+    _height = value;
+    _recordBMI();
+  }
+  
+  set weight(double value) {
+    _validateWeight(value);
+    _weight = value;
+    _recordBMI();
+  }
+  
+  set activityLevel(ActivityLevel value) {
+    _activityLevel = value;
+  }
+  
+  // Validation methods
+  void _validateMeasurements() {
+    _validateHeight(_height);
+    _validateWeight(_weight);
+  }
+  
+  void _validateHeight(double height) {
+    if (height < 50 || height > 250) {
+      throw InvalidHeightException('Tinggi badan harus antara 50-250 cm, diberikan: $height cm');
+    }
+  }
+  
+  void _validateWeight(double weight) {
+    if (weight < 10 || weight > 300) {
+      throw InvalidWeightException('Berat badan harus antara 10-300 kg, diberikan: $weight kg');
+    }
+  }
+  
+  // Calculate BMI
+  double calculateBMI() {
+    double heightInMeter = _height / 100;
+    return _weight / (heightInMeter * heightInMeter);
+  }
+  
+  // Get BMI Category berdasarkan standar Indonesia
+  BMICategory getBMICategory() {
+    double bmi = calculateBMI();
+    
+    if (bmi < 17.0) return BMICategory.underweight;
+    if (bmi < 23.0) return BMICategory.normal;      // Standar Asia
+    if (bmi < 27.0) return BMICategory.overweight;
+    if (bmi < 30.0) return BMICategory.obeseClass1;
+    if (bmi < 35.0) return BMICategory.obeseClass2;
+    return BMICategory.obeseClass3;
+  }
+  
+  // Get BMI description in Indonesian
+  String getBMIDescription() {
+    switch (getBMICategory()) {
+      case BMICategory.underweight:
+        return 'Kurus (Underweight)';
+      case BMICategory.normal:
+        return 'Normal (Ideal)';
+      case BMICategory.overweight:
+        return 'Kelebihan Berat Badan (Overweight)';
+      case BMICategory.obeseClass1:
+        return 'Obesitas Kelas I';
+      case BMICategory.obeseClass2:
+        return 'Obesitas Kelas II';
+      case BMICategory.obeseClass3:
+        return 'Obesitas Kelas III (Morbid)';
+    }
+  }
+  
+  // Calculate Basal Metabolic Rate (BMR) using Mifflin-St Jeor Equation
+  @override
+  double calculateBMR() {
+    if (_gender == Gender.male) {
+      return 10 * _weight + 6.25 * _height - 5 * _age + 5;
+    } else {
+      return 10 * _weight + 6.25 * _height - 5 * _age - 161;
+    }
+  }
+  
+  // Calculate Total Daily Energy Expenditure (TDEE)
+  double calculateTDEE() {
+    double bmr = calculateBMR();
+    double activityMultiplier = _getActivityMultiplier();
+    return bmr * activityMultiplier;
+  }
+  
+  double _getActivityMultiplier() {
+    switch (_activityLevel) {
+      case ActivityLevel.sedentary:
+        return 1.2;
+      case ActivityLevel.lightlyActive:
+        return 1.375;
+      case ActivityLevel.moderatelyActive:
+        return 1.55;
+      case ActivityLevel.veryActive:
+        return 1.725;
+      case ActivityLevel.extraActive:
+        return 1.9;
+    }
+  }
+  
+  // Calculate ideal weight range
+  Map<String, double> getIdealWeightRange() {
+    double heightInMeter = _height / 100;
+    
+    // Berdasarkan BMI normal range (17-23 untuk standar Asia)
+    double minWeight = 17.0 * heightInMeter * heightInMeter;
+    double maxWeight = 23.0 * heightInMeter * heightInMeter;
+    
+    return {
+      'minimum': double.parse(minWeight.toStringAsFixed(1)),
+      'maximum': double.parse(maxWeight.toStringAsFixed(1)),
+      'optimal': double.parse(((minWeight + maxWeight) / 2).toStringAsFixed(1)),
+    };
+  }
+  
+  // Get health recommendations
+  List<String> getHealthRecommendations() {
+    BMICategory category = getBMICategory();
+    List<String> recommendations = [];
+    
+    switch (category) {
+      case BMICategory.underweight:
+        recommendations.addAll([
+          '🍽️ Tingkatkan asupan kalori sehat dengan makanan bergizi',
+          '💪 Lakukan latihan kekuatan untuk membangun massa otot',
+          '🥗 Konsumsi protein tinggi seperti telur, daging tanpa lemak, dan kacang-kacangan',
+          '👨‍⚕️ Konsultasi dengan dokter untuk program penambahan berat badan yang sehat',
+          '⏰ Makan teratur 3x sehari dengan 2-3 snack sehat',
+        ]);
+        break;
+        
+      case BMICategory.normal:
+        recommendations.addAll([
+          '✅ Pertahankan pola makan seimbang dan gaya hidup aktif',
+          '🏃‍♀️ Lakukan olahraga rutin 150 menit per minggu',
+          '🥬 Konsumsi sayur dan buah minimal 5 porsi per hari',
+          '💧 Minum air putih minimal 8 gelas per hari',
+          '😴 Tidur cukup 7-9 jam per malam',
+        ]);
+        break;
+        
+      case BMICategory.overweight:
+        recommendations.addAll([
+          '🎯 Target penurunan berat badan 0.5-1 kg per minggu',
+          '🍽️ Kurangi porsi makan dan hindari makanan tinggi gula',
+          '🚶‍♂️ Tingkatkan aktivitas fisik menjadi 300 menit per minggu',
+          '📝 Catat asupan makanan harian untuk monitoring',
+          '🥤 Hindari minuman manis dan beralkohol',
+        ]);
+        break;
+        
+      case BMICategory.obeseClass1:
+      case BMICategory.obeseClass2:
+      case BMICategory.obeseClass3:
+        recommendations.addAll([
+          '⚠️ Konsultasi segera dengan dokter untuk program penurunan berat badan',
+          '🍎 Adopsi pola makan rendah kalori dengan supervisi ahli gizi',
+          '💊 Pertimbangkan intervensi medis jika diperlukan',
+          '🏥 Monitor tekanan darah, gula darah, dan kolesterol secara rutin',
+          '👥 Bergabung dengan program support group untuk motivasi',
+        ]);
+        break;
+    }
+    
+    return recommendations;
+  }
+  
+  // Record BMI to history
+  void _recordBMI() {
+    _bmiHistory.add({
+      'date': DateTime.now(),
+      'weight': _weight,
+      'height': _height,
+      'bmi': double.parse(calculateBMI().toStringAsFixed(2)),
+      'category': getBMIDescription(),
+    });
+    
+    // Keep only last 10 records
+    if (_bmiHistory.length > 10) {
+      _bmiHistory.removeAt(0);
+    }
+  }
+  
+  // Update weight and height
+  void updateMeasurements(double newWeight, double newHeight) {
+    try {
+      weight = newWeight;
+      height = newHeight;
+      print('✅ Pengukuran berhasil diupdate');
+    } catch (e) {
+      print('❌ Error updating measurements: $e');
+      rethrow;
+    }
+  }
+  
+  // Get BMI trend analysis
+  Map<String, dynamic> getBMITrend() {
+    if (_bmiHistory.length < 2) {
+      return {
+        'trend': 'insufficient_data',
+        'message': 'Data tidak cukup untuk analisis trend',
+      };
+    }
+    
+    var latest = _bmiHistory.last;
+    var previous = _bmiHistory[_bmiHistory.length - 2];
+    
+    double difference = latest['bmi'] - previous['bmi'];
+    
+    String trend;
+    String message;
+    String emoji;
+    
+    if (difference > 0.5) {
+      trend = 'increasing';
+      message = 'BMI menunjukkan tren naik';
+      emoji = '📈';
+    } else if (difference < -0.5) {
+      trend = 'decreasing';
+      message = 'BMI menunjukkan tren turun';
+      emoji = '📉';
+    } else {
+      trend = 'stable';
+      message = 'BMI relatif stabil';
+      emoji = '➡️';
+    }
+    
+    return {
+      'trend': trend,
+      'message': message,
+      'emoji': emoji,
+      'difference': double.parse(difference.toStringAsFixed(2)),
+      'previous_bmi': previous['bmi'],
+      'current_bmi': latest['bmi'],
+    };
+  }
+  
+  // Get health profile
+  @override
+  Map<String, dynamic> getHealthProfile() {
+    double bmi = calculateBMI();
+    double bmr = calculateBMR();
+    double tdee = calculateTDEE();
+    var idealWeight = getIdealWeightRange();
+    
+    return {
+      'basic_info': {
+        'name': _name,
+        'age': _age,
+        'gender': _gender == Gender.male ? 'Laki-laki' : 'Perempuan',
+        'height': _height,
+        'weight': _weight,
+      },
+      'bmi_data': {
+        'bmi': double.parse(bmi.toStringAsFixed(2)),
+        'category': getBMIDescription(),
+        'category_enum': getBMICategory(),
+      },
+      'metabolic_data': {
+        'bmr': double.parse(bmr.toStringAsFixed(0)),
+        'tdee': double.parse(tdee.toStringAsFixed(0)),
+        'activity_level': _activityLevel,
+      },
+      'ideal_weight': idealWeight,
+      'weight_difference': double.parse((_weight - idealWeight['optimal']!).toStringAsFixed(1)),
+      'recommendations': getHealthRecommendations(),
+      'trend_analysis': getBMITrend(),
+    };
+  }
+  
+  // Display complete health report
+  void displayHealthReport() {
+    var profile = getHealthProfile();
+    
+    print('\n' + '='*50);
+    print('📋 LAPORAN KESEHATAN BMI - ${profile['basic_info']['name']}');
+    print('='*50);
+    
+    // Basic Info
+    print('\n👤 INFORMASI DASAR:');
+    print('   Nama: ${profile['basic_info']['name']}');
+    print('   Umur: ${profile['basic_info']['age']} tahun');
+    print('   Jenis Kelamin: ${profile['basic_info']['gender']}');
+    print('   Tinggi: ${profile['basic_info']['height']} cm');
+    print('   Berat: ${profile['basic_info']['weight']} kg');
+    
+    // BMI Data
+    print('\n📊 DATA BMI:');
+    print('   BMI: ${profile['bmi_data']['bmi']}');
+    print('   Kategori: ${profile['bmi_data']['category']}');
+    
+    // Ideal Weight
+    print('\n🎯 BERAT BADAN IDEAL:');
+    print('   Range: ${profile['ideal_weight']['minimum']} - ${profile['ideal_weight']['maximum']} kg');
+    print('   Optimal: ${profile['ideal_weight']['optimal']} kg');
+    print('   Selisih: ${profile['weight_difference']} kg');
+    
+    // Metabolic Data
+    print('\n🔥 DATA METABOLISME:');
+    print('   BMR: ${profile['metabolic_data']['bmr']} kalori/hari');
+    print('   TDEE: ${profile['metabolic_data']['tdee']} kalori/hari');
+    print('   Tingkat Aktivitas: ${_getActivityDescription()}');
+    
+    // Trend Analysis
+    var trend = profile['trend_analysis'];
+    if (trend['trend'] != 'insufficient_data') {
+      print('\n📈 ANALISIS TREND:');
+      print('   ${trend['emoji']} ${trend['message']}');
+      print('   Perubahan: ${trend['difference']} poin BMI');
+    }
+    
+    // Recommendations
+    print('\n💡 REKOMENDASI KESEHATAN:');
+    var recommendations = profile['recommendations'] as List<String>;
+    for (int i = 0; i < recommendations.length; i++) {
+      print('   ${i + 1}. ${recommendations[i]}');
+    }
+    
+    print('\n' + '='*50);
+  }
+  
+  String _getActivityDescription() {
+    switch (_activityLevel) {
+      case ActivityLevel.sedentary:
+        return 'Sedentari (Minim aktivitas)';
+      case ActivityLevel.lightlyActive:
+        return 'Sedikit Aktif (Olahraga ringan 1-3x/minggu)';
+      case ActivityLevel.moderatelyActive:
+        return 'Moderat Aktif (Olahraga sedang 3-5x/minggu)';
+      case ActivityLevel.veryActive:
+        return 'Sangat Aktif (Olahraga berat 6-7x/minggu)';
+      case ActivityLevel.extraActive:
+        return 'Ekstra Aktif (Olahraga berat 2x/hari)';
+    }
+  }
+  
+  // Display BMI history
+  void displayBMIHistory() {
+    print('\n📈 RIWAYAT BMI:');
+    if (_bmiHistory.isEmpty) {
+      print('Tidak ada riwayat BMI');
+      return;
+    }
+    
+    print('Tanggal'.padRight(12) + 'Berat'.padRight(8) + 'BMI'.padRight(8) + 'Kategori');
+    print('-' * 45);
+    
+    for (var record in _bmiHistory) {
+      String date = '${record['date'].day}/${record['date'].month}';
+      String weight = '${record['weight']} kg';
+      String bmi = '${record['bmi']}';
+      String category = record['category'];
+      
+      print('${date.padRight(12)}${weight.padRight(8)}${bmi.padRight(8)}$category');
+    }
+  }
+}
+
+// BMI Calculator Manager untuk mengelola multiple users
+class BMICalculatorManager {
+  Map<String, BMICalculator> _users = {};
+  List<Map<String, dynamic>> _populationData = [];
+  
+  // Add user
+  void addUser(BMICalculator calculator) {
+    _users[calculator.name] = calculator;
+    _updatePopulationData();
+    print('✅ User ${calculator.name} berhasil ditambahkan');
+  }
+  
+  // Get user
+  BMICalculator? getUser(String name) {
+    return _users[name];
+  }
+  
+  // Remove user
+  bool removeUser(String name) {
+    if (_users.containsKey(name)) {
+      _users.remove(name);
+      _updatePopulationData();
+      print('✅ User $name berhasil dihapus');
+      return true;
+    }
+    print('❌ User $name tidak ditemukan');
+    return false;
+  }
+  
+  // Update population statistics
+  void _updatePopulationData() {
+    _populationData.clear();
+    
+    _users.forEach((name, calculator) {
+      _populationData.add({
+        'name': name,
+        'bmi': calculator.calculateBMI(),
+        'category': calculator.getBMICategory(),
+        'age': calculator.age,
+        'gender': calculator.gender,
+      });
+    });
+  }
+  
+  // Get population statistics
+  Map<String, dynamic> getPopulationStatistics() {
+    if (_populationData.isEmpty) {
+      return {'message': 'Tidak ada data populasi'};
+    }
+    
+    // BMI statistics
+    List<double> bmiValues = _populationData.map((data) => data['bmi'] as double).toList();
+    double avgBMI = bmiValues.reduce((a, b) => a + b) / bmiValues.length;
+    double maxBMI = bmiValues.reduce((a, b) => a > b ? a : b);
+    double minBMI = bmiValues.reduce((a, b) => a < b ? a : b);
+    
+    // Category distribution
+    Map<BMICategory, int> categoryCount = {};
+    for (BMICategory category in BMICategory.values) {
+      categoryCount[category] = 0;
+    }
+    
+    for (var data in _populationData) {
+      BMICategory category = data['category'];
+      categoryCount[category] = categoryCount[category]! + 1;
+    }
+    
+    // Gender distribution
+    int maleCount = _populationData.where((data) => data['gender'] == Gender.male).length;
+    int femaleCount = _populationData.where((data) => data['gender'] == Gender.female).length;
+    
+    return {
+      'total_users': _populationData.length,
+      'bmi_statistics': {
+        'average': double.parse(avgBMI.toStringAsFixed(2)),
+        'maximum': double.parse(maxBMI.toStringAsFixed(2)),
+        'minimum': double.parse(minBMI.toStringAsFixed(2)),
+      },
+      'category_distribution': categoryCount,
+      'gender_distribution': {
+        'male': maleCount,
+        'female': femaleCount,
+      },
+    };
+  }
+  
+  // Display population report
+  void displayPopulationReport() {
+    var stats = getPopulationStatistics();
+    
+    if (stats.containsKey('message')) {
+      print(stats['message']);
+      return;
+    }
+    
+    print('\n' + '='*60);
+    print('📊 LAPORAN STATISTIK POPULASI BMI');
+    print('='*60);
+    
+    print('\n👥 RINGKASAN:');
+    print('   Total Pengguna: ${stats['total_users']}');
+    
+    var bmiStats = stats['bmi_statistics'];
+    print('\n📊 STATISTIK BMI:');
+    print('   Rata-rata: ${bmiStats['average']}');
+    print('   Tertinggi: ${bmiStats['maximum']}');
+    print('   Terendah: ${bmiStats['minimum']}');
+    
+    var genderDist = stats['gender_distribution'];
+    print('\n👫 DISTRIBUSI JENIS KELAMIN:');
+    print('   Laki-laki: ${genderDist['male']} orang');
+    print('   Perempuan: ${genderDist['female']} orang');
+    
+    var categoryDist = stats['category_distribution'] as Map<BMICategory, int>;
+    print('\n📈 DISTRIBUSI KATEGORI BMI:');
+    categoryDist.forEach((category, count) {
+      String categoryName = _getCategoryName(category);
+      double percentage = (count / stats['total_users'] * 100);
+      print('   $categoryName: $count orang (${percentage.toStringAsFixed(1)}%)');
+    });
+    
+    print('\n' + '='*60);
+  }
+  
+  String _getCategoryName(BMICategory category) {
+    switch (category) {
+      case BMICategory.underweight: return 'Kurus';
+      case BMICategory.normal: return 'Normal';
+      case BMICategory.overweight: return 'Kelebihan BB';
+      case BMICategory.obeseClass1: return 'Obesitas I';
+      case BMICategory.obeseClass2: return 'Obesitas II';
+      case BMICategory.obeseClass3: return 'Obesitas III';
+    }
+  }
+  
+  // List all users
+  void listAllUsers() {
+    print('\n👤 DAFTAR SEMUA PENGGUNA:');
+    if (_users.isEmpty) {
+      print('Tidak ada pengguna terdaftar');
+      return;
+    }
+    
+    print('Nama'.padRight(15) + 'BMI'.padRight(8) + 'Kategori');
+    print('-' * 35);
+    
+    _users.forEach((name, calculator) {
+      String bmi = calculator.calculateBMI().toStringAsFixed(1);
+      String category = calculator.getBMIDescription();
+      print('${name.padRight(15)}${bmi.padRight(8)}$category');
+    });
+  }
+}
+
+// Main function untuk demonstrasi
+void main() {
+  print('🏥 BMI CALCULATOR INDONESIA - DEMONSTRASI LENGKAP\n');
+  
+  // Create BMI Calculator Manager
+  var manager = BMICalculatorManager();
+  
+  try {
+    // Test 1: Membuat calculator untuk beberapa orang
+    print('1️⃣ MEMBUAT BMI CALCULATOR UNTUK BEBERAPA ORANG');
+    
+    var ahmad = BMICalculator(
+      name: 'Ahmad Rizki',
+      age: 22,
+      gender: Gender.male,
+      height: 170.0,
+      weight: 65.0,
+      activityLevel: ActivityLevel.moderatelyActive,
+    );
+    manager.addUser(ahmad);
+    
+    var sari = BMICalculator(
+      name: 'Sari Dewi',
+      age: 20,
+      gender: Gender.female,
+      height: 160.0,
+      weight: 55.0,
+      activityLevel: ActivityLevel.lightlyActive,
+    );
+    manager.addUser(sari);
+    
+    var budi = BMICalculator(
+      name: 'Budi Santoso',
+      age: 25,
+      gender: Gender.male,
+      height: 175.0,
+      weight: 85.0,
+      activityLevel: ActivityLevel.sedentary,
+    );
+    manager.addUser(budi);
+    
+    // Test 2: Display individual health reports
+    print('\n2️⃣ LAPORAN KESEHATAN INDIVIDUAL');
+    ahmad.displayHealthReport();
+    sari.displayHealthReport();
+    
+    // Test 3: Update measurements dan lihat trend
+    print('\n3️⃣ UPDATE PENGUKURAN DAN ANALISIS TREND');
+    
+    // Simulasi perubahan berat badan Ahmad
+    ahmad.updateMeasurements(67.0, 170.0);
+    ahmad.updateMeasurements(64.0, 170.0);
+    ahmad.displayBMIHistory();
+    
+    var trend = ahmad.getBMITrend();
+    print('\nTrend BMI Ahmad: ${trend['emoji']} ${trend['message']}');
+    
+    // Test 4: Error handling
+    print('\n4️⃣ TESTING ERROR HANDLING');
+    
+    try {
+      var invalidPerson = BMICalculator(
+        name: 'Invalid Person',
+        age: 150, // Invalid age
+        gender: Gender.male,
+        height: 170.0,
+        weight: 70.0,
+      );
+    } catch (e) {
+      print('❌ Error creating invalid person: $e');
+    }
+    
+    try {
+      ahmad.height = 400; // Invalid height
+    } catch (e) {
+      print('❌ Error setting invalid height: $e');
+    }
+    
+    try {
+      sari.weight = -10; // Invalid weight
+    } catch (e) {
+      print('❌ Error setting invalid weight: $e');
+    }
+    
+    // Test 5: Population statistics
+    print('\n5️⃣ STATISTIK POPULASI');
+    manager.listAllUsers();
+    manager.displayPopulationReport();
+    
+    // Test 6: Async simulation untuk future database operations
+    print('\n6️⃣ SIMULASI OPERASI DATABASE (FUTURE)');
+    await simulateDatabaseOperations(manager);
+    
+  } catch (e) {
+    print('❌ Unexpected error in main: $e');
+  }
+  
+  print('\n🎯 BMI CALCULATOR DEMO COMPLETED!');
+}
+
+// Async function untuk simulasi database operations
+Future<void> simulateDatabaseOperations(BMICalculatorManager manager) async {
+  print('🔄 Menyimpan data ke database...');
+  
+  // Simulasi delay network
+  await Future.delayed(Duration(milliseconds: 1000));
+  
+  try {
+    // Simulasi save all users
+    for (String userName in ['Ahmad Rizki', 'Sari Dewi', 'Budi Santoso']) {
+      var user = manager.getUser(userName);
+      if (user != null) {
+        await _saveUserToDatabase(user);
+      }
+    }
+    
+    print('✅ Semua data berhasil disimpan ke database');
+    
+  } catch (e) {
+    print('❌ Error saving to database: $e');
+  }
+}
+
+// Simulasi save user ke database
+Future<bool> _saveUserToDatabase(BMICalculator calculator) async {
+  await Future.delayed(Duration(milliseconds: 300));
+  
+  // Simulasi random error (10% chance)
+  if (Random().nextDouble() < 0.1) {
+    throw Exception('Database connection failed for ${calculator.name}');
+  }
+  
+  print('💾 Data ${calculator.name} berhasil disimpan');
+  return true;
+}</pre>
+                    </div>
+
+                    <div class="zapp-suggestion">
+                        <i class="fas fa-heartbeat"></i> <strong>Coba BMI Calculator Interaktif!</strong><br>
+                        Copy seluruh code BMI Calculator Indonesia ke <a href="https://zapp.run/" target="_blank" class="zapp-link">zapp.run</a> dan eksperimen dengan berbagai data untuk melihat implementasi OOP, error handling, dan collections dalam action!
+                    </div>
+
+                    <h4>Penjelasan Implementasi</h4>
+                    <ol style="margin: 1rem 0; padding-left: 2rem;">
+                        <li><strong>OOP Implementation</strong> - Menggunakan abstract class Person, inheritance, encapsulation dengan private variables</li>
+                        <li><strong>Exception Handling</strong> - Custom exceptions untuk validasi data kesehatan yang akurat</li>
+                        <li><strong>Collections Usage</strong> - List untuk BMI history, Map untuk ideal weight range, enum untuk categories</li>
+                        <li><strong>Data Validation</strong> - Comprehensive validation untuk tinggi, berat, umur dengan standar Indonesia</li>
+                        <li><strong>Async Programming</strong> - Simulasi database operations dengan Future dan error handling</li>
+                        <li><strong>Population Statistics</strong> - Analisis data menggunakan collections untuk insights kesehatan</li>
+                    </ol>
+
+                    <div class="flowchart">
+                        <h4>BMI Calculator Architecture</h4>
+                        <div class="flow-step">Abstract Person Class</div>
+                        <i class="fas fa-arrow-down flow-arrow"></i>
+                        <div class="flow-step">BMICalculator<br>(Inheritance)</div>
+                        <i class="fas fa-arrow-down flow-arrow"></i>
+                        <div class="flow-step">BMICalculatorManager<br>(Composition)</div>
+                        <i class="fas fa-arrow-down flow-arrow"></i>
+                        <div class="flow-step">Population Analytics</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Glossary -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Daftar Istilah dan Singkatan</h2>
+            
+            <div class="glossary">
+                <div class="glossary-item">
+                    <div class="glossary-term">Abstract Class</div>
+                    <div>Class yang tidak dapat diinstansiasi secara langsung dan biasanya mengandung abstract methods yang harus diimplementasi oleh subclass.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Abstraction</div>
+                    <div>Prinsip OOP yang menyembunyikan detail implementasi complex dan hanya menampilkan fitur essential kepada user.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Async/Await</div>
+                    <div>Syntax untuk menangani operasi asynchronous dalam Dart, memungkinkan kode non-blocking tanpa callback hell.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">BMR (Basal Metabolic Rate)</div>
+                    <div>Jumlah kalori minimum yang dibutuhkan tubuh untuk menjalankan fungsi dasar saat istirahat.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Collections</div>
+                    <div>Struktur data yang dapat menyimpan multiple elements, seperti List, Map, dan Set dalam Dart.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Constructor</div>
+                    <div>Method khusus yang dipanggil saat object dibuat, digunakan untuk menginisialisasi properties object.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Encapsulation</div>
+                    <div>Prinsip OOP yang menyembunyikan data internal class dan memberikan akses melalui public methods.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Enum</div>
+                    <div>Tipe data khusus yang mendefinisikan sekumpulan konstanta yang berkaitan, seperti gender atau activity level.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Exception Handling</div>
+                    <div>Mekanisme untuk menangani error atau kondisi exceptional yang terjadi saat runtime program.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Future</div>
+                    <div>Object yang merepresentasikan hasil dari operasi asynchronous yang akan selesai di masa mendatang.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Getter/Setter</div>
+                    <div>Methods khusus untuk mengakses (getter) dan memodifikasi (setter) private properties dengan kontrol tambahan.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Inheritance</div>
+                    <div>Mekanisme OOP dimana class baru (child) dapat mewarisi properties dan methods dari class yang sudah ada (parent).</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">List</div>
+                    <div>Collection ordered yang dapat menyimpan duplicate elements dan diakses menggunakan index.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Map</div>
+                    <div>Collection yang menyimpan data dalam bentuk key-value pairs, dimana setiap key adalah unique.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Method Overriding</div>
+                    <div>Praktik mendefinisikan ulang method dari parent class di child class dengan implementasi yang berbeda.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Named Constructor</div>
+                    <div>Constructor tambahan dengan nama khusus yang memberikan cara alternatif untuk membuat object.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Null Safety</div>
+                    <div>Fitur Dart yang mencegah null reference errors dengan explicit nullable types menggunakan operator ?.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Object</div>
+                    <div>Instance dari class yang memiliki state (properties) dan behavior (methods) yang didefinisikan oleh class tersebut.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">OOP (Object-Oriented Programming)</div>
+                    <div>Paradigma pemrograman yang mengorganisir kode dalam bentuk objects yang memiliki properties dan methods.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Polymorphism</div>
+                    <div>Kemampuan objects dari different classes untuk merespon method call yang sama dengan cara yang berbeda.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Set</div>
+                    <div>Collection yang hanya menyimpan unique elements tanpa duplicate dan tidak memiliki order yang tetap.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Static Method</div>
+                    <div>Method yang belongs to class rather than instance, dapat dipanggil tanpa membuat object dari class.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">TDEE (Total Daily Energy Expenditure)</div>
+                    <div>Total kalori yang dibakar tubuh dalam sehari termasuk BMR dan aktivitas fisik.</div>
+                </div>
+
+                <div class="glossary-item">
+                    <div class="glossary-term">Try-Catch Block</div>
+                    <div>Konstruksi untuk menangani exceptions, dimana kode yang mungkin error diletakkan di try, dan handling di catch.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- References -->
+    <section class="references">
+        <div class="container">
+            <h2 class="section-title">Daftar Referensi</h2>
+            
+            <ol class="reference-list">
+                <li>Dart Team. (2024). <em>Dart Language Tour: Classes and Objects</em>. Google LLC. Retrieved from https://dart.dev/guides/language/language-tour#classes</li>
+                
+                <li>Freeman, E., Robson, E., Bates, B., & Sierra, K. (2024). <em>Head First Object-Oriented Analysis and Design</em>. O'Reilly Media.</li>
+                
+                <li>Google Developers. (2024). <em>Dart Asynchronous Programming: Futures, async, await</em>. Retrieved from https://dart.dev/guides/language/language-tour#asynchrony</li>
+                
+                <li>World Health Organization. (2024). <em>Body Mass Index - BMI</em>. Retrieved from https://www.euro.who.int/en/health-topics/disease-prevention/nutrition/a-healthy-lifestyle/body-mass-index-bmi</li>
+                
+                <li>Kementerian Kesehatan RI. (2024). <em>Pedoman Gizi Seimbang Indonesia</em>. Direktorat Jenderal Kesehatan Masyarakat.</li>
+                
+                <li>Martin, R. C. (2024). <em>Clean Code: A Handbook of Agile Software Craftsmanship</em>. Prentice Hall.</li>
+                
+                <li>Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (2024). <em>Design Patterns: Elements of Reusable Object-Oriented Software</em>. Addison-Wesley Professional.</li>
+                
+                <li>Flutter Indonesia Community. (2024). <em>Dart Programming Best Practices</em>. Retrieved from https://github.com/flutter-indonesia/dart-best-practices</li>
+                
+                <li>Dicoding Indonesia. (2024). <em>Belajar Fundamental Dart</em>. Retrieved from https://www.dicoding.com/academies/191</li>
+                
+                <li>Windmill, E. (2024). <em>Flutter in Action: Dart Programming Fundamentals</em>. Manning Publications.</li>
+                
+                <li>Moroney, L. (2024). <em>Programming Flutter: Cross-platform Development with Dart</em>. O'Reilly Media.</li>
+                
+                <li>BuildWithAngga. (2024). <em>Dart Object Oriented Programming Tutorial</em>. Retrieved from https://buildwithangga.com/kelas/dart-object-oriented-programming</li>
+                
+                <li>Petani Kode. (2024). <em>Tutorial Dart: Pemrograman Berorientasi Objek</em>. Retrieved from https://www.petanikode.com/dart-oop</li>
+                
+                <li>Sekolah Koding. (2024). <em>Dart Collections: List, Map, Set</em>. Retrieved from https://sekolahkoding.com/kelas/dart-collections</li>
+                
+                <li>Udacoding. (2024). <em>Exception Handling dalam Dart Programming</em>. Retrieved from https://www.udacoding.com/dart-exception-handling</li>
+            </ol>
+        </div>
+    </section>
+
+    <script>
+        // Toggle expandable sections
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.expand-icon');
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                header.classList.remove('active');
+            } else {
+                content.classList.add('active');
+                header.classList.add('active');
+            }
+        }
+
+        // Copy code functionality
+        function copyCode(button, codeId) {
+            const code = document.getElementById(codeId).textContent;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        // Auto-expand first section
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.expandable-section .section-header');
+            if (firstSection) {
+                toggleSection(firstSection);
+            }
+        });
+    </script>
+</body>
+</html></pre>
+</invoke>
