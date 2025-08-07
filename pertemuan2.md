@@ -13,7 +13,6 @@
 **Tanggal**: [Disesuaikan dengan jadwal]
 
 </div>
----
 
 ## 🎯 **Learning Objectives**
 
