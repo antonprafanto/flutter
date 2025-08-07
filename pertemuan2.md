@@ -701,10 +701,10 @@ void main() {
 
 ```mermaid
 flowchart TD
-    A[Create Map ibukotaProvinsi] --> B[Initialize with key-value pairs<br/>Provinsi → Ibu Kota]
+    A[Create Map ibukotaProvinsi] --> B[Initialize with key-value pairs<br/>Provinsi to Ibu Kota]
     
     B --> C[Basic Access Operations]
-    C --> C1[map['key']: get value]
+    C --> C1[map access: get value by key]
     C --> C2[map.keys: get all keys]
     C --> C3[map.values: get all values]
     C --> C4[map.length: count entries]
@@ -714,7 +714,7 @@ flowchart TD
     C3 --> D
     C4 --> D
     
-    D --> D1[map['key'] = value: add/update]
+    D --> D1[map assignment: add or update]
     D --> D2[addAll: merge maps]
     D --> D3[remove: delete entry]
     
@@ -730,9 +730,9 @@ flowchart TD
     E2 --> F
     E3 --> F
     
-    F --> F1[forEach: (key, value) callback]
+    F --> F1[forEach: key value callback]
     F --> F2[for-in entries: access both]
-    F --> F3[map/where: transform/filter]
+    F --> F3[map and where: transform filter]
     
     F1 --> G[Advanced Operations]
     F2 --> G
