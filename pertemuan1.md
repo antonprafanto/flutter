@@ -1,9 +1,18 @@
 # 🚀 Pertemuan 1: Pengenalan Flutter dan Setup Environment
 
+<div align="center">
+
+![Flutter Course](https://img.shields.io/badge/Mata_Kuliah-Pemrograman_Piranti_Bergerak-blue?style=for-the-badge&logo=flutter)
+![Pertemuan](https://img.shields.io/badge/Pertemuan-1_dari_14-green?style=for-the-badge)
+![Progress](https://img.shields.io/badge/Progress-7%25-orange?style=for-the-badge)
+![Flutter](https://img.shields.io/badge/Flutter-Fundamentals-02569B?style=for-the-badge&logo=flutter)
+
 **Mata Kuliah**: Pemrograman Piranti Bergerak dengan Flutter  
 **Kode**: PPB-FLT-101  
 **Durasi**: 3 SKS (2 teori + 1 praktikum)  
 **Tanggal**: [Disesuaikan dengan jadwal]
+
+</div>
 
 ---
 
