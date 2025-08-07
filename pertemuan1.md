@@ -139,7 +139,7 @@ void main() {
 - `final` untuk nilai yang hanya bisa di-set sekali saat runtime
 - `$variableName` untuk string interpolation
 
-#### 📊 Flow Diagram: Variables dan Data Types
+**📊 Flow Diagram:**
 
 ```mermaid
 flowchart TD
@@ -209,7 +209,7 @@ void main() {
 }
 ```
 
-#### 📊 Flow Diagram: Collections (List, Map, Set)
+**📊 Flow Diagram:**
 
 ```mermaid
 flowchart TD
@@ -340,7 +340,7 @@ String getStatusMahasiswa(int semester) {
 }
 ```
 
-#### 📊 Flow Diagram: Control Flow
+**📊 Flow Diagram:**
 
 ```mermaid
 flowchart TD
@@ -399,7 +399,7 @@ flowchart TD
     style Z fill:#e8f5e8
 ```
 
-#### 📊 Flow Diagram: Functions
+### 📊 Diagram Alir Dart Basics (Legacy)
 
 ```mermaid
 flowchart TD
@@ -839,7 +839,7 @@ class InfoRow extends StatelessWidget {
 }
 ```
 
-### 📊 Flow Diagram: Flutter Hello Indonesia App
+**📊 Flow Diagram:**
 
 #### A. App Initialization Flow
 
@@ -923,31 +923,6 @@ flowchart TD
     style F fill:#fff3e0
 ```
 
-#### D. Complete App Flow Overview
-
-```mermaid
-flowchart LR
-    A[App Start] --> B[main]
-    B --> C[MaterialApp]
-    C --> D[HomePage]
-    D --> E[Scaffold Structure]
-    E --> F[AppBar]
-    E --> G[Body Container]
-    G --> H[Gradient Background]
-    G --> I[UI Components]
-    I --> J[Circle Avatar]
-    I --> K[Welcome Texts]
-    I --> L[Info Card]
-    I --> M[Action Button]
-    L --> N[4x InfoRow Widgets]
-    M --> O[Print Debug]
-    
-    style A fill:#e1f5fe
-    style C fill:#ffebee
-    style D fill:#fff3e0
-    style E fill:#e8f5e8
-    style I fill:#f3e5f5
-```
 
 ### 📊 Diagram Struktur Widget (Legacy)
 
