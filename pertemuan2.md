@@ -484,6 +484,60 @@ void main() {
 
 **🔧 [Copy Code]** | **🌐 [Test di zapp.run](https://zapp.run/)**
 
+#### Alur Maps Data Operations:
+
+```mermaid
+flowchart TD
+    A[🎯 Start Program] --> B[📋 Initialize profilMahasiswa Map]
+    B --> C[🗺️ Initialize kotaIndonesia Map]
+    C --> D[📊 Print Student Profile]
+    D --> E[📝 Access Basic Properties]
+    E --> F[📋 Access Hobi List from Map]
+    F --> G[🔄 Iterate Cities with forEach]
+    G --> H[🏙️ Print City Name]
+    H --> I[👥 Print Population Data]
+    I --> J[📏 Print Area Data]
+    J --> K[👨‍💼 Print Governor Name]
+    K --> L[🍽️ Print Local Foods List]
+    L --> M{❓ More Cities?}
+    M -->|Ya| G
+    M -->|Tidak| N[➕ Add New Properties]
+    N --> O[📚 Add semester to profile]
+    O --> P[🏛️ Add organisasi List]
+    P --> Q[📊 Print Updated Profile]
+    Q --> R[❓ Check if Yogyakarta exists]
+    R --> S{❓ Key Found?}
+    S -->|Tidak| T[➕ Add Yogyakarta Data]
+    S -->|Ya| U[📊 Print Key Exists]
+    T --> V[✅ Print Success Message]
+    U --> W[✅ End Program]
+    V --> W
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style M fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style N fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style O fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style P fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style Q fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style R fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style S fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style T fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style U fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style V fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style W fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+```
+
 ### 🎯 3. Sets - Kumpulan Data Unique
 
 **Set** adalah kumpulan data yang **tidak boleh duplikat** dan **tidak berurutan**.
