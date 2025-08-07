@@ -16,6 +16,86 @@
 
 ---
 
+## ⚠️ **Important Notes untuk GitHub Mermaid Diagrams**
+
+### **Common Mermaid Parsing Issues dan Solutions:**
+
+1. **Masalah Parentheses dalam Node Labels**
+   ```
+   ❌ Error: E1[toList(): convert to List]
+   ✅ Fix: E1[toList: convert to List]
+   ```
+
+2. **Masalah Mathematical Expressions**
+   ```
+   ❌ Error: J[Calculate BMI = weight/(height²)]
+   ✅ Fix: J[Calculate BMI using weight and height]
+   ```
+
+3. **Masalah Single Quotes dalam Node Labels**
+   ```
+   ❌ Error: C1[map['key']: get value]
+   ✅ Fix: C1[map access: get value by key]
+   ```
+
+4. **Masalah Mathematical Symbols**
+   ```
+   ❌ Error: D1[Union ∪ operation]
+   ✅ Fix: D1[Union Operation]
+   ```
+
+5. **Masalah Karakter Khusus dalam Labels**
+   ```
+   ❌ Error: F1[forEach: (key, value) callback]
+   ✅ Fix: F1[forEach: key value callback]
+   ```
+
+6. **Arrow Symbols dalam Text**
+   ```
+   ❌ Error: B[Provinsi → Ibu Kota]
+   ✅ Fix: B[Provinsi to Ibu Kota]
+   ```
+
+### **Root Causes of GitHub Mermaid Parse Errors:**
+- **PS Token Error**: Biasanya disebabkan oleh parentheses `()` dalam node labels
+- **SQE Token Error**: Disebabkan oleh single quotes `'` atau special characters
+- **Unicode Issues**: Mathematical symbols seperti `²`, `∪`, `∩`, `→` tidak supported
+
+### **Best Practices untuk Mermaid di GitHub:**
+- ✅ Gunakan deskripsi sederhana tanpa karakter khusus
+- ✅ Hindari parentheses, mathematical symbols, dan special characters
+- ✅ Gunakan colon `:` instead of parentheses untuk function calls
+- ✅ Test diagram di [Mermaid Live Editor](https://mermaid.live) sebelum commit
+- ✅ Gunakan line breaks `<br/>` untuk text panjang
+- ✅ Pilih kata-kata deskriptif yang clear tanpa simbol
+
+### **Debugging Tips:**
+1. **Copy error line number** dari GitHub error message
+2. **Count nodes** dari top untuk find problematic node
+3. **Check for**: `()`, `'`, `"`, mathematical symbols, arrows
+4. **Simplify text** sampai error hilang
+5. **Test incrementally** dengan add nodes satu per satu
+
+### **Quick Testing Guide:**
+```markdown
+<!-- Test diagram dengan langkah ini: -->
+1. Copy diagram ke Mermaid Live Editor (https://mermaid.live)
+2. Check jika ada error pada preview
+3. Fix error dengan replace special characters
+4. Paste fixed diagram ke GitHub
+5. Commit dan check rendering
+```
+
+### **Emergency Fix Checklist:**
+- [ ] Remove all parentheses `()` from node labels
+- [ ] Replace single quotes `'` dengan kata biasa
+- [ ] Change mathematical symbols (`=`, `²`, `∪`, `∩`) ke words
+- [ ] Replace arrows (`→`, `←`) dengan `to`, `from`
+- [ ] Simplify complex expressions
+- [ ] Test dengan simple node labels first
+
+---
+
 ## 🎯 **Learning Objectives**
 
 Setelah menyelesaikan pertemuan ini, mahasiswa diharapkan mampu:
@@ -124,17 +204,17 @@ void main() {
 ```mermaid
 flowchart TD
     A[Define Class Mahasiswa] --> B[Declare Properties<br/>nama, nim, prodi, semester, ipk]
-    B --> C[Create Constructor<br/>Mahasiswa(...)]
-    C --> D[Add Methods<br/>tampilkanInfo(), statusAkademik()]
+    B --> C[Create Constructor<br/>Mahasiswa with parameters]
+    C --> D[Add Methods<br/>tampilkanInfo, statusAkademik]
     
-    E[main Function] --> F[Create Object mahasiswa1<br/>new Mahasiswa(...)]
+    E[main Function] --> F[Create Object mahasiswa1<br/>new Mahasiswa with data]
     F --> G[Call Constructor<br/>Initialize Properties]
     G --> H[Object Ready<br/>in Memory]
     
-    H --> I[Call mahasiswa1.tampilkanInfo()]
+    H --> I[Call mahasiswa1.tampilkanInfo]
     I --> J[Execute Method<br/>Print Student Info]
     
-    H --> K[Call mahasiswa1.statusAkademik()]
+    H --> K[Call mahasiswa1.statusAkademik]
     K --> L[Calculate Status<br/>Based on IPK]
     L --> M[Return Status String]
     
@@ -228,7 +308,7 @@ flowchart TD
     B -->|Named: fromJson| E[UniversitasIndonesia.fromJson<br/>Map data]
     
     C --> F[Initialize All Properties<br/>Directly from Parameters]
-    D --> G[Set nama, kota from params<br/>Set tahunBerdiri = current year<br/>Set jumlahMahasiswa = 0]
+    D --> G[Set nama and kota from params<br/>Set tahunBerdiri to current year<br/>Set jumlahMahasiswa to 0]
     E --> H[Parse JSON Map<br/>Extract values to properties]
     
     F --> I[Object Created Successfully]
@@ -372,14 +452,14 @@ flowchart TD
     F --> K[Override: nyalakanMesin<br/>Override: hitungPajak]
     F --> L[Unique Method: pasangHelm]
     
-    M[List<Kendaraan> daftarKendaraan] --> N[Contains: Mobil + Motor objects]
+    M[List of Kendaraan daftarKendaraan] --> N[Contains: Mobil plus Motor objects]
     N --> O[For Each Loop]
     O --> P{Object Type?}
     P -->|Mobil| Q[Call Mobil version<br/>of nyalakanMesin]
     P -->|Motor| R[Call Motor version<br/>of nyalakanMesin]
     
-    Q --> S[Type Check with 'is'<br/>Cast and call bukaPintu]
-    R --> T[Type Check with 'is'<br/>Cast and call pasangHelm]
+    Q --> S[Type Check with is<br/>Cast and call bukaPintu]
+    R --> T[Type Check with is<br/>Cast and call pasangHelm]
     
     style A fill:#e1f5fe
     style E fill:#fff3e0
@@ -892,7 +972,7 @@ flowchart TD
     B --> C[Basic Operations]
     C --> C1[add: single element]
     C --> C2[addAll: multiple elements]
-    C --> C3[remove/removeWhere: delete elements]
+    C --> C3[remove and removeWhere: delete elements]
     C --> C4[contains: check existence]
     
     C1 --> D[Mathematical Set Operations]
@@ -900,9 +980,9 @@ flowchart TD
     C3 --> D
     C4 --> D
     
-    D --> D1[Union ∪<br/>All elements from both sets]
-    D --> D2[Intersection ∩<br/>Common elements only]
-    D --> D3[Difference -<br/>Elements in first not in second]
+    D --> D1[Union Operation<br/>All elements from both sets]
+    D --> D2[Intersection Operation<br/>Common elements only]
+    D --> D3[Difference Operation<br/>Elements in first not in second]
     D --> D4[Symmetric Difference<br/>Elements in either but not both]
     
     D1 --> E[Set Analysis and Conversion]
@@ -910,10 +990,10 @@ flowchart TD
     D3 --> E
     D4 --> E
     
-    E --> E1[toList(): convert to List]
-    E --> E2[where(): filter elements]
-    E --> E3[map(): transform elements]
-    E --> E4[isEmpty/isNotEmpty: check state]
+    E --> E1[toList: convert to List]
+    E --> E2[where: filter elements]
+    E --> E3[map: transform elements]
+    E --> E4[isEmpty and isNotEmpty: check state]
     
     E1 --> F[Practical Applications]
     E2 --> F
@@ -1147,7 +1227,974 @@ class MahasiswaValidator {
       throw MahasiswaException('NIM harus 10 digit', nim);
     }
     
-    if (!RegExp(r'^\d+$').hasMatch(nim)) {
+    if (!RegExp(r'^\d+
+```
+
+---
+
+## ⚡ **Bagian IV: Async Programming Basics**
+
+### **4.1 Future dan Async/Await**
+
+Async programming memungkinkan aplikasi untuk menjalankan operasi yang membutuhkan waktu (seperti network request atau file I/O) tanpa memblokir UI.
+
+```dart
+// 📝 Coba code ini di: https://zapp.run/
+
+// Simulasi operasi yang membutuhkan waktu
+Future<String> ambilDataMahasiswa(String nim) async {
+  print('🔄 Mengambil data mahasiswa $nim...');
+  
+  // Simulasi delay network request (2 detik)
+  await Future.delayed(Duration(seconds: 2));
+  
+  // Simulasi kondisi berhasil/gagal
+  if (nim == '2021015001') {
+    return 'Andi Kurniawan - Informatika - IPK: 3.75';
+  } else if (nim == '2021015002') {
+    return 'Sari Putri - Sistem Informasi - IPK: 3.85';
+  } else {
+    throw Exception('Mahasiswa dengan NIM $nim tidak ditemukan');
+  }
+}
+
+// Simulasi download file
+Future<Map<String, dynamic>> downloadNilai(String nim) async {
+  print('📥 Mendownload nilai untuk NIM $nim...');
+  
+  await Future.delayed(Duration(seconds: 1));
+  
+  return {
+    'nim': nim,
+    'mata_kuliah': {
+      'Flutter': 85,
+      'Database': 78,
+      'AI': 92,
+      'Networking': 88,
+    },
+    'semester': 5,
+    'status': 'completed'
+  };
+}
+
+// Simulasi upload data
+Future<bool> uploadTugas(String nim, String namaFile) async {
+  print('📤 Mengupload $namaFile untuk NIM $nim...');
+  
+  await Future.delayed(Duration(milliseconds: 1500));
+  
+  // Simulasi kemungkinan gagal upload
+  if (namaFile.contains('error')) {
+    throw Exception('Gagal upload file $namaFile');
+  }
+  
+  return true;
+}
+
+void main() async {
+  print('=== ASYNC PROGRAMMING BASICS ===\n');
+  
+  // 1. BASIC ASYNC/AWAIT
+  print('--- Basic Async/Await ---');
+  
+  try {
+    // Operasi async dengan await
+    String dataMahasiswa = await ambilDataMahasiswa('2021015001');
+    print('✅ Data ditemukan: $dataMahasiswa');
+    
+    // Operasi async yang gagal
+    String dataTidakAda = await ambilDataMahasiswa('9999999999');
+    print('✅ Data: $dataTidakAda');
+    
+  } catch (e) {
+    print('❌ Error: $e');
+  }
+  
+  print('\n--- Multiple Async Operations ---');
+  
+  // 2. MULTIPLE ASYNC OPERATIONS (Sequential)
+  
+  Stopwatch stopwatch = Stopwatch()..start();
+  
+  try {
+    print('🔄 Menjalankan operasi secara sequential...');
+    
+    // Sequential execution (satu per satu)
+    String data1 = await ambilDataMahasiswa('2021015001');
+    String data2 = await ambilDataMahasiswa('2021015002');
+    
+    stopwatch.stop();
+    
+    print('✅ Data 1: $data1');
+    print('✅ Data 2: $data2');
+    print('⏱️ Waktu sequential: ${stopwatch.elapsedMilliseconds}ms');
+    
+  } catch (e) {
+    print('❌ Error sequential: $e');
+  }
+  
+  print('\n--- Concurrent Async Operations ---');
+  
+  // 3. CONCURRENT ASYNC OPERATIONS
+  
+  stopwatch.reset();
+  stopwatch.start();
+  
+  try {
+    print('🔄 Menjalankan operasi secara concurrent...');
+    
+    // Concurrent execution (bersamaan)
+    Future<String> future1 = ambilDataMahasiswa('2021015001');
+    Future<String> future2 = ambilDataMahasiswa('2021015002');
+    
+    // Menunggu semua selesai
+    List<String> results = await Future.wait([future1, future2]);
+    
+    stopwatch.stop();
+    
+    print('✅ Data concurrent 1: ${results[0]}');
+    print('✅ Data concurrent 2: ${results[1]}');
+    print('⏱️ Waktu concurrent: ${stopwatch.elapsedMilliseconds}ms');
+    
+  } catch (e) {
+    print('❌ Error concurrent: $e');
+  }
+  
+  print('\n--- Complex Async Workflow ---');
+  
+  // 4. COMPLEX ASYNC WORKFLOW
+  
+  String nimMahasiswa = '2021015001';
+  
+  try {
+    print('🔄 Memulai workflow kompleks untuk NIM $nimMahasiswa...');
+    
+    // Step 1: Ambil data mahasiswa
+    String dataMahasiswa = await ambilDataMahasiswa(nimMahasiswa);
+    print('1️⃣ $dataMahasiswa');
+    
+    // Step 2: Download nilai (concurrent dengan upload)
+    Future<Map<String, dynamic>> futureNilai = downloadNilai(nimMahasiswa);
+    Future<bool> futureUpload = uploadTugas(nimMahasiswa, 'tugas_flutter.pdf');
+    
+    // Menunggu kedua operasi selesai
+    var results = await Future.wait([futureNilai, futureUpload]);
+    Map<String, dynamic> nilai = results[0] as Map<String, dynamic>;
+    bool uploadSuccess = results[1] as bool;
+    
+    print('2️⃣ Nilai berhasil didownload: ${nilai['mata_kuliah']}');
+    print('3️⃣ Upload tugas: ${uploadSuccess ? 'Berhasil' : 'Gagal'}');
+    
+    // Step 3: Hitung rata-rata
+    Map<String, int> mataKuliah = nilai['mata_kuliah'].cast<String, int>();
+    double rataRata = mataKuliah.values.reduce((a, b) => a + b) / mataKuliah.length;
+    
+    print('4️⃣ Rata-rata nilai: ${rataRata.toStringAsFixed(2)}');
+    print('✅ Workflow selesai!');
+    
+  } catch (e) {
+    print('❌ Workflow error: $e');
+  }
+  
+  print('\n--- Error Handling in Async ---');
+  
+  // 5. ERROR HANDLING IN ASYNC OPERATIONS
+  
+  List<String> nimList = ['2021015001', '2021015002', '9999999999', '1111111111'];
+  
+  for (String nim in nimList) {
+    try {
+      String result = await ambilDataMahasiswa(nim);
+      print('✅ NIM $nim: $result');
+    } catch (e) {
+      print('❌ NIM $nim: Error - $e');
+      // Program tetap lanjut untuk NIM berikutnya
+    }
+  }
+  
+  print('\n--- Async dengan Timeout ---');
+  
+  // 6. ASYNC DENGAN TIMEOUT
+  
+  try {
+    // Operasi dengan timeout 1 detik (akan gagal karena operasi butuh 2 detik)
+    String result = await ambilDataMahasiswa('2021015001')
+        .timeout(Duration(seconds: 1));
+    print('✅ Data dengan timeout: $result');
+  } on TimeoutException catch (e) {
+    print('❌ Timeout: Operasi terlalu lama (${e.duration})');
+  } catch (e) {
+    print('❌ Error lain: $e');
+  }
+  
+  // Operasi dengan timeout yang cukup
+  try {
+    String result = await ambilDataMahasiswa('2021015001')
+        .timeout(Duration(seconds: 3));
+    print('✅ Data dengan timeout yang cukup: $result');
+  } catch (e) {
+    print('❌ Error: $e');
+  }
+}
+```
+
+**📊 Flow Diagram - Async Programming:**
+
+```mermaid
+flowchart TD
+    A[main function starts] --> B[Call async function with await]
+    
+    B --> C{Async operation type?}
+    
+    C -->|Sequential| D[await operation1<br/>await operation2<br/>One after another]
+    C -->|Concurrent| E[Start operation1 and operation2<br/>Future.wait for both]
+    
+    D --> F[Total time equals sum of operations]
+    E --> G[Total time equals longest operation]
+    
+    F --> H{Operation successful?}
+    G --> H
+    
+    H -->|Yes| I[Process results<br/>Continue execution]
+    H -->|No| J[Catch exception<br/>Handle error]
+    
+    I --> K[Complete workflow]
+    J --> L{Continue with next operation?}
+    
+    L -->|Yes| M[Try next async operation]
+    L -->|No| N[End workflow]
+    
+    M --> H
+    
+    O[ambilDataMahasiswa function] --> P[Print loading message]
+    P --> Q[await Future.delayed 2 seconds]
+    Q --> R{NIM exists in database?}
+    
+    R -->|Yes| S[Return student data]
+    R -->|No| T[throw Exception]
+    
+    S --> U[Caller receives data]
+    T --> V[Caller catches exception]
+    
+    style A fill:#e1f5fe
+    style C fill:#fff3e0
+    style D fill:#ffecb3
+    style E fill:#e8f5e8
+    style H fill:#f3e5f5
+    style I fill:#c8e6c9
+    style J fill:#ffcdd2
+    style K fill:#c8e6c9
+```
+
+---
+
+## 🧮 **Bagian V: Praktikum - BMI Calculator Indonesia**
+
+### **5.1 Project Overview**
+
+Dalam praktikum ini, kita akan membuat aplikasi BMI (Body Mass Index) Calculator yang menerapkan semua konsep OOP dan exception handling yang telah dipelajari.
+
+```dart
+// 📝 Coba code ini di: https://zapp.run/
+
+// Enum untuk kategori BMI
+enum KategoriBMI {
+  kurusKurangBerat,
+  kurusNormal, 
+  normalBawah,
+  normalAtas,
+  kegemukan,
+  obesitas1,
+  obesitas2,
+}
+
+// Custom exception untuk BMI
+class BMIException implements Exception {
+  final String message;
+  final double value;
+  
+  const BMIException(this.message, this.value);
+  
+  @override
+  String toString() => 'BMIException: $message (Value: $value)';
+}
+
+// Abstract class untuk Person
+abstract class Person {
+  String nama;
+  int umur;
+  String jenisKelamin;
+  
+  Person(this.nama, this.umur, this.jenisKelamin);
+  
+  // Abstract methods yang harus diimplementasikan
+  void tampilkanInfo();
+  String rekomendasiGizi();
+}
+
+// Class untuk BMI Calculator
+class BMICalculator extends Person {
+  double _beratBadan; // Private property
+  double _tinggiBadan; // Private property
+  double? _bmi; // Nullable untuk lazy calculation
+  KategoriBMI? _kategori;
+  DateTime _waktuPengukuran;
+  
+  // Constructor
+  BMICalculator({
+    required String nama,
+    required int umur,
+    required String jenisKelamin,
+    required double beratBadan,
+    required double tinggiBadan,
+  }) : _waktuPengukuran = DateTime.now(),
+       super(nama, umur, jenisKelamin) {
+    this.beratBadan = beratBadan; // Menggunakan setter untuk validasi
+    this.tinggiBadan = tinggiBadan;
+  }
+  
+  // Named constructor untuk data dari input string
+  BMICalculator.fromString({
+    required String nama,
+    required String umurStr,
+    required String jenisKelamin,
+    required String beratStr,
+    required String tinggiStr,
+  }) : _waktuPengukuran = DateTime.now(),
+       super(nama, 0, jenisKelamin) {
+    
+    // Validasi dan parsing dengan exception handling
+    try {
+      umur = int.parse(umurStr);
+      if (umur <= 0 || umur > 150) {
+        throw BMIException('Umur harus antara 1-150 tahun', umur.toDouble());
+      }
+    } catch (e) {
+      throw BMIException('Format umur tidak valid', 0);
+    }
+    
+    try {
+      beratBadan = double.parse(beratStr);
+    } catch (e) {
+      throw BMIException('Format berat badan tidak valid', 0);
+    }
+    
+    try {
+      tinggiBadan = double.parse(tinggiStr);
+    } catch (e) {
+      throw BMIException('Format tinggi badan tidak valid', 0);
+    }
+  }
+  
+  // Getter dan Setter dengan validasi
+  double get beratBadan => _beratBadan;
+  
+  set beratBadan(double berat) {
+    if (berat <= 0) {
+      throw BMIException('Berat badan harus lebih dari 0', berat);
+    }
+    if (berat > 500) {
+      throw BMIException('Berat badan terlalu tinggi (>500kg)', berat);
+    }
+    _beratBadan = berat;
+    _resetCalculation(); // Reset perhitungan saat data berubah
+  }
+  
+  double get tinggiBadan => _tinggiBadan;
+  
+  set tinggiBadan(double tinggi) {
+    if (tinggi <= 0) {
+      throw BMIException('Tinggi badan harus lebih dari 0', tinggi);
+    }
+    if (tinggi < 50) {
+      throw BMIException('Tinggi badan terlalu rendah (<50cm)', tinggi);
+    }
+    if (tinggi > 300) {
+      throw BMIException('Tinggi badan terlalu tinggi (>300cm)', tinggi);
+    }
+    _tinggiBadan = tinggi;
+    _resetCalculation();
+  }
+  
+  // Method untuk reset perhitungan
+  void _resetCalculation() {
+    _bmi = null;
+    _kategori = null;
+  }
+  
+  // Method untuk menghitung BMI
+  double hitungBMI() {
+    if (_bmi == null) {
+      double tinggiMeter = _tinggiBadan / 100; // Convert cm to meter
+      _bmi = _beratBadan / (tinggiMeter * tinggiMeter);
+    }
+    return _bmi!;
+  }
+  
+  // Method untuk menentukan kategori BMI
+  KategoriBMI tentukanKategori() {
+    if (_kategori == null) {
+      double bmi = hitungBMI();
+      
+      if (bmi < 17.0) {
+        _kategori = KategoriBMI.kurusKurangBerat;
+      } else if (bmi < 18.5) {
+        _kategori = KategoriBMI.kurusNormal;
+      } else if (bmi < 23.0) {
+        _kategori = KategoriBMI.normalBawah;
+      } else if (bmi < 25.0) {
+        _kategori = KategoriBMI.normalAtas;
+      } else if (bmi < 27.0) {
+        _kategori = KategoriBMI.kegemukan;
+      } else if (bmi < 30.0) {
+        _kategori = KategoriBMI.obesitas1;
+      } else {
+        _kategori = KategoriBMI.obesitas2;
+      }
+    }
+    return _kategori!;
+  }
+  
+  // Method untuk mendapatkan deskripsi kategori
+  String deskripsiKategori() {
+    switch (tentukanKategori()) {
+      case KategoriBMI.kurusKurangBerat:
+        return 'Kurus - Kekurangan Berat Badan Tingkat Berat';
+      case KategoriBMI.kurusNormal:
+        return 'Kurus - Kekurangan Berat Badan Tingkat Ringan';
+      case KategoriBMI.normalBawah:
+        return 'Normal - Batas Bawah';
+      case KategoriBMI.normalAtas:
+        return 'Normal - Batas Atas';
+      case KategoriBMI.kegemukan:
+        return 'Kelebihan Berat Badan - Tingkat Ringan';
+      case KategoriBMI.obesitas1:
+        return 'Obesitas Tingkat 1';
+      case KategoriBMI.obesitas2:
+        return 'Obesitas Tingkat 2';
+    }
+  }
+  
+  @override
+  void tampilkanInfo() {
+    print('=' * 50);
+    print('🧮 HASIL PERHITUNGAN BMI');
+    print('=' * 50);
+    print('👤 Nama: $nama');
+    print('🎂 Umur: $umur tahun');
+    print('⚧️ Jenis Kelamin: $jenisKelamin');
+    print('⚖️ Berat Badan: ${_beratBadan.toStringAsFixed(1)} kg');
+    print('📏 Tinggi Badan: ${_tinggiBadan.toStringAsFixed(1)} cm');
+    print('📊 BMI: ${hitungBMI().toStringAsFixed(2)}');
+    print('📋 Kategori: ${deskripsiKategori()}');
+    print('⏰ Waktu Pengukuran: ${_waktuPengukuran.day}/${_waktuPengukuran.month}/${_waktuPengukuran.year}');
+    print('=' * 50);
+  }
+  
+  @override
+  String rekomendasiGizi() {
+    KategoriBMI kategori = tentukanKategori();
+    String baseRekomendasi = '';
+    
+    switch (kategori) {
+      case KategoriBMI.kurusKurangBerat:
+      case KategoriBMI.kurusNormal:
+        baseRekomendasi = '''
+🍽️ REKOMENDASI GIZI UNTUK MENAIKKAN BERAT BADAN:
+• Tingkatkan asupan kalori 300-500 kalori per hari
+• Konsumsi protein berkualitas: telur, daging, ikan, tahu
+• Makan dalam porsi kecil tapi sering (5-6x sehari)
+• Konsumsi karbohidrat kompleks: nasi merah, oats
+• Minum susu atau smoothie tinggi protein
+• Hindari makanan kosong kalori''';
+        break;
+        
+      case KategoriBMI.normalBawah:
+      case KategoriBMI.normalAtas:
+        baseRekomendasi = '''
+✅ REKOMENDASI GIZI UNTUK MEMPERTAHANKAN BERAT IDEAL:
+• Pertahankan pola makan seimbang
+• Konsumsi 4 sehat 5 sempurna
+• Makan buah dan sayur 5 porsi per hari
+• Minum air putih 8 gelas per hari
+• Olahraga teratur 3-4x seminggu
+• Batasi makanan processed dan fast food''';
+        break;
+        
+      case KategoriBMI.kegemukan:
+      case KategoriBMI.obesitas1:
+      case KategoriBMI.obesitas2:
+        baseRekomendasi = '''
+🏃‍♂️ REKOMENDASI GIZI UNTUK MENURUNKAN BERAT BADAN:
+• Kurangi asupan kalori 300-500 kalori per hari
+• Tingkatkan konsumsi serat: sayur dan buah
+• Pilih protein tanpa lemak: ayam tanpa kulit, ikan
+• Kurangi karbohidrat sederhana: gula, tepung putih
+• Makan dalam porsi kecil, perbanyak aktivitas fisik
+• Hindari minuman manis dan gorengan''';
+        break;
+    }
+    
+    // Tambahan rekomendasi berdasarkan umur
+    if (umur >= 50) {
+      baseRekomendasi += '\n\n👴 Tambahan untuk usia 50+: Konsumsi kalsium dan vitamin D';
+    } else if (umur < 18) {
+      baseRekomendasi += '\n\n🧒 Tambahan untuk remaja: Konsultasi dengan ahli gizi untuk pertumbuhan optimal';
+    }
+    
+    return baseRekomendasi;
+  }
+  
+  // Method untuk membandingkan dengan BMI ideal
+  Map<String, double> analisisBeratIdeal() {
+    // BMI ideal untuk orang Asia: 21-23
+    double bmiIdealRendah = 21.0;
+    double bmiIdealTinggi = 23.0;
+    
+    double tinggiMeter = _tinggiBadan / 100;
+    double beratIdealRendah = bmiIdealRendah * (tinggiMeter * tinggiMeter);
+    double beratIdealTinggi = bmiIdealTinggi * (tinggiMeter * tinggiMeter);
+    
+    return {
+      'berat_ideal_rendah': beratIdealRendah,
+      'berat_ideal_tinggi': beratIdealTinggi,
+      'selisih_rendah': _beratBadan - beratIdealRendah,
+      'selisih_tinggi': _beratBadan - beratIdealTinggi,
+    };
+  }
+  
+  // Method untuk tracking history (simulasi)
+  void tampilkanAnalisisLengkap() {
+    tampilkanInfo();
+    
+    Map<String, double> analisis = analisisBeratIdeal();
+    
+    print('\n📈 ANALISIS BERAT IDEAL:');
+    print('• Rentang berat ideal: ${analisis['berat_ideal_rendah']!.toStringAsFixed(1)} - ${analisis['berat_ideal_tinggi']!.toStringAsFixed(1)} kg');
+    
+    if (_beratBadan < analisis['berat_ideal_rendah']!) {
+      print('• Status: Perlu menaikkan ${(-analisis['selisih_rendah']!).toStringAsFixed(1)} kg');
+    } else if (_beratBadan > analisis['berat_ideal_tinggi']!) {
+      print('• Status: Perlu menurunkan ${analisis['selisih_tinggi']!.toStringAsFixed(1)} kg');
+    } else {
+      print('• Status: Berat badan sudah ideal! 🎉');
+    }
+    
+    print('\n${rekomendasiGizi()}');
+  }
+}
+
+// Class untuk multiple BMI calculations
+class BMIDatabase {
+  List<BMICalculator> _dataHistory = [];
+  
+  void tambahData(BMICalculator bmi) {
+    _dataHistory.add(bmi);
+    print('✅ Data BMI untuk ${bmi.nama} berhasil ditambahkan');
+  }
+  
+  List<BMICalculator> ambilDataByNama(String nama) {
+    return _dataHistory.where((bmi) => 
+        bmi.nama.toLowerCase().contains(nama.toLowerCase())).toList();
+  }
+  
+  void tampilkanStatistik() {
+    if (_dataHistory.isEmpty) {
+      print('❌ Tidak ada data BMI');
+      return;
+    }
+    
+    double totalBMI = _dataHistory.map((bmi) => bmi.hitungBMI()).reduce((a, b) => a + b);
+    double rataBMI = totalBMI / _dataHistory.length;
+    
+    Map<KategoriBMI, int> distribusiKategori = {};
+    
+    for (BMICalculator bmi in _dataHistory) {
+      KategoriBMI kategori = bmi.tentukanKategori();
+      distribusiKategori[kategori] = (distribusiKategori[kategori] ?? 0) + 1;
+    }
+    
+    print('\n📊 STATISTIK BMI DATABASE');
+    print('=' * 40);
+    print('Total data: ${_dataHistory.length}');
+    print('Rata-rata BMI: ${rataBMI.toStringAsFixed(2)}');
+    print('\nDistribusi Kategori:');
+    distribusiKategori.forEach((kategori, jumlah) {
+      print('• ${kategori.toString().split('.').last}: $jumlah orang');
+    });
+  }
+}
+
+void main() async {
+  print('🇮🇩 BMI CALCULATOR INDONESIA 🇮🇩\n');
+  
+  BMIDatabase database = BMIDatabase();
+  
+  // Test data mahasiswa Indonesia
+  List<Map<String, String>> dataMahasiswa = [
+    {
+      'nama': 'Andi Kurniawan',
+      'umur': '20',
+      'jenis_kelamin': 'Laki-laki',
+      'berat': '65',
+      'tinggi': '170'
+    },
+    {
+      'nama': 'Sari Putri Dewi',
+      'umur': '19',
+      'jenis_kelamin': 'Perempuan',
+      'berat': '52',
+      'tinggi': '160'
+    },
+    {
+      'nama': 'Budi Santoso',
+      'umur': '22',
+      'jenis_kelamin': 'Laki-laki',
+      'berat': '80',
+      'tinggi': '175'
+    },
+    {
+      'nama': 'Citra Maharani',
+      'umur': 'abc', // Error: format umur salah
+      'jenis_kelamin': 'Perempuan',
+      'berat': '55',
+      'tinggi': '165'
+    },
+    {
+      'nama': 'Dedi Setiawan',
+      'umur': '21',
+      'jenis_kelamin': 'Laki-laki',
+      'berat': '45',
+      'tinggi': '180'
+    }
+  ];
+  
+  print('=== TESTING BMI CALCULATOR DENGAN DATA MAHASISWA ===\n');
+  
+  for (Map<String, String> data in dataMahasiswa) {
+    try {
+      BMICalculator bmi = BMICalculator.fromString(
+        nama: data['nama']!,
+        umurStr: data['umur']!,
+        jenisKelamin: data['jenis_kelamin']!,
+        beratStr: data['berat']!,
+        tinggiStr: data['tinggi']!,
+      );
+      
+      bmi.tampilkanAnalisisLengkap();
+      database.tambahData(bmi);
+      
+    } on BMIException catch (e) {
+      print('❌ Error untuk ${data['nama']}: $e');
+    } catch (e) {
+      print('❌ Error tidak diketahui untuk ${data['nama']}: $e');
+    }
+    
+    print('\n' + '='*60 + '\n');
+    
+    // Delay untuk simulasi real-time processing
+    await Future.delayed(Duration(milliseconds: 500));
+  }
+  
+  // Tampilkan statistik
+  database.tampilkanStatistik();
+  
+  print('\n=== TESTING UPDATE DATA ===\n');
+  
+  // Test update data untuk mahasiswa yang sudah ada
+  try {
+    BMICalculator andi = BMICalculator(
+      nama: 'Andi Kurniawan (Updated)',
+      umur: 20,
+      jenisKelamin: 'Laki-laki',
+      beratBadan: 70, // Naik 5kg
+      tinggiBadan: 170,
+    );
+    
+    print('Update data Andi setelah 6 bulan:');
+    andi.tampilkanAnalisisLengkap();
+    
+  } catch (e) {
+    print('❌ Error update data: $e');
+  }
+}
+```
+
+**📊 Flow Diagram - BMI Calculator Workflow:**
+
+```mermaid
+flowchart TD
+    A[User Input Data] --> B[BMICalculator fromString Constructor]
+    
+    B --> C[Parse and Validate Input]
+    C --> D{All inputs valid?}
+    
+    D -->|No| E[throw BMIException]
+    D -->|Yes| F[Create BMI Object]
+    
+    E --> G[Catch Exception in main]
+    F --> H[Call tampilkanAnalisisLengkap]
+    
+    G --> I[Print Error Message]
+    H --> J[Calculate BMI using weight and height]
+    
+    J --> K[Determine Category]
+    K --> L{BMI Category?}
+    
+    L -->|Less than 17.0| M[Kurus Kekurangan Berat]
+    L -->|17.0 to 18.5| N[Kurus Normal]
+    L -->|18.5 to 23.0| O[Normal Bawah]
+    L -->|23.0 to 25.0| P[Normal Atas]
+    L -->|25.0 to 27.0| Q[Kegemukan]
+    L -->|27.0 to 30.0| R[Obesitas 1]
+    L -->|Greater than 30.0| S[Obesitas 2]
+    
+    M --> T[Generate Nutrition Recommendations]
+    N --> T
+    O --> T
+    P --> T
+    Q --> T
+    R --> T
+    S --> T
+    
+    T --> U[Calculate Ideal Weight Range]
+    U --> V[Display Complete Analysis]
+    V --> W[Add to Database]
+    
+    I --> X[Continue with Next User]
+    W --> X
+    
+    X --> Y{More users?}
+    Y -->|Yes| A
+    Y -->|No| Z[Display Statistics]
+    
+    style A fill:#e1f5fe
+    style D fill:#fff3e0
+    style E fill:#ffcdd2
+    style F fill:#e8f5e8
+    style L fill:#f3e5f5
+    style T fill:#fff9c4
+    style V fill:#c8e6c9
+    style Z fill:#c8e6c9
+```
+
+---
+
+## 📊 **Assessment dan Evaluasi**
+
+### **6.1 Practical Assessment: BMI Calculator Extension (40%)**
+
+**Task**: Extend the BMI Calculator dengan fitur-fitur berikut:
+
+#### **Requirements:**
+1. **Historical Tracking (15 points)**
+   - Tambahkan kemampuan untuk menyimpan multiple measurements per person
+   - Implementasi method untuk melihat progress BMI over time
+   - Calculate BMI change rate (kg/month)
+
+2. **Advanced Analytics (15 points)**
+   - Implement statistical analysis: mean, median, mode untuk BMI groups
+   - Add comparison dengan standar BMI populasi Indonesia
+   - Generate health risk assessment based on BMI trend
+
+3. **Data Persistence Simulation (10 points)**
+   - Simulate saving data to JSON format
+   - Implement fromJson dan toJson methods
+   - Handle malformed data dengan proper exception handling
+
+#### **Evaluation Criteria:**
+- **Code Organization (25%)**: Proper OOP structure, clean separation of concerns
+- **Exception Handling (25%)**: Comprehensive error handling dengan custom exceptions
+- **Functionality (30%)**: All requirements working correctly
+- **Code Quality (20%)**: Comments, naming conventions, efficient algorithms
+
+### **6.2 Theoretical Quiz: OOP dan Collections (25%)**
+
+**Sample Questions:**
+
+1. **Multiple Choice (5 questions x 2 points)**
+   ```
+   Manakah yang BENAR tentang inheritance di Dart?
+   a) Child class tidak bisa override parent method
+   b) Abstract class bisa diinstansiasi langsung
+   c) super() digunakan untuk memanggil parent constructor ✓
+   d) Private properties otomatis diturunkan ke child class
+   ```
+
+2. **Code Analysis (3 questions x 5 points)**
+   ```dart
+   // Temukan dan jelaskan error dalam code berikut:
+   abstract class Animal {
+     void makeSound();
+   }
+   
+   class Dog extends Animal {
+     String name;
+     Dog(this.name);
+     // Missing implementation of makeSound() ← ERROR
+   }
+   ```
+
+3. **Problem Solving (2 questions x 5 points)**
+   - Explain the difference between List, Map, dan Set dengan contoh use case
+   - Design exception hierarchy untuk sistem manajemen mahasiswa
+
+### **6.3 Code Review Assignment (20%)**
+
+**Process:**
+- Setiap mahasiswa akan mereview code BMI Calculator dari 2 peers
+- Provide constructive feedback pada aspects: functionality, readability, efficiency
+- Submit review dalam format structured report
+
+**Review Template:**
+```markdown
+## Code Review: [Nama Mahasiswa]
+
+### Strengths:
+- [List positive aspects]
+
+### Areas for Improvement:
+- [Specific suggestions with line numbers]
+
+### Questions/Suggestions:
+- [Ask clarifying questions or suggest alternatives]
+
+### Overall Rating: [1-5 stars]
+```
+
+### **6.4 Mini Project Presentation (15%)**
+
+**Presentation Requirements:**
+- 5-7 minutes presentation tentang BMI Calculator extension
+- Demonstrate working application dengan live coding
+- Explain design decisions dan challenge yang dihadapi
+- Answer technical questions dari instructor dan peers
+
+---
+
+## 🎯 **Rangkuman dan Key Takeaways**
+
+### **Konsep Utama yang Dipelajari:**
+
+1. **Object-Oriented Programming**
+   - Classes sebagai blueprint untuk objects
+   - Inheritance untuk code reusability dan extension
+   - Polymorphism untuk flexible behavior
+   - Encapsulation untuk data protection
+
+2. **Collections Management**
+   - List untuk ordered data dengan duplicates
+   - Map untuk key-value relationships
+   - Set untuk unique data dengan mathematical operations
+   - Efficient data manipulation techniques
+
+3. **Exception Handling**
+   - Try-catch untuk graceful error handling
+   - Custom exceptions untuk specific business logic
+   - Finally block untuk cleanup operations
+   - Exception propagation dan handling strategies
+
+4. **Async Programming Fundamentals**
+   - Future untuk representing eventual values
+   - async/await untuk readable asynchronous code
+   - Concurrent vs sequential execution patterns
+   - Error handling dalam async operations
+
+### **Best Practices yang Dipelajari:**
+
+- **Defensive Programming**: Validate input data dan handle edge cases
+- **Clean Code Principles**: Meaningful names, single responsibility, proper commenting
+- **Error Communication**: Provide clear, actionable error messages
+- **Performance Considerations**: Choose appropriate data structures untuk use case
+
+---
+
+## 📚 **Sumber Belajar dan Referensi**
+
+### **Dokumentasi Resmi**
+1. Dart Language Tour. (2025). *Object-Oriented Programming*. Retrieved from https://dart.dev/guides/language/language-tour#classes
+2. Dart Team. (2025). *Collections in Dart*. Retrieved from https://dart.dev/guides/libraries/library-tour#collections
+3. Flutter Team. (2025). *Error Handling in Dart*. Retrieved from https://dart.dev/guides/language/error-handling
+4. Dart Documentation. (2025). *Asynchrony Support*. Retrieved from https://dart.dev/guides/language/language-tour#asynchrony-support
+
+### **Sumber Pembelajaran Indonesia**
+5. Dicoding Indonesia. (2024). *Belajar Fundamental Dart*. Retrieved from https://www.dicoding.com/academies/191
+6. BuildWithAngga. (2024). *Dart OOP Complete Guide*. Retrieved from https://buildwithangga.com/kelas/dart-object-oriented-programming
+7. Sekolah Koding. (2024). *Tutorial Dart Collections*. Retrieved from https://sekolahkoding.com/tutorial/dart-collections
+8. Koding Indonesia. (2024). *Exception Handling Dart Indonesia*. Retrieved from https://kodingindonesia.com/dart-exception-handling
+
+### **Referensi Teknis**
+9. Mozilla Developer Network. (2024). *Understanding Asynchronous Programming*. Retrieved from https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Concepts
+10. GeeksforGeeks. (2024). *Object Oriented Programming Concepts*. Retrieved from https://www.geeksforgeeks.org/object-oriented-programming-oops-concept-in-java/
+
+### **Sumber Data BMI**
+11. World Health Organization. (2024). *Body Mass Index Classifications*. Retrieved from https://www.who.int/health-topics/obesity
+12. Kementerian Kesehatan RI. (2024). *Standar Antropometri Penilaian Status Gizi Anak*. Retrieved from http://hukor.kemkes.go.id/uploads/produk_hukum/PMK_No._2_Th_2020_ttg_Standar_Antropometri_Anak.pdf
+
+---
+
+## 🚀 **Persiapan Pertemuan Selanjutnya**
+
+**📊 Learning Progress Map:**
+
+```mermaid
+flowchart TD
+    A[✅ Pertemuan 1<br/>Flutter Fundamentals] --> B[✅ Pertemuan 2<br/>Dart OOP and Collections]
+    B --> C[📚 Pertemuan 3<br/>Flutter Widget System and Layout]
+    
+    B1[✅ Classes and Objects] --> B
+    B2[✅ Inheritance and Polymorphism] --> B
+    B3[✅ Collections: List, Map, Set] --> B
+    B4[✅ Exception Handling] --> B
+    B5[✅ Async Basics] --> B
+    
+    C1[📱 Widget Tree Architecture] --> C
+    C2[🎨 Material Design Components] --> C
+    C3[📐 Layout Widgets and Responsive Design] --> C
+    C4[⚡ StatefulWidget vs StatelessWidget] --> C
+    
+    style A fill:#c8e6c9
+    style B fill:#c8e6c9
+    style C fill:#fff3e0
+    style B1 fill:#e8f5e8
+    style B2 fill:#e8f5e8
+    style B3 fill:#e8f5e8
+    style B4 fill:#e8f5e8
+    style B5 fill:#e8f5e8
+```
+
+### **Yang Sudah Dikuasai:**
+- [x] ✅ OOP fundamentals: classes, objects, inheritance, polymorphism
+- [x] ✅ Collections manipulation: List, Map, Set operations
+- [x] ✅ Exception handling dengan custom exceptions
+- [x] ✅ Basic async programming dengan Future dan async/await
+- [x] ✅ Practical implementation dalam BMI Calculator project
+
+### **Persiapan untuk Pertemuan 3:**
+- **Preview Flutter Widget System**: Explore widget catalog di https://flutter.dev/docs/development/ui/widgets
+- **Material Design Study**: Review Material Design principles di https://material.io/design
+- **Practice Dart Skills**: Continue practicing OOP concepts dengan mini projects
+- **Setup Verification**: Ensure Flutter development environment masih working perfectly
+
+### **Recommended Practice:**
+1. **Daily Coding**: 30 minutes Dart OOP practice per day
+2. **Code Review**: Review peers' BMI Calculator implementations
+3. **Documentation**: Document learning progress dan challenges
+4. **Community Engagement**: Join Flutter Indonesia Telegram group untuk networking
+
+---
+
+*© 2025 Mata Kuliah Pemrograman Piranti Bergerak dengan Flutter - Universitas Mulawarman*
+
+**Prepared by**: [Nama Dosen]  
+**Contact**: [Email Dosen]  
+**Office Hours**: [Jadwal Konsultasi]
+
+---
+
+> 💡 **Learning Tip**: OOP adalah foundation yang kuat untuk Flutter development. Master these concepts sekarang akan membuat pembelajaran Flutter widgets dan state management jadi lebih mudah di pertemuan-pertemuan berikutnya!
+
+> 🔥 **Challenge**: Try to implement a more complex application menggunakan OOP concepts yang telah dipelajari. Consider building a simple "Sistem Manajemen Mahasiswa" atau "Aplikasi Catatan Harian" as personal practice project!).hasMatch(nim)) {
       throw MahasiswaException('NIM harus berupa angka', nim);
     }
     
@@ -1327,6 +2374,7 @@ void prosesDataMahasiswa(String nim, double ipk, int semester) {
   
   print('✅ Data mahasiswa valid');
 }
+```
 ```
 
 ---
@@ -2023,7 +3071,7 @@ void main() async {
 
 ```mermaid
 flowchart TD
-    A[User Input Data] --> B[BMICalculator.fromString Constructor]
+    A[User Input Data] --> B[BMICalculator fromString Constructor]
     
     B --> C[Parse and Validate Input]
     C --> D{All inputs valid?}
@@ -2035,18 +3083,18 @@ flowchart TD
     F --> H[Call tampilkanAnalisisLengkap]
     
     G --> I[Print Error Message]
-    H --> J[Calculate BMI = weight/(height²)]
+    H --> J[Calculate BMI equals weight divided by height squared]
     
     J --> K[Determine Category]
     K --> L{BMI Category?}
     
-    L -->|< 17.0| M[Kurus Kekurangan Berat]
-    L -->|17.0-18.5| N[Kurus Normal]
-    L -->|18.5-23.0| O[Normal Bawah]
-    L -->|23.0-25.0| P[Normal Atas]
-    L -->|25.0-27.0| Q[Kegemukan]
-    L -->|27.0-30.0| R[Obesitas 1]
-    L -->|> 30.0| S[Obesitas 2]
+    L -->|Less than 17.0| M[Kurus Kekurangan Berat]
+    L -->|17.0 to 18.5| N[Kurus Normal]
+    L -->|18.5 to 23.0| O[Normal Bawah]
+    L -->|23.0 to 25.0| P[Normal Atas]
+    L -->|25.0 to 27.0| Q[Kegemukan]
+    L -->|27.0 to 30.0| R[Obesitas 1]
+    L -->|Greater than 30.0| S[Obesitas 2]
     
     M --> T[Generate Nutrition Recommendations]
     N --> T
