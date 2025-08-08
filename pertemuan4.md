@@ -1,5 +1,3 @@
-Terima kasih atas feedbacknya! Saya akan memperbaiki dengan code yang lebih sederhana dan dalam format markdown yang proper. Mari saya berikan versi yang lebih simple:
-
 # 🧭 Pertemuan 4: Navigation dan State Management Dasar
 
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
