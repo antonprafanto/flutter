@@ -1,5 +1,3 @@
-Anda benar sekali! Saya akan menyusun ulang Pertemuan 3 dengan pendekatan yang lebih sederhana dan fokus pada konsep inti. Mari kita buat versi yang lebih efisien:
-
 # 🎨 Pertemuan 3: Flutter Widget System dan Layout
 
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
