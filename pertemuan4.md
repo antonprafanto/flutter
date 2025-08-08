@@ -1,5 +1,3 @@
-Terima kasih atas koreksinya! Saya akan memperbaiki dengan menambahkan diagram flow untuk setiap code dan memperbaiki format Mermaid agar kompatibel dengan GitHub. Berikut revisinya:
-
 # 🧭 Pertemuan 4: Navigation dan State Management Dasar
 
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
