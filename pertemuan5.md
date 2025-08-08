@@ -1247,7 +1247,7 @@ flowchart TD
     I -->|"Normal"| L[🔄 Continue Scrolling]
     
     J --> M[🎯 FloatingActionButton Visible]
-    M --> N[👆 On Press: animateTo(0)]
+    M --> N[👆 On Press: animateTo]
     
     K --> O{❓ Already Loading?}
     O -->|Ya| L
