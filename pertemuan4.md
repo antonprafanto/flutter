@@ -335,7 +335,7 @@ Test counter dengan setState di: **[https://zapp.run/](https://zapp.run/)**
 flowchart TD
     A[🔘 User Tap Button] --> B[📞 Call setState]
     B --> C[🔄 Update _counter Variable]
-    C --> D[🏗️ Flutter Calls build()]
+    C --> D[🏗️ Flutter Calls build]
     D --> E[🎨 Widget Tree Rebuilt]
     E --> F[📱 UI Updated]
     
