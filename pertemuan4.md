@@ -561,7 +561,7 @@ Test form validation di: **[https://zapp.run/](https://zapp.run/)**
 ```mermaid
 flowchart TD
     A[📝 User Input] --> B[🔘 Tap Submit]
-    B --> C[📞 _formKey.validate()]
+    B --> C[📞 _formKey.validate]
     C --> D{❓ Valid?}
     D -->|No| E[❌ Show Errors]
     D -->|Yes| F[✅ Show Success Dialog]
