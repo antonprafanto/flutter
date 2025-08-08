@@ -355,7 +355,7 @@ flowchart TD
     C --> D[🏗️ itemBuilder Function]
     
     D --> E{🔄 For Each Index}
-    E --> F[📦 Get menu = menuWarung[index]]
+    E --> F[📦 Get menu = menuWarung'index']
     F --> G[🏗️ Call _buildAdvancedMenuCard]
     
     G --> H[📇 Container with Margin]
