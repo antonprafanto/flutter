@@ -1,3 +1,5 @@
+Terima kasih atas koreksinya! Saya akan memperbaiki dengan menambahkan diagram flow untuk setiap code dan memperbaiki format Mermaid agar kompatibel dengan GitHub. Berikut revisinya:
+
 # 🧭 Pertemuan 4: Navigation dan State Management Dasar
 
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
@@ -126,10 +128,10 @@ flowchart TD
     F --> G[📱 Navigator.pop]
     G --> H[🏠 Back to HomePage]
     
-    style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style E fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style E fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px
 ```
 
 ### 🗂️ 2. Named Routes dan Passing Data
@@ -224,17 +226,17 @@ Test named routes di: **[https://zapp.run/](https://zapp.run/)**
 ```mermaid
 flowchart TD
     A[🏠 HomePage] --> B[🔘 Tap Lihat Profil]
-    B --> C[📱 Navigator.pushNamed '/profile']
+    B --> C[📱 Navigator.pushNamed]
     C --> D[📦 Pass Arguments Data]
     D --> E[📄 ProfilePage Receives Data]
-    E --> F[📊 Display Nama & NIM]
+    E --> F[📊 Display Nama and NIM]
     F --> G[🔙 Navigator.pop]
     G --> H[🏠 Back to HomePage]
     
-    style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style D fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style F fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style D fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    style F fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
 ```
 
 ---
@@ -329,21 +331,21 @@ class _CounterPageState extends State<CounterPage> {
 🚀 **Coba Sekarang!**  
 Test counter dengan setState di: **[https://zapp.run/](https://zapp.run/)**
 
-#### 📊 Alur setState:
+#### 📊 Alur setState Counter:
 
 ```mermaid
 flowchart TD
-    A[🔘 User Tap Button] --> B[📞 Call setState]
-    B --> C[🔄 Update _counter Variable]
-    C --> D[🏗️ Flutter Calls build]
+    A[🔘 User Tap Button] --> B[📞 Call setState Method]
+    B --> C[🔄 Update counter Variable]
+    C --> D[🏗️ Flutter Calls build Method]
     D --> E[🎨 Widget Tree Rebuilt]
-    E --> F[📱 UI Updated]
+    E --> F[📱 UI Updated on Screen]
     
-    style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
-    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style F fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style F fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
 ```
 
 ### 📋 2. List Management dengan setState
@@ -438,6 +440,29 @@ class _ListPageState extends State<ListPage> {
 
 🚀 **Coba Sekarang!**  
 Test list management di: **[https://zapp.run/](https://zapp.run/)**
+
+#### 📊 Alur List Management:
+
+```mermaid
+flowchart TD
+    A[📝 User Input Text] --> B[🔘 Tap Tambah Button]
+    B --> C[📞 Call addItem Method]
+    C --> D[🔄 setState Add to List]
+    D --> E[🏗️ ListView Rebuilt]
+    E --> F[📱 New Item Displayed]
+    
+    G[🗑️ Tap Delete Icon] --> H[📞 Call removeItem Method]
+    H --> I[🔄 setState Remove from List]
+    I --> J[🏗️ ListView Rebuilt]
+    J --> K[📱 Item Removed from UI]
+    
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style F fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style K fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+```
 
 ---
 
@@ -558,18 +583,19 @@ Test form validation di: **[https://zapp.run/](https://zapp.run/)**
 
 ```mermaid
 flowchart TD
-    A[📝 User Input] --> B[🔘 Tap Submit]
-    B --> C[📞 _formKey.validate]
-    C --> D{❓ Valid?}
-    D -->|No| E[❌ Show Errors]
+    A[📝 User Input Data] --> B[🔘 Tap Submit Button]
+    B --> C[📞 Call formKey.validate]
+    C --> D{❓ All Fields Valid?}
+    D -->|No| E[❌ Show Validation Errors]
     D -->|Yes| F[✅ Show Success Dialog]
     E --> G[📝 User Fix Input]
     G --> B
+    F --> H[📱 Dialog Displayed]
     
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style E fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
-    style F fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style E fill:#ffebee,stroke:#c62828,stroke-width:2px
+    style F fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
 ```
 
 ---
@@ -801,29 +827,44 @@ class _AddTodoPageState extends State<AddTodoPage> {
 🚀 **Coba Sekarang!**  
 Copy todo app lengkap dan test di: **[https://zapp.run/](https://zapp.run/)**
 
-#### 📊 Alur Todo App:
+#### 📊 Alur Complete Todo App:
 
 ```mermaid
 flowchart TD
-    A[📋 TodoListPage] --> B[➕ Tap FAB]
-    B --> C[📱 Navigator.pushNamed '/add']
-    C --> D[📝 AddTodoPage Form]
-    D --> E[✅ Validate Input]
-    E --> F{❓ Valid?}
-    F -->|No| G[❌ Show Errors]
-    F -->|Yes| H[💾 Create Todo]
-    H --> I[🔙 Navigator.pop with Todo]
-    I --> J[📋 Receive Todo Result]
-    J --> K[🔄 setState Add to List]
-    K --> L[📱 UI Updated]
+    A[📋 TodoListPage] --> B[➕ Tap FAB Add Button]
+    B --> C[📱 Navigator.pushNamed to add]
+    C --> D[📝 AddTodoPage Form Displayed]
+    D --> E[📝 User Input Title and Description]
+    E --> F[🔘 Tap SIMPAN Button]
+    F --> G[✅ Validate Form Input]
+    G --> H{❓ Form Valid?}
+    H -->|No| I[❌ Show Validation Errors]
+    H -->|Yes| J[💾 Create New Todo Object]
+    J --> K[🔙 Navigator.pop with Todo]
+    K --> L[📋 TodoListPage Receives Result]
+    L --> M[🔄 setState Add Todo to List]
+    M --> N[📱 ListView Rebuilt and Updated]
     
-    style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style L fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    O[☑️ Tap Checkbox] --> P[🔄 setState Toggle Completed]
+    P --> Q[📱 UI Updated with Strikethrough]
+    
+    R[🗑️ Tap Delete Icon] --> S[🔄 setState Remove from List]
+    S --> T[📱 Todo Removed from UI]
+    
+    I --> E
+    
+    style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style I fill:#ffebee,stroke:#c62828,stroke-width:2px
+    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style M fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style N fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    style P fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style Q fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    style S fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style T fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
 ```
 
 ---
@@ -843,40 +884,40 @@ flowchart TD
 #### **Soal 1 (25 poin)**
 Apa fungsi `Navigator.push`?
 
-**A.** Menghapus screen
-**B.** Menambah screen baru ke stack
-**C.** Mengganti screen
-**D.** Reset navigation
+**A.** Menghapus screen  
+**B.** Menambah screen baru ke stack  
+**C.** Mengganti screen  
+**D.** Reset navigation  
 
 **Jawaban:** B ✅
 
 #### **Soal 2 (25 poin)**
 Kapan `setState` dipanggil?
 
-**A.** Setiap build
-**B.** Saat app dimulai
-**C.** Ketika ingin update UI
-**D.** Otomatis oleh Flutter
+**A.** Setiap build  
+**B.** Saat app dimulai  
+**C.** Ketika ingin update UI  
+**D.** Otomatis oleh Flutter  
 
 **Jawaban:** C ✅
 
 #### **Soal 3 (25 poin)**
 Cara passing data antar screen?
 
-**A.** Global variable
-**B.** Navigator arguments
-**C.** SharedPreferences
-**D.** Database
+**A.** Global variable  
+**B.** Navigator arguments  
+**C.** SharedPreferences  
+**D.** Database  
 
 **Jawaban:** B ✅
 
 #### **Soal 4 (25 poin)**
 Fungsi form validation?
 
-**A.** Styling form
-**B.** Memastikan input valid
-**C.** Submit otomatis
-**D.** Reset form
+**A.** Styling form  
+**B.** Memastikan input valid  
+**C.** Submit otomatis  
+**D.** Reset form  
 
 **Jawaban:** B ✅
 
