@@ -13,10 +13,11 @@
 2. [🏗️ Flutter Widget System](#️-flutter-widget-system)
 3. [📐 Layout Widgets Fundamental](#-layout-widgets-fundamental)
 4. [🎨 Material Design Components](#-material-design-components)
-5. [👨‍💻 Praktikum: Kartu Nama Digital Indonesia](#-praktikum-kartu-nama-digital-indonesia)
-6. [📝 Assessment & Quiz](#-assessment--quiz)
-7. [📖 Daftar Istilah](#-daftar-istilah)
-8. [📚 Referensi](#-referensi)
+5. [📱 Responsive Design Basics](#-responsive-design-basics)
+6. [👨‍💻 Praktikum: Kartu Nama Digital Indonesia](#-praktikum-kartu-nama-digital-indonesia)
+7. [📝 Assessment & Quiz](#-assessment--quiz)
+8. [📖 Daftar Istilah](#-daftar-istilah)
+9. [📚 Referensi](#-referensi)
 
 ---
 
@@ -155,26 +156,41 @@ Silakan copy code di atas dan coba jalankan di: **[https://zapp.run/](https://za
 
 ```mermaid
 flowchart TD
-    A[🎯 Widget] --> B[📋 StatelessWidget]
-    A --> C[🔄 StatefulWidget]
+    A[🎯 MyApp] --> B[📱 MaterialApp]
+    B --> C[🏠 HomePage]
+    C --> D[🏗️ Scaffold]
+    D --> E[📋 AppBar]
+    D --> F[📄 Body Column]
     
-    B --> D[📝 Tidak Pernah Berubah]
-    B --> E[⚡ Lebih Ringan]
-    B --> F[🏗️ Override build only]
+    F --> G[📦 PapanNamaWidget StatelessWidget]
+    F --> H[📏 SizedBox Spacing]
+    F --> I[🔄 CounterWidget StatefulWidget]
     
-    C --> G[🔄 Bisa Berubah]
-    C --> H[💾 Memiliki State]
-    C --> I[🔄 setState untuk Update]
+    G --> J[📝 Build Method Only]
+    G --> K[🔒 Immutable Data]
+    G --> L[⚡ No setState]
+    
+    I --> M[🏗️ createState Method]
+    I --> N[📝 Build + State]
+    I --> O[🔄 setState Updates]
+    O --> P[🎨 Widget Rebuilds]
     
     style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
-    style B fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
     style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style H fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style I fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style M fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style N fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style O fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style P fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
 ```
 
 ---
@@ -263,20 +279,77 @@ class ContainerDemo extends StatelessWidget {
 **🔧 [Copy Code]** | **🚀 Coba Sekarang!** 
 Silakan copy code di atas dan coba jalankan di: **[https://zapp.run/](https://zapp.run/)**
 
+#### Container Demo Flow:
+
+```mermaid
+flowchart TD
+    A[🎯 ContainerDemo App] --> B[📱 MaterialApp]
+    B --> C[🏗️ Scaffold Structure]
+    C --> D[📋 AppBar Blue]
+    C --> E[📄 Body Padding 16px]
+    
+    E --> F[📊 Column Layout]
+    F --> G[📦 Container 1 Basic]
+    F --> H[📏 SizedBox 16px]
+    F --> I[📦 Container 2 Decorated]
+    F --> J[📏 SizedBox 16px]
+    F --> K[📦 Container 3 Margin Padding]
+    
+    G --> L[📐 Width 200 Height 100]
+    G --> M[🎨 Red Background]
+    G --> N[📝 Centered White Text]
+    
+    I --> O[📐 Width 200 Height 100]
+    I --> P[🎭 BoxDecoration]
+    P --> Q[🎨 Blue Background]
+    P --> R[📐 BorderRadius 10]
+    P --> S[🔲 Black Border Width 2]
+    I --> T[📝 Centered White Text]
+    
+    K --> U[📤 Margin All 10]
+    K --> V[📥 Padding All 20]
+    K --> W[🎨 Green Background]
+    K --> X[📐 BorderRadius 10]
+    K --> Y[📝 White Text]
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style H fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style I fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style J fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style K fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+```
+
 #### Container Properties Flow:
 
 ```mermaid
 flowchart TD
-    A[📦 Container] --> B[📏 Size width height]
-    A --> C[🎨 Color background]
-    A --> D[🎭 Decoration]
-    A --> E[📐 Padding inside]
-    A --> F[📤 Margin outside]
-    A --> G[👶 Child widget]
+    A[📦 Container] --> B[📏 Size Properties]
+    A --> C[🎨 Color Properties]
+    A --> D[📐 Spacing Properties]
+    A --> E[🎭 Decoration Properties]
+    A --> F[👶 Child Properties]
     
-    D --> H[🔲 Border]
-    D --> I[📐 BorderRadius]
-    D --> J[🌑 BoxShadow]
+    B --> G[📐 Width]
+    B --> H[📐 Height]
+    
+    C --> I[🎨 Background Color]
+    
+    D --> J[📥 Padding Inside]
+    D --> K[📤 Margin Outside]
+    
+    E --> L[🎭 BoxDecoration]
+    L --> M[🔲 Border]
+    L --> N[📐 BorderRadius]
+    L --> O[🌑 BoxShadow]
+    L --> P[🌈 Gradient]
+    
+    F --> Q[📝 Single Child Only]
     
     style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
     style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
@@ -284,10 +357,17 @@ flowchart TD
     style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style H fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style I fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style J fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style K fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style M fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style N fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style O fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style P fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style Q fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
 ```
 
 ### ↔️ 2. Row - Layout Horizontal
@@ -371,11 +451,73 @@ class RowDemo extends StatelessWidget {
 **🔧 [Copy Code]** | **🚀 Coba Sekarang!** 
 Silakan copy code di atas dan coba jalankan di: **[https://zapp.run/](https://zapp.run/)**
 
-#### Row Layout Flow:
+#### Row Demo Flow:
 
 ```mermaid
 flowchart TD
-    A[↔️ Row] --> B[📐 MainAxis Horizontal]
+    A[🎯 RowDemo App] --> B[📱 MaterialApp]
+    B --> C[🏗️ Scaffold Structure]
+    C --> D[📋 AppBar Green]
+    C --> E[📄 Body Padding 16px]
+    
+    E --> F[📊 Main Column]
+    F --> G[📝 Title Row Basic]
+    F --> H[📦 Container Row Basic]
+    F --> I[📏 SizedBox 20px]
+    F --> J[📝 Title Row Spacing]
+    F --> K[📦 Container Row SpaceEvenly]
+    F --> L[📏 SizedBox 20px]
+    F --> M[📝 Title Row Expanded]
+    F --> N[📦 Container Row Expanded]
+    
+    H --> O[↔️ Row Default Alignment]
+    O --> P[📦 Red Box 50x50]
+    O --> Q[📦 Green Box 50x50]
+    O --> R[📦 Blue Box 50x50]
+    
+    K --> S[↔️ Row SpaceEvenly]
+    S --> T[📦 Red Box 50x50]
+    S --> U[📦 Green Box 50x50]
+    S --> V[📦 Blue Box 50x50]
+    
+    N --> W[↔️ Row with Expanded]
+    W --> X[🔄 Expanded Red Box]
+    W --> Y[🔄 Expanded Green Box]
+    W --> Z[🔄 Expanded Blue Box]
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style H fill:#f5f5f5,stroke:#9e9e9e,stroke-width:2px,color:#000
+    style I fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style K fill:#f5f5f5,stroke:#9e9e9e,stroke-width:2px,color:#000
+    style L fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style M fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style N fill:#f5f5f5,stroke:#9e9e9e,stroke-width:2px,color:#000
+    style O fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style P fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style Q fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    style R fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style S fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style T fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style U fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    style V fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style W fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style X fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style Y fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    style Z fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+```
+
+#### Row Layout Properties Flow:
+
+```mermaid
+flowchart TD
+    A[↔️ Row Widget] --> B[📐 MainAxis Horizontal]
     A --> C[📐 CrossAxis Vertical]
     A --> D[👶 Children List]
     
@@ -383,13 +525,16 @@ flowchart TD
     E --> F[📍 Start Center End]
     E --> G[📏 SpaceBetween]
     E --> H[📏 SpaceEvenly]
+    E --> I[📏 SpaceAround]
     
-    C --> I[🎯 CrossAxisAlignment]
-    I --> J[📍 Start Center End]
-    I --> K[📏 Stretch]
+    C --> J[🎯 CrossAxisAlignment]
+    J --> K[📍 Start Center End]
+    J --> L[📏 Stretch]
+    J --> M[📏 Baseline]
     
-    D --> L[📦 Fixed Width Widgets]
-    D --> M[🔄 Expanded Widgets]
+    D --> N[📦 Fixed Width Widgets]
+    D --> O[🔄 Expanded Widgets]
+    D --> P[🔄 Flexible Widgets]
     
     style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
     style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
@@ -399,11 +544,14 @@ flowchart TD
     style F fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style G fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style H fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style J fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style I fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style K fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style M fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style L fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style M fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style N fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style O fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style P fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
 ```
 
 ### ↕️ 3. Column - Layout Vertical
@@ -485,6 +633,65 @@ class ColumnDemo extends StatelessWidget {
 
 **🔧 [Copy Code]** | **🚀 Coba Sekarang!** 
 Silakan copy code di atas dan coba jalankan di: **[https://zapp.run/](https://zapp.run/)**
+
+#### Column Demo Flow:
+
+```mermaid
+flowchart TD
+    A[🎯 ColumnDemo App] --> B[📱 MaterialApp]
+    B --> C[🏗️ Scaffold Structure]
+    C --> D[📋 AppBar Purple]
+    C --> E[📄 Body Padding 16px]
+    
+    E --> F[↔️ Main Row Layout]
+    F --> G[🔄 Expanded Left Side]
+    F --> H[📏 SizedBox Width 20]
+    F --> I[🔄 Expanded Right Side]
+    
+    G --> J[📊 Left Column Container]
+    J --> K[📝 Title Column Basic]
+    J --> L[📏 SizedBox Height 10]
+    J --> M[📦 Grey Container]
+    M --> N[📊 Inner Column Default]
+    N --> O[📦 Red Box 80x40]
+    N --> P[📦 Green Box 80x40]
+    N --> Q[📦 Blue Box 80x40]
+    
+    I --> R[📊 Right Column Container]
+    R --> S[📝 Title Column Spaced]
+    R --> T[📏 SizedBox Height 10]
+    R --> U[📦 Grey Container 100x150]
+    U --> V[📊 Inner Column SpaceEvenly]
+    V --> W[📦 Red Box 80x30]
+    V --> X[📦 Green Box 80x30]
+    V --> Y[📦 Blue Box 80x30]
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style H fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style L fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style M fill:#f5f5f5,stroke:#9e9e9e,stroke-width:2px,color:#000
+    style N fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style O fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style P fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    style Q fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style R fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style S fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style T fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style U fill:#f5f5f5,stroke:#9e9e9e,stroke-width:2px,color:#000
+    style V fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style W fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style X fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    style Y fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+```
 
 ### 📚 4. Stack - Layout Bertumpuk
 
@@ -596,32 +803,110 @@ class StackDemo extends StatelessWidget {
 **🔧 [Copy Code]** | **🚀 Coba Sekarang!** 
 Silakan copy code di atas dan coba jalankan di: **[https://zapp.run/](https://zapp.run/)**
 
-#### Stack Layout Flow:
+#### Stack Demo Flow:
 
 ```mermaid
 flowchart TD
-    A[📚 Stack] --> B[👶 Children List]
-    A --> C[📍 Positioned Widgets]
+    A[🎯 StackDemo App] --> B[📱 MaterialApp]
+    B --> C[🏗️ Scaffold Structure]
+    C --> D[📋 AppBar Orange]
+    C --> E[📄 Body Padding 16px]
     
-    B --> D[🎨 First Child = Bottom Layer]
-    B --> E[🎨 Last Child = Top Layer]
+    E --> F[📊 Main Column]
+    F --> G[📝 Title Stack Basic]
+    F --> H[📏 SizedBox 10px]
+    F --> I[📦 Container 200x200 Grey]
+    F --> J[📏 SizedBox 20px]
+    F --> K[📝 Title Stack Badge]
+    F --> L[📏 SizedBox 10px]
+    F --> M[📚 Stack Badge Example]
     
-    C --> F[📍 Position Properties]
-    F --> G[⬆️ Top]
-    F --> H[⬇️ Bottom]
-    F --> I[⬅️ Left]
-    F --> J[➡️ Right]
+    I --> N[📚 Stack Layout]
+    N --> O[📦 Blue Background 150x150]
+    N --> P[📍 Positioned Top Right]
+    N --> Q[📍 Positioned Bottom Left]
+    
+    P --> R[📦 Red Container 60x60]
+    R --> S[📝 Text Top White]
+    
+    Q --> T[📦 Green Container 60x60]
+    T --> U[📝 Text Bottom White]
+    
+    M --> V[📚 Badge Stack]
+    V --> W[🔔 Notification Icon Blue 40px]
+    V --> X[📍 Positioned Top 0 Right 0]
+    X --> Y[⭕ Red Circle Badge 16x16]
+    Y --> Z[📝 Text 3 White 10px]
     
     style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
     style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style D fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style E fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style D fill:#fff8e1,stroke:#f57f17,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style G fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style H fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style I fill:#f5f5f5,stroke:#9e9e9e,stroke-width:2px,color:#000
+    style J fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style L fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style M fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style N fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style O fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style P fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style Q fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style R fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style S fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style T fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    style U fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style V fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style W fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style X fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style Y fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style Z fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+```
+
+#### Stack Layout Properties Flow:
+
+```mermaid
+flowchart TD
+    A[📚 Stack Widget] --> B[👶 Children List]
+    A --> C[📍 Positioned Widgets]
+    A --> D[🎯 Alignment Property]
+    
+    B --> E[🎨 First Child Bottom Layer]
+    B --> F[🎨 Last Child Top Layer]
+    B --> G[📝 Multiple Children Stacked]
+    
+    C --> H[📍 Position Properties]
+    H --> I[⬆️ Top Position]
+    H --> J[⬇️ Bottom Position]
+    H --> K[⬅️ Left Position]
+    H --> L[➡️ Right Position]
+    H --> M[📐 Width Height]
+    
+    D --> N[🎯 Alignment Options]
+    N --> O[🎯 Center Default]
+    N --> P[📍 TopLeft TopRight]
+    N --> Q[📍 BottomLeft BottomRight]
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style F fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style G fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style I fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style J fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style K fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style L fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style M fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style N fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style O fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style P fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style Q fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
 ```
 
 ---
@@ -735,7 +1020,85 @@ class HomePage extends StatelessWidget {
 **🔧 [Copy Code]** | **🚀 Coba Sekarang!** 
 Silakan copy code di atas dan coba jalankan di: **[https://zapp.run/](https://zapp.run/)**
 
-### 📏 2. Responsive dengan MediaQuery
+#### Material Design Demo Flow:
+
+```mermaid
+flowchart TD
+    A[🎯 MaterialDemo App] --> B[📱 MaterialApp]
+    B --> C[🏠 HomePage Widget]
+    C --> D[🏗️ Scaffold Structure]
+    
+    D --> E[📋 AppBar Component]
+    D --> F[📄 Body Content]
+    D --> G[🔄 FloatingActionButton]
+    
+    E --> H[📝 Title Text]
+    E --> I[🎨 Blue Background White Foreground]
+    E --> J[⚙️ Actions List]
+    J --> K[🔍 Search IconButton]
+    J --> L[⋮ More IconButton]
+    
+    F --> M[📥 Padding 16px]
+    M --> N[📊 Column Stretch]
+    N --> O[📇 Card Component]
+    N --> P[📏 SizedBox 16px]
+    N --> Q[🔘 Buttons Section]
+    
+    O --> R[📏 Card Elevation 4]
+    O --> S[📥 Card Padding 16px]
+    S --> T[📊 Card Column]
+    T --> U[👤 Account Icon 60px Blue]
+    T --> V[📏 SizedBox 8px]
+    T --> W[📝 Name Text Bold 18px]
+    T --> X[📝 Job Title Text]
+    
+    Q --> Y[🔘 ElevatedButton with SnackBar]
+    Q --> Z[📏 SizedBox 8px]
+    Q --> AA[🔲 OutlinedButton]
+    Q --> BB[📏 SizedBox 8px]
+    Q --> CC[📝 TextButton]
+    
+    G --> DD[➕ Add Icon]
+    G --> EE[🎨 Default Theme Color]
+    
+    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#fff8e1,stroke:#f57f17,stroke-width:2px,color:#000
+    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style K fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style L fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style M fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style N fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style O fill:#f5f5f5,stroke:#9e9e9e,stroke-width:2px,color:#000
+    style P fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style Q fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style R fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style S fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style T fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style U fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style V fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style W fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style X fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style Y fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style Z fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style AA fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style BB fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style CC fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style DD fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style EE fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+```
+
+---
+
+## 📱 Responsive Design Basics
+
+### 📏 MediaQuery untuk Responsive Layout
 
 ```dart
 import 'package:flutter/material.dart';
@@ -857,33 +1220,65 @@ Silakan copy code di atas dan coba jalankan di: **[https://zapp.run/](https://za
 
 ```mermaid
 flowchart TD
-    A[📱 MediaQuery] --> B[📏 Get Screen Size]
-    B --> C[📐 Check Orientation]
-    C --> D{❓ Portrait or Landscape?}
+    A[📱 ResponsiveDemo] --> B[📱 ResponsivePage]
+    B --> C[📏 MediaQuery.of context]
+    C --> D[📊 Get Screen Dimensions]
     
-    D -->|Portrait| E[📱 Column Layout]
-    D -->|Landscape| F[💻 Row Layout]
+    D --> E[📐 screenWidth]
+    D --> F[📐 screenHeight]
+    D --> G[❓ isPortrait = height > width]
     
-    E --> G[📦 Stacked Vertically]
-    F --> H[📦 Side by Side]
+    G --> H{❓ Portrait or Landscape?}
+    H -->|Portrait| I[📊 _buildPortraitLayout]
+    H -->|Landscape| J[↔️ _buildLandscapeLayout]
     
-    B --> I[📊 Device Category]
-    I --> J[📱 Mobile < 600px]
-    I --> K[📱 Tablet 600-1024px]
-    I --> L[💻 Desktop > 1024px]
+    I --> K[📊 Column Vertical Stack]
+    K --> L[📦 Box 1 Red]
+    K --> M[📏 SizedBox 8px]
+    K --> N[📦 Box 2 Green]
+    K --> O[📏 SizedBox 8px]
+    K --> P[📦 Box 3 Blue]
+    
+    J --> Q[↔️ Row Horizontal Layout]
+    Q --> R[🔄 Expanded Box 1 Red]
+    Q --> S[📏 SizedBox 8px]
+    Q --> T[🔄 Expanded Box 2 Green]
+    Q --> U[📏 SizedBox 8px]
+    Q --> V[🔄 Expanded Box 3 Blue]
+    
+    E --> W[📊 _getDeviceType]
+    W --> X{❓ Screen Width?}
+    X -->|< 600px| Y[📱 Mobile]
+    X -->|600-1024px| Z[📱 Tablet]
+    X -->|> 1024px| AA[💻 Desktop]
     
     style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
     style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style E fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style F fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style J fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
-    style K fill:#fff8e1,stroke:#f57f17,stroke-width:2px,color:#000
-    style L fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style I fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style J fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style L fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style M fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style N fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    style O fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style P fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style Q fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style R fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style S fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style T fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    style U fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style V fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style W fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style X fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style Y fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style Z fill:#fff8e1,stroke:#f57f17,stroke-width:2px,color:#000
+    style AA fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
 ```
 
 ---
@@ -1224,48 +1619,75 @@ class _KartuNamaPageState extends State<KartuNamaPage> {
 **🔧 [Copy Code]** | **🚀 Coba Sekarang!** 
 Silakan copy code di atas dan coba jalankan di: **[https://zapp.run/](https://zapp.run/)**
 
-#### Project Flow:
+#### Kartu Nama Project Flow:
 
 ```mermaid
 flowchart TD
-    A[🎯 KartuNamaApp] --> B[🏠 KartuNamaPage]
-    B --> C[📏 MediaQuery Check]
-    C --> D[📱 Build UI Layout]
+    A[🎯 KartuNamaApp] --> B[📱 MaterialApp Red Theme]
+    B --> C[🏠 KartuNamaPage StatefulWidget]
+    C --> D[📏 MediaQuery Check]
+    D --> E[🏗️ Scaffold Build]
     
-    D --> E[🎴 Business Card]
-    D --> F[📞 Contact Section]
-    D --> G[🔘 Action Buttons]
+    E --> F[📋 AppBar Red Indonesian Flag]
+    E --> G[📄 SingleChildScrollView Body]
     
-    E --> H{❓ Show Back?}
-    H -->|Front| I[👤 Personal Info]
-    H -->|Back| J[📋 QR & Skills]
+    G --> H[📦 Business Card Container]
+    G --> I[📞 Contact Section Card]
+    G --> J[🔘 Action Buttons]
+    G --> K[📝 Footer Text]
     
-    F --> K[📱 Contact List]
-    K --> L[📞 Phone]
-    K --> M[📧 Email]
-    K --> N[📍 Location]
+    H --> L[👆 GestureDetector onTap]
+    L --> M{❓ showBack State?}
+    M -->|Front| N[🎴 _buildCardFront]
+    M -->|Back| O[🎴 _buildCardBack]
     
-    G --> O{❓ Small Screen?}
-    O -->|Ya| P[📊 Vertical Buttons]
-    O -->|Tidak| Q[↔️ Horizontal Buttons]
+    N --> P[📦 Red Container]
+    P --> Q[↔️ Header Row]
+    Q --> R[👤 CircleAvatar]
+    Q --> S[🇮🇩 Flag Emoji]
+    P --> T[📝 Name Title Company]
+    
+    O --> U[📦 White Container]
+    U --> V[↔️ QR Code Row]
+    V --> W[📱 QR Icon Container]
+    V --> X[📝 Scan Instructions]
+    U --> Y[🏷️ Skills Wrap]
+    U --> Z[📍 Address Text]
+    
+    I --> AA[📝 Contact Title]
+    I --> BB[📞 Phone Contact Item]
+    I --> CC[📧 Email Contact Item]
+    I --> DD[📍 Location Contact Item]
+    
+    J --> EE{❓ isSmallScreen?}
+    EE -->|Ya| FF[📊 _buildVerticalButtons]
+    EE -->|Tidak| GG[↔️ _buildHorizontalButtons]
+    
+    FF --> HH[📊 Column Stretch]
+    HH --> II[📞 Phone Button]
+    HH --> JJ[📧 Email Button]
+    HH --> KK[📤 Share Button]
+    
+    GG --> LL[↔️ Row Layout]
+    LL --> MM[🔄 Expanded Phone]
+    LL --> NN[🔄 Expanded Email]
+    LL --> OO[🔄 Expanded Share]
     
     style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
     style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style E fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
-    style F fill:#fff8e1,stroke:#f57f17,stroke-width:2px,color:#000
-    style G fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style L fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style M fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style N fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style O fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style P fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style Q fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style F fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style H fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style I fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style J fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    style K fill:#f5f5f5,stroke:#9e9e9e,stroke-width:2px,color:#000
+    style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style M fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style N fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    style O fill:#f5f5f5,stroke:#9e9e9e,stroke-width:2px,color:#000
 ```
 
 ---
@@ -1343,6 +1765,10 @@ Widget untuk **menumpuk** widget?
 | **Card** | Widget dengan elevation dan rounded corners |
 | **MediaQuery** | Class untuk informasi device dan screen |
 | **Responsive** | Design yang adaptif ke berbagai ukuran layar |
+| **Positioned** | Widget untuk posisi absolut dalam Stack |
+| **Expanded** | Widget untuk mengisi ruang tersedia |
+| **MainAxisAlignment** | Alignment sepanjang sumbu utama |
+| **CrossAxisAlignment** | Alignment perpendicular terhadap sumbu utama |
 
 ---
 
@@ -1358,6 +1784,11 @@ Widget untuk **menumpuk** widget?
 
 4. **Flutter Indonesia**. (2025). https://flutter-indonesia.github.io/
 5. **Koding Indonesia**. (2025). https://kodingindonesia.com/flutter-layout/
+
+### 📊 Sumber Akademik
+
+6. **Moroney, L.** (2024). *Programming Flutter: Native, Cross-Platform Apps*. Pragmatic Bookshelf.
+7. **Windmill, E.** (2024). *Flutter in Action*. Manning Publications.
 
 ---
 
