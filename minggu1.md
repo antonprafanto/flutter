@@ -435,11 +435,13 @@ void main() {
   // 📋 Collections (Preview)
   List<String> mataKuliah = ['Algoritma', 'Database', 'Flutter'];
   Map<String, int> nilaiMahasiswa = {'Alice': 90, 'Bob': 85};
-  
+  Set<int> anotherSet = new Set.from([1, 4, 6, 4, 1]);
+
   print('Jumlah siswa: $siswa');
   print('Rata-rata nilai: $nilai');
   print('Status aktif: $isActive');
   print('Mata kuliah: $mataKuliah');
+  print(anotherSet);
 }
 ```
 
