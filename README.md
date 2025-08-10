@@ -275,14 +275,15 @@ Setelah menyelesaikan mata kuliah ini, Anda akan siap untuk posisi:
 ## 📞 Kontak & Support
 
 ### 👨‍🏫 Pengajar
-- **Email**: [email-pengajar]
-- **Office Hours**: [jam-konsultasi]
-- **Ruang**: [ruang-dosen]
+- **Email**: antonprafanto@unmul.ac.id
+- **Office Hours**: 8 AM - 16 PM (WITA)
+- **Ruang**: -
 
 ### 💬 Komunikasi Kelas
-- **WhatsApp Group**: [link-group]
-- **Discord Server**: [link-discord]
-- **GitHub Classroom**: [link-classroom]
+- **WhatsApp**: +62 811 55 33 93
+- **Discord Server**: -
+- **GitHub Classroom**: -
+- **Telegram**: https://t.me/kodingindonesia
 
 ### 🆘 Technical Support
 - **Flutter Issues**: https://github.com/flutter/flutter/issues
