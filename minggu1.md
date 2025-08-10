@@ -252,8 +252,8 @@ void main() {
 
 ```mermaid
 flowchart TD
-    A[🎯 Program Start] --> B[📝 main() Function Called]
-    B --> C[⚡ Execute Code Inside main()]
+    A[🎯 Program Start] --> B[📝 main Function Called]
+    B --> C[⚡ Execute Code Inside main]
     C --> D[📤 Output to Console]
     D --> E[✅ Program End]
     
