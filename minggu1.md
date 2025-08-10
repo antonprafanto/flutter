@@ -252,8 +252,8 @@ void main() {
 
 ```mermaid
 flowchart TD
-    A[🎯 Program Start] --> B[📝 main Function Called]
-    B --> C[⚡ Execute Code Inside main]
+    A[🎯 Program Start] --> B[📝 Main Function Called]
+    B --> C[⚡ Execute Code Inside Main]
     C --> D[📤 Output to Console]
     D --> E[✅ Program End]
     
@@ -288,7 +288,7 @@ void main() {
 flowchart LR
     A[📝 Source Code] --> B{❓ Comment Type?}
     B -->|//| C[📄 Single Line]
-    B -->|/* */| D[📄 Multi Line]
+    B -->|Multi| D[📄 Multi Line]
     B -->|///| E[📚 Documentation]
     C --> F[🚫 Ignored by Compiler]
     D --> F
@@ -328,8 +328,8 @@ void main() {
 flowchart TD
     A[📥 Input: Variables] --> B[🔄 String Template Processing]
     B --> C{❓ Simple Variable?}
-    C -->|Yes| D[💫 Use $ syntax]
-    C -->|No| E[🧮 Use ${expression} syntax]
+    C -->|Yes| D[💫 Use dollar syntax]
+    C -->|No| E[🧮 Use expression syntax]
     D --> F[📤 Generate Final String]
     E --> F
     F --> G[📄 Print Output]
