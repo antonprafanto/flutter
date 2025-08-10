@@ -156,9 +156,9 @@ flowchart TD
     B --> C[🤝 AND Operation]
     B --> D[🎭 OR Operation]  
     B --> E[🚫 NOT Operation]
-    C --> F{true && false}
-    D --> G{true || false}
-    E --> H{!false}
+    C --> F{true AND false}
+    D --> G{true OR false}
+    E --> H{NOT false}
     F --> I[📤 false]
     G --> J[📤 true]
     H --> K[📤 true]
