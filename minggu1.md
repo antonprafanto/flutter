@@ -265,7 +265,7 @@ flowchart TD
 ```
 
 🚀 **Coba Sekarang!** 
-Silakan copy code di atas dan coba jalankan di: https://zapp.run/
+Silakan copy code di atas dan coba jalankan di: https://dartpad.dev/
 
 ### 💬 Comments dan Documentation
 
@@ -304,7 +304,7 @@ flowchart LR
 ```
 
 🚀 **Coba Sekarang!** 
-Copy code comment examples dan test di: https://zapp.run/
+Copy code comment examples dan test di: https://dartpad.dev/
 
 ### 🎨 String Interpolation
 
@@ -344,7 +344,7 @@ flowchart TD
 ```
 
 🚀 **Coba Sekarang!** 
-Experiment dengan string interpolation di: https://zapp.run/
+Experiment dengan string interpolation di: https://dartpad.dev/
 
 ---
 
@@ -409,7 +409,7 @@ flowchart TD
 ```
 
 🚀 **Coba Sekarang!** 
-Test berbagai jenis variable declaration di: https://zapp.run/
+Test berbagai jenis variable declaration di: https://dartpad.dev/
 
 ### 🎯 Built-in Data Types
 
@@ -484,7 +484,7 @@ flowchart LR
 ```
 
 🚀 **Coba Sekarang!** 
-Eksperimen dengan berbagai tipe data di: https://zapp.run/
+Eksperimen dengan berbagai tipe data di: https://dartpad.dev/
 
 ---
 
@@ -548,7 +548,7 @@ flowchart TD
 ```
 
 🚀 **Coba Sekarang!** 
-Test nullable dan non-nullable types di: https://zapp.run/
+Test nullable dan non-nullable types di: https://dartpad.dev/
 
 ### 🔧 Null Safety Operators
 
@@ -610,7 +610,7 @@ flowchart TD
 ```
 
 🚀 **Coba Sekarang!** 
-Practice null safety operators di: https://zapp.run/
+Practice null safety operators di: https://dartpad.dev/
 
 ### 🎯 Practical Null Safety Example
 
@@ -684,7 +684,7 @@ flowchart TD
 ```
 
 🚀 **Coba Sekarang!** 
-Experiment dengan data handling di: https://zapp.run/
+Experiment dengan data handling di: https://dartpad.dev/
 
 ---
 
@@ -773,7 +773,7 @@ flowchart TD
 ```
 
 🚀 **Coba Sekarang!** 
-Complete Task 1 di: https://zapp.run/
+Complete Task 1 di: https://dartpad.dev/
 
 ### 📋 Task 2: Grade Calculator dengan Null Safety
 
@@ -878,7 +878,7 @@ flowchart TD
 ```
 
 🚀 **Coba Sekarang!** 
-Complete Grade Calculator di: https://zapp.run/
+Complete Grade Calculator di: https://dartpad.dev/
 
 ### 📋 Task 3: String Manipulation Challenge
 
@@ -980,7 +980,7 @@ flowchart TD
 ```
 
 🚀 **Coba Sekarang!** 
-Challenge yourself with string manipulation di: https://zapp.run/
+Challenge yourself with string manipulation di: https://dartpad.dev/
 
 ---
 
