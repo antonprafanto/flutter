@@ -53,19 +53,19 @@ void main() {
 
 ```mermaid
 flowchart TD
-    A[🎯 Start main] --> B[📋 int a = 10, int b = 3]
-    B --> C[🧮 Calculate: a + b = 10 + 3]
-    C --> D[📤 Print: Penjumlahan 10 + 3 = 13]
-    D --> E[🧮 Calculate: a - b = 10 - 3]
-    E --> F[📤 Print: Pengurangan 10 - 3 = 7]
-    F --> G[🧮 Calculate: a * b = 10 * 3]
-    G --> H[📤 Print: Perkalian 10 * 3 = 30]
-    H --> I[🧮 Calculate: a / b = 10 / 3]
-    I --> J[📤 Print: Pembagian 10 / 3 = 3.333...]
-    J --> K[🧮 Calculate: a ~/ b = 10 ~/ 3]
-    K --> L[📤 Print: Pembagian bulat 10 ~/ 3 = 3]
-    L --> M[🧮 Calculate: a % b = 10 % 3]
-    M --> N[📤 Print: Modulo 10 % 3 = 1]
+    A[🎯 Start main] --> B[📋 Declare: int a=10, int b=3]
+    B --> C[🧮 Calculate a+b: 10+3=13]
+    C --> D[📤 Print penjumlahan result]
+    D --> E[🧮 Calculate a-b: 10-3=7]
+    E --> F[📤 Print pengurangan result]
+    F --> G[🧮 Calculate a*b: 10*3=30]
+    G --> H[📤 Print perkalian result]
+    H --> I[🧮 Calculate a/b: 10/3=3.333...]
+    I --> J[📤 Print pembagian result]
+    J --> K[🧮 Calculate a~/b: 10~/3=3]
+    K --> L[📤 Print pembagian bulat result]
+    L --> M[🧮 Calculate a%b: 10%3=1]
+    M --> N[📤 Print modulo result]
     N --> O[✅ End main]
     
     style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
@@ -115,22 +115,24 @@ void main() {
 
 ```mermaid
 flowchart TD
-    A[🎯 Start main] --> B[📋 int x=5, y=10, nama1=Alice, nama2=Bob]
-    B --> C[⚖️ Evaluate: x == y → 5 == 10]
+    A[🎯 Start main] --> B[📋 Declare: x=5, y=10, nama1=Alice, nama2=Bob]
+    B --> C[⚖️ Evaluate x==y: 5==10 → false]
     C --> D[📤 Print: x == y: false]
-    D --> E[⚖️ Evaluate: x != y → 5 != 10]
+    D --> E[⚖️ Evaluate x!=y: 5!=10 → true]
     E --> F[📤 Print: x != y: true]
-    F --> G[📏 Evaluate: x > y → 5 > 10]
-    G --> H[📤 Print: x > y: false]
-    H --> I[📏 Evaluate: x < y → 5 < 10]
-    I --> J[📤 Print: x < y: true]
-    J --> K[📏 Evaluate: x >= 5 → 5 >= 5]
-    K --> L[📤 Print: x >= 5: true]
-    L --> M[📏 Evaluate: y <= 10 → 10 <= 10]
-    M --> N[📤 Print: y <= 10: true]
-    N --> O[🔤 Evaluate: Alice.compareTo Bob]
-    O --> P[📤 Print: Alice vs Bob: negative]
-    P --> Q[✅ End main]
+    F --> G[⚖️ Evaluate nama1==nama2: Alice==Bob → false]
+    G --> H[📤 Print: nama1 == nama2: false]
+    H --> I[📏 Evaluate x>y: 5>10 → false]
+    I --> J[📤 Print: x > y: false]
+    J --> K[📏 Evaluate x<y: 5<10 → true]
+    K --> L[📤 Print: x < y: true]
+    L --> M[📏 Evaluate x>=5: 5>=5 → true]
+    M --> N[📤 Print: x >= 5: true]
+    N --> O[📏 Evaluate y<=10: 10<=10 → true]
+    O --> P[📤 Print: y <= 10: true]
+    P --> Q[🔤 Execute nama1.compareTo nama2]
+    Q --> R[📤 Print: Alice vs Bob: negative]
+    R --> S[✅ End main]
     
     style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
     style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
@@ -148,7 +150,9 @@ flowchart TD
     style N fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style O fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style P fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style Q fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style Q fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style R fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style S fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
 ```
 
 🚀 **Coba Sekarang!** 
@@ -178,24 +182,25 @@ void main() {
 
 ```mermaid
 flowchart TD
-    A[🎯 Start main] --> B[📋 bool isActive=true, isVisible=false, hasPermission=true]
-    B --> C[🧠 Evaluate: isActive AND isVisible]
-    C --> D[⚡ true AND false = false]
+    A[🎯 Start main] --> B[📋 Declare: isActive=true, isVisible=false, hasPermission=true]
+    B --> C[🧠 Evaluate: isActive AND isVisible → true AND false]
+    C --> D[⚡ Result: false]
     D --> E[📤 Print: AND: isActive && isVisible = false]
-    E --> F[🧠 Evaluate: isActive OR isVisible]
-    F --> G[⚡ true OR false = true]
+    E --> F[🧠 Evaluate: isActive OR isVisible → true OR false]
+    F --> G[⚡ Result: true]
     G --> H[📤 Print: OR: isActive || isVisible = true]
-    H --> I[🧠 Evaluate: NOT isVisible]
-    I --> J[⚡ NOT false = true]
+    H --> I[🧠 Evaluate: NOT isVisible → NOT false]
+    I --> J[⚡ Result: true]
     J --> K[📤 Print: NOT: !isVisible = true]
-    K --> L[🧠 Evaluate: isActive AND parentheses]
-    L --> M[⚡ isVisible OR hasPermission = false OR true = true]
-    M --> N[⚡ true AND true = true]
-    N --> O[📤 Print: Can access: true]
-    O --> P[🧠 Short-circuit: false AND anything]
-    P --> Q[⚡ false (second part not evaluated)]
-    Q --> R[📤 Print: Short-circuit: false]
-    R --> S[✅ End main]
+    K --> L[🧠 Evaluate complex: isActive AND parentheses]
+    L --> M[⚡ isVisible OR hasPermission → false OR true = true]
+    M --> N[⚡ isActive AND true → true AND true = true]
+    N --> O[📋 bool canAccess = true]
+    O --> P[📤 Print: Can access: true]
+    P --> Q[🧠 Short-circuit: false AND anything]
+    Q --> R[⚡ Result: false without evaluating second part]
+    R --> S[📤 Print: Short-circuit: false]
+    S --> T[✅ End main]
     
     style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
     style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
@@ -211,11 +216,12 @@ flowchart TD
     style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style M fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style N fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style O fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style P fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style O fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style P fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style Q fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style R fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style R fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style S fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style T fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
 ```
 
 🚀 **Coba Sekarang!** 
@@ -263,18 +269,17 @@ void main() {
 
 ```mermaid
 flowchart TD
-    A[🎯 Start main] --> B[📋 int nilai = 85]
+    A[🎯 Start main] --> B[📋 Declare: int nilai = 85]
     B --> C{❓ nilai >= 90? → 85 >= 90?}
     C -->|false| D{❓ nilai >= 80? → 85 >= 80?}
     D -->|true| E[📤 Print: Grade B - Good work!]
-    E --> F[⚡ Evaluate ternary: 85 >= 60?]
-    F --> G[⚡ true ? Lulus : Tidak Lulus]
-    G --> H[📋 String status = Lulus]
-    H --> I[📤 Print: Status: Lulus]
-    I --> J{❓ nilai >= 60? → 85 >= 60?}
-    J -->|true| K{❓ nilai >= 90? → 85 >= 90?}
-    K -->|false| L[📤 Print: Good job! Keep improving!]
-    L --> M[✅ End main]
+    E --> F[⚡ Ternary: nilai >= 60? → 85 >= 60? true]
+    F --> G[📋 String status = Lulus]
+    G --> H[📤 Print: Status: Lulus]
+    H --> I{❓ nilai >= 60? → 85 >= 60?}
+    I -->|true| J{❓ nilai >= 90? → 85 >= 90?}
+    J -->|false| K[📤 Print: Good job! Keep improving!]
+    K --> L[✅ End main]
     
     style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
     style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
@@ -283,12 +288,11 @@ flowchart TD
     style E fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style I fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style H fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style K fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style L fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style M fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
 ```
 
 🚀 **Coba Sekarang!** 
@@ -332,24 +336,13 @@ void main() {
 ```mermaid
 flowchart TD
     A[🎯 Start main] --> B[📤 Print: === Counting 1 to 5 ===]
-    B --> C[📋 Initialize: int i = 1]
-    C --> D{❓ i <= 5? → 1 <= 5?}
-    D -->|true| E[📤 Print: Count: 1]
-    E --> F[🔄 Increment: i++ → i = 2]
-    F --> G{❓ i <= 5? → 2 <= 5?}
-    G -->|true| H[📤 Print: Count: 2]
-    H --> I[🔄 Increment: i++ → i = 3]
-    I --> J{❓ i <= 5? → 3 <= 5?}
-    J -->|true| K[📤 Print: Count: 3]
-    K --> L[🔄 Increment: i++ → i = 4]
-    L --> M{❓ i <= 5? → 4 <= 5?}
-    M -->|true| N[📤 Print: Count: 4]
-    N --> O[🔄 Increment: i++ → i = 5]
-    O --> P{❓ i <= 5? → 5 <= 5?}
-    P -->|true| Q[📤 Print: Count: 5]
-    Q --> R[🔄 Increment: i++ → i = 6]
-    R --> S{❓ i <= 5? → 6 <= 5?}
-    S -->|false| T[✅ Exit Loop - Continue main]
+    B --> C[📋 for int i = 1]
+    C --> D{❓ i <= 5?}
+    D -->|true| E[📤 Print: Count: i]
+    E --> F[🔄 i++ increment]
+    F --> D
+    D -->|false| G[✅ Exit loop]
+    G --> H[⏭️ Continue with for-in loop]
     
     style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
     style B fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
@@ -357,20 +350,8 @@ flowchart TD
     style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style E fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style H fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style K fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style M fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style N fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style O fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style P fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style Q fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style R fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style S fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style T fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
 ```
 
 🚀 **Coba Sekarang!** 
@@ -423,25 +404,12 @@ void main() {
 flowchart TD
     A[🎯 Start main] --> B[📤 Print: === Countdown ===]
     B --> C[📋 int countdown = 5]
-    C --> D{❓ countdown > 0? → 5 > 0?}
-    D -->|true| E[📤 Print: ⏰ 5 detik...]
-    E --> F[🔄 countdown-- → countdown = 4]
-    F --> G{❓ countdown > 0? → 4 > 0?}
-    G -->|true| H[📤 Print: ⏰ 4 detik...]
-    H --> I[🔄 countdown-- → countdown = 3]
-    I --> J{❓ countdown > 0? → 3 > 0?}
-    J -->|true| K[📤 Print: ⏰ 3 detik...]
-    K --> L[🔄 countdown-- → countdown = 2]
-    L --> M{❓ countdown > 0? → 2 > 0?}
-    M -->|true| N[📤 Print: ⏰ 2 detik...]
-    N --> O[🔄 countdown-- → countdown = 1]
-    O --> P{❓ countdown > 0? → 1 > 0?}
-    P -->|true| Q[📤 Print: ⏰ 1 detik...]
-    Q --> R[🔄 countdown-- → countdown = 0]
-    R --> S{❓ countdown > 0? → 0 > 0?}
-    S -->|false| T[✅ Exit While Loop]
-    T --> U[📤 Print: 🚀 Launch!]
-    U --> V[✅ Continue main]
+    C --> D{❓ countdown > 0?}
+    D -->|true| E[📤 Print: ⏰ countdown detik...]
+    E --> F[🔄 countdown-- decrement]
+    F --> D
+    D -->|false| G[📤 Print: 🚀 Launch!]
+    G --> H[⏭️ Continue to next section]
     
     style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
     style B fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
@@ -449,22 +417,8 @@ flowchart TD
     style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style E fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style G fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style H fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style K fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style M fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style N fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style O fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style P fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style Q fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style R fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style S fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style T fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style U fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style V fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
 ```
 
 🚀 **Coba Sekarang!** 
@@ -516,52 +470,38 @@ hitungLuasLingkaran(double radius) {
 
 ```mermaid
 flowchart TD
-    A[🎯 Start main] --> B[📞 Call sapa]
-    B --> C[📤 Print: 👋 Hello, World!]
-    C --> D[🔙 Return to main]
-    D --> E[📞 Call buatSalam with Alice]
-    E --> F[📋 nama = Alice]
-    F --> G[📤 Return: 🎉 Selamat datang, Alice!]
-    G --> H[📋 String pesan = return value]
-    H --> I[📤 Print: pesan]
-    I --> J[📞 Call tambah with 5, 3]
-    J --> K[📋 a = 5, b = 3]
-    K --> L[🧮 Calculate: a + b = 5 + 3 = 8]
-    L --> M[📤 Return: 8]
-    M --> N[📋 int hasil = 8]
-    N --> O[📤 Print: 5 + 3 = 8]
-    O --> P[📞 Call hitungLuasLingkaran with 7.0]
-    P --> Q[📋 radius = 7.0, pi = 3.14159]
-    Q --> R[🧮 Calculate: pi * radius * radius]
-    R --> S[🧮 3.14159 * 7.0 * 7.0 = 153.9378]
-    S --> T[📤 Return: 153.9378]
-    T --> U[📋 double luas = 153.9378]
-    U --> V[📤 Print: Luas lingkaran: 153.94]
-    V --> W[✅ End main]
+    A[🎯 Start main] --> B[📞 Call sapa function]
+    B --> C[📤 Function prints: 👋 Hello, World!]
+    C --> D[📞 Call buatSalam with Alice]
+    D --> E[📤 Function returns: 🎉 Selamat datang, Alice!]
+    E --> F[📋 String pesan = return value]
+    F --> G[📤 Print: pesan]
+    G --> H[📞 Call tambah with 5, 3]
+    H --> I[📤 Function returns: 8]
+    I --> J[📋 int hasil = 8]
+    J --> K[📤 Print: 5 + 3 = 8]
+    K --> L[📞 Call hitungLuasLingkaran with 7.0]
+    L --> M[📤 Function returns: 153.9378...]
+    M --> N[📋 double luas = result]
+    N --> O[📤 Print: Luas lingkaran with toStringAsFixed]
+    O --> P[✅ End main]
     
     style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
     style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style C fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style E fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style G fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style I fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    style K fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style L fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style M fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
     style N fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
     style O fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style P fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style Q fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style R fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style S fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style T fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style U fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style V fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style W fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    style P fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
 ```
 
 🚀 **Coba Sekarang!** 
