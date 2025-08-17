@@ -324,28 +324,43 @@ void main() {
 }
 ```
 
-**📋 Alur Pohon Keputusan:**
+**📋 Eksekusi Conditional Branching dalam Program:**
 ```
-🎯 suhu = 28, cuaca = 'cerah'
+🎯 PROGRAM START: main() function loaded ke call stack
   ↓
-1️⃣ if (suhu > 30): 28 > 30? → false ❌
-   Lewati: "Cuaca sangat panas!" tidak dicetak
+1️⃣ VARIABLE DECLARATIONS & INITIALIZATION:
+   • Stack frame allocation: suhu (int), cuaca (String)
+   • Memory write: suhu = 28, cuaca = "cerah" (string di heap)
   ↓
-2️⃣ if (suhu < 15): 28 < 15? → false ❌
-   else: Cetak "Pakaian ringan sudah cukup" ✅
+2️⃣ CONDITIONAL CHECK: if (suhu > 30)
+   • Program counter di instruction: if (suhu > 30)
+   • CPU load: register A = suhu value → 28
+   • CPU load: register B = literal → 30  
+   • CPU compare: 28 > 30 → false (zero flag set)
+   • Branch predictor: predict NOT taken
+   • Program counter SKIP if-block, jump ke next statement
   ↓
-3️⃣ Pengecekan multi-cabang:
-   • suhu >= 35? 28 >= 35? → false ❌
-   • suhu >= 25? 28 >= 25? → true ✅
-   Cetak: "Hangat dan menyenangkan"
-   (Lewati kondisi sisanya)
+3️⃣ CONDITIONAL CHECK: if (suhu < 15) else branch
+   • CPU comparison: 28 < 15 → false
+   • Program counter skip if-block
+   • Program counter jump ke ELSE clause
+   • Execute else block: print('Pakaian ringan sudah cukup')
   ↓
-4️⃣ Kondisi bersarang:
-   • suhu > 20? 28 > 20? → true ✅
-   • cuaca == 'cerah'? 'cerah' == 'cerah'? → true ✅
-   Cetak: "Hari yang sempurna untuk aktivitas outdoor!"
+4️⃣ MULTI-CONDITIONAL CHAIN if-else if-else:
+   • First check: suhu >= 35 → 28 >= 35 → false, skip block
+   • Second check: suhu >= 25 → 28 >= 25 → true (condition met!)
+   • Program counter enter true branch
+   • Execute: print('Hangat dan menyenangkan')  
+   • Program counter SKIP remaining else-if conditions (short-circuit)
   ↓
-✅ SELESAI: Beberapa kondisi dievaluasi secara independen
+5️⃣ NESTED CONDITIONAL:
+   • Outer check: suhu > 20 → 28 > 20 → true, enter outer block
+   • Inner check: cuaca == 'cerah' 
+     - String comparison: memory reference comparison
+     - String content comparison: 'cerah' == 'cerah' → true
+   • Execute nested block: print('Hari yang sempurna...')
+  ↓
+✅ EXECUTION COMPLETE: Stack frame deallocated, program counter to end
 ```
 
 🚀 **Coba Sekarang!** 
@@ -388,35 +403,51 @@ void main() {
 }
 ```
 
-**📋 Pola Eksekusi Perulangan For:**
+**📋 Eksekusi For Loop dalam Call Stack:**
 ```
-Perulangan For Standar: for (int i = 5; i >= 1; i--)
-🎯 INISIALISASI: i = 5
+🎯 PROGRAM START: main() function execution begins
   ↓
-1️⃣ CEK KONDISI: i >= 1? (5 >= 1) → true ✅
-   JALANKAN BLOK: print('5...')
-   UPDATE: i-- (i menjadi 4)
+1️⃣ LOOP INITIALIZATION: for (int i = 5; i >= 1; i--)
+   • Stack frame expansion: allocate memory untuk loop variable i
+   • Memory write: i = 5 (initial value assignment)
+   • Program counter positioned di loop header
   ↓
-2️⃣ CEK KONDISI: i >= 1? (4 >= 1) → true ✅
-   JALANKAN BLOK: print('4...')  
-   UPDATE: i-- (i menjadi 3)
+2️⃣ LOOP ITERATION #1:
+   • CONDITION CHECK: i >= 1
+     - CPU load: register A = i value → 5
+     - CPU load: register B = literal → 1  
+     - CPU compare: 5 >= 1 → true (condition flag set)
+     - Branch predictor: predict TAKEN (enter loop body)
+   • LOOP BODY EXECUTION:
+     - Program counter jump ke loop body
+     - Execute: print('5...') → string ke output buffer
+   • LOOP INCREMENT: i--
+     - CPU load: current i value → 5
+     - CPU operation: decrement → 4
+     - Memory write: store 4 back ke variable i
+   • Program counter jump back ke condition check
   ↓
-3️⃣ CEK KONDISI: i >= 1? (3 >= 1) → true ✅
-   JALANKAN BLOK: print('3...')
-   UPDATE: i-- (i menjadi 2)
+3️⃣ LOOP ITERATION #2:
+   • CONDITION CHECK: i >= 1 → 4 >= 1 → true
+   • BODY: print('4...'), increment: i-- (4 → 3)
+   • Program counter loop back
   ↓
-4️⃣ CEK KONDISI: i >= 1? (2 >= 1) → true ✅
-   JALANKAN BLOK: print('2...')
-   UPDATE: i-- (i menjadi 1)
+4️⃣ LOOP ITERATIONS #3, #4, #5:
+   • Iterations continue dengan same pattern
+   • i values: 3 → 2 → 1 (successive decrements)
+   • Each iteration: condition check → body execution → increment
   ↓
-5️⃣ CEK KONDISI: i >= 1? (1 >= 1) → true ✅
-   JALANKAN BLOK: print('1...')
-   UPDATE: i-- (i menjadi 0)
+5️⃣ LOOP TERMINATION:
+   • CONDITION CHECK: i >= 1 → 0 >= 1 → false
+   • Branch predictor: predict NOT TAKEN
+   • Program counter SKIP loop body, jump ke post-loop code
+   • Loop variable i automatically deallocated dari stack
   ↓
-6️⃣ CEK KONDISI: i >= 1? (0 >= 1) → false ❌
-   KELUAR DARI PERULANGAN
+6️⃣ POST-LOOP EXECUTION:
+   • Execute: print('Selamat! 🎉')
+   • Continue dengan remaining main() instructions
   ↓
-✅ Lanjutkan dengan: print('Selamat! 🎉')
+✅ LOOP COMPLETE: Stack cleanup, program counter advance
 ```
 
 🚀 **Coba Sekarang!** 
@@ -457,38 +488,52 @@ void main() {
 }
 ```
 
-**📋 Eksekusi Perulangan While:**
+**📋 Eksekusi While Loop dengan Memory Management:**
 ```
-Perulangan While: while (hitungan <= 3)
-🎯 INISIALISASI: hitungan = 1
+🎯 PROGRAM START: main() function dalam call stack
   ↓
-1️⃣ CEK: hitungan <= 3? (1 <= 3) → true ✅
-   EKSEKUSI: print('Hitungan: 1')
-   UPDATE: hitungan++ (hitungan = 2)
+1️⃣ VARIABLE INITIALIZATION:
+   • Stack allocation: variabel hitungan (int type, 4 bytes)
+   • Memory write: store nilai 1 ke address hitungan
+   • Program counter advance ke while statement
   ↓
-2️⃣ CEK: hitungan <= 3? (2 <= 3) → true ✅
-   EKSEKUSI: print('Hitungan: 2')
-   UPDATE: hitungan++ (hitungan = 3)
+2️⃣ WHILE LOOP ENTRY: while (hitungan <= 3)
+   • Program counter positioned di loop condition
+   • Dart compiler set up loop control structure
   ↓
-3️⃣ CEK: hitungan <= 3? (3 <= 3) → true ✅
-   EKSEKUSI: print('Hitungan: 3')
-   UPDATE: hitungan++ (hitungan = 4)
+3️⃣ ITERATION #1:
+   • CONDITION EVALUATION:
+     - CPU load: register A = hitungan value → 1
+     - CPU load: register B = literal value → 3
+     - CPU compare: 1 <= 3 → true (condition satisfied)
+     - Branch predictor: predict TAKEN (enter loop body)
+   • LOOP BODY EXECUTION:
+     - Program counter jump ke loop body instructions
+     - Execute print('Hitungan: 1') → string buffer output
+     - Execute hitungan++:
+       * Memory read: load current hitungan → 1
+       * CPU arithmetic: increment operation → 2
+       * Memory write: store 2 back ke hitungan address
+   • LOOP CONTINUATION:
+     - Program counter jump back ke condition check
   ↓
-4️⃣ CEK: hitungan <= 3? (4 <= 3) → false ❌
-   KELUAR DARI PERULANGAN
+4️⃣ ITERATION #2:
+   • CONDITION: hitungan <= 3 → 2 <= 3 → true
+   • BODY: print('Hitungan: 2'), hitungan++ (2 → 3)
+   • Program counter loop back
   ↓
-✅ Perulangan berakhir, lanjutkan kode berikutnya
-
-Perulangan Do-While: do { ... } while (angka < 15)
-🎯 INISIALISASI: angka = 10
+5️⃣ ITERATION #3:
+   • CONDITION: hitungan <= 3 → 3 <= 3 → true
+   • BODY: print('Hitungan: 3'), hitungan++ (3 → 4)  
+   • Program counter loop back
   ↓
-1️⃣ EKSEKUSI DULU: print('Angka: 10') (selalu jalan sekali)
-   UPDATE: angka += 5 (angka = 15)
+6️⃣ LOOP TERMINATION:
+   • CONDITION: hitungan <= 3 → 4 <= 3 → false
+   • Branch predictor: predict NOT TAKEN
+   • Program counter exit loop, jump ke post-loop instructions
+   • Variabel hitungan remains di stack (scope masih aktif)
   ↓
-2️⃣ CEK: angka < 15? (15 < 15) → false ❌
-   KELUAR DARI PERULANGAN
-  ↓
-✅ Dieksekusi sekali, kemudian berakhir
+✅ POST-LOOP: Continue dengan next statements dalam main()
 ```
 
 🚀 **Coba Sekarang!** 
@@ -533,28 +578,51 @@ void main() {
 }
 ```
 
-**📋 Alur Break dan Continue:**
+**📋 Eksekusi Break dan Continue dengan Jump Instructions:**
 ```
-Contoh Break: Mencari bilangan genap pertama
-🎯 Perulangan: i dari 1 sampai 10
+CONTOH BREAK: Mencari bilangan genap pertama
+🎯 PROGRAM START: for loop initialization dalam call stack
   ↓
-1️⃣ i=1: 1%2==0? → false ❌, print "1 adalah ganjil, lanjutkan..."
-2️⃣ i=2: 2%2==0? → true ✅, print "Bilangan genap ditemukan: 2"
-   BREAK → Keluar dari perulangan seketika
+1️⃣ LOOP ITERATION i=1:
+   • Loop condition: i <= 10 → 1 <= 10 → true
+   • Program counter enter loop body
+   • Condition check: i % 2 == 0 → 1 % 2 == 0 → false
+   • Program counter skip if-block (no break executed)
+   • Execute: print('1 adalah ganjil, lanjutkan...')
+   • Loop increment: i++ (1 → 2)
+   • Program counter jump back ke loop condition
   ↓
-✅ Perulangan berakhir di i=2, iterasi sisanya dilewati
+2️⃣ LOOP ITERATION i=2:
+   • Loop condition: 2 <= 10 → true, enter body
+   • Condition check: i % 2 == 0 → 2 % 2 == 0 → true
+   • Program counter enter if-block
+   • Execute: print('Bilangan genap ditemukan: 2')
+   • BREAK STATEMENT EXECUTION:
+     - CPU execute jump instruction (unconditional branch)
+     - Program counter IMMEDIATELY jump keluar dari loop
+     - Stack cleanup: loop variables maintained tapi loop terminated
+     - Remaining iterations (i=3,4,5...10) TIDAK dieksekusi
+  ↓
+✅ POST-LOOP: Program counter lanjut ke statement setelah loop
 
-Contoh Continue: Melewati bilangan ganjil  
-🎯 Perulangan: i dari 1 sampai 6
+CONTOH CONTINUE: Melewati bilangan ganjil
+🎯 LOOP ITERATIONS dengan continue logic:
   ↓
-1️⃣ i=1: 1%2==1? → true ✅, CONTINUE → lewati ke i=2
-2️⃣ i=2: 2%2==1? → false ❌, print "Bilangan genap: 2"
-3️⃣ i=3: 3%2==1? → true ✅, CONTINUE → lewati ke i=4
-4️⃣ i=4: 4%2==1? → false ❌, print "Bilangan genap: 4"
-5️⃣ i=5: 5%2==1? → true ✅, CONTINUE → lewati ke i=6
-6️⃣ i=6: 6%2==1? → false ❌, print "Bilangan genap: 6"
+1️⃣ ITERATION i=1:
+   • Condition: i % 2 == 1 → 1 % 2 == 1 → true
+   • CONTINUE STATEMENT EXECUTION:
+     - CPU execute conditional jump ke loop increment
+     - Program counter SKIP remaining loop body statements
+     - Skip: print('Bilangan genap: 1') tidak dieksekusi
+     - Jump langsung ke i++ dan condition check
   ↓
-✅ Hanya bilangan genap yang dicetak: 2, 4, 6
+2️⃣ ITERATION i=2:
+   • Condition: i % 2 == 1 → 2 % 2 == 1 → false
+   • Continue NOT executed, program counter lanjut normal
+   • Execute: print('Bilangan genap: 2')
+   • Normal loop increment dan condition check
+  ↓
+✅ PATTERN CONTINUES: Continue mempengaruhi control flow per-iteration
 ```
 
 🚀 **Coba Sekarang!** 
@@ -596,28 +664,54 @@ void main() {
 }
 ```
 
-**📋 Alur Eksekusi Fungsi:**
+**📋 Eksekusi Function Calls dengan Call Stack Management:**
 ```
-🎯 Program dimulai di main()
+🎯 PROGRAM START: Dart runtime load main() ke call stack
   ↓
-1️⃣ Panggil sapaUser():
-   • Lompat ke fungsi sapaUser()
-   • Eksekusi: print('Selamat datang di aplikasi Flutter kami!')
-   • Kembali ke main() (fungsi void tidak mengembalikan apa-apa)
+1️⃣ CALL STACK FRAME #1: main() function
+   • Stack pointer allocation untuk main() local variables
+   • Program counter positioned di first instruction dalam main()
   ↓
-2️⃣ Panggil tambahAngka(5, 3):
-   • Lompat ke tambahAngka() dengan a=5, b=3
-   • Hitung: return 5 + 3
-   • Kembalikan nilai 8 ke main()
-   • Simpan dalam variabel jumlah
+2️⃣ FUNCTION CALL: sapaUser()
+   • CALL INSTRUCTION:
+     - Push current program counter (return address) ke stack
+     - Create new stack frame untuk sapaUser()  
+     - Program counter jump ke sapaUser() function address
+   • FUNCTION EXECUTION:
+     - Execute: print('Selamat datang di aplikasi Flutter kami!')
+     - String literal loaded ke heap, output ke console
+   • FUNCTION RETURN:
+     - Pop sapaUser() stack frame
+     - Program counter restore ke saved return address
+     - Control kembali ke main() function
   ↓
-3️⃣ Panggil hitungLuas(5.0):
-   • Lompat ke hitungLuas() dengan jariJari=5.0
-   • Hitung: 3.14159 * 5.0 * 5.0 = 78.539...
-   • Kembalikan nilai ke main()
-   • Simpan dalam variabel luas
+3️⃣ FUNCTION CALL: tambahAngka(5, 3)
+   • PARAMETER PASSING:
+     - Push argument values ke stack: 5, 3
+     - Create stack frame untuk tambahAngka()
+     - Map parameters: a=5, b=3 dalam function scope
+   • FUNCTION EXECUTION:
+     - Load a value ke register: 5
+     - Load b value ke register: 3  
+     - CPU addition: 5 + 3 = 8
+     - Store result dalam return value register
+   • FUNCTION RETURN:
+     - Return value (8) passed back melalui register
+     - Pop function stack frame
+     - Program counter restore, control ke main()
+     - Assign returned value ke variable: jumlah = 8
   ↓
-✅ Semua pemanggilan fungsi selesai, lanjutkan main()
+4️⃣ FUNCTION CALL: hitungLuas(5.0)
+   • PARAMETER PASSING: 5.0 (double) passed via floating-point register
+   • FUNCTION EXECUTION:
+     - Expression evaluation: 3.14159 * 5.0 * 5.0
+     - CPU floating-point operations: 
+       * Load 3.14159 ke FPU register
+       * Multiply: 3.14159 * 5.0 = 15.70795
+       * Multiply: 15.70795 * 5.0 = 78.53975
+   • RETURN: hasil (78.53975) via floating-point return register
+  ↓
+✅ STACK CLEANUP: main() stack frame deallocated, program terminate
 ```
 
 🚀 **Coba Sekarang!** 
@@ -674,35 +768,66 @@ void main() {
 }
 ```
 
-**📋 Penanganan Parameter:**
+**📋 Parameter Handling dan Memory Layout dalam Function Calls:**
 ```
-Fungsi: formatNama(String namaDepan, [String? namaBelakang])
-🎯 Panggilan: formatNama('John')
+FUNCTION CALL: formatNama('John')
+🎯 CALL STACK SETUP: Parameter passing mechanism
   ↓
-1️⃣ namaDepan = 'John' (wajib, disediakan)
-2️⃣ namaBelakang = null (opsional, tidak disediakan)  
-3️⃣ Cek: namaBelakang != null? → false ❌
-4️⃣ Return: namaDepan ('John')
+1️⃣ PARAMETER PREPARATION:
+   • Dart compiler analyze function signature: formatNama(String namaDepan, [String? namaBelakang])
+   • REQUIRED PARAMETER: namaDepan
+     - Argument 'John' di-evaluate
+     - String 'John' allocated di heap memory  
+     - String reference (pointer) passed ke function
+   • OPTIONAL PARAMETER: namaBelakang
+     - No argument provided untuk optional parameter
+     - Default value null assigned automatically
   ↓
-✅ Hasil: 'John'
+2️⃣ STACK FRAME CREATION:
+   • New stack frame allocated untuk formatNama()
+   • Parameter mapping dalam function scope:
+     - namaDepan: String reference pointing ke 'John' di heap
+     - namaBelakang: null reference (default value)
+   • Local variable space reserved
+  ↓
+3️⃣ FUNCTION BODY EXECUTION:
+   • CONDITIONAL CHECK: if (namaBelakang != null)
+     - Load namaBelakang value ke register → null
+     - CPU comparison: null != null → false
+     - Branch prediction: NOT TAKEN (skip if-block)
+   • ELSE PATH: return namaDepan
+     - Load namaDepan reference
+     - Return string reference 'John' via return register
+  ↓
+4️⃣ STACK CLEANUP:
+   • Function stack frame deallocated
+   • Parameter values cleaned up (stack unwinding)
+   • Return value 'John' available di calling context
+   • Program counter restore ke call site
+  ↓
+✅ RESULT: String 'John' returned ke caller
 
-🎯 Panggilan: formatNama('Jane', 'Smith')  
+FUNCTION CALL: formatNama('Jane', 'Smith')
+🎯 DIFFERENT PARAMETER SCENARIO:
   ↓
-1️⃣ namaDepan = 'Jane' (wajib, disediakan)
-2️⃣ namaBelakang = 'Smith' (opsional, disediakan)
-3️⃣ Cek: namaBelakang != null? → true ✅  
-4️⃣ Return: '$namaDepan $namaBelakang' ('Jane Smith')
+1️⃣ PARAMETER SETUP:
+   • REQUIRED: namaDepan = 'Jane' (string heap allocation)
+   • OPTIONAL: namaBelakang = 'Smith' (provided argument)
+     - Override default null dengan actual value
   ↓
-✅ Hasil: 'Jane Smith'
-
-Parameter Bernama: tampilkanInfoUser({required String nama, int umur = 18, String? email})
-🎯 Panggilan: tampilkanInfoUser(nama: 'Bob')
+2️⃣ EXECUTION PATH:
+   • CONDITIONAL: namaBelakang != null → 'Smith' != null → true
+   • BRANCH TAKEN: enter if-block
+   • STRING CONCATENATION:
+     - Template literal processing: '$namaDepan $namaBelakang'  
+     - Dart string interpolation engine:
+       * Load namaDepan → 'Jane'
+       * Load namaBelakang → 'Smith'
+       * Heap allocation untuk result string
+       * Memory copy: 'Jane' + ' ' + 'Smith' = 'Jane Smith'
+   • RETURN: reference ke new string 'Jane Smith'
   ↓
-1️⃣ nama = 'Bob' (wajib, disediakan)
-2️⃣ umur = 18 (nilai default digunakan)
-3️⃣ email = null (opsional, tidak disediakan)
-  ↓
-✅ Fungsi dieksekusi dengan nilai-nilai ini
+✅ RESULT: String 'Jane Smith' dengan different execution path
 ```
 
 🚀 **Coba Sekarang!** 
@@ -743,34 +868,45 @@ void main() {
 }
 ```
 
-**📋 Kesetaraan Sintaks Arrow:**
+**📋 Compilation dan Eksekusi: Traditional vs Arrow Function:**
 ```
-Sintaks Tradisional:
-int kalikan(int a, int b) {
-  return a * b;
-}
-
-Sintaks Arrow:  
-int kalikan(int a, int b) => a * b;
-
-🎯 Kedua fungsi adalah sama:
+🎯 COMPILE-TIME ANALYSIS: Dart compiler processing function definitions
   ↓
-1️⃣ Terima parameter: a, b
-2️⃣ Hitung: a * b  
-3️⃣ Kembalikan hasil langsung
+1️⃣ TRADITIONAL FUNCTION COMPILATION:
+   int kalikan(int a, int b) {
+     return a * b;
+   }
+   • Dart compiler parsing:
+     - Function signature analysis: name=kalikan, params=(int a, int b), return=int
+     - Body analysis: single return statement dengan expression
+     - Generate bytecode: parameter load, multiply operation, return instruction
+     - Symbol table entry: kalikan → function address dalam compiled code
   ↓
-✅ Sintaks arrow = cara singkat untuk ekspresi return tunggal
-
-Contoh Kompleks: ambilBilanganGenap()
-🎯 Input: [1, 2, 3, 4, 5, 6, 7, 8]
+2️⃣ ARROW FUNCTION COMPILATION:
+   int kalikan(int a, int b) => a * b;
+   • Dart compiler parsing:
+     - Same signature analysis: identical parameter dan return types
+     - Body analysis: single expression (no explicit return statement)
+     - OPTIMIZATION: compiler recognize simple expression pattern
+     - Generate IDENTICAL bytecode: same instructions sebagai traditional function
+     - NO performance difference dalam compiled code
   ↓
-1️⃣ angka.where((n) => n % 2 == 0):
-   • Test setiap angka: 1%2==0? false, 2%2==0? true, 3%2==0? false...
-   • Simpan: [2, 4, 6, 8]
+3️⃣ RUNTIME EXECUTION COMPARISON:
+   • FUNCTION CALL: kalikan(4, 5)
+   • STACK FRAME SETUP: identical untuk both versions
+     - Parameter passing: a=4, b=5 ke function scope
+     - Local variable allocation (none needed untuk simple expression)
+   • BYTECODE EXECUTION:
+     - Load parameter a ke CPU register → 4
+     - Load parameter b ke CPU register → 5  
+     - CPU multiply instruction: 4 * 5 = 20
+     - Store result dalam return value register
+   • RETURN MECHANISM: identical untuk both versions
+     - Return value 20 passed back ke caller
+     - Stack frame cleanup
   ↓
-2️⃣ .toList(): Konversi iterable yang difilter ke List
-  ↓
-✅ Return: [2, 4, 6, 8]
+✅ CONCLUSION: Arrow syntax = syntactic sugar (compilation shorthand)
+   Kedua functions produce identical machine code dan runtime behavior
 ```
 
 🚀 **Coba Sekarang!** 
@@ -835,33 +971,61 @@ void main() {
 }
 ```
 
-**📋 Operasi List Langkah demi Langkah:**
+**📋 List Operations dengan Memory Management dan Array Manipulation:**
 ```
-🎯 Awal: warna = ['merah', 'hijau', 'biru']
-   Indeks:        [0]      [1]      [2]
+🎯 INITIAL STATE: List creation dan memory allocation
   ↓
-1️⃣ warna.add('kuning'):
-   Sebelum: ['merah', 'hijau', 'biru']
-   Sesudah: ['merah', 'hijau', 'biru', 'kuning']
-   Indeks:   [0]      [1]      [2]      [3]
+1️⃣ LIST INITIALIZATION: ['merah', 'hijau', 'biru']
+   • Dart allocate dynamic array structure di heap
+   • Array metadata: length=3, capacity=4 (over-allocation untuk growth)
+   • String references stored di array slots:
+     - Index 0: pointer ke 'merah' string di heap
+     - Index 1: pointer ke 'hijau' string di heap  
+     - Index 2: pointer ke 'biru' string di heap
+     - Index 3: null (unused capacity)
+   • Variable warna: reference ke array object di heap
   ↓
-2️⃣ warna.addAll(['orange', 'ungu']):
-   Sebelum: ['merah', 'hijau', 'biru', 'kuning']  
-   Sesudah: ['merah', 'hijau', 'biru', 'kuning', 'orange', 'ungu']
-   Indeks:   [0]      [1]      [2]      [3]       [4]       [5]
+2️⃣ OPERATION: warna.add('kuning')
+   • METHOD CALL: add() function di List class
+   • CAPACITY CHECK: current length (3) < capacity (4) → no reallocation needed
+   • APPEND OPERATION:
+     - String 'kuning' allocated di heap
+     - Store reference di index 3
+     - Increment array length: 3 → 4
+   • MEMORY STATE: ['merah', 'hijau', 'biru', 'kuning'] dengan capacity=4
   ↓
-3️⃣ warna.insert(1, 'pink'):
-   Sebelum: ['merah', 'hijau', 'biru', 'kuning', 'orange', 'ungu']
-   Sesudah: ['merah', 'pink', 'hijau', 'biru', 'kuning', 'orange', 'ungu']
-   Indeks:   [0]      [1]     [2]      [3]      [4]       [5]       [6]
-   (Semua elemen setelah indeks 1 bergeser ke kanan)
+3️⃣ OPERATION: warna.addAll(['orange', 'ungu'])
+   • CAPACITY CHECK: need space untuk 2 more items (4 + 2 = 6 > capacity 4)
+   • DYNAMIC RESIZE:
+     - Allocate new array dengan capacity 8 (double previous capacity)
+     - Memory copy: transfer all existing references ke new array
+     - Deallocate old array memory (garbage collection)
+   • APPEND OPERATIONS:
+     - Add 'orange' reference di index 4
+     - Add 'ungu' reference di index 5  
+     - Update length: 4 → 6
   ↓
-4️⃣ warna.remove('hijau'):
-   Sebelum: ['merah', 'pink', 'hijau', 'biru', 'kuning', 'orange', 'ungu']
-   Sesudah: ['merah', 'pink', 'biru', 'kuning', 'orange', 'ungu']
-   (Elemen setelah item yang dihapus bergeser ke kiri)
+4️⃣ OPERATION: warna.insert(1, 'pink')
+   • INSERT PREPARATION: need space di index 1
+   • ELEMENT SHIFTING:
+     - Array elements di indices 1,2,3,4,5 must shift right
+     - Copy references: index 5→6, 4→5, 3→4, 2→3, 1→2 (backwards order)
+     - CPU: multiple memory copy operations untuk preserve order
+   • INSERT: place 'pink' reference di newly empty index 1
+   • UPDATE: increment length 6 → 7
+   • FINAL ORDER: ['merah', 'pink', 'hijau', 'biru', 'kuning', 'orange', 'ungu']
   ↓
-✅ Struktur list final dipertahankan dengan indeks yang diperbarui
+5️⃣ OPERATION: warna.remove('hijau')
+   • LINEAR SEARCH: iterate melalui array untuk find 'hijau'
+     - Compare references: warna[0] != 'hijau', warna[1] != 'hijau', warna[2] == 'hijau' ✓
+   • REMOVAL: found di index 2
+   • ELEMENT SHIFTING:
+     - Elements di indices 3,4,5,6 shift left ke fill gap
+     - Copy references: 3→2, 4→3, 5→4, 6→5
+   • UPDATE: decrement length 7 → 6, set index 6 = null
+   • STRING DEALLOCATION: 'hijau' eligible untuk garbage collection
+  ↓
+✅ FINAL STATE: List dengan optimized memory layout dan maintained ordering
 ```
 
 🚀 **Coba Sekarang!** 
@@ -917,33 +1081,49 @@ void main() {
 }
 ```
 
-**📋 Demonstrasi Keunikan Set:**
+**📋 Set Operations dengan Hash Table Implementation dan Uniqueness Guarantee:**
 ```
-🎯 Membuat: Set<int> angka = {1, 2, 3, 2, 1}
+🎯 SET CREATION: Dart internal hash table allocation
   ↓
-1️⃣ Proses elemen satu per satu:
-   • Tambah 1: Set menjadi {1}
-   • Tambah 2: Set menjadi {1, 2}  
-   • Tambah 3: Set menjadi {1, 2, 3}
-   • Tambah 2: Sudah ada → diabaikan, Set tetap {1, 2, 3}
-   • Tambah 1: Sudah ada → diabaikan, Set tetap {1, 2, 3}
+1️⃣ INITIALIZATION: Set<int> angka = {1, 2, 3, 2, 1}
+   • Dart allocate hash table structure di heap
+   • Hash table metadata: buckets array, load factor, collision handling
+   • ELEMENT PROCESSING (left-to-right):
   ↓
-✅ Set Final: {1, 2, 3} (duplikasi otomatis dihapus)
-
-Contoh Operasi Set:
-🎯 buah = {'apel', 'pisang', 'ceri', 'kurma'}
-   buahTropis = {'pisang', 'mangga', 'pepaya'}
+2️⃣ ELEMENT 1 (first occurrence):
+   • HASH COMPUTATION: hash(1) → hash value (contoh: 0x1A4B)
+   • BUCKET SELECTION: hash % bucket_count → bucket index
+   • COLLISION CHECK: bucket empty → no collision
+   • STORE: place value 1 di selected bucket
+   • SET STATE: {1}
   ↓
-1️⃣ Union (buah.union(buahTropis)):
-   • Gabungkan semua elemen unik dari kedua set
-   • Hasil: {'apel', 'pisang', 'ceri', 'kurma', 'mangga', 'pepaya'}
+3️⃣ ELEMENT 2:
+   • HASH: hash(2) → different hash value
+   • BUCKET: different bucket than element 1
+   • STORE: value 2 added ke hash table
+   • SET STATE: {1, 2} (order not guaranteed dalam hash table)
   ↓
-2️⃣ Intersection (buah.intersection(buahTropis)):
-   • Cari elemen yang ada di KEDUA set
-   • Elemen sama: 'pisang'
-   • Hasil: {'pisang'}
+4️⃣ ELEMENT 3:
+   • HASH: hash(3) → unique hash value
+   • STORE: value 3 added
+   • SET STATE: {1, 2, 3}
   ↓
-✅ Operasi set mempertahankan keunikan
+5️⃣ ELEMENT 2 (duplicate):
+   • HASH: hash(2) → same hash value sebagai sebelumnya
+   • BUCKET: same bucket sebagai original 2
+   • COLLISION DETECTION: bucket contains value 2
+   • EQUALITY CHECK: new value (2) == existing value (2) → true
+   • DUPLICATE HANDLING: IGNORE new value (no insertion)
+   • SET STATE: remains {1, 2, 3}
+  ↓
+6️⃣ ELEMENT 1 (duplicate):
+   • HASH: hash(1) → same hash sebagai original 1
+   • EQUALITY CHECK: duplicate detected
+   • IGNORE: no change ke set
+   • FINAL SET STATE: {1, 2, 3}
+  ↓
+✅ UNIQUENESS GUARANTEED: Hash table automatically prevents duplicates
+   Time complexity: O(1) average untuk add/contains operations
 ```
 
 🚀 **Coba Sekarang!** 
@@ -1013,32 +1193,56 @@ void main() {
 }
 ```
 
-**📋 Walkthrough Operasi Map:**
+**📋 Map Operations dengan Hash Table Key-Value Storage dan Dynamic Resizing:**
 ```
-🎯 Awal: umur = {'Alice': 25, 'Bob': 30, 'Charlie': 35}
-   Struktur: Pasangan Kunci -> Nilai
+🎯 MAP INITIALIZATION: Hash table creation dengan key-value pairs
   ↓
-1️⃣ Akses umur['Alice']:
-   • Cari kunci 'Alice'
-   • Temukan nilai terkait: 25
-   • Return: 25
+1️⃣ MAP CREATION: {'Alice': 25, 'Bob': 30, 'Charlie': 35}
+   • Dart allocate hash table structure di heap
+   • Table structure: array of buckets, each bucket dapat hold multiple key-value pairs
+   • ENTRY INSERTION PROCESS:
   ↓
-2️⃣ Tambah umur['Diana'] = 28:
-   Sebelum: {'Alice': 25, 'Bob': 30, 'Charlie': 35}
-   Sesudah: {'Alice': 25, 'Bob': 30, 'Charlie': 35, 'Diana': 28}
-   (Pasangan kunci-nilai baru ditambahkan)
+2️⃣ ENTRY: 'Alice' → 25
+   • KEY HASHING: hash('Alice') → hash value (contoh: 0x8F2A)
+   • BUCKET SELECTION: hash % bucket_count → bucket index
+   • STORAGE: create key-value pair object {'Alice': 25} di selected bucket
+   • METADATA UPDATE: increment map size counter
   ↓
-3️⃣ Update umur['Alice'] = 26:
-   Sebelum: {'Alice': 25, 'Bob': 30, 'Charlie': 35, 'Diana': 28}
-   Sesudah: {'Alice': 26, 'Bob': 30, 'Charlie': 35, 'Diana': 28}
-   (Nilai yang ada diperbarui)
+3️⃣ ACCESS OPERATION: umur['Alice']
+   • KEY LOOKUP PROCESS:
+     - Hash computation: hash('Alice') → same hash value (0x8F2A)
+     - Bucket selection: locate same bucket sebagai insertion
+     - BUCKET SEARCH: iterate melalui key-value pairs dalam bucket
+     - KEY COMPARISON: compare 'Alice' == stored key → match found
+     - VALUE RETRIEVAL: return associated value → 25
+   • CPU LOAD: value 25 loaded ke register untuk expression evaluation
   ↓
-4️⃣ Hapus umur.remove('Charlie'):
-   Sebelum: {'Alice': 26, 'Bob': 30, 'Charlie': 35, 'Diana': 28}
-   Sesudah: {'Alice': 26, 'Bob': 30, 'Diana': 28}
-   Return: 35 (nilai yang dihapus)
+4️⃣ UPDATE OPERATION: umur['Alice'] = 26
+   • KEY LOOKUP: same hashing dan bucket selection process
+   • KEY FOUND: locate existing 'Alice' entry dalam hash table
+   • VALUE UPDATE: overwrite old value (25) dengan new value (26)
+   • NO SIZE CHANGE: map size remains same (update, bukan insertion)
+   • MEMORY OPTIMIZATION: old value 25 eligible untuk garbage collection
   ↓
-✅ Map mempertahankan asosiasi kunci-nilai sepanjang operasi
+5️⃣ INSERTION: umur['Diana'] = 28
+   • NEW KEY HASHING: hash('Diana') → new hash value
+   • LOAD FACTOR CHECK: (current_size + 1) / bucket_count
+   • IF LOAD FACTOR > threshold (typically 0.75):
+     - DYNAMIC RESIZE: allocate new hash table dengan 2x bucket count
+     - REHASHING: recalculate hash values untuk all existing entries
+     - MIGRATION: move all key-value pairs ke new table structure
+     - DEALLOCATION: old table eligible untuk garbage collection
+   • INSERT: add new key-value pair ke appropriate bucket
+  ↓
+6️⃣ REMOVAL: umur.remove('Charlie')
+   • KEY LOOKUP: hash('Charlie') dan locate bucket
+   • ENTRY REMOVAL: delete key-value pair dari bucket
+   • RETURN VALUE: return removed value (35) ke caller
+   • SIZE UPDATE: decrement map size counter
+   • MEMORY CLEANUP: removed entry eligible untuk garbage collection
+  ↓
+✅ OPTIMIZED STORAGE: Hash table maintains O(1) average lookup time
+   Dynamic resizing ensures efficient memory usage dan performance
 ```
 
 🚀 **Coba Sekarang!** 
