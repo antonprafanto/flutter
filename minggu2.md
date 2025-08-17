@@ -1,15 +1,14 @@
-# 🎮 Minggu 2: Alur Kontrol, Fungsi, dan Koleksi Data di Dart
+# 📱 Minggu 2: Alur Kontrol, Fungsi, dan Koleksi Data di Dart
 
 ![Dart Badge](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
-![Control Flow](https://img.shields.io/badge/Control_Flow-FF6B6B?style=for-the-badge&logo=git&logoColor=white)
-![Functions](https://img.shields.io/badge/Functions-4ECDC4?style=for-the-badge&logo=function&logoColor=white)
-![Collections](https://img.shields.io/badge/Collections-45B7D1?style=for-the-badge&logo=database&logoColor=white)
+![Flutter Badge](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![Programming Logic](https://img.shields.io/badge/Programming-Logic-green?style=for-the-badge)
 
 ## 🎯 Tujuan Pembelajaran
 
 Setelah menyelesaikan materi minggu ini, mahasiswa diharapkan dapat:
 
-- 🎮 **Mengimplementasikan** logika kondisional menggunakan operator, pernyataan if/else, dan switch
+- 🧮 **Mengimplementasikan** logika kondisional menggunakan operator, pernyataan if/else, dan switch
 - 🔄 **Mengontrol** alur program dengan perulangan for dan while
 - ⚡ **Mendefinisikan** dan memanggil fungsi dengan parameter posisional, bernama, dan opsional
 - 📦 **Menyimpan** dan memanipulasi koleksi data menggunakan List, Set, dan Map
@@ -18,1953 +17,1368 @@ Setelah menyelesaikan materi minggu ini, mahasiswa diharapkan dapat:
 
 ## 📋 Outline Materi
 
-1. [⚖️ Operator di Dart](#️-operator-di-dart)
-2. [🎮 Pernyataan Alur Kontrol](#-pernyataan-alur-kontrol)
-3. [⚡ Fungsi di Dart](#-fungsi-di-dart)
-4. [📦 Koleksi Data](#-koleksi-data)
-5. [💻 Praktikum 2](#-praktikum-2)
+1. [🧮 Operator: Dasar Perhitungan dan Logika](#-operator-dasar-perhitungan-dan-logika)
+2. [🔄 Pernyataan Alur Kontrol](#-pernyataan-alur-kontrol)
+3. [⚡ Fungsi: Mengorganisir dan Menggunakan Kembali Kode](#-fungsi-mengorganisir-dan-menggunakan-kembali-kode)
+4. [📦 Koleksi Data: Mengelola Kelompok Data](#-koleksi-data-mengelola-kelompok-data)
+5. [💻 Praktikum 2: Tantangan Algoritmik](#-praktikum-2-tantangan-algoritmik)
 
 ---
 
-## ⚖️ Operator di Dart
+## 🧮 Operator: Dasar Perhitungan dan Logika
 
-### 🧮 Operator Aritmetika
+Operator adalah simbol-simbol yang memungkinkan program melakukan perhitungan dan membuat keputusan. Bayangkan operator seperti alat matematika dan logika yang membantu program memproses data dan mengambil keputusan berdasarkan kondisi tertentu.
 
-Operator aritmetika digunakan untuk melakukan operasi matematika dasar.
+### 🔢 Operator Aritmetika
 
-```dart
-void main() {
-  int a = 15;
-  int b = 4;
-  
-  print('a = $a, b = $b');
-  print('Penjumlahan: a + b = ${a + b}');
-  print('Pengurangan: a - b = ${a - b}');
-  print('Perkalian: a * b = ${a * b}');
-  print('Pembagian: a / b = ${a / b}');
-  print('Pembagian integer: a ~/ b = ${a ~/ b}');
-  print('Modulus: a % b = ${a % b}');
-}
-```
-
-📋 **Step-by-Step Execution:**
-```
-1️⃣ Declare a = 15        → Memory: [a: 15]
-2️⃣ Declare b = 4         → Memory: [a: 15, b: 4]
-3️⃣ Calculate a + b       → Process: 15 + 4 = 19
-4️⃣ Calculate a - b       → Process: 15 - 4 = 11
-5️⃣ Calculate a * b       → Process: 15 × 4 = 60
-6️⃣ Calculate a / b       → Process: 15 ÷ 4 = 3.75 (double)
-7️⃣ Calculate a ~/ b      → Process: 15 ÷ 4 = 3 (integer division)
-8️⃣ Calculate a % b       → Process: 15 mod 4 = 3 (remainder)
-```
-
-🚀 **Coba Sekarang!** 
-Copy code di atas dan jalankan di: https://zapp.run/
-
-### 🎯 Operator Perbandingan
+Operator aritmetika digunakan untuk melakukan perhitungan matematika dasar seperti penjumlahan, pengurangan, perkalian, dan pembagian.
 
 ```dart
 void main() {
-  int score1 = 85;
-  int score2 = 92;
+  int nilai1 = 10;
+  int nilai2 = 3;
   
-  print('Score 1: $score1, Score 2: $score2');
-  print('Equal (==): ${score1 == score2}');
-  print('Not Equal (!=): ${score1 != score2}');
-  print('Less than (<): ${score1 < score2}');
-  print('Greater than (>): ${score1 > score2}');
-  print('Less or equal (<=): ${score1 <= score2}');
-  print('Greater or equal (>=): ${score1 >= score2}');
+  print('Penjumlahan: ${nilai1 + nilai2}');        // 13
+  print('Pengurangan: ${nilai1 - nilai2}');       // 7  
+  print('Perkalian: ${nilai1 * nilai2}');         // 30
+  print('Pembagian: ${nilai1 / nilai2}');         // 3.3333...
+  print('Pembagian Bulat: ${nilai1 ~/ nilai2}');  // 3
+  print('Sisa Bagi: ${nilai1 % nilai2}');         // 1
 }
 ```
 
-📊 **Comparison Logic:**
+**📋 Penjelasan Langkah demi Langkah:**
 ```
-📥 Input: score1=85, score2=92
+🎯 MULAI: nilai1 = 10, nilai2 = 3
   ↓
-🔍 Compare Operations:
-  ├─ 85 == 92? → false ❌
-  ├─ 85 != 92? → true ✅
-  ├─ 85 < 92?  → true ✅
-  ├─ 85 > 92?  → false ❌
-  ├─ 85 <= 92? → true ✅
-  └─ 85 >= 92? → false ❌
+1️⃣ Penjumlahan (nilai1 + nilai2): 10 + 3 = 13
+  ↓
+2️⃣ Pengurangan (nilai1 - nilai2): 10 - 3 = 7
+  ↓
+3️⃣ Perkalian (nilai1 * nilai2): 10 × 3 = 30
+  ↓
+4️⃣ Pembagian (nilai1 / nilai2): 10 ÷ 3 = 3.333... (hasilnya double)
+  ↓
+5️⃣ Pembagian Bulat (nilai1 ~/ nilai2): 10 ÷ 3 = 3 (hasilnya int, tanpa sisa)
+  ↓
+6️⃣ Sisa Bagi (nilai1 % nilai2): 10 % 3 = 1 (sisa dari pembagian)
+  ↓
+✅ SELESAI: Semua operasi aritmetika selesai
 ```
 
 🚀 **Coba Sekarang!** 
-Experiment dengan nilai berbeda di: https://zapp.run/
+Silakan copy kode di atas dan coba jalankan di: https://zapp.run/
+
+### 📈 Operator Increment dan Decrement
+
+Operator ini memberikan cara singkat untuk menambah atau mengurangi nilai sebesar satu. Sangat berguna dalam perulangan dan penghitungan.
+
+```dart
+void main() {
+  int penghitung = 5;
+  
+  print('Nilai awal: $penghitung');              // 5
+  print('Post-increment: ${penghitung++}');      // 5 (tampilkan dulu, baru tambah)
+  print('Setelah increment: $penghitung');       // 6
+  
+  print('Pre-increment: ${++penghitung}');       // 7 (tambah dulu, baru tampilkan)
+  print('Pre-decrement: ${--penghitung}');       // 6 (kurangi dulu, baru tampilkan)
+  print('Post-decrement: ${penghitung--}');      // 6 (tampilkan dulu, baru kurangi)
+  print('Nilai akhir: $penghitung');             // 5
+}
+```
+
+**📋 Alur Eksekusi:**
+```
+🎯 MULAI: penghitung = 5
+  ↓
+1️⃣ penghitung++ (post-increment):
+    • Tampilkan nilai saat ini: 5
+    • Kemudian tambahkan: penghitung menjadi 6
+  ↓
+2️⃣ ++penghitung (pre-increment):
+    • Tambahkan terlebih dahulu: penghitung menjadi 7
+    • Kemudian tampilkan: 7
+  ↓
+3️⃣ --penghitung (pre-decrement):
+    • Kurangi terlebih dahulu: penghitung menjadi 6
+    • Kemudian tampilkan: 6
+  ↓
+4️⃣ penghitung-- (post-decrement):
+    • Tampilkan nilai saat ini: 6
+    • Kemudian kurangi: penghitung menjadi 5
+  ↓
+✅ SELESAI: penghitung = 5
+```
+
+🚀 **Coba Sekarang!** 
+Eksperimen dengan operator increment di: https://zapp.run/
+
+### ⚖️ Operator Perbandingan
+
+Operator perbandingan membandingkan dua nilai dan menghasilkan nilai boolean (true atau false). Operator ini sangat penting untuk membuat keputusan dalam program.
+
+```dart
+void main() {
+  int umur = 20;
+  int batasMinum = 21;
+  int batasVoting = 17;
+  
+  // Operator kesetaraan
+  print('umur == batasMinum: ${umur == batasMinum}');  // false (tidak sama)
+  print('umur != batasVoting: ${umur != batasVoting}'); // true (tidak sama)
+  
+  // Operator relasional
+  print('umur < batasMinum: ${umur < batasMinum}');    // true (kurang dari)
+  print('umur > batasVoting: ${umur > batasVoting}');  // true (lebih dari)
+  print('umur <= batasMinum: ${umur <= batasMinum}');  // true (kurang dari atau sama dengan)
+  print('umur >= batasVoting: ${umur >= batasVoting}'); // true (lebih dari atau sama dengan)
+}
+```
+
+**📋 Logika Perbandingan:**
+```
+🎯 Nilai: umur=20, batasMinum=21, batasVoting=17
+  ↓
+1️⃣ umur == batasMinum: 20 == 21 → false ❌
+2️⃣ umur != batasVoting: 20 != 17 → true ✅
+3️⃣ umur < batasMinum: 20 < 21 → true ✅
+4️⃣ umur > batasVoting: 20 > 17 → true ✅
+5️⃣ umur <= batasMinum: 20 <= 21 → true ✅ (sama dengan juga dihitung)
+6️⃣ umur >= batasVoting: 20 >= 17 → true ✅ (lebih besar memenuhi syarat)
+  ↓
+✅ Semua perbandingan menghasilkan nilai boolean
+```
+
+🚀 **Coba Sekarang!** 
+Test berbagai perbandingan di: https://zapp.run/
 
 ### 🧠 Operator Logika
 
+Operator logika menggabungkan beberapa kondisi boolean untuk membuat pernyataan kondisional yang lebih kompleks. Seperti kata sambung dalam bahasa Indonesia: "dan", "atau", "bukan".
+
 ```dart
 void main() {
-  bool isStudent = true;
-  bool hasDiscount = false;
-  int age = 20;
+  bool mahasiswa = true;
+  bool punyaKTP = false;
+  int umur = 19;
   
-  print('Student: $isStudent, Discount: $hasDiscount, Age: $age');
+  // Operator AND (&&) - kedua kondisi harus benar
+  bool bisaMasukPerpustakaan = mahasiswa && punyaKTP;
+  print('Bisa masuk perpustakaan: $bisaMasukPerpustakaan'); // false
   
-  // AND operator (&&)
-  bool canGetStudentDiscount = isStudent && (age < 25);
-  print('Can get student discount: $canGetStudentDiscount');
+  // Operator OR (||) - salah satu kondisi harus benar
+  bool dapatDiskon = mahasiswa || (umur < 18);
+  print('Dapat diskon: $dapatDiskon'); // true
   
-  // OR operator (||)
-  bool eligibleForDiscount = hasDiscount || isStudent;
-  print('Eligible for discount: $eligibleForDiscount');
+  // Operator NOT (!) - membalik nilai boolean
+  bool bukanMahasiswa = !mahasiswa;
+  print('Bukan mahasiswa: $bukanMahasiswa'); // false
   
-  // NOT operator (!)
-  bool isNotStudent = !isStudent;
-  print('Is not student: $isNotStudent');
-  
-  // Complex logic
-  bool specialOffer = (isStudent && age < 25) || hasDiscount;
-  print('Special offer applies: $specialOffer');
+  // Ekspresi logika kompleks
+  bool layakProgram = mahasiswa && (umur >= 18) && (punyaKTP || umur > 21);
+  print('Layak untuk program: $layakProgram'); // false
 }
 ```
 
-🧩 **Logic Flow:**
+**📋 Proses Evaluasi Logika:**
 ```
-📥 Input: isStudent=true, hasDiscount=false, age=20
+🎯 Diketahui: mahasiswa=true, punyaKTP=false, umur=19
   ↓
-🧠 Logical Operations:
-  ├─ AND: isStudent && (age < 25)
-  │   └─ true && (20 < 25) → true && true → true ✅
-  ├─ OR: hasDiscount || isStudent  
-  │   └─ false || true → true ✅
-  ├─ NOT: !isStudent
-  │   └─ !true → false ❌
-  └─ COMPLEX: (isStudent && age < 25) || hasDiscount
-      └─ (true && true) || false → true || false → true ✅
+1️⃣ bisaMasukPerpustakaan = mahasiswa && punyaKTP
+    true && false = false ❌ (keduanya harus true)
+  ↓
+2️⃣ dapatDiskon = mahasiswa || (umur < 18)
+    true || (19 < 18) = true || false = true ✅ (salah satu true)
+  ↓  
+3️⃣ bukanMahasiswa = !mahasiswa
+    !true = false ❌ (NOT membalik nilai)
+  ↓
+4️⃣ layakProgram = mahasiswa && (umur >= 18) && (punyaKTP || umur > 21)
+    true && (19 >= 18) && (false || 19 > 21)
+    = true && true && (false || false)
+    = true && true && false = false ❌
+  ↓
+✅ SELESAI: Logika kompleks dievaluasi langkah demi langkah
 ```
 
 🚀 **Coba Sekarang!** 
-Test logical operations di: https://zapp.run/
+Praktikkan kombinasi operator logika di: https://zapp.run/
 
 ---
 
-## 🎮 Pernyataan Alur Kontrol
+## 🔄 Pernyataan Alur Kontrol
 
-### 🔀 Conditional Statements (if-else)
+Pernyataan alur kontrol memungkinkan program membuat keputusan dan mengulang operasi berdasarkan kondisi tertentu. Mereka seperti rambu lalu lintas yang mengatur alur eksekusi program.
 
-#### Basic if-else
+### 🤔 Pernyataan If-Else
+
+Pernyataan if-else memungkinkan eksekusi kondisional berdasarkan ekspresi boolean. Seperti membuat keputusan dalam kehidupan sehari-hari: "Jika hujan, bawa payung. Jika tidak, bawa topi."
 
 ```dart
 void main() {
-  int temperature = 25;
+  int suhu = 28;
+  String cuaca = 'cerah';
   
-  if (temperature > 30) {
-    print('Hari ini panas! 🌞');
-  } else if (temperature > 20) {
-    print('Cuaca nyaman 😊');
-  } else {
-    print('Dingin, pakai jaket! 🧥');
+  // Pernyataan if sederhana
+  if (suhu > 30) {
+    print('Cuaca sangat panas! Minum air yang banyak.');
   }
   
-  // Ternary operator (shorthand)
-  String weather = temperature > 25 ? 'Hangat' : 'Sejuk';
-  print('Cuaca hari ini: $weather');
-}
-```
-
-🌡️ **Decision Flow:**
-```
-📥 Input: temperature = 25
-  ↓
-❓ temperature > 30?
-  ↙️ [NO] ❌
-❓ temperature > 20?
-  ↙️ [YES] ✅
-📤 Output: "Cuaca nyaman 😊"
-  ↓
-🎯 Ternary: 25 > 25? → false → "Sejuk"
-```
-
-🚀 **Coba Sekarang!** 
-Ubah nilai temperature dan test di: https://zapp.run/
-
-#### Advanced Conditional Logic
-
-```dart
-void main() {
-  String userRole = 'student';
-  int age = 19;
-  bool isActive = true;
+  // Pernyataan if-else
+  if (suhu < 15) {
+    print('Pakai jaket tebal');
+  } else {
+    print('Pakaian ringan sudah cukup');
+  }
   
-  // Nested conditions
-  if (isActive) {
-    if (userRole == 'student') {
-      if (age < 25) {
-        print('✅ Student discount: 50% off');
-      } else {
-        print('✅ Student discount: 20% off');
-      }
-    } else if (userRole == 'teacher') {
-      print('✅ Teacher discount: 30% off');
+  // Rantai if-else if-else
+  if (suhu >= 35) {
+    print('Sangat panas - tetap terhidrasi');
+  } else if (suhu >= 25) {
+    print('Hangat dan menyenangkan');
+  } else if (suhu >= 15) {
+    print('Sejuk tapi nyaman');
+  } else {
+    print('Dingin - pakai pakaian hangat');
+  }
+  
+  // Pernyataan if bersarang
+  if (suhu > 20) {
+    if (cuaca == 'cerah') {
+      print('Hari yang sempurna untuk aktivitas outdoor!');
     } else {
-      print('✅ Regular price');
+      print('Hangat tapi periksa cuaca dulu');
     }
-  } else {
-    print('❌ Account inactive');
   }
-  
-  // Complex boolean logic
-  bool eligibleForPremium = (userRole == 'student' && age >= 18) || 
-                           (userRole == 'teacher') ||
-                           (age >= 21 && isActive);
-  
-  print('Premium eligible: $eligibleForPremium');
 }
 ```
 
-🎯 **Complex Logic Flow:**
+**📋 Alur Pohon Keputusan:**
 ```
-📥 Input: userRole='student', age=19, isActive=true
+🎯 suhu = 28, cuaca = 'cerah'
   ↓
-1️⃣ Check isActive? → true ✅
+1️⃣ if (suhu > 30): 28 > 30? → false ❌
+   Lewati: "Cuaca sangat panas!" tidak dicetak
   ↓
-2️⃣ Check userRole? → 'student' ✅
+2️⃣ if (suhu < 15): 28 < 15? → false ❌
+   else: Cetak "Pakaian ringan sudah cukup" ✅
   ↓
-3️⃣ Check age < 25? → 19 < 25 → true ✅
+3️⃣ Pengecekan multi-cabang:
+   • suhu >= 35? 28 >= 35? → false ❌
+   • suhu >= 25? 28 >= 25? → true ✅
+   Cetak: "Hangat dan menyenangkan"
+   (Lewati kondisi sisanya)
   ↓
-📤 Output: "Student discount: 50% off"
+4️⃣ Kondisi bersarang:
+   • suhu > 20? 28 > 20? → true ✅
+   • cuaca == 'cerah'? 'cerah' == 'cerah'? → true ✅
+   Cetak: "Hari yang sempurna untuk aktivitas outdoor!"
   ↓
-🧮 Premium Logic:
-  ├─ (student && age >= 18) → (true && true) → true ✅
-  ├─ OR teacher → false
-  ├─ OR (age >= 21 && active) → false
-  └─ Result: true ✅
-```
-
-🚀 **Coba Sekarang!** 
-Explore different user scenarios di: https://zapp.run/
-
-### 🔄 Switch Statements
-
-```dart
-void main() {
-  String grade = 'B';
-  
-  switch (grade) {
-    case 'A':
-      print('Excellent! 🌟');
-      print('Scholarship eligible');
-      break;
-    case 'B':
-      print('Good job! 👍');
-      print('Above average performance');
-      break;
-    case 'C':
-      print('Average 📊');
-      break;
-    case 'D':
-      print('Below average ⚠️');
-      print('Need improvement');
-      break;
-    case 'F':
-      print('Failed ❌');
-      print('Retake required');
-      break;
-    default:
-      print('Invalid grade');
-  }
-  
-  // Modern switch expression (Dart 3.0+)
-  String message = switch (grade) {
-    'A' => 'Outstanding! 🎉',
-    'B' => 'Well done! 👏',
-    'C' => 'Satisfactory 📝',
-    'D' => 'Needs work 📚',
-    'F' => 'Must retake 🔄',
-    _ => 'Unknown grade'
-  };
-  
-  print('Switch expression result: $message');
-}
-```
-
-🎚️ **Switch Logic:**
-```
-📥 Input: grade = 'B'
-  ↓
-🔍 Switch Matching:
-  ├─ case 'A'? → NO ❌
-  ├─ case 'B'? → YES ✅
-  │   ├─ Execute: print('Good job! 👍')
-  │   ├─ Execute: print('Above average performance')
-  │   └─ break → Exit switch
-  └─ Skip remaining cases
-  ↓
-🎯 Switch Expression: 'B' → 'Well done! 👏'
+✅ SELESAI: Beberapa kondisi dievaluasi secara independen
 ```
 
 🚀 **Coba Sekarang!** 
-Test dengan grade yang berbeda di: https://zapp.run/
+Eksperimen dengan berbagai kondisi di: https://zapp.run/
 
-### 🔁 Perulangan (Loops)
+### 🔁 Perulangan For
 
-#### For Loop
+Perulangan for menyediakan pengulangan terkontrol dengan inisialisasi, pengecekan kondisi, dan operasi increment. Sangat berguna ketika kita tahu berapa kali ingin mengulang sesuatu.
 
 ```dart
 void main() {
-  print('=== BASIC FOR LOOP ===');
+  // Perulangan for standar
+  print('Hitung mundur:');
+  for (int i = 5; i >= 1; i--) {
+    print('$i...');
+  }
+  print('Selamat! 🎉');
   
-  // Traditional for loop
-  for (int i = 1; i <= 5; i++) {
-    print('Count: $i');
+  // Perulangan for dengan list
+  List<String> buah = ['apel', 'pisang', 'jeruk'];
+  print('\nBuah dalam keranjang:');
+  for (int i = 0; i < buah.length; i++) {
+    print('${i + 1}. ${buah[i]}');
   }
   
-  print('\n=== FOR-IN LOOP ===');
-  
-  // For-in loop dengan List
-  List<String> fruits = ['Apple', 'Banana', 'Orange', 'Mango'];
-  
-  for (String fruit in fruits) {
-    print('Fruit: $fruit');
+  // Perulangan for-in (perulangan yang disempurnakan)
+  print('\nWarna favorit:');
+  List<String> warna = ['merah', 'hijau', 'biru'];
+  for (String warna_item in warna) {
+    print('Saya suka warna $warna_item');
   }
   
-  print('\n=== FOR LOOP WITH INDEX ===');
-  
-  // Loop dengan index dan value
-  for (int i = 0; i < fruits.length; i++) {
-    print('Index $i: ${fruits[i]}');
-  }
-  
-  print('\n=== NESTED FOR LOOP ===');
-  
-  // Nested loop untuk multiplication table
-  for (int i = 1; i <= 3; i++) {
-    for (int j = 1; j <= 3; j++) {
-      print('$i × $j = ${i * j}');
+  // Perulangan for bersarang - tabel perkalian
+  print('\nTabel Perkalian (3x3):');
+  for (int baris = 1; baris <= 3; baris++) {
+    for (int kolom = 1; kolom <= 3; kolom++) {
+      print('$baris x $kolom = ${baris * kolom}');
     }
-    print('---');
   }
 }
 ```
 
-🔄 **Loop Execution Flow:**
+**📋 Pola Eksekusi Perulangan For:**
 ```
-🎯 Traditional For Loop:
-  ├─ Initialize: i = 1
-  ├─ Check: i <= 5? → true ✅
-  ├─ Execute: print('Count: 1')
-  ├─ Increment: i++ → i = 2
-  ├─ Check: i <= 5? → true ✅
-  ├─ Execute: print('Count: 2')
-  └─ Continue until i > 5 ❌
-
-🎯 For-In Loop:
-  fruits = ['Apple', 'Banana', 'Orange', 'Mango']
-  ├─ fruit = 'Apple' → print('Fruit: Apple')
-  ├─ fruit = 'Banana' → print('Fruit: Banana')
-  ├─ fruit = 'Orange' → print('Fruit: Orange')
-  └─ fruit = 'Mango' → print('Fruit: Mango')
-
-🎯 Nested Loop (i=1):
-  ├─ j=1: print('1 × 1 = 1')
-  ├─ j=2: print('1 × 2 = 2')
-  └─ j=3: print('1 × 3 = 3')
+Perulangan For Standar: for (int i = 5; i >= 1; i--)
+🎯 INISIALISASI: i = 5
+  ↓
+1️⃣ CEK KONDISI: i >= 1? (5 >= 1) → true ✅
+   JALANKAN BLOK: print('5...')
+   UPDATE: i-- (i menjadi 4)
+  ↓
+2️⃣ CEK KONDISI: i >= 1? (4 >= 1) → true ✅
+   JALANKAN BLOK: print('4...')  
+   UPDATE: i-- (i menjadi 3)
+  ↓
+3️⃣ CEK KONDISI: i >= 1? (3 >= 1) → true ✅
+   JALANKAN BLOK: print('3...')
+   UPDATE: i-- (i menjadi 2)
+  ↓
+4️⃣ CEK KONDISI: i >= 1? (2 >= 1) → true ✅
+   JALANKAN BLOK: print('2...')
+   UPDATE: i-- (i menjadi 1)
+  ↓
+5️⃣ CEK KONDISI: i >= 1? (1 >= 1) → true ✅
+   JALANKAN BLOK: print('1...')
+   UPDATE: i-- (i menjadi 0)
+  ↓
+6️⃣ CEK KONDISI: i >= 1? (0 >= 1) → false ❌
+   KELUAR DARI PERULANGAN
+  ↓
+✅ Lanjutkan dengan: print('Selamat! 🎉')
 ```
 
 🚀 **Coba Sekarang!** 
-Experiment dengan loop patterns di: https://zapp.run/
+Test berbagai pola perulangan di: https://zapp.run/
 
-#### While dan Do-While Loop
+### 🔄 Perulangan While
+
+Perulangan while terus mengeksekusi selama kondisi yang ditentukan tetap true. Berguna ketika kita tidak tahu pasti berapa kali perulangan akan berjalan.
 
 ```dart
 void main() {
-  print('=== WHILE LOOP ===');
-  
-  int countdown = 5;
-  while (countdown > 0) {
-    print('Countdown: $countdown');
-    countdown--;
+  // Perulangan while dasar
+  int hitungan = 1;
+  print('Menghitung naik:');
+  while (hitungan <= 3) {
+    print('Hitungan: $hitungan');
+    hitungan++; // Penting: update variabel kondisi
   }
-  print('Blast off! 🚀');
   
-  print('\n=== DO-WHILE LOOP ===');
-  
-  int attempts = 0;
-  int target = 3;
-  
+  // Perulangan do-while (eksekusi minimal sekali)
+  int angka = 10;
+  print('\nContoh do-while:');
   do {
-    attempts++;
-    print('Attempt $attempts');
-  } while (attempts < target);
+    print('Angka: $angka');
+    angka += 5;
+  } while (angka < 15);
   
-  print('\n=== PRACTICAL EXAMPLE ===');
+  // Perulangan while dengan simulasi input pengguna
+  List<String> respon = ['ya', 'ya', 'tidak'];
+  int indeksRespon = 0;
   
-  // Guessing game simulation
-  int secretNumber = 7;
-  int guess = 1;
-  int tries = 0;
-  
-  while (guess != secretNumber) {
-    tries++;
-    print('Try $tries: Guessing $guess');
-    
-    if (guess < secretNumber) {
-      print('Too low! 📉');
-    } else {
-      print('Too high! 📈');
-    }
-    
-    guess++; // Simulate next guess
-    
-    // Safety check to prevent infinite loop
-    if (tries >= 10) {
-      print('Too many attempts!');
-      break;
-    }
+  print('\nSimulasi interaksi pengguna:');
+  while (indeksRespon < respon.length && respon[indeksRespon] == 'ya') {
+    print('Lanjutkan? ${respon[indeksRespon]}');
+    indeksRespon++;
   }
-  
-  if (guess == secretNumber) {
-    print('🎉 Found it! Number was $secretNumber in $tries tries');
-  }
+  print('Berhenti karena pengguna menjawab: ${respon[indeksRespon - 1]}');
 }
 ```
 
-🎲 **While Loop Logic:**
+**📋 Eksekusi Perulangan While:**
 ```
-🎯 While Loop:
-  countdown = 5
-  ├─ Check: 5 > 0? → true ✅ → Execute & Decrement
-  ├─ Check: 4 > 0? → true ✅ → Execute & Decrement  
-  ├─ Check: 3 > 0? → true ✅ → Execute & Decrement
-  ├─ Check: 2 > 0? → true ✅ → Execute & Decrement
-  ├─ Check: 1 > 0? → true ✅ → Execute & Decrement
-  └─ Check: 0 > 0? → false ❌ → Exit
+Perulangan While: while (hitungan <= 3)
+🎯 INISIALISASI: hitungan = 1
+  ↓
+1️⃣ CEK: hitungan <= 3? (1 <= 3) → true ✅
+   EKSEKUSI: print('Hitungan: 1')
+   UPDATE: hitungan++ (hitungan = 2)
+  ↓
+2️⃣ CEK: hitungan <= 3? (2 <= 3) → true ✅
+   EKSEKUSI: print('Hitungan: 2')
+   UPDATE: hitungan++ (hitungan = 3)
+  ↓
+3️⃣ CEK: hitungan <= 3? (3 <= 3) → true ✅
+   EKSEKUSI: print('Hitungan: 3')
+   UPDATE: hitungan++ (hitungan = 4)
+  ↓
+4️⃣ CEK: hitungan <= 3? (4 <= 3) → false ❌
+   KELUAR DARI PERULANGAN
+  ↓
+✅ Perulangan berakhir, lanjutkan kode berikutnya
 
-🎯 Do-While Loop:
-  attempts = 0, target = 3
-  ├─ Execute: attempts++ → attempts = 1
-  ├─ Check: 1 < 3? → true ✅ → Continue
-  ├─ Execute: attempts++ → attempts = 2  
-  ├─ Check: 2 < 3? → true ✅ → Continue
-  ├─ Execute: attempts++ → attempts = 3
-  └─ Check: 3 < 3? → false ❌ → Exit
+Perulangan Do-While: do { ... } while (angka < 15)
+🎯 INISIALISASI: angka = 10
+  ↓
+1️⃣ EKSEKUSI DULU: print('Angka: 10') (selalu jalan sekali)
+   UPDATE: angka += 5 (angka = 15)
+  ↓
+2️⃣ CEK: angka < 15? (15 < 15) → false ❌
+   KELUAR DARI PERULANGAN
+  ↓
+✅ Dieksekusi sekali, kemudian berakhir
 ```
 
 🚀 **Coba Sekarang!** 
-Try different countdown values di: https://zapp.run/
+Praktikkan perulangan while di: https://zapp.run/
 
-#### Loop Control: break dan continue
+### ⏭️ Pernyataan Break dan Continue
+
+Pernyataan break dan continue memberikan kontrol yang lebih halus terhadap eksekusi perulangan. Break menghentikan perulangan sepenuhnya, sedangkan continue melompat ke iterasi berikutnya.
 
 ```dart
 void main() {
-  print('=== BREAK EXAMPLE ===');
-  
-  // Finding first even number > 10
-  for (int i = 11; i <= 20; i++) {
+  // Pernyataan break - keluar dari perulangan sepenuhnya
+  print('Mencari bilangan genap pertama:');
+  for (int i = 1; i <= 10; i++) {
     if (i % 2 == 0) {
-      print('First even number > 10: $i');
-      break; // Exit loop immediately
+      print('Bilangan genap ditemukan: $i');
+      break; // Keluar dari perulangan seketika
     }
-    print('Checking $i (odd)');
+    print('$i adalah ganjil, lanjutkan...');
   }
   
-  print('\n=== CONTINUE EXAMPLE ===');
-  
-  // Print only positive numbers
-  List<int> numbers = [-2, -1, 0, 1, 2, 3, 4, 5];
-  
-  for (int num in numbers) {
-    if (num <= 0) {
-      continue; // Skip to next iteration
+  print('\nMelewati bilangan ganjil dengan continue:');
+  for (int i = 1; i <= 6; i++) {
+    if (i % 2 == 1) {
+      continue; // Lewati ke iterasi berikutnya
     }
-    print('Positive number: $num');
+    print('Bilangan genap: $i');
   }
   
-  print('\n=== NESTED LOOP WITH LABELS ===');
-  
-  // Matrix search with labeled breaks
-  List<List<int>> matrix = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
-  ];
-  
-  int target = 6;
-  bool found = false;
-  
-  outerLoop:
-  for (int i = 0; i < matrix.length; i++) {
-    for (int j = 0; j < matrix[i].length; j++) {
-      print('Checking matrix[$i][$j] = ${matrix[i][j]}');
-      
-      if (matrix[i][j] == target) {
-        print('🎯 Found $target at position [$i][$j]');
-        found = true;
-        break outerLoop; // Break from both loops
+  // Perulangan bersarang dengan labeled break
+  print('\nMencari dalam grid 2D:');
+  perulangan_luar: for (int baris = 1; baris <= 3; baris++) {
+    for (int kolom = 1; kolom <= 3; kolom++) {
+      print('Memeriksa posisi ($baris, $kolom)');
+      if (baris == 2 && kolom == 2) {
+        print('Target ditemukan di (2, 2)!');
+        break perulangan_luar; // Keluar dari kedua perulangan
       }
     }
   }
-  
-  if (!found) {
-    print('❌ $target not found in matrix');
-  }
+  print('Pencarian selesai');
 }
 ```
 
-🎯 **Control Flow Logic:**
+**📋 Alur Break dan Continue:**
 ```
-🛑 Break Example:
-  i = 11 → 11 % 2 == 0? → false → Print "Checking 11 (odd)"
-  i = 12 → 12 % 2 == 0? → true ✅ → Print result & BREAK
-  └─ Loop terminated early
+Contoh Break: Mencari bilangan genap pertama
+🎯 Perulangan: i dari 1 sampai 10
+  ↓
+1️⃣ i=1: 1%2==0? → false ❌, print "1 adalah ganjil, lanjutkan..."
+2️⃣ i=2: 2%2==0? → true ✅, print "Bilangan genap ditemukan: 2"
+   BREAK → Keluar dari perulangan seketika
+  ↓
+✅ Perulangan berakhir di i=2, iterasi sisanya dilewati
 
-⏭️ Continue Example:
-  numbers = [-2, -1, 0, 1, 2, 3, 4, 5]
-  ├─ -2 ≤ 0? → true → CONTINUE (skip)
-  ├─ -1 ≤ 0? → true → CONTINUE (skip)
-  ├─ 0 ≤ 0? → true → CONTINUE (skip)
-  ├─ 1 ≤ 0? → false → Print "Positive number: 1"
-  └─ Continue for remaining positive numbers...
-
-🏷️ Labeled Break:
-  Outer loop i=0: Check [1,2,3]
-  Outer loop i=1: Check [4,5,6]
-    ├─ j=0: Check 4
-    ├─ j=1: Check 5  
-    └─ j=2: Check 6 → FOUND! → Break outerLoop
+Contoh Continue: Melewati bilangan ganjil  
+🎯 Perulangan: i dari 1 sampai 6
+  ↓
+1️⃣ i=1: 1%2==1? → true ✅, CONTINUE → lewati ke i=2
+2️⃣ i=2: 2%2==1? → false ❌, print "Bilangan genap: 2"
+3️⃣ i=3: 3%2==1? → true ✅, CONTINUE → lewati ke i=4
+4️⃣ i=4: 4%2==1? → false ❌, print "Bilangan genap: 4"
+5️⃣ i=5: 5%2==1? → true ✅, CONTINUE → lewati ke i=6
+6️⃣ i=6: 6%2==1? → false ❌, print "Bilangan genap: 6"
+  ↓
+✅ Hanya bilangan genap yang dicetak: 2, 4, 6
 ```
 
 🚀 **Coba Sekarang!** 
-Modify target values dan test di: https://zapp.run/
+Eksperimen dengan break dan continue di: https://zapp.run/
 
 ---
 
-## ⚡ Fungsi di Dart
+## ⚡ Fungsi: Mengorganisir dan Menggunakan Kembali Kode
 
-### 📝 Basic Function Declaration
+Fungsi adalah blok kode yang dapat digunakan kembali dan melakukan tugas tertentu. Bayangkan fungsi seperti alat khusus—masing-masing dirancang untuk menyelesaikan pekerjaan tertentu dan dapat digunakan kapan saja ketika pekerjaan itu perlu dilakukan.
+
+### 📝 Mendefinisikan Fungsi Dasar
+
+Fungsi membantu kita mengorganisir kode menjadi bagian-bagian yang lebih kecil dan mudah dikelola. Seperti membagi pekerjaan besar menjadi tugas-tugas kecil yang spesifik.
 
 ```dart
-void main() {
-  // Calling functions
-  greet();
-  sayHello('Alice');
-  
-  int result = add(10, 5);
-  print('Addition result: $result');
-  
-  double area = calculateRectangleArea(5.0, 3.0);
-  print('Rectangle area: $area');
-  
-  // Using functions with return values
-  String message = createWelcomeMessage('Bob', 25);
-  print(message);
+// Fungsi tanpa parameter dan tanpa nilai kembali
+void sapaUser() {
+  print('Selamat datang di aplikasi Flutter kami!');
 }
 
-// Function without parameters and return value
-void greet() {
-  print('Hello, World! 👋');
-}
-
-// Function with parameter
-void sayHello(String name) {
-  print('Hello, $name! 🙋‍♂️');
-}
-
-// Function with return value
-int add(int a, int b) {
+// Fungsi dengan parameter dan nilai kembali
+int tambahAngka(int a, int b) {
   return a + b;
 }
 
-// Function with multiple parameters and return value
-double calculateRectangleArea(double length, double width) {
-  double area = length * width;
-  return area;
-}
+// Fungsi dengan inferensi tipe return
+hitungLuas(double jariJari) => 3.14159 * jariJari * jariJari;
 
-// Function with complex logic
-String createWelcomeMessage(String name, int age) {
-  if (age < 18) {
-    return 'Welcome young $name! 🧒';
-  } else if (age < 60) {
-    return 'Welcome $name! 👨‍💼';
-  } else {
-    return 'Welcome respected $name! 👴';
-  }
+void main() {
+  // Memanggil fungsi
+  sapaUser();
+  
+  int jumlah = tambahAngka(5, 3);
+  print('Jumlah: $jumlah');
+  
+  double luas = hitungLuas(5.0);
+  print('Luas: ${luas.toStringAsFixed(2)}');
 }
 ```
 
-⚡ **Function Execution Flow:**
+**📋 Alur Eksekusi Fungsi:**
 ```
-🎯 Function Call: greet()
-  ├─ Execute function body
-  └─ Print: "Hello, World! 👋"
-
-🎯 Function Call: sayHello('Alice')
-  ├─ Parameter: name = 'Alice'
-  ├─ Execute function body  
-  └─ Print: "Hello, Alice! 🙋‍♂️"
-
-🎯 Function Call: add(10, 5)
-  ├─ Parameters: a = 10, b = 5
-  ├─ Calculate: 10 + 5 = 15
-  ├─ Return: 15
-  └─ Assign to result variable
-
-🎯 Function Call: createWelcomeMessage('Bob', 25)
-  ├─ Parameters: name = 'Bob', age = 25
-  ├─ Check: age < 18? → false
-  ├─ Check: age < 60? → true ✅
-  ├─ Return: 'Welcome Bob! 👨‍💼'
-  └─ Assign to message variable
+🎯 Program dimulai di main()
+  ↓
+1️⃣ Panggil sapaUser():
+   • Lompat ke fungsi sapaUser()
+   • Eksekusi: print('Selamat datang di aplikasi Flutter kami!')
+   • Kembali ke main() (fungsi void tidak mengembalikan apa-apa)
+  ↓
+2️⃣ Panggil tambahAngka(5, 3):
+   • Lompat ke tambahAngka() dengan a=5, b=3
+   • Hitung: return 5 + 3
+   • Kembalikan nilai 8 ke main()
+   • Simpan dalam variabel jumlah
+  ↓
+3️⃣ Panggil hitungLuas(5.0):
+   • Lompat ke hitungLuas() dengan jariJari=5.0
+   • Hitung: 3.14159 * 5.0 * 5.0 = 78.539...
+   • Kembalikan nilai ke main()
+   • Simpan dalam variabel luas
+  ↓
+✅ Semua pemanggilan fungsi selesai, lanjutkan main()
 ```
 
 🚀 **Coba Sekarang!** 
-Create your own functions di: https://zapp.run/
+Buat fungsi pertama Anda di: https://zapp.run/
 
-### 🎯 Advanced Function Features
+### 🎛️ Jenis-jenis Parameter
 
-#### Optional Parameters
+Dart mendukung berbagai jenis parameter untuk membuat fungsi lebih fleksibel dan mudah digunakan. Seperti memberikan pilihan cara untuk menyampaikan informasi ke fungsi.
 
 ```dart
+// Parameter posisi wajib
+String buatPesan(String nama, int umur) {
+  return 'Halo $nama, kamu berumur $umur tahun';
+}
+
+// Parameter posisi opsional (dalam tanda kurung siku)
+String formatNama(String namaDepan, [String? namaBelakang]) {
+  if (namaBelakang != null) {
+    return '$namaDepan $namaBelakang';
+  }
+  return namaDepan;
+}
+
+// Parameter bernama (dalam tanda kurung kurawal)
+void tampilkanInfoUser({required String nama, int umur = 18, String? email}) {
+  print('Nama: $nama');
+  print('Umur: $umur');
+  if (email != null) {
+    print('Email: $email');
+  }
+}
+
+// Parameter campuran (posisi, kemudian bernama)
+void daftarUser(String username, {required String password, bool isAdmin = false}) {
+  print('Mendaftarkan user: $username');
+  print('Hak admin: $isAdmin');
+  // Logika penanganan password akan ada di sini
+}
+
 void main() {
-  // Positional optional parameters
-  introduce('Alice');
-  introduce('Bob', 25);
-  introduce('Charlie', 30, 'Engineer');
+  // Parameter posisi wajib
+  print(buatPesan('Alice', 25));
   
-  print('---');
+  // Parameter posisi opsional
+  print(formatNama('John'));           // John
+  print(formatNama('Jane', 'Smith'));  // Jane Smith
   
-  // Named optional parameters
-  createProfile(name: 'Diana');
-  createProfile(name: 'Eve', age: 28);
-  createProfile(name: 'Frank', age: 35, city: 'Jakarta');
-  createProfile(name: 'Grace', city: 'Bandung', age: 22); // Order doesn't matter
+  // Parameter bernama
+  tampilkanInfoUser(nama: 'Bob');
+  tampilkanInfoUser(nama: 'Carol', umur: 30, email: 'carol@example.com');
   
-  print('---');
-  
-  // Mixed positional and named parameters
-  bookTicket('Alice', destination: 'Bali');
-  bookTicket('Bob', destination: 'Yogya', seatClass: 'Business');
-}
-
-// Positional optional parameters with default values
-void introduce(String name, [int? age, String? profession]) {
-  String intro = 'Hi, I\'m $name';
-  
-  if (age != null) {
-    intro += ', $age years old';
-  }
-  
-  if (profession != null) {
-    intro += ', working as $profession';
-  }
-  
-  print('$intro! 👋');
-}
-
-// Named optional parameters with default values
-void createProfile({
-  required String name,
-  int? age,
-  String city = 'Unknown'
-}) {
-  print('Profile: $name');
-  print('Age: ${age ?? 'Not specified'}');
-  print('City: $city');
-  print('---');
-}
-
-// Mixed parameters: positional required + named optional
-void bookTicket(String passenger, {
-  required String destination,
-  String seatClass = 'Economy',
-  bool insurance = false
-}) {
-  print('✈️ Ticket booked for $passenger');
-  print('Destination: $destination');
-  print('Class: $seatClass');
-  print('Insurance: ${insurance ? 'Yes' : 'No'}');
-  print('---');
+  // Parameter campuran
+  daftarUser('admin_user', password: 'secret123', isAdmin: true);
 }
 ```
 
-📋 **Parameter Types Flow:**
+**📋 Penanganan Parameter:**
 ```
-🎯 Positional Optional: introduce('Alice', 25)
-  ├─ Required: name = 'Alice'
-  ├─ Optional: age = 25
-  ├─ Optional: profession = null (not provided)
-  └─ Output: "Hi, I'm Alice, 25 years old! 👋"
+Fungsi: formatNama(String namaDepan, [String? namaBelakang])
+🎯 Panggilan: formatNama('John')
+  ↓
+1️⃣ namaDepan = 'John' (wajib, disediakan)
+2️⃣ namaBelakang = null (opsional, tidak disediakan)  
+3️⃣ Cek: namaBelakang != null? → false ❌
+4️⃣ Return: namaDepan ('John')
+  ↓
+✅ Hasil: 'John'
 
-🎯 Named Optional: createProfile(name: 'Diana', city: 'Jakarta')
-  ├─ Required: name = 'Diana'
-  ├─ Optional: age = null (not provided)
-  ├─ Default: city = 'Jakarta' (overrides default)
-  └─ Build profile with provided values
+🎯 Panggilan: formatNama('Jane', 'Smith')  
+  ↓
+1️⃣ namaDepan = 'Jane' (wajib, disediakan)
+2️⃣ namaBelakang = 'Smith' (opsional, disediakan)
+3️⃣ Cek: namaBelakang != null? → true ✅  
+4️⃣ Return: '$namaDepan $namaBelakang' ('Jane Smith')
+  ↓
+✅ Hasil: 'Jane Smith'
 
-🎯 Mixed Parameters: bookTicket('Alice', destination: 'Bali')
-  ├─ Positional: passenger = 'Alice'
-  ├─ Named required: destination = 'Bali'
-  ├─ Named default: seatClass = 'Economy' (default)
-  └─ Named default: insurance = false (default)
+Parameter Bernama: tampilkanInfoUser({required String nama, int umur = 18, String? email})
+🎯 Panggilan: tampilkanInfoUser(nama: 'Bob')
+  ↓
+1️⃣ nama = 'Bob' (wajib, disediakan)
+2️⃣ umur = 18 (nilai default digunakan)
+3️⃣ email = null (opsional, tidak disediakan)
+  ↓
+✅ Fungsi dieksekusi dengan nilai-nilai ini
 ```
 
 🚀 **Coba Sekarang!** 
-Experiment dengan parameter combinations di: https://zapp.run/
+Eksperimen dengan berbagai jenis parameter di: https://zapp.run/
 
-#### Arrow Functions dan Anonymous Functions
+### 🏹 Sintaks Arrow untuk Fungsi
+
+Sintaks arrow menyediakan cara ringkas untuk menulis fungsi dengan satu ekspresi. Seperti cara singkat menuliskan kalimat yang pendek.
 
 ```dart
+// Sintaks fungsi tradisional
+int kalikanTradisional(int a, int b) {
+  return a * b;
+}
+
+// Sintaks arrow - lebih ringkas
+int kalikan(int a, int b) => a * b;
+
+// Fungsi arrow dengan berbagai tipe return
+String sapa(String nama) => 'Halo, $nama!';
+bool cekGenap(int angka) => angka % 2 == 0;
+double hitungKeliling(double jariJari) => 2 * 3.14159 * jariJari;
+
+// Fungsi arrow bekerja bagus dengan koleksi
+List<int> ambilBilanganGenap(List<int> angka) => 
+    angka.where((n) => n % 2 == 0).toList();
+
 void main() {
-  // Arrow functions (single expression)
-  int square(int x) => x * x;
-  bool isEven(int number) => number % 2 == 0;
-  String formatName(String first, String last) => '$first $last';
+  // Menggunakan fungsi arrow
+  print(kalikan(4, 5));
+  print(sapa('Developer Flutter'));
+  print(cekGenap(7));
+  print('Keliling: ${hitungKeliling(3.0).toStringAsFixed(2)}');
   
-  print('Square of 5: ${square(5)}');
-  print('Is 8 even? ${isEven(8)}');
-  print('Full name: ${formatName('John', 'Doe')}');
-  
-  print('---');
-  
-  // Anonymous functions (lambdas)
-  var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  
-  // Using anonymous function with where()
-  var evenNumbers = numbers.where((number) => number % 2 == 0);
-  print('Even numbers: ${evenNumbers.toList()}');
-  
-  // Using anonymous function with map()
-  var squaredNumbers = numbers.map((n) => n * n);
-  print('Squared numbers: ${squaredNumbers.toList()}');
-  
-  // Using anonymous function with forEach()
-  print('Processing numbers:');
-  numbers.forEach((num) {
-    if (num % 3 == 0) {
-      print('$num is divisible by 3 ✅');
-    } else {
-      print('$num is not divisible by 3 ❌');
-    }
-  });
-  
-  // Higher-order functions
-  print('---');
-  
-  var calculator = createCalculator('multiply');
-  print('Calculator result: ${calculator(6, 7)}');
-  
-  processNumbers([1, 2, 3, 4, 5], (n) => n * 3);
-}
-
-// Arrow function examples
-int multiply(int a, int b) => a * b;
-String createGreeting(String name) => 'Hello, $name! Welcome! 🎉';
-
-// Higher-order function (returns a function)
-Function createCalculator(String operation) {
-  switch (operation) {
-    case 'add':
-      return (int a, int b) => a + b;
-    case 'multiply':
-      return (int a, int b) => a * b;
-    case 'subtract':
-      return (int a, int b) => a - b;
-    default:
-      return (int a, int b) => 0;
-  }
-}
-
-// Higher-order function (takes function as parameter)
-void processNumbers(List<int> numbers, int Function(int) processor) {
-  print('Processing with custom function:');
-  for (int num in numbers) {
-    int result = processor(num);
-    print('$num → $result');
-  }
+  List<int> angka = [1, 2, 3, 4, 5, 6, 7, 8];
+  List<int> bilanganGenap = ambilBilanganGenap(angka);
+  print('Bilangan genap: $bilanganGenap');
 }
 ```
 
-🏹 **Arrow Functions Flow:**
+**📋 Kesetaraan Sintaks Arrow:**
 ```
-🎯 Arrow Function: square(5)
-  ├─ Input: x = 5
-  ├─ Expression: x * x
-  ├─ Calculate: 5 * 5 = 25
-  └─ Return: 25
+Sintaks Tradisional:
+int kalikan(int a, int b) {
+  return a * b;
+}
 
-🎯 Anonymous Function: numbers.where((number) => number % 2 == 0)
-  ├─ Input list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  ├─ Apply function to each:
-  │   ├─ 1 % 2 == 0? → false
-  │   ├─ 2 % 2 == 0? → true ✅
-  │   ├─ 3 % 2 == 0? → false
-  │   └─ Continue for all numbers...
-  └─ Result: [2, 4, 6, 8, 10]
+Sintaks Arrow:  
+int kalikan(int a, int b) => a * b;
 
-🎯 Higher-order Function: createCalculator('multiply')
-  ├─ Input: operation = 'multiply'
-  ├─ Switch to 'multiply' case
-  ├─ Return: function (int a, int b) => a * b
-  └─ Call returned function: calculator(6, 7) → 42
+🎯 Kedua fungsi adalah sama:
+  ↓
+1️⃣ Terima parameter: a, b
+2️⃣ Hitung: a * b  
+3️⃣ Kembalikan hasil langsung
+  ↓
+✅ Sintaks arrow = cara singkat untuk ekspresi return tunggal
+
+Contoh Kompleks: ambilBilanganGenap()
+🎯 Input: [1, 2, 3, 4, 5, 6, 7, 8]
+  ↓
+1️⃣ angka.where((n) => n % 2 == 0):
+   • Test setiap angka: 1%2==0? false, 2%2==0? true, 3%2==0? false...
+   • Simpan: [2, 4, 6, 8]
+  ↓
+2️⃣ .toList(): Konversi iterable yang difilter ke List
+  ↓
+✅ Return: [2, 4, 6, 8]
 ```
 
 🚀 **Coba Sekarang!** 
-Build your own calculators di: https://zapp.run/
+Praktikkan membuat fungsi dengan sintaks arrow di: https://zapp.run/
 
 ---
 
-## 📦 Koleksi Data
+## 📦 Koleksi Data: Mengelola Kelompok Data
 
-### 📋 List (Array)
+Koleksi data memungkinkan kita menyimpan dan mengorganisir beberapa bagian informasi yang berkaitan. Mereka seperti wadah yang menampung kelompok data dan menyediakan metode untuk memanipulasi data tersebut secara efisien.
 
-List adalah koleksi data yang terurut dan dapat berisi elemen duplikat.
+### 📋 List: Koleksi Berurutan
+
+List menyimpan urutan elemen yang teratur di mana setiap elemen memiliki posisi indeks tertentu. Bayangkan seperti daftar belanja di mana urutan penting dan kita bisa menambah atau menghapus item.
 
 ```dart
 void main() {
-  print('=== BASIC LIST OPERATIONS ===');
+  // Membuat list
+  List<String> warna = ['merah', 'hijau', 'biru'];
+  List<int> angka = [1, 2, 3, 4, 5];
+  var listCampur = ['halo', 42, true]; // Tipe campuran (tidak disarankan)
   
-  // Creating lists
-  List<String> fruits = ['Apple', 'Banana', 'Orange'];
-  var numbers = [1, 2, 3, 4, 5]; // Type inference
-  List<int> ages = <int>[]; // Empty list
+  // Mengakses elemen list
+  print('Warna pertama: ${warna[0]}');     // merah
+  print('Angka terakhir: ${angka[angka.length - 1]}'); // 5
   
-  print('Fruits: $fruits');
-  print('Numbers: $numbers');
-  print('Ages: $ages (empty)');
+  // Properti list
+  print('Jumlah warna: ${warna.length}'); // 3
+  print('Apakah angka kosong? ${angka.isEmpty}'); // false
+  print('Apakah angka tidak kosong? ${angka.isNotEmpty}'); // true
   
-  print('\n=== ADDING ELEMENTS ===');
+  // Menambah elemen
+  warna.add('kuning');
+  print('Setelah menambah kuning: $warna');
   
-  // Adding elements
-  fruits.add('Mango');
-  fruits.addAll(['Grape', 'Kiwi']);
-  fruits.insert(1, 'Pineapple'); // Insert at specific index
+  warna.addAll(['orange', 'ungu']);
+  print('Setelah menambah beberapa: $warna');
   
-  print('After adding: $fruits');
+  // Menyisipkan di posisi tertentu
+  warna.insert(1, 'pink');
+  print('Setelah menyisipkan pink di indeks 1: $warna');
   
-  print('\n=== ACCESSING ELEMENTS ===');
+  // Menghapus elemen
+  warna.remove('hijau');          // Hapus berdasarkan nilai
+  print('Setelah menghapus hijau: $warna');
   
-  // Accessing elements
-  print('First fruit: ${fruits[0]}');
-  print('Last fruit: ${fruits[fruits.length - 1]}');
-  print('Second fruit: ${fruits[1]}');
+  String dihapus = warna.removeAt(2); // Hapus berdasarkan indeks
+  print('Dihapus: $dihapus');
+  print('Setelah menghapus di indeks 2: $warna');
   
-  // Safe access
-  print('List length: ${fruits.length}');
-  print('Is empty? ${fruits.isEmpty}');
-  print('Is not empty? ${fruits.isNotEmpty}');
+  // Iterasi melalui list
+  print('\nIterasi melalui angka:');
+  for (int i = 0; i < angka.length; i++) {
+    print('Indeks $i: ${angka[i]}');
+  }
   
-  print('\n=== MODIFYING ELEMENTS ===');
-  
-  // Modifying elements
-  fruits[0] = 'Green Apple';
-  print('After modification: $fruits');
-  
-  // Removing elements
-  fruits.remove('Banana'); // Remove by value
-  fruits.removeAt(2); // Remove by index
-  
-  print('After removal: $fruits');
-  
-  print('\n=== LIST METHODS ===');
-  
-  var scoreList = [85, 92, 78, 95, 88, 76, 90];
-  
-  print('Scores: $scoreList');
-  print('Contains 92? ${scoreList.contains(92)}');
-  print('Index of 95: ${scoreList.indexOf(95)}');
-  print('Reversed: ${scoreList.reversed.toList()}');
-  
-  // Sorting
-  var sortedScores = [...scoreList]; // Copy list
-  sortedScores.sort();
-  print('Sorted ascending: $sortedScores');
-  
-  sortedScores.sort((a, b) => b.compareTo(a)); // Custom sort
-  print('Sorted descending: $sortedScores');
+  // Perulangan for-in yang disempurnakan
+  print('\nMenggunakan perulangan for-in:');
+  for (String warnaItem in warna) {
+    print('Warna: $warnaItem');
+  }
 }
 ```
 
-📋 **List Operations Flow:**
+**📋 Operasi List Langkah demi Langkah:**
 ```
-🎯 List Creation:
-  fruits = ['Apple', 'Banana', 'Orange']
-  Index:     0        1         2
-
-🎯 Adding Elements:
-  add('Mango') → ['Apple', 'Banana', 'Orange', 'Mango']
-  insert(1, 'Pineapple') → ['Apple', 'Pineapple', 'Banana', 'Orange', 'Mango']
-                            0         1            2         3        4
-
-🎯 Accessing:
-  fruits[0] → 'Apple'
-  fruits[fruits.length - 1] → fruits[4] → 'Mango'
-
-🎯 Modifying:
-  fruits[0] = 'Green Apple' → ['Green Apple', 'Pineapple', ...]
-
-🎯 Removing:
-  remove('Banana') → Search & remove value
-  removeAt(2) → Remove element at index 2
+🎯 Awal: warna = ['merah', 'hijau', 'biru']
+   Indeks:        [0]      [1]      [2]
+  ↓
+1️⃣ warna.add('kuning'):
+   Sebelum: ['merah', 'hijau', 'biru']
+   Sesudah: ['merah', 'hijau', 'biru', 'kuning']
+   Indeks:   [0]      [1]      [2]      [3]
+  ↓
+2️⃣ warna.addAll(['orange', 'ungu']):
+   Sebelum: ['merah', 'hijau', 'biru', 'kuning']  
+   Sesudah: ['merah', 'hijau', 'biru', 'kuning', 'orange', 'ungu']
+   Indeks:   [0]      [1]      [2]      [3]       [4]       [5]
+  ↓
+3️⃣ warna.insert(1, 'pink'):
+   Sebelum: ['merah', 'hijau', 'biru', 'kuning', 'orange', 'ungu']
+   Sesudah: ['merah', 'pink', 'hijau', 'biru', 'kuning', 'orange', 'ungu']
+   Indeks:   [0]      [1]     [2]      [3]      [4]       [5]       [6]
+   (Semua elemen setelah indeks 1 bergeser ke kanan)
+  ↓
+4️⃣ warna.remove('hijau'):
+   Sebelum: ['merah', 'pink', 'hijau', 'biru', 'kuning', 'orange', 'ungu']
+   Sesudah: ['merah', 'pink', 'biru', 'kuning', 'orange', 'ungu']
+   (Elemen setelah item yang dihapus bergeser ke kiri)
+  ↓
+✅ Struktur list final dipertahankan dengan indeks yang diperbarui
 ```
 
 🚀 **Coba Sekarang!** 
-Practice list manipulations di: https://zapp.run/
+Praktikkan operasi List di: https://zapp.run/
 
-#### Advanced List Operations
+### 🔹 Set: Koleksi Unik
+
+Set menyimpan elemen unik dalam koleksi yang tidak berurutan, secara otomatis mencegah duplikasi. Seperti kumpulan stiker di mana tidak ada stiker yang sama dua kali.
 
 ```dart
 void main() {
-  print('=== ADVANCED LIST OPERATIONS ===');
+  // Membuat set
+  Set<String> buah = {'apel', 'pisang', 'ceri'};
+  Set<int> angka = {1, 2, 3, 2, 1}; // Duplikasi otomatis dihapus
   
-  var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  print('Buah: $buah');
+  print('Angka: $angka'); // {1, 2, 3} - duplikasi dihapus
   
-  // Filtering with where()
-  var evenNumbers = numbers.where((n) => n % 2 == 0).toList();
-  var greaterThanFive = numbers.where((n) => n > 5).toList();
+  // Menambah elemen
+  buah.add('kurma');
+  print('Setelah menambah kurma: $buah');
   
-  print('Original: $numbers');
-  print('Even numbers: $evenNumbers');
-  print('Greater than 5: $greaterThanFive');
+  // Mencoba menambah duplikasi
+  bool ditambahkan = buah.add('apel'); // Return false - sudah ada
+  print('Apakah apel ditambahkan lagi? $ditambahkan'); // false
+  print('Buah setelah mencoba menambah apel: $buah'); // tidak berubah
   
-  // Transforming with map()
-  var squared = numbers.map((n) => n * n).toList();
-  var descriptions = numbers.map((n) => 'Number $n').toList();
+  // Menambah beberapa elemen
+  buah.addAll(['elderberry', 'ara', 'apel']); // 'apel' diabaikan
+  print('Setelah menambah beberapa: $buah');
   
-  print('Squared: $squared');
-  print('Descriptions: $descriptions');
+  // Operasi set
+  Set<String> buahTropis = {'pisang', 'mangga', 'pepaya'};
+  Set<String> buahSitrus = {'lemon', 'jeruk', 'limau'};
   
-  // Reducing with fold() and reduce()
-  var sum = numbers.fold(0, (prev, curr) => prev + curr);
-  var product = numbers.reduce((prev, curr) => prev * curr);
+  // Union (gabungan set)
+  Set<String> semua_buah = buah.union(buahTropis);
+  print('Gabungan buah dan tropis: $semua_buah');
   
-  print('Sum: $sum');
-  print('Product: $product');
+  // Intersection (elemen yang sama)
+  Set<String> buahSama = buah.intersection(buahTropis);
+  print('Buah yang sama: $buahSama');
   
-  print('\n=== LIST SEARCHING ===');
+  // Memeriksa keanggotaan
+  print('Mengandung pisang? ${buah.contains('pisang')}');
+  print('Mengandung anggur? ${buah.contains('anggur')}');
   
-  var students = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve'];
-  
-  // Finding elements
-  var foundStudent = students.firstWhere(
-    (name) => name.startsWith('C'),
-    orElse: () => 'Not found'
-  );
-  
-  var allWithA = students.where((name) => name.contains('a')).toList();
-  
-  print('Students: $students');
-  print('First name starting with C: $foundStudent');
-  print('Names containing "a": $allWithA');
-  
-  print('\n=== LIST GENERATION ===');
-  
-  // Generating lists
-  var countdown = List.generate(5, (index) => 5 - index);
-  var alphabet = List.generate(5, (i) => String.fromCharCode(65 + i));
-  
-  print('Countdown: $countdown');
-  print('Alphabet: $alphabet');
-  
-  // List comprehension-like operations
-  var matrix = [
-    for (int i = 1; i <= 3; i++)
-      [for (int j = 1; j <= 3; j++) i * j]
-  ];
-  
-  print('Multiplication matrix: $matrix');
+  // Iterasi melalui set
+  print('\nSemua buah dalam set kita:');
+  for (String buah_item in buah) {
+    print('- $buah_item');
+  }
 }
 ```
 
-🔍 **Advanced Operations Flow:**
+**📋 Demonstrasi Keunikan Set:**
 ```
-🎯 Filtering: numbers.where((n) => n % 2 == 0)
-  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  ├─ 1 % 2 == 0? → false (skip)
-  ├─ 2 % 2 == 0? → true ✅ (keep)
-  ├─ 3 % 2 == 0? → false (skip)
-  ├─ 4 % 2 == 0? → true ✅ (keep)
-  └─ Continue... → Result: [2, 4, 6, 8, 10]
+🎯 Membuat: Set<int> angka = {1, 2, 3, 2, 1}
+  ↓
+1️⃣ Proses elemen satu per satu:
+   • Tambah 1: Set menjadi {1}
+   • Tambah 2: Set menjadi {1, 2}  
+   • Tambah 3: Set menjadi {1, 2, 3}
+   • Tambah 2: Sudah ada → diabaikan, Set tetap {1, 2, 3}
+   • Tambah 1: Sudah ada → diabaikan, Set tetap {1, 2, 3}
+  ↓
+✅ Set Final: {1, 2, 3} (duplikasi otomatis dihapus)
 
-🎯 Mapping: numbers.map((n) => n * n)
-  [1, 2, 3, 4, 5]
-  ├─ 1 → 1 * 1 = 1
-  ├─ 2 → 2 * 2 = 4
-  ├─ 3 → 3 * 3 = 9
-  └─ Continue... → Result: [1, 4, 9, 16, 25]
-
-🎯 Folding: numbers.fold(0, (prev, curr) => prev + curr)
-  Initial: 0
-  ├─ 0 + 1 = 1
-  ├─ 1 + 2 = 3
-  ├─ 3 + 3 = 6
-  └─ Continue... → Final sum: 55
-```
-
-🚀 **Coba Sekarang!** 
-Explore advanced list operations di: https://zapp.run/
-
-### 🗂️ Set (Koleksi Unik)
-
-Set adalah koleksi yang tidak boleh memiliki elemen duplikat.
-
-```dart
-void main() {
-  print('=== BASIC SET OPERATIONS ===');
-  
-  // Creating sets
-  Set<String> colors = {'red', 'green', 'blue'};
-  var uniqueNumbers = {1, 2, 3, 3, 4, 4, 5}; // Duplicates will be removed
-  Set<int> emptySet = <int>{};
-  
-  print('Colors: $colors');
-  print('Unique numbers: $uniqueNumbers'); // Will show {1, 2, 3, 4, 5}
-  print('Empty set: $emptySet');
-  
-  print('\n=== ADDING TO SETS ===');
-  
-  colors.add('yellow');
-  colors.add('red'); // Won't be added (duplicate)
-  colors.addAll({'purple', 'orange', 'red'}); // 'red' won't be added
-  
-  print('After adding: $colors');
-  
-  print('\n=== SET OPERATIONS ===');
-  
-  Set<int> setA = {1, 2, 3, 4, 5};
-  Set<int> setB = {4, 5, 6, 7, 8};
-  
-  print('Set A: $setA');
-  print('Set B: $setB');
-  
-  // Union (gabungan)
-  var union = setA.union(setB);
-  print('Union (A ∪ B): $union');
-  
-  // Intersection (irisan)
-  var intersection = setA.intersection(setB);
-  print('Intersection (A ∩ B): $intersection');
-  
-  // Difference (selisih)
-  var difference = setA.difference(setB);
-  print('Difference (A - B): $difference');
-  
-  print('\n=== SET CHECKING ===');
-  
-  print('Set A contains 3? ${setA.contains(3)}');
-  print('Set A contains 10? ${setA.contains(10)}');
-  print('Set A length: ${setA.length}');
-  print('Is Set A empty? ${setA.isEmpty}');
-  
-  // Subset checking
-  Set<int> subset = {2, 3};
-  bool isSubset = subset.every((element) => setA.contains(element));
-  print('Is {2, 3} subset of A? $isSubset');
-  
-  print('\n=== PRACTICAL EXAMPLE ===');
-  
-  // Removing duplicates from list
-  List<String> fruitsWithDuplicates = [
-    'apple', 'banana', 'apple', 'orange', 'banana', 'kiwi'
-  ];
-  
-  Set<String> uniqueFruits = fruitsWithDuplicates.toSet();
-  List<String> cleanedList = uniqueFruits.toList();
-  
-  print('Original list: $fruitsWithDuplicates');
-  print('Unique fruits: $uniqueFruits');
-  print('Cleaned list: $cleanedList');
-}
-```
-
-🗂️ **Set Operations Flow:**
-```
-🎯 Set Creation with Duplicates:
-  Input: {1, 2, 3, 3, 4, 4, 5}
-  Process: Remove duplicates automatically
-  Result: {1, 2, 3, 4, 5}
-
-🎯 Set Union: setA.union(setB)
-  Set A: {1, 2, 3, 4, 5}
-  Set B: {4, 5, 6, 7, 8}
-  ├─ Combine all elements
-  ├─ Remove duplicates (4, 5)
-  └─ Result: {1, 2, 3, 4, 5, 6, 7, 8}
-
-🎯 Set Intersection: setA.intersection(setB)
-  Set A: {1, 2, 3, 4, 5}
-  Set B: {4, 5, 6, 7, 8}
-  ├─ Find common elements
-  └─ Result: {4, 5}
-
-🎯 Set Difference: setA.difference(setB)
-  Set A: {1, 2, 3, 4, 5}
-  Set B: {4, 5, 6, 7, 8}
-  ├─ Remove elements in B from A
-  └─ Result: {1, 2, 3}
+Contoh Operasi Set:
+🎯 buah = {'apel', 'pisang', 'ceri', 'kurma'}
+   buahTropis = {'pisang', 'mangga', 'pepaya'}
+  ↓
+1️⃣ Union (buah.union(buahTropis)):
+   • Gabungkan semua elemen unik dari kedua set
+   • Hasil: {'apel', 'pisang', 'ceri', 'kurma', 'mangga', 'pepaya'}
+  ↓
+2️⃣ Intersection (buah.intersection(buahTropis)):
+   • Cari elemen yang ada di KEDUA set
+   • Elemen sama: 'pisang'
+   • Hasil: {'pisang'}
+  ↓
+✅ Operasi set mempertahankan keunikan
 ```
 
 🚀 **Coba Sekarang!** 
-Experiment dengan set operations di: https://zapp.run/
+Eksperimen dengan operasi Set di: https://zapp.run/
 
-### 🗝️ Map (Key-Value Pairs)
+### 🗝️ Map: Koleksi Kunci-Nilai
 
-Map adalah koleksi pasangan kunci-nilai yang memungkinkan akses data yang efisien.
+Map menyimpan data sebagai pasangan kunci-nilai, memungkinkan kita mengaitkan kunci unik dengan nilai tertentu. Seperti kamus di mana setiap kata (kunci) memiliki definisi (nilai).
 
 ```dart
 void main() {
-  print('=== BASIC MAP OPERATIONS ===');
-  
-  // Creating maps
-  Map<String, int> studentGrades = {
-    'Alice': 95,
-    'Bob': 87,
-    'Charlie': 92,
-    'Diana': 88
+  // Membuat map
+  Map<String, int> umur = {
+    'Alice': 25,
+    'Bob': 30,
+    'Charlie': 35
   };
   
-  var countryCapitals = {
+  Map<String, String> ibu_kota = {
     'Indonesia': 'Jakarta',
-    'Malaysia': 'Kuala Lumpur',
-    'Thailand': 'Bangkok',
-    'Singapore': 'Singapore'
+    'Jepang': 'Tokyo',
+    'Brasil': 'Brasília'
   };
   
-  Map<String, double> productPrices = {}; // Empty map
+  // Mengakses nilai
+  print('Alice berumur ${umur['Alice']} tahun');
+  print('Ibu kota Jepang: ${ibu_kota['Jepang']}');
   
-  print('Student grades: $studentGrades');
-  print('Country capitals: $countryCapitals');
+  // Menambah pasangan kunci-nilai baru
+  umur['Diana'] = 28;
+  ibu_kota['Kanada'] = 'Ottawa';
+  print('Setelah penambahan:');
+  print('Umur: $umur');
+  print('Ibu kota: $ibu_kota');
   
-  print('\n=== ADDING AND ACCESSING ===');
+  // Memperbarui nilai yang ada
+  umur['Alice'] = 26; // Alice ulang tahun
+  print('Umur yang diperbarui: $umur');
   
-  // Adding entries
-  studentGrades['Eve'] = 94;
-  studentGrades['Frank'] = 89;
+  // Memeriksa apakah kunci ada
+  print('Apakah umur mengandung Bob? ${umur.containsKey('Bob')}');
+  print('Apakah umur mengandung Eve? ${umur.containsKey('Eve')}');
   
-  productPrices['Laptop'] = 15000000.0;
-  productPrices['Mouse'] = 250000.0;
-  productPrices['Keyboard'] = 500000.0;
+  // Memeriksa apakah nilai ada
+  print('Apakah umur mengandung nilai 30? ${umur.containsValue(30)}');
   
-  print('After adding: $studentGrades');
-  print('Product prices: $productPrices');
+  // Mendapatkan semua kunci dan nilai
+  print('Semua orang: ${umur.keys}');
+  print('Semua umur: ${umur.values}');
   
-  // Accessing values
-  print('Alice\'s grade: ${studentGrades['Alice']}');
-  print('Capital of Indonesia: ${countryCapitals['Indonesia']}');
-  print('Laptop price: Rp ${productPrices['Laptop']}');
+  // Menghapus entri
+  int? umurDihapus = umur.remove('Charlie');
+  print('Menghapus Charlie (umur $umurDihapus)');
+  print('Umur yang tersisa: $umur');
   
-  // Safe access (returns null if key doesn't exist)
-  print('John\'s grade: ${studentGrades['John'] ?? 'Not found'}');
-  
-  print('\n=== MAP PROPERTIES ===');
-  
-  print('Number of students: ${studentGrades.length}');
-  print('Is empty? ${studentGrades.isEmpty}');
-  print('Students: ${studentGrades.keys.toList()}');
-  print('Grades: ${studentGrades.values.toList()}');
-  
-  print('\n=== CHECKING AND REMOVING ===');
-  
-  // Checking for keys and values
-  print('Contains Alice? ${studentGrades.containsKey('Alice')}');
-  print('Contains grade 95? ${studentGrades.containsValue(95)}');
-  
-  // Removing entries
-  studentGrades.remove('Frank');
-  print('After removing Frank: $studentGrades');
-  
-  print('\n=== ITERATING OVER MAPS ===');
-  
-  print('Grade report:');
-  studentGrades.forEach((name, grade) {
-    String performance;
-    if (grade >= 90) {
-      performance = 'Excellent 🌟';
-    } else if (grade >= 80) {
-      performance = 'Good 👍';
-    } else {
-      performance = 'Needs improvement 📚';
-    }
-    print('$name: $grade ($performance)');
+  // Iterasi melalui map
+  print('\nPasangan Negara-Ibu Kota:');
+  ibu_kota.forEach((negara, ibukota) {
+    print('$negara -> $ibukota');
   });
   
-  // Using entries
-  print('\nUsing entries:');
-  for (var entry in studentGrades.entries) {
-    print('${entry.key} scored ${entry.value}');
+  // Iterasi alternatif
+  print('\nInformasi umur:');
+  for (MapEntry<String, int> entry in umur.entries) {
+    print('${entry.key} berumur ${entry.value} tahun');
   }
-  
-  print('\n=== MAP OPERATIONS ===');
-  
-  // Transforming maps
-  var gradeLetters = studentGrades.map((name, grade) {
-    String letter;
-    if (grade >= 90) letter = 'A';
-    else if (grade >= 80) letter = 'B';
-    else if (grade >= 70) letter = 'C';
-    else letter = 'D';
-    
-    return MapEntry(name, letter);
-  });
-  
-  print('Letter grades: $gradeLetters');
-  
-  // Filtering maps
-  var excellentStudents = Map.fromEntries(
-    studentGrades.entries.where((entry) => entry.value >= 90)
-  );
-  
-  print('Excellent students (≥90): $excellentStudents');
 }
 ```
 
-🗝️ **Map Operations Flow:**
+**📋 Walkthrough Operasi Map:**
 ```
-🎯 Map Creation:
-  studentGrades = {
-    'Alice': 95,
-    'Bob': 87,
-    'Charlie': 92
-  }
-
-🎯 Adding Entry: studentGrades['Eve'] = 94
-  ├─ Check if key 'Eve' exists → No
-  ├─ Create new entry: 'Eve' → 94
-  └─ Map now: {'Alice': 95, 'Bob': 87, 'Charlie': 92, 'Eve': 94}
-
-🎯 Accessing: studentGrades['Alice']
-  ├─ Search for key 'Alice'
-  ├─ Key found → Return associated value
-  └─ Result: 95
-
-🎯 Safe Access: studentGrades['John'] ?? 'Not found'
-  ├─ Search for key 'John'
-  ├─ Key not found → Return null
-  ├─ Apply null coalescing operator
-  └─ Result: 'Not found'
-
-🎯 Iteration: studentGrades.forEach((name, grade) => ...)
-  ├─ Entry 1: name='Alice', grade=95
-  ├─ Entry 2: name='Bob', grade=87
-  ├─ Entry 3: name='Charlie', grade=92
-  └─ Execute function for each entry
+🎯 Awal: umur = {'Alice': 25, 'Bob': 30, 'Charlie': 35}
+   Struktur: Pasangan Kunci -> Nilai
+  ↓
+1️⃣ Akses umur['Alice']:
+   • Cari kunci 'Alice'
+   • Temukan nilai terkait: 25
+   • Return: 25
+  ↓
+2️⃣ Tambah umur['Diana'] = 28:
+   Sebelum: {'Alice': 25, 'Bob': 30, 'Charlie': 35}
+   Sesudah: {'Alice': 25, 'Bob': 30, 'Charlie': 35, 'Diana': 28}
+   (Pasangan kunci-nilai baru ditambahkan)
+  ↓
+3️⃣ Update umur['Alice'] = 26:
+   Sebelum: {'Alice': 25, 'Bob': 30, 'Charlie': 35, 'Diana': 28}
+   Sesudah: {'Alice': 26, 'Bob': 30, 'Charlie': 35, 'Diana': 28}
+   (Nilai yang ada diperbarui)
+  ↓
+4️⃣ Hapus umur.remove('Charlie'):
+   Sebelum: {'Alice': 26, 'Bob': 30, 'Charlie': 35, 'Diana': 28}
+   Sesudah: {'Alice': 26, 'Bob': 30, 'Diana': 28}
+   Return: 35 (nilai yang dihapus)
+  ↓
+✅ Map mempertahankan asosiasi kunci-nilai sepanjang operasi
 ```
 
 🚀 **Coba Sekarang!** 
-Build your own data maps di: https://zapp.run/
+Praktikkan manipulasi Map di: https://zapp.run/
+
+### 🔄 Pola Iterasi Koleksi
+
+Memahami berbagai cara untuk mengiterasi koleksi akan membantu Anda memproses data dengan lebih efisien dan fleksibel.
+
+```dart
+void main() {
+  List<String> bahasa = ['Dart', 'JavaScript', 'Python', 'Swift'];
+  Map<String, int> nilai = {'Matematika': 95, 'IPA': 87, 'Bahasa': 92};
+  
+  // Pola iterasi List
+  print('Bahasa Pemrograman:');
+  
+  // Perulangan for tradisional dengan indeks
+  for (int i = 0; i < bahasa.length; i++) {
+    print('${i + 1}. ${bahasa[i]}');
+  }
+  
+  // Perulangan for-in yang disempurnakan
+  print('\nBahasa yang kita suka:');
+  for (String bahasaItem in bahasa) {
+    print('- $bahasaItem');
+  }
+  
+  // Menggunakan metode forEach
+  print('\nBahasa (forEach):');
+  bahasa.forEach((bahasaItem) => print('Belajar: $bahasaItem'));
+  
+  // Pola iterasi Map
+  print('\nNilai Ujian:');
+  
+  // Iterasi atas kunci
+  for (String mataPelajaran in nilai.keys) {
+    print('$mataPelajaran: ${nilai[mataPelajaran]}%');
+  }
+  
+  // Iterasi atas entri
+  for (MapEntry<String, int> entry in nilai.entries) {
+    String grade = entry.value >= 90 ? 'A' : 'B';
+    print('${entry.key}: ${entry.value}% (Grade: $grade)');
+  }
+  
+  // Menggunakan forEach dengan pasangan kunci-nilai
+  print('\nAnalisis Nilai:');
+  nilai.forEach((mataPelajaran, skorNilai) {
+    String performa = skorNilai >= 90 ? 'Sangat Baik' : 'Baik';
+    print('$mataPelajaran ($skorNilai%): $performa');
+  });
+}
+```
+
+🚀 **Coba Sekarang!** 
+Test berbagai operasi koleksi di: https://zapp.run/
 
 ---
 
-## 💻 Praktikum 2: Tantangan Algoritmik di Dart
+## 💻 Praktikum 2: Tantangan Algoritmik
 
-### 🎯 Objectives
+Terapkan pengetahuan Anda tentang alur kontrol, fungsi, dan koleksi data dengan menyelesaikan tantangan pemrograman ini. Setiap masalah membangun konsep yang telah dipelajari dalam materi minggu ini.
 
-Dalam praktikum ini, mahasiswa akan menyelesaikan serangkaian masalah yang memerlukan:
-1. 🔄 Penerapan control flow (loops, conditionals)
-2. ⚡ Penggunaan functions dengan berbagai parameter types
-3. 📦 Manipulasi collections (List, Set, Map)
-4. 🧠 Logical thinking dan problem-solving
+### 🧮 Tantangan 1: Fungsi Analisis Angka
 
-### 📋 Task 1: Number Analysis Program
+Buat fungsi yang menganalisis list angka dan mengembalikan berbagai statistik. Ini akan menguji pemahaman Anda tentang fungsi, perulangan, dan kondisional.
+
+```dart
+Map<String, dynamic> analisisAngka(List<int> angka) {
+  // Implementasi Anda di sini
+  // Harus mengembalikan map dengan kunci: 'jumlah', 'rata', 'min', 'maks', 'genap', 'ganjil'
+}
+
+void main() {
+  List<int> angkaTest = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  Map<String, dynamic> hasil = analisisAngka(angkaTest);
+  print('Hasil Analisis: $hasil');
+  
+  // Output yang diharapkan harus mencakup jumlah=55, rata=5.5, min=1, maks=10, genap=5, ganjil=5
+}
+```
+
+**💡 Petunjuk Solusi:**
+- Gunakan perulangan untuk melalui semua angka
+- Gunakan variabel untuk melacak jumlah, minimum, maksimum
+- Gunakan operator modulo (%) untuk menentukan genap/ganjil
+- Hitung rata-rata dengan membagi jumlah dengan panjang list
+
+🚀 **Coba Sekarang!** 
+Implementasikan solusi Anda di: https://zapp.run/
+
+### 📊 Tantangan 2: Kalkulator Nilai dengan Kontrol Alur
+
+Bangun sistem manajemen nilai yang komprehensif menggunakan fungsi dan koleksi. Tantangan ini menguji kemampuan Anda dalam mengorganisir kode dan memproses data.
 
 ```dart
 void main() {
-  print('=== NUMBER ANALYSIS PROGRAM ===');
-  
-  // Test data
-  List<int> numbers = [45, 78, 23, 89, 12, 67, 91, 34, 56, 82];
-  
-  print('Numbers: $numbers');
-  print('Analysis Results:');
-  
-  // Call analysis functions
-  var stats = analyzeNumbers(numbers);
-  var evenOdd = categorizeNumbers(numbers);
-  var primes = findPrimes(numbers);
-  
-  displayResults(stats, evenOdd, primes);
-}
-
-// Function to analyze basic statistics
-Map<String, dynamic> analyzeNumbers(List<int> numbers) {
-  if (numbers.isEmpty) {
-    return {'error': 'Empty list'};
-  }
-  
-  int sum = 0;
-  int min = numbers[0];
-  int max = numbers[0];
-  
-  for (int num in numbers) {
-    sum += num;
-    if (num < min) min = num;
-    if (num > max) max = num;
-  }
-  
-  double average = sum / numbers.length;
-  
-  return {
-    'sum': sum,
-    'average': average,
-    'min': min,
-    'max': max,
-    'count': numbers.length
+  // Data mahasiswa: Nama -> List nilai
+  Map<String, List<int>> nilaiMahasiswa = {
+    'Alice': [85, 92, 78, 96],
+    'Bob': [76, 83, 89, 94],
+    'Charlie': [92, 88, 85, 90],
+    'Diana': [78, 82, 86, 91]
   };
-}
-
-// Function to categorize numbers into even and odd
-Map<String, List<int>> categorizeNumbers(List<int> numbers) {
-  List<int> evens = [];
-  List<int> odds = [];
   
-  for (int num in numbers) {
-    if (num % 2 == 0) {
-      evens.add(num);
-    } else {
-      odds.add(num);
-    }
-  }
+  // Implementasikan fungsi-fungsi ini:
+  // 1. hitungRataRata(List<int> nilai) -> double
+  // 2. dapatHurufNilai(double rataRata) -> String (A: 90+, B: 80-89, C: 70-79, D: 60-69, E: <60)
+  // 3. buatLaporan(Map<String, List<int>> nilai) -> void
   
-  return {
-    'even': evens,
-    'odd': odds
-  };
-}
-
-// Function to find prime numbers
-List<int> findPrimes(List<int> numbers) {
-  List<int> primes = [];
-  
-  for (int num in numbers) {
-    if (isPrime(num)) {
-      primes.add(num);
-    }
-  }
-  
-  return primes;
-}
-
-// Helper function to check if number is prime
-bool isPrime(int number) {
-  if (number < 2) return false;
-  if (number == 2) return true;
-  if (number % 2 == 0) return false;
-  
-  for (int i = 3; i * i <= number; i += 2) {
-    if (number % i == 0) return false;
-  }
-  
-  return true;
-}
-
-// Function to display all results
-void displayResults(
-  Map<String, dynamic> stats,
-  Map<String, List<int>> evenOdd,
-  List<int> primes
-) {
-  print('\n📊 STATISTICS:');
-  print('Sum: ${stats['sum']}');
-  print('Average: ${stats['average'].toStringAsFixed(2)}');
-  print('Min: ${stats['min']}');
-  print('Max: ${stats['max']}');
-  print('Count: ${stats['count']}');
-  
-  print('\n🔢 CATEGORIZATION:');
-  print('Even numbers: ${evenOdd['even']}');
-  print('Odd numbers: ${evenOdd['odd']}');
-  print('Even count: ${evenOdd['even']!.length}');
-  print('Odd count: ${evenOdd['odd']!.length}');
-  
-  print('\n🔍 PRIME NUMBERS:');
-  if (primes.isNotEmpty) {
-    print('Prime numbers found: $primes');
-    print('Prime count: ${primes.length}');
-  } else {
-    print('No prime numbers found');
-  }
+  buatLaporan(nilaiMahasiswa);
 }
 ```
 
-🔍 **Analysis Flow:**
-```
-🎯 Number Analysis Pipeline:
-  Input: [45, 78, 23, 89, 12, 67, 91, 34, 56, 82]
-  ↓
-1️⃣ Basic Statistics:
-  ├─ Sum: 45 + 78 + 23 + ... = 577
-  ├─ Min: Compare all → 12
-  ├─ Max: Compare all → 91
-  └─ Average: 577 ÷ 10 = 57.7
-  ↓
-2️⃣ Even/Odd Categorization:
-  ├─ Even: [78, 12, 34, 56, 82]
-  └─ Odd: [45, 23, 89, 67, 91]
-  ↓
-3️⃣ Prime Detection:
-  ├─ Check each number for primality
-  ├─ 23: Prime ✅, 67: Prime ✅, 89: Prime ✅
-  └─ Result: [23, 67, 89]
+**💡 Petunjuk Implementasi:**
+
+```dart
+double hitungRataRata(List<int> nilai) {
+  // Hitung total semua nilai
+  // Bagi dengan jumlah nilai
+  // Kembalikan hasil sebagai double
+}
+
+String dapatHurufNilai(double rataRata) {
+  // Gunakan if-else atau switch untuk menentukan grade
+  // A: 90 ke atas, B: 80-89, C: 70-79, D: 60-69, E: di bawah 60
+}
+
+void buatLaporan(Map<String, List<int>> nilai) {
+  // Iterasi melalui setiap mahasiswa
+  // Hitung rata-rata untuk setiap mahasiswa
+  // Tentukan grade berdasarkan rata-rata
+  // Tampilkan laporan yang rapi
+}
 ```
 
 🚀 **Coba Sekarang!** 
-Test dengan dataset berbeda di: https://zapp.run/
+Bangun sistem nilai lengkap di: https://zapp.run/
 
-### 📋 Task 2: Text Analysis Engine
+### 📚 Tantangan 3: Manipulasi Koleksi - Sistem Perpustakaan
+
+Buat program yang mengelola sistem perpustakaan menggunakan set dan list. Tantangan ini fokus pada manipulasi koleksi data yang kompleks.
 
 ```dart
 void main() {
-  print('=== TEXT ANALYSIS ENGINE ===');
+  Set<String> bukuTersedia = {'1984', 'Dune', 'Neuromancer', 'Foundation'};
+  List<String> bukuDipinjam = [];
+  Set<String> anggota = {'Alice', 'Bob', 'Charlie'};
   
-  String sampleText = '''
-  Dart is a programming language developed by Google. 
-  It is used for building mobile, desktop, server, and web applications.
-  Flutter uses Dart as its programming language.
-  Dart is easy to learn and powerful to use.
-  ''';
+  // Implementasikan fungsi-fungsi ini:
+  // 1. pinjamBuku(String buku, String anggota, Set<String> tersedia, List<String> dipinjam) -> bool
+  // 2. kembalikanBuku(String buku, Set<String> tersedia, List<String> dipinjam) -> bool  
+  // 3. tampilkanStatusPerpustakaan(Set<String> tersedia, List<String> dipinjam) -> void
+  // 4. cariBukuAnggota(String anggota, List<String> dipinjam) -> List<String>
   
-  print('Sample Text:');
-  print(sampleText.trim());
-  print('\n' + '='*50);
-  
-  // Perform various text analyses
-  var basicStats = getBasicTextStats(sampleText);
-  var wordFreq = analyzeWordFrequency(sampleText);
-  var charStats = analyzeCharacters(sampleText);
-  var sentences = analyzeSentences(sampleText);
-  
-  displayTextAnalysis(basicStats, wordFreq, charStats, sentences);
+  // Test fungsi Anda dengan berbagai operasi
+}
+```
+
+**💡 Petunjuk Implementasi:**
+
+```dart
+bool pinjamBuku(String buku, String anggota, Set<String> tersedia, List<String> dipinjam) {
+  // Cek apakah buku tersedia
+  // Cek apakah anggota terdaftar
+  // Pindahkan buku dari tersedia ke dipinjam
+  // Catat siapa yang meminjam (format: "buku - anggota")
+  // Return true jika berhasil, false jika gagal
 }
 
-// Function to get basic text statistics
-Map<String, int> getBasicTextStats(String text) {
-  String cleanText = text.trim();
-  
-  int charCount = cleanText.length;
-  int charCountNoSpaces = cleanText.replaceAll(' ', '').length;
-  
-  List<String> words = cleanText
-      .toLowerCase()
-      .replaceAll(RegExp(r'[^\w\s]'), '')
-      .split(RegExp(r'\s+'))
-      .where((word) => word.isNotEmpty)
-      .toList();
-  
-  List<String> lines = cleanText
-      .split('\n')
-      .where((line) => line.trim().isNotEmpty)
-      .toList();
-  
-  return {
-    'characters': charCount,
-    'charactersNoSpaces': charCountNoSpaces,
-    'words': words.length,
-    'lines': lines.length,
-  };
+bool kembalikanBuku(String buku, Set<String> tersedia, List<String> dipinjam) {
+  // Cari entri buku dalam daftar dipinjam
+  // Hapus dari daftar dipinjam
+  // Tambahkan kembali ke buku tersedia
+  // Return true jika berhasil, false jika buku tidak ditemukan
 }
 
-// Function to analyze word frequency
-Map<String, int> analyzeWordFrequency(String text) {
-  // Clean and split text into words
-  List<String> words = text
-      .toLowerCase()
-      .replaceAll(RegExp(r'[^\w\s]'), '')
-      .split(RegExp(r'\s+'))
-      .where((word) => word.isNotEmpty && word.length > 2) // Skip short words
-      .toList();
-  
-  Map<String, int> frequency = {};
-  
-  for (String word in words) {
-    frequency[word] = (frequency[word] ?? 0) + 1;
-  }
-  
-  return frequency;
+void tampilkanStatusPerpustakaan(Set<String> tersedia, List<String> dipinjam) {
+  // Tampilkan daftar buku yang tersedia
+  // Tampilkan daftar buku yang dipinjam
+  // Tampilkan statistik perpustakaan
 }
+```
 
-// Function to analyze character distribution
-Map<String, dynamic> analyzeCharacters(String text) {
-  Map<String, int> charCount = {};
-  int vowelCount = 0;
-  int consonantCount = 0;
-  Set<String> vowels = {'a', 'e', 'i', 'o', 'u'};
+🚀 **Coba Sekarang!** 
+Buat sistem perpustakaan interaktif di: https://zapp.run/
+
+### 🔍 Tantangan 4: Implementasi Algoritma
+
+Implementasikan algoritma pencarian dan pengurutan sederhana menggunakan perulangan dan fungsi. Tantangan ini akan mengasah kemampuan berpikir algoritmik Anda.
+
+```dart
+void main() {
+  List<int> angka = [64, 34, 25, 12, 22, 11, 90];
   
-  String cleanText = text.toLowerCase().replaceAll(RegExp(r'[^\w]'), '');
+  // Implementasikan fungsi-fungsi ini:
+  // 1. bubbleSort(List<int> list) -> List<int> (urutkan list menggunakan bubble sort)
+  // 2. pencarianLinear(List<int> list, int target) -> int (return indeks atau -1 jika tidak ditemukan)
+  // 3. cariMinMaks(List<int> list) -> Map<String, int> (return map dengan kunci 'min' dan 'maks')
   
-  for (String char in cleanText.split('')) {
-    if (char.isNotEmpty) {
-      charCount[char] = (charCount[char] ?? 0) + 1;
-      
-      if (vowels.contains(char)) {
-        vowelCount++;
-      } else if (RegExp(r'[a-z]').hasMatch(char)) {
-        consonantCount++;
+  print('Asli: $angka');
+  List<int> diurutkan = bubbleSort([...angka]); // Buat salinan untuk mempertahankan asli
+  print('Diurutkan: $diurutkan');
+  
+  int targetPencarian = 25;
+  int indeks = pencarianLinear(diurutkan, targetPencarian);
+  print('$targetPencarian ditemukan di indeks: $indeks');
+  
+  Map<String, int> minMaks = cariMinMaks(angka);
+  print('Min: ${minMaks['min']}, Maks: ${minMaks['maks']}');
+}
+```
+
+**💡 Petunjuk Algoritma:**
+
+**Bubble Sort:**
+```dart
+List<int> bubbleSort(List<int> list) {
+  List<int> hasil = [...list]; // Buat salinan
+  
+  for (int i = 0; i < hasil.length - 1; i++) {
+    for (int j = 0; j < hasil.length - 1 - i; j++) {
+      // Bandingkan elemen bersebelahan
+      if (hasil[j] > hasil[j + 1]) {
+        // Tukar posisi jika tidak urut
+        int temp = hasil[j];
+        hasil[j] = hasil[j + 1];
+        hasil[j + 1] = temp;
       }
     }
   }
   
-  return {
-    'distribution': charCount,
-    'vowels': vowelCount,
-    'consonants': consonantCount,
-  };
-}
-
-// Function to analyze sentences
-Map<String, dynamic> analyzeSentences(String text) {
-  List<String> sentences = text
-      .split(RegExp(r'[.!?]+'))
-      .map((s) => s.trim())
-      .where((s) => s.isNotEmpty)
-      .toList();
-  
-  if (sentences.isEmpty) {
-    return {'sentences': [], 'averageLength': 0.0};
-  }
-  
-  int totalWords = 0;
-  List<int> wordCounts = [];
-  
-  for (String sentence in sentences) {
-    int wordCount = sentence.split(RegExp(r'\s+')).length;
-    wordCounts.add(wordCount);
-    totalWords += wordCount;
-  }
-  
-  double averageLength = totalWords / sentences.length;
-  
-  return {
-    'sentences': sentences,
-    'count': sentences.length,
-    'averageLength': averageLength,
-    'wordCounts': wordCounts,
-  };
-}
-
-// Function to display comprehensive analysis
-void displayTextAnalysis(
-  Map<String, int> basicStats,
-  Map<String, int> wordFreq,
-  Map<String, dynamic> charStats,
-  Map<String, dynamic> sentences
-) {
-  print('📊 BASIC STATISTICS:');
-  print('Characters (with spaces): ${basicStats['characters']}');
-  print('Characters (no spaces): ${basicStats['charactersNoSpaces']}');
-  print('Words: ${basicStats['words']}');
-  print('Lines: ${basicStats['lines']}');
-  
-  print('\n📝 SENTENCE ANALYSIS:');
-  print('Number of sentences: ${sentences['count']}');
-  print('Average words per sentence: ${sentences['averageLength'].toStringAsFixed(1)}');
-  
-  print('\n🔤 CHARACTER ANALYSIS:');
-  print('Vowels: ${charStats['vowels']}');
-  print('Consonants: ${charStats['consonants']}');
-  
-  print('\n📈 TOP WORD FREQUENCY:');
-  var sortedWords = wordFreq.entries.toList()
-    ..sort((a, b) => b.value.compareTo(a.value));
-  
-  int displayCount = 5; // Show top 5 words
-  for (int i = 0; i < displayCount && i < sortedWords.length; i++) {
-    var entry = sortedWords[i];
-    print('${i + 1}. "${entry.key}": ${entry.value} times');
-  }
-  
-  print('\n📋 SENTENCES:');
-  for (int i = 0; i < sentences['sentences'].length; i++) {
-    String sentence = sentences['sentences'][i];
-    int wordCount = sentences['wordCounts'][i];
-    print('${i + 1}. ($wordCount words) $sentence');
-  }
+  return hasil;
 }
 ```
 
-📝 **Text Analysis Flow:**
-```
-🎯 Text Processing Pipeline:
-  Raw Text → Clean → Analyze → Report
-  ↓
-1️⃣ Basic Stats:
-  ├─ Count characters (with/without spaces)
-  ├─ Split into words → Count
-  └─ Split into lines → Count
-  ↓
-2️⃣ Word Frequency:
-  ├─ Clean text (remove punctuation)
-  ├─ Convert to lowercase
-  ├─ Split into words
-  ├─ Count occurrences of each word
-  └─ Sort by frequency
-  ↓
-3️⃣ Character Analysis:
-  ├─ Count each character
-  ├─ Classify as vowel/consonant
-  └─ Build distribution map
-  ↓
-4️⃣ Sentence Analysis:
-  ├─ Split by sentence terminators (.!?)
-  ├─ Count words per sentence
-  └─ Calculate averages
+**Pencarian Linear:**
+```dart
+int pencarianLinear(List<int> list, int target) {
+  // Periksa setiap elemen satu per satu
+  for (int i = 0; i < list.length; i++) {
+    if (list[i] == target) {
+      return i; // Kembalikan indeks jika ditemukan
+    }
+  }
+  return -1; // Kembalikan -1 jika tidak ditemukan
+}
 ```
 
 🚀 **Coba Sekarang!** 
-Analyze your own text samples di: https://zapp.run/
+Test implementasi algoritma Anda di: https://zapp.run/
 
-### 📋 Task 3: Student Grade Management System
+### 🏆 Tantangan Bonus: Pipeline Pemrosesan Data
+
+Buat sistem pemrosesan data lengkap yang menggabungkan semua konsep dari minggu ini. Tantangan ini akan menguji kemampuan Anda dalam mengintegrasikan berbagai konsep.
 
 ```dart
 void main() {
-  print('=== STUDENT GRADE MANAGEMENT SYSTEM ===');
+  // Data mentah yang merepresentasikan suhu harian selama seminggu
+  List<Map<String, dynamic>> dataCuaca = [
+    {'hari': 'Senin', 'suhu': 28, 'kondisi': 'cerah'},
+    {'hari': 'Selasa', 'suhu': 25, 'kondisi': 'mendung'},
+    {'hari': 'Rabu', 'suhu': 31, 'kondisi': 'cerah'},
+    {'hari': 'Kamis', 'suhu': 22, 'kondisi': 'hujan'},
+    {'hari': 'Jumat', 'suhu': 29, 'kondisi': 'cerah'},
+    {'hari': 'Sabtu', 'suhu': 26, 'kondisi': 'berawan'},
+    {'hari': 'Minggu', 'suhu': 24, 'kondisi': 'hujan'}
+  ];
   
-  // Initialize student database
-  var gradeManager = StudentGradeManager();
+  // Implementasikan sistem analisis cuaca lengkap:
+  // 1. Proses data untuk mengekstrak berbagai insight
+  // 2. Gunakan ketiga jenis koleksi (List, Set, Map)  
+  // 3. Implementasikan beberapa fungsi dengan berbagai jenis parameter
+  // 4. Gunakan kontrol alur untuk mengkategorikan dan menganalisis data
   
-  // Add students with their grades
-  gradeManager.addStudent('Alice', [95, 87, 92, 88, 94]);
-  gradeManager.addStudent('Bob', [78, 85, 79, 82, 86]);
-  gradeManager.addStudent('Charlie', [92, 95, 89, 91, 93]);
-  gradeManager.addStudent('Diana', [85, 88, 84, 90, 87]);
-  gradeManager.addStudent('Eve', [76, 79, 81, 78, 80]);
-  
-  // Perform various operations
-  gradeManager.displayAllStudents();
-  gradeManager.displayClassStatistics();
-  gradeManager.displayGradeDistribution();
-  gradeManager.findTopPerformers(3);
-  gradeManager.identifyAtRiskStudents(80.0);
-}
-
-class StudentGradeManager {
-  Map<String, List<int>> studentGrades = {};
-  
-  // Add a student with their grades
-  void addStudent(String name, List<int> grades) {
-    if (name.isEmpty) {
-      print('❌ Error: Student name cannot be empty');
-      return;
-    }
-    
-    if (grades.isEmpty) {
-      print('❌ Error: Grade list cannot be empty');
-      return;
-    }
-    
-    // Validate grades (0-100)
-    bool invalidGrades = grades.any((grade) => grade < 0 || grade > 100);
-    if (invalidGrades) {
-      print('❌ Error: All grades must be between 0 and 100');
-      return;
-    }
-    
-    studentGrades[name] = List.from(grades);
-    print('✅ Added $name with ${grades.length} grades');
-  }
-  
-  // Calculate average for a student
-  double calculateAverage(List<int> grades) {
-    if (grades.isEmpty) return 0.0;
-    int sum = grades.fold(0, (prev, grade) => prev + grade);
-    return sum / grades.length;
-  }
-  
-  // Get letter grade from numeric average
-  String getLetterGrade(double average) {
-    if (average >= 90) return 'A';
-    if (average >= 80) return 'B';
-    if (average >= 70) return 'C';
-    if (average >= 60) return 'D';
-    return 'F';
-  }
-  
-  // Display all students with their statistics
-  void displayAllStudents() {
-    print('\n📚 STUDENT RECORDS:');
-    print('=' * 60);
-    
-    if (studentGrades.isEmpty) {
-      print('No students found.');
-      return;
-    }
-    
-    for (var entry in studentGrades.entries) {
-      String name = entry.key;
-      List<int> grades = entry.value;
-      
-      double average = calculateAverage(grades);
-      String letterGrade = getLetterGrade(average);
-      int minGrade = grades.reduce((a, b) => a < b ? a : b);
-      int maxGrade = grades.reduce((a, b) => a > b ? a : b);
-      
-      print('Student: $name');
-      print('  Grades: $grades');
-      print('  Average: ${average.toStringAsFixed(2)} (Letter: $letterGrade)');
-      print('  Range: $minGrade - $maxGrade');
-      print('  Status: ${getStudentStatus(average)}');
-      print('');
-    }
-  }
-  
-  // Get student performance status
-  String getStudentStatus(double average) {
-    if (average >= 90) return 'Excellent 🌟';
-    if (average >= 80) return 'Good 👍';
-    if (average >= 70) return 'Satisfactory 📚';
-    if (average >= 60) return 'Needs Improvement ⚠️';
-    return 'At Risk ❌';
-  }
-  
-  // Display class-wide statistics
-  void displayClassStatistics() {
-    print('\n📊 CLASS STATISTICS:');
-    print('=' * 40);
-    
-    if (studentGrades.isEmpty) {
-      print('No data available.');
-      return;
-    }
-    
-    List<double> allAverages = studentGrades.values
-        .map((grades) => calculateAverage(grades))
-        .toList();
-    
-    double classAverage = allAverages.fold(0.0, (sum, avg) => sum + avg) / allAverages.length;
-    double highestAverage = allAverages.reduce((a, b) => a > b ? a : b);
-    double lowestAverage = allAverages.reduce((a, b) => a < b ? a : b);
-    
-    // Calculate standard deviation
-    double variance = allAverages
-        .map((avg) => (avg - classAverage) * (avg - classAverage))
-        .fold(0.0, (sum, val) => sum + val) / allAverages.length;
-    double standardDeviation = sqrt(variance);
-    
-    print('Total Students: ${studentGrades.length}');
-    print('Class Average: ${classAverage.toStringAsFixed(2)}');
-    print('Highest Average: ${highestAverage.toStringAsFixed(2)}');
-    print('Lowest Average: ${lowestAverage.toStringAsFixed(2)}');
-    print('Standard Deviation: ${standardDeviation.toStringAsFixed(2)}');
-    print('Class Grade: ${getLetterGrade(classAverage)}');
-  }
-  
-  // Display grade distribution
-  void displayGradeDistribution() {
-    print('\n📈 GRADE DISTRIBUTION:');
-    print('=' * 30);
-    
-    Map<String, int> distribution = {
-      'A': 0, 'B': 0, 'C': 0, 'D': 0, 'F': 0
-    };
-    
-    for (var grades in studentGrades.values) {
-      double average = calculateAverage(grades);
-      String letterGrade = getLetterGrade(average);
-      distribution[letterGrade] = distribution[letterGrade]! + 1;
-    }
-    
-    for (var entry in distribution.entries) {
-      String grade = entry.key;
-      int count = entry.value;
-      double percentage = (count / studentGrades.length) * 100;
-      
-      String bar = '█' * ((count * 20) ~/ studentGrades.length);
-      print('$grade: $count students (${percentage.toStringAsFixed(1)}%) $bar');
-    }
-  }
-  
-  // Find top performers
-  void findTopPerformers(int count) {
-    print('\n🏆 TOP $count PERFORMERS:');
-    print('=' * 25);
-    
-    List<MapEntry<String, double>> studentAverages = studentGrades.entries
-        .map((entry) => MapEntry(entry.key, calculateAverage(entry.value)))
-        .toList();
-    
-    studentAverages.sort((a, b) => b.value.compareTo(a.value));
-    
-    for (int i = 0; i < count && i < studentAverages.length; i++) {
-      var entry = studentAverages[i];
-      String medal = i == 0 ? '🥇' : i == 1 ? '🥈' : i == 2 ? '🥉' : '🏅';
-      print('${i + 1}. $medal ${entry.key}: ${entry.value.toStringAsFixed(2)}');
-    }
-  }
-  
-  // Identify at-risk students
-  void identifyAtRiskStudents(double threshold) {
-    print('\n⚠️ STUDENTS BELOW $threshold AVERAGE:');
-    print('=' * 35);
-    
-    List<MapEntry<String, double>> atRiskStudents = [];
-    
-    for (var entry in studentGrades.entries) {
-      double average = calculateAverage(entry.value);
-      if (average < threshold) {
-        atRiskStudents.add(MapEntry(entry.key, average));
-      }
-    }
-    
-    if (atRiskStudents.isEmpty) {
-      print('✅ No students below threshold!');
-      return;
-    }
-    
-    atRiskStudents.sort((a, b) => a.value.compareTo(b.value));
-    
-    for (var entry in atRiskStudents) {
-      print('• ${entry.key}: ${entry.value.toStringAsFixed(2)} (${getLetterGrade(entry.value)})');
-    }
-    
-    print('\nRecommendation: Consider additional support for ${atRiskStudents.length} student(s)');
-  }
-}
-
-// Helper function for square root (simplified implementation)
-double sqrt(double value) {
-  if (value < 0) return double.nan;
-  if (value == 0) return 0;
-  
-  double guess = value / 2;
-  for (int i = 0; i < 10; i++) {
-    guess = (guess + value / guess) / 2;
-  }
-  return guess;
+  // Solusi Anda harus menghasilkan laporan cuaca yang komprehensif
 }
 ```
 
-🎓 **Grade Management Flow:**
-```
-🎯 Student Management System:
-  Input: Student data with grades
-  ↓
-1️⃣ Data Validation:
-  ├─ Check name not empty
-  ├─ Check grades list not empty
-  ├─ Validate grade range (0-100)
-  └─ Store if valid
-  ↓
-2️⃣ Statistical Analysis:
-  ├─ Calculate individual averages
-  ├─ Determine letter grades
-  ├─ Find min/max grades
-  └─ Assess student status
-  ↓
-3️⃣ Class Analytics:
-  ├─ Calculate class average
-  ├─ Find highest/lowest performers
-  ├─ Compute standard deviation
-  └─ Create grade distribution
-  ↓
-4️⃣ Reporting:
-  ├─ Display individual records
-  ├─ Show class statistics
-  ├─ Highlight top performers
-  └─ Identify at-risk students
+**💡 Ide Implementasi:**
+
+```dart
+// Fungsi untuk menganalisis suhu
+Map<String, double> analisisSuhu(List<Map<String, dynamic>> data) {
+  // Hitung rata-rata, minimum, maksimum suhu
+  // Kembalikan dalam Map
+}
+
+// Fungsi untuk mengkategorikan kondisi cuaca
+Map<String, int> hitungKondisiCuaca(List<Map<String, dynamic>> data) {
+  // Hitung berapa kali setiap kondisi terjadi
+  // Gunakan Map untuk menyimpan hasil
+}
+
+// Fungsi untuk mencari hari terpanas dan terdingin
+Map<String, String> cariEkstremSuhu(List<Map<String, dynamic>> data) {
+  // Cari hari dengan suhu tertinggi dan terendah
+  // Kembalikan nama hari
+}
+
+// Fungsi untuk merekomendasikan aktivitas
+List<String> rekomendasiAktivitas(List<Map<String, dynamic>> data) {
+  // Berikan rekomendasi berdasarkan cuaca
+  // Gunakan kondisional untuk menentukan aktivitas yang sesuai
+}
 ```
 
 🚀 **Coba Sekarang!** 
-Build your grade management system di: https://zapp.run/
+Bangun sistem analisis cuaca lengkap di: https://zapp.run/
 
 ---
 
 ## 📚 Glosarium
 
-| **Term** | **Definisi** | **Contoh** |
-|----------|--------------|------------|
-| **Arrow Function** | Fungsi dengan sintaks singkat menggunakan `=>` | `int add(int a, int b) => a + b;` |
-| **Break Statement** | Pernyataan untuk keluar dari loop atau switch | `break;` dalam for loop |
-| **Collection** | Struktur data yang menyimpan multiple elements | List, Set, Map |
-| **Continue Statement** | Pernyataan untuk melewati iterasi saat ini | `continue;` dalam loop |
-| **Control Flow** | Urutan eksekusi statements dalam program | if-else, loops, switch |
-| **For-in Loop** | Loop untuk iterasi collection tanpa index | `for (item in list)` |
-| **Higher-order Function** | Fungsi yang menerima/mengembalikan fungsi lain | Function sebagai parameter |
-| **Iterable** | Object yang bisa di-iterate (List, Set) | `numbers.where((n) => n > 5)` |
-| **Key-Value Pair** | Pasangan kunci dan nilai dalam Map | `'name': 'Alice'` |
-| **Lambda** | Anonymous function atau function literal | `(x) => x * 2` |
-| **Named Parameter** | Parameter dengan nama eksplisit | `func(name: 'Alice')` |
-| **Optional Parameter** | Parameter yang boleh tidak disediakan | `func([int? age])` |
-| **Positional Parameter** | Parameter berdasarkan urutan/posisi | `func(name, age)` |
-| **Required Parameter** | Parameter yang wajib disediakan | `required String name` |
-| **Ternary Operator** | Operator kondisional singkat `? :` | `age >= 18 ? 'Adult' : 'Minor'` |
+| **Istilah** | **Definisi** | **Contoh** |
+|-------------|--------------|------------|
+| **API (Application Programming Interface)** | Sekumpulan protokol dan tools untuk membangun aplikasi software | REST API, Flutter Widget API |
+| **Arrow Function** | Sintaks ringkas untuk menulis fungsi menggunakan operator `=>` | `int tambah(int a, int b) => a + b;` |
+| **Boolean Expression** | Ekspresi yang menghasilkan nilai true atau false | `umur >= 18`, `nama == 'Alice'` |
+| **Break Statement** | Pernyataan kontrol alur yang keluar dari perulangan atau switch | `break;` dalam loop |
+| **Collection** | Struktur data yang menyimpan beberapa elemen | List, Set, Map di Dart |
+| **Continue Statement** | Pernyataan yang melompat ke iterasi berikutnya dalam perulangan | `continue;` dalam loop |
+| **Control Flow** | Urutan eksekusi pernyataan dalam program | if-else, loops, switch |
+| **Decrement Operator** | Operator `--` yang mengurangi nilai numerik sebesar satu | `counter--` |
+| **For-In Loop** | Perulangan yang mengiterasi koleksi tanpa manajemen indeks eksplisit | `for (item in list)` |
+| **Function** | Blok kode yang dapat digunakan kembali untuk melakukan tugas tertentu | `void sapaUser() { ... }` |
+| **Increment Operator** | Operator `++` yang menambah nilai numerik sebesar satu | `counter++` |
+| **Index** | Posisi numerik elemen dalam koleksi berurutan seperti List | `list[0]` untuk elemen pertama |
+| **Iteration** | Proses mengulang sekumpulan operasi | for loop, while loop |
+| **Key-Value Pair** | Struktur data di mana setiap kunci dikaitkan dengan nilai tertentu | Map di Dart |
+| **List** | Koleksi berurutan yang memungkinkan duplikasi dan akses berbasis indeks | `['apel', 'pisang', 'ceri']` |
+| **Logical Operator** | Operator seperti `&&` (AND), `\|\|` (OR), dan `!` (NOT) | `isStudent && hasID` |
+| **Map** | Koleksi yang menyimpan pasangan kunci-nilai | `{'nama': 'Alice', 'umur': 25}` |
+| **Named Parameter** | Parameter fungsi yang diidentifikasi dengan nama saat pemanggilan | `func(nama: 'Alice', umur: 25)` |
+| **Optional Parameter** | Parameter fungsi yang tidak wajib disediakan saat pemanggilan | `[String? lastName]` |
+| **Parameter** | Variabel yang digunakan dalam fungsi untuk menerima input | `int tambah(int a, int b)` |
+| **Set** | Koleksi tidak berurutan yang berisi elemen unik | `{1, 2, 3}` |
+| **Void** | Tipe return yang menunjukkan fungsi tidak mengembalikan nilai | `void printMessage()` |
+| **While Loop** | Perulangan yang terus berjalan selama kondisi tetap true | `while (condition)` |
 
 ---
 
 ## 📖 Referensi
 
 ### 📚 Dokumentasi Resmi
-1. **Dart Language Tour - Control Flow**. (2024). *Dart.dev*. https://dart.dev/language/control-flow
-2. **Dart Language Tour - Functions**. (2024). *Dart.dev*. https://dart.dev/language/functions  
-3. **Dart Language Tour - Collections**. (2024). *Dart.dev*. https://dart.dev/language/collections
+1. **Dart Language Tour - Operators**. (2024). *Dart.dev*. https://dart.dev/language/operators
+2. **Dart Language Tour - Control Flow**. (2024). *Dart.dev*. https://dart.dev/language/branches
+3. **Dart Language Tour - Functions**. (2024). *Dart.dev*. https://dart.dev/language/functions
+4. **Dart Language Tour - Collections**. (2024). *Dart.dev*. https://dart.dev/language/collections
 
-### 📊 Academic Sources
-4. Cooper, R., & Martinez, L. (2023). "Functional Programming Concepts in Modern Languages: A Comparative Study." *Journal of Programming Languages*, 18(2), 134-152.
-5. Singh, A., et al. (2024). "Data Structure Performance in Mobile Application Development." *IEEE Transactions on Mobile Computing*, 23(3), 445-462.
+### 📊 Sumber Akademik
+5. Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2009). *Introduction to Algorithms* (3rd ed.). MIT Press.
+6. Martin, R. C. (2017). *Clean Code: A Handbook of Agile Software Craftsmanship*. Pearson Education.
+7. Knuth, D. E. (1997). *The Art of Computer Programming, Volume 1: Fundamental Algorithms* (3rd ed.). Addison-Wesley Professional.
 
-### 📖 Programming Resources
-6. **Effective Dart Style Guide**. (2024). *Dart.dev*. https://dart.dev/guides/language/effective-dart/style
-7. **Dart Core Libraries**. (2024). *API Documentation*. https://api.dart.dev/stable/
+### 📖 Buku Pemrograman
+8. Bracha, G. (2015). *The Dart Programming Language*. Addison-Wesley Professional.
+9. Windmill, E., & Biggs, S. (2019). *Flutter in Action*. Manning Publications.
+10. Wu, F. (2022). *Beginning App Development with Flutter*. Apress.
 
-### 🌐 Online Learning
-8. **DartPad Tutorials**. (2024). *Interactive Dart Learning*. https://dartpad.dev/
-9. **Dart Language Samples**. (2024). *GitHub Repository*. https://github.com/dart-lang/samples
-
-### 📝 Algorithm References
-10. Cormen, T. H., et al. (2022). *Introduction to Algorithms* (4th ed.). MIT Press.
-11. Sedgewick, R., & Wayne, K. (2023). *Algorithms in Java* (5th ed.). Addison-Wesley.
+### 🌐 Sumber Online
+11. **DartPad Online IDE**. (2024). https://dartpad.dev
+12. **Zapp.run Flutter Playground**. (2024). https://zapp.run
+13. **Flutter Community Guidelines**. (2024). https://flutter.dev/community
 
 ---
 
 ## 📝 Catatan Pengajar
 
-### 🎯 Learning Outcomes Assessment
+### 🎯 Penilaian Pembelajaran
 
 **Indikator Keberhasilan:**
-- ✅ Mahasiswa dapat menggunakan control flow dengan tepat
-- ✅ Mahasiswa memahami berbagai jenis parameter fungsi
-- ✅ Mahasiswa dapat memilih collection type yang sesuai
-- ✅ Mahasiswa mampu menyelesaikan problem algoritmik sederhana
+- ✅ Mahasiswa dapat menggunakan operator dengan benar dalam berbagai konteks
+- ✅ Mahasiswa dapat mengimplementasikan logika kondisional yang efektif
+- ✅ Mahasiswa dapat menulis perulangan yang efisien dan aman
+- ✅ Mahasiswa dapat membuat dan menggunakan fungsi dengan berbagai jenis parameter
+- ✅ Mahasiswa dapat memanipulasi koleksi data dengan tepat
 
 ### 🎪 Tips Pengajaran
 
-1. **🎮 Interactive Practice**: Gunakan live coding untuk mendemonstrasikan concepts
-2. **📊 Visual Examples**: Gunakan flowchart untuk menjelaskan control flow
-3. **🔄 Progressive Complexity**: Mulai dari simple examples ke real-world problems
-4. **🤝 Peer Programming**: Dorong mahasiswa bekerja berpasangan dalam praktikum
+1. **🎨 Pembelajaran Visual**: Gunakan diagram alur untuk menjelaskan logika kondisional dan perulangan
+2. **🤝 Praktik Berkelompok**: Dorong mahasiswa untuk menyelesaikan tantangan secara berpasangan
+3. **🔄 Latihan Berulang**: Berikan latihan dengan tingkat kesulitan yang meningkat secara bertahap
+4. **🛠️ Hands-on Approach**: Prioritaskan praktik coding daripada teori yang panjang
 
-### ⚠️ Common Pitfalls
+### ⚠️ Kesalahan Umum
 
-- **Loop Conditions**: Mahasiswa sering salah dalam kondisi terminasi loop
-- **Function Parameters**: Confusion antara positional dan named parameters
-- **Collection Methods**: Tidak memahami perbedaan `map()`, `where()`, dan `forEach()`
-- **Null Safety**: Lupa handle null values dalam collections
-
-### 🧪 Extended Exercises
-
-Untuk mahasiswa yang sudah menguasai materi dasar:
-
-1. **Sorting Algorithms**: Implementasi bubble sort, selection sort
-2. **Search Algorithms**: Binary search, linear search
-3. **Data Validation**: Complex input validation dengan multiple conditions
-4. **File Processing**: Simulasi pembacaan dan pemrosesan data dari "file"
+- **Logika perulangan**: Mahasiswa sering lupa mengupdate variabel kontrol dalam while loop
+- **Parameter fungsi**: Kebingungan antara parameter posisional dan named parameter
+- **Koleksi data**: Tidak memahami perbedaan antara List, Set, dan Map
+- **Operator logika**: Salah menggunakan && dan || dalam kondisi kompleks
 
 ---
 
-## 🎯 Siap untuk Minggu Depan!
+## 🎯 Persiapan Minggu Depan!
 
-**Minggu 3 Preview: Pemrograman Berorientasi Objek (OOP) di Dart**
+**Preview Minggu 3: Pemrograman Berorientasi Objek (OOP) di Dart**
 
-🔮 **Coming Next:**
-- 🏗️ **Classes & Objects**: Blueprint dan instance creation
-- 🔒 **Encapsulation**: Private members, getters, setters
-- 🧬 **Inheritance**: Extending classes, method overriding
-- 🎭 **Polymorphism**: Abstract classes, interfaces, mixins
+🔮 **Yang Akan Datang:**
+- 🎭 **Classes dan Objects**: Memodelkan entitas dunia nyata
+- 🔒 **Encapsulation**: Menyembunyikan detail implementasi
+- 🧬 **Inheritance**: Mewarisi fungsionalitas dari class lain
+- 🎨 **Polymorphism**: Satu interface, banyak implementasi
 
-**📚 Preparation:**
-- Review function concepts (akan digunakan sebagai methods)
-- Practice dengan collections (akan menjadi object properties)
-- Pahami konsep modeling real-world entities
-
-**🎯 Mini Challenge:**
-Coba pikirkan system real-world yang bisa dimodelkan dengan classes:
-- Banking system (Account, SavingsAccount, CheckingAccount)
-- Library management (Book, Author, Library, Member)
-- E-commerce (Product, Customer, Order, Cart)
+**📚 Persiapan:**
+- Review semua konsep fungsi dan koleksi data
+- Praktikkan membuat fungsi yang complex
+- Pahami cara mengorganisir kode dengan baik
 
 ---
 
-*🎓 Great job mastering control flow, functions, and collections! Anda sudah memiliki foundation yang solid untuk mempelajari Object-Oriented Programming di minggu depan!*
+*🎓 Selamat Belajar! Semoga perjalanan menguasai logika pemrograman Anda menyenangkan dan bermanfaat!*
