@@ -47,23 +47,42 @@ void main() {
 }
 ```
 
-**📋 Penjelasan Langkah demi Langkah:**
+**📋 Eksekusi Program Langkah demi Langkah:**
 ```
-🎯 MULAI: nilai1 = 10, nilai2 = 3
+🎯 PROGRAM DIMULAI: Dart runtime mencari function main()
   ↓
-1️⃣ Penjumlahan (nilai1 + nilai2): 10 + 3 = 13
+1️⃣ DEKLARASI VARIABEL:
+   • Memory dialokasikan untuk variabel "nilai1" (tipe int)
+   • Nilai 10 disimpan di memory address untuk nilai1
+   • Memory dialokasikan untuk variabel "nilai2" (tipe int)  
+   • Nilai 3 disimpan di memory address untuk nilai2
   ↓
-2️⃣ Pengurangan (nilai1 - nilai2): 10 - 3 = 7
+2️⃣ EKSEKUSI print('Penjumlahan: ${nilai1 + nilai2}'):
+   • Dart parser mengidentifikasi string interpolation ${...}
+   • Evaluasi ekspresi nilai1 + nilai2:
+     - Ambil nilai dari memory nilai1 → 10
+     - Ambil nilai dari memory nilai2 → 3
+     - CPU melakukan operasi penjumlahan: 10 + 3 = 13
+   • Hasil 13 dikonversi ke string dan dimasukkan ke template
+   • String "Penjumlahan: 13" dikirim ke output stream (console)
   ↓
-3️⃣ Perkalian (nilai1 * nilai2): 10 × 3 = 30
+3️⃣ EKSEKUSI print('Pengurangan: ${nilai1 - nilai2}'):
+   • Parser mengidentifikasi string interpolation
+   • Evaluasi ekspresi nilai1 - nilai2:
+     - Ambil nilai1 dari memory → 10
+     - Ambil nilai2 dari memory → 3
+     - CPU melakukan operasi pengurangan: 10 - 3 = 7
+   • Output: "Pengurangan: 7"
   ↓
-4️⃣ Pembagian (nilai1 / nilai2): 10 ÷ 3 = 3.333... (hasilnya double)
+4️⃣ EKSEKUSI print('Pembagian: ${nilai1 / nilai2}'):
+   • Evaluasi nilai1 / nilai2:
+     - Dart mendeteksi operator / (pembagian double)
+     - Konversi operand ke double: 10.0 / 3.0
+     - CPU melakukan floating-point division
+     - Hasil: 3.3333333333333335 (double precision)
+   • Output: "Pembagian: 3.3333333333333335"
   ↓
-5️⃣ Pembagian Bulat (nilai1 ~/ nilai2): 10 ÷ 3 = 3 (hasilnya int, tanpa sisa)
-  ↓
-6️⃣ Sisa Bagi (nilai1 % nilai2): 10 % 3 = 1 (sisa dari pembagian)
-  ↓
-✅ SELESAI: Semua operasi aritmetika selesai
+✅ PROGRAM SELESAI: Semua instruksi telah dieksekusi, program terminate
 ```
 
 🚀 **Coba Sekarang!** 
@@ -88,27 +107,39 @@ void main() {
 }
 ```
 
-**📋 Alur Eksekusi:**
+**📋 Eksekusi Program Step-by-Step:**
 ```
-🎯 MULAI: penghitung = 5
+🎯 PROGRAM START: main() function dipanggil
   ↓
-1️⃣ penghitung++ (post-increment):
-    • Tampilkan nilai saat ini: 5
-    • Kemudian tambahkan: penghitung menjadi 6
+1️⃣ DEKLARASI & INISIALISASI:
+   • Stack frame dibuat untuk main()
+   • Memory allocation untuk variabel "penghitung" (int)
+   • Nilai 5 di-store ke memory address penghitung
   ↓
-2️⃣ ++penghitung (pre-increment):
-    • Tambahkan terlebih dahulu: penghitung menjadi 7
-    • Kemudian tampilkan: 7
+2️⃣ EKSEKUSI print('Nilai awal: $penghitung'):
+   • String interpolation evaluation: $penghitung
+   • Memory read: ambil nilai dari address penghitung → 5
+   • String concatenation: "Nilai awal: " + "5"
+   • Output ke console: "Nilai awal: 5"
   ↓
-3️⃣ --penghitung (pre-decrement):
-    • Kurangi terlebih dahulu: penghitung menjadi 6
-    • Kemudian tampilkan: 6
+3️⃣ EKSEKUSI print('Post-increment: ${penghitung++}'):
+   • Evaluasi expresi penghitung++:
+     - Memory read: baca nilai current penghitung → 5
+     - SIMPAN nilai current (5) untuk return value expression
+     - Memory write: increment nilai di address penghitung (5 → 6)
+     - Return saved value (5) untuk string interpolation
+   • Output: "Post-increment: 5"
+   • State sekarang: penghitung = 6 di memory
   ↓
-4️⃣ penghitung-- (post-decrement):
-    • Tampilkan nilai saat ini: 6
-    • Kemudian kurangi: penghitung menjadi 5
+4️⃣ EKSEKUSI print('Pre-increment: ${++penghitung}'):
+   • Evaluasi expresi ++penghitung:
+     - Memory read: baca nilai current penghitung → 6
+     - Memory write: increment dulu (6 → 7)
+     - Return new value (7) untuk string interpolation
+   • Output: "Pre-increment: 7"
+   • State sekarang: penghitung = 7 di memory
   ↓
-✅ SELESAI: penghitung = 5
+✅ STACK CLEANUP: main() stack frame di-deallocate, program terminate
 ```
 
 🚀 **Coba Sekarang!** 
@@ -136,18 +167,38 @@ void main() {
 }
 ```
 
-**📋 Logika Perbandingan:**
+**📋 Eksekusi Perbandingan dalam Program:**
 ```
-🎯 Nilai: umur=20, batasMinum=21, batasVoting=17
+🎯 PROGRAM START: main() function execution
   ↓
-1️⃣ umur == batasMinum: 20 == 21 → false ❌
-2️⃣ umur != batasVoting: 20 != 17 → true ✅
-3️⃣ umur < batasMinum: 20 < 21 → true ✅
-4️⃣ umur > batasVoting: 20 > 17 → true ✅
-5️⃣ umur <= batasMinum: 20 <= 21 → true ✅ (sama dengan juga dihitung)
-6️⃣ umur >= batasVoting: 20 >= 17 → true ✅ (lebih besar memenuhi syarat)
+1️⃣ VARIABLE DECLARATIONS:
+   • Stack allocation untuk umur, batasMinum, batasVoting
+   • Memory write: umur = 20, batasMinum = 21, batasVoting = 17
   ↓
-✅ Semua perbandingan menghasilkan nilai boolean
+2️⃣ EVALUASI print('umur == batasMinum: ${umur == batasMinum}'):
+   • String interpolation processing: ${umur == batasMinum}
+   • Expression evaluation umur == batasMinum:
+     - Memory read: load umur value → 20
+     - Memory read: load batasMinum value → 21
+     - CPU comparison: 20 == 21 → false (boolean result)
+   • String interpolation: "umur == batasMinum: " + "false"
+   • Console output: "umur == batasMinum: false"
+  ↓
+3️⃣ EVALUASI print('umur < batasMinum: ${umur < batasMinum}'):
+   • Expression evaluation umur < batasMinum:
+     - Memory read: load umur → 20
+     - Memory read: load batasMinum → 21
+     - CPU comparison: 20 < 21 → true (boolean result)
+   • Console output: "umur < batasMinum: true"
+  ↓
+4️⃣ EVALUASI print('umur >= batasVoting: ${umur >= batasVoting}'):
+   • Expression evaluation umur >= batasVoting:
+     - Memory read: load umur → 20
+     - Memory read: load batasVoting → 17
+     - CPU comparison: 20 >= 17 → true (boolean result)
+   • Console output: "umur >= batasVoting: true"
+  ↓
+✅ STACK CLEANUP: main() execution complete, memory deallocated
 ```
 
 🚀 **Coba Sekarang!** 
@@ -181,25 +232,44 @@ void main() {
 }
 ```
 
-**📋 Proses Evaluasi Logika:**
+**📋 Eksekusi Operator Logika dengan Short-Circuit Evaluation:**
 ```
-🎯 Diketahui: mahasiswa=true, punyaKTP=false, umur=19
+🎯 PROGRAM START: main() function di call stack
   ↓
-1️⃣ bisaMasukPerpustakaan = mahasiswa && punyaKTP
-    true && false = false ❌ (keduanya harus true)
+1️⃣ VARIABLE INITIALIZATION di stack frame:
+   • mahasiswa = true (1 byte boolean di memory)
+   • punyaKTP = false (1 byte boolean di memory)  
+   • umur = 19 (4 byte integer di memory)
   ↓
-2️⃣ dapatDiskon = mahasiswa || (umur < 18)
-    true || (19 < 18) = true || false = true ✅ (salah satu true)
-  ↓  
-3️⃣ bukanMahasiswa = !mahasiswa
-    !true = false ❌ (NOT membalik nilai)
+2️⃣ EVALUASI bisaMasukPerpustakaan = mahasiswa && punyaKTP:
+   • Dart menggunakan SHORT-CIRCUIT EVALUATION:
+     - Memory read: load mahasiswa → true
+     - Karena operator && dan left operand = true, lanjut evaluasi right operand
+     - Memory read: load punyaKTP → false  
+     - CPU logical operation: true && false = false
+   • Memory write: store false ke variable bisaMasukPerpustakaan
   ↓
-4️⃣ layakProgram = mahasiswa && (umur >= 18) && (punyaKTP || umur > 21)
-    true && (19 >= 18) && (false || 19 > 21)
-    = true && true && (false || false)
-    = true && true && false = false ❌
+3️⃣ EVALUASI dapatDiskon = mahasiswa || (umur < 18):
+   • SHORT-CIRCUIT EVALUATION untuk operator ||:
+     - Memory read: load mahasiswa → true
+     - Karena left operand = true pada operator ||, 
+       Dart SKIP evaluasi right operand (umur < 18)
+     - Result langsung = true (optimization)
+   • Memory write: store true ke variable dapatDiskon
   ↓
-✅ SELESAI: Logika kompleks dievaluasi langkah demi langkah
+4️⃣ EVALUASI layakProgram = mahasiswa && (umur >= 18) && (punyaKTP || umur > 21):
+   • Evaluasi left-to-right dengan short-circuiting:
+     - Memory read: mahasiswa → true, lanjut
+     - Evaluasi (umur >= 18): 19 >= 18 → true, lanjut
+     - Evaluasi (punyaKTP || umur > 21):
+       * Memory read: punyaKTP → false
+       * Karena left = false, evaluasi right: umur > 21
+       * 19 > 21 → false
+       * false || false = false
+     - Final: true && true && false = false
+   • Memory write: store false ke layakProgram
+  ↓
+✅ EXECUTION COMPLETE: Stack frame cleaned up
 ```
 
 🚀 **Coba Sekarang!** 
