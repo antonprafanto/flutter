@@ -1,1073 +1,914 @@
-# 📱 Minggu 1: Pengenalan Ekosistem Aplikasi Bergerak dan Dasar-Dasar Dart
+# 📚 Materi Pembelajaran Minggu 1
+## 🌍 Pengenalan Ekosistem Aplikasi Bergerak dan Dasar-Dasar Dart
 
-![Dart Badge](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
-![Flutter Badge](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
-![Mobile Development](https://img.shields.io/badge/Mobile-Development-orange?style=for-the-badge)
+![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![Mobile Dev](https://img.shields.io/badge/Mobile-Development-orange?style=for-the-badge)
+![Beginner](https://img.shields.io/badge/Level-Beginner-green?style=for-the-badge)
+
+---
 
 ## 🎯 Tujuan Pembelajaran
 
-Setelah menyelesaikan materi minggu ini, mahasiswa diharapkan dapat:
+Setelah mempelajari materi ini, Anda akan mampu:
 
-- 🎪 **Mengartikulasikan** perbedaan, kelebihan, dan kekurangan dari pengembangan aplikasi bergerak *native*, *hybrid*, dan *cross-platform*
-- 🚀 **Menjelaskan** proposisi nilai Flutter dalam ekosistem aplikasi bergerak
-- ⚙️ **Menyiapkan** lingkungan pengembangan Dart yang fungsional dan menulis program baris perintah dasar
-- 📝 **Mendeklarasikan** variabel menggunakan inferensi tipe dan tipe eksplisit, serta memahami *sound null safety* pada Dart
-
----
-
-## 📋 Outline Materi
-
-1. [🎪 Pengenalan Mata Kuliah](#-pengenalan-mata-kuliah)
-2. [🌍 Lanskap Pengembangan Aplikasi Bergerak](#-lanskap-pengembangan-aplikasi-bergerak)
-3. [⚖️ Perbandingan Pendekatan Pengembangan](#️-perbandingan-pendekatan-pengembangan)
-4. [🎯 Mengapa Flutter? Mengapa Dart?](#-mengapa-flutter-mengapa-dart)
-5. [⚙️ Pengaturan Lingkungan Dart](#️-pengaturan-lingkungan-dart)
-6. [🚀 Dasar-Dasar Dart](#-dasar-dasar-dart)
-7. [📊 Variabel dan Tipe Data](#-variabel-dan-tipe-data)
-8. [🛡️ Sound Null Safety](#️-sound-null-safety)
-9. [💻 Praktikum 1](#-praktikum-1)
+1. **🔍 Mengartikulasikan** perbedaan, kelebihan, dan kekurangan dari pengembangan aplikasi bergerak *native*, *hybrid*, dan *cross-platform*
+2. **💡 Menjelaskan** proposisi nilai Flutter dalam ekosistem aplikasi bergerak
+3. **⚙️ Menyiapkan** lingkungan pengembangan Dart yang fungsional dan menulis program baris perintah dasar
+4. **📝 Mendeklarasikan** variabel menggunakan inferensi tipe dan tipe eksplisit, serta memahami *sound null safety* pada Dart
 
 ---
 
-## 🎪 Pengenalan Mata Kuliah
+## 📋 Daftar Isi
 
-### 📚 Overview Silabus
-
-Mata kuliah **Pemrograman Piranti Bergerak menggunakan Flutter** dirancang untuk membekali mahasiswa dengan keterampilan pengembangan aplikasi mobile modern. Kurikulum ini mengikuti pendekatan pedagogis yang membedakan secara jelas antara pembelajaran bahasa pemrograman (Dart) dan framework (Flutter).
-
-### 🎯 Filosofi Pembelajaran
-
-> **"Memisahkan Bahasa dari Framework"**
-> 
-> Mahasiswa pemula sering mencampuradukkan konsep bahasa pemrograman dengan framework yang mereka gunakan. Approach ini mencegah kesalahpahaman dengan membangun fondasi Dart yang kuat sebelum mempelajari Flutter.
-
-### 📈 Ekspektasi Karir
-
-**Industry Statistics 2024-2025:**
-- 📊 Flutter mencapai **42% market share** dalam cross-platform development
-- 💰 Senior Flutter Developer: **$80,000 - $120,000** annually
-- 🌐 **2 juta developer** menggunakan Flutter globally
-- 📱 **170% increase** dalam Flutter job postings
+1. [🌍 Ekosistem Pengembangan Aplikasi Mobile](#-ekosistem-pengembangan-aplikasi-mobile)
+2. [🚀 Mengapa Flutter dan Dart?](#-mengapa-flutter-dan-dart)
+3. [⚙️ Setup Environment Dart](#️-setup-environment-dart)
+4. [📝 Dasar-Dasar Bahasa Dart](#-dasar-dasar-bahasa-dart)
+5. [🔒 Sound Null Safety](#-sound-null-safety)
+6. [🧪 Praktikum 1](#-praktikum-1)
 
 ---
 
-## 🌍 Lanskap Pengembangan Aplikasi Bergerak
+## 🌍 Ekosistem Pengembangan Aplikasi Mobile
 
-### 📱 Statistik Mobile App Market
+### 📱 Lanskap Pengembangan Aplikasi Bergerak
 
-```mermaid
-pie title Mobile Platform Market Share 2024
-    "Android" : 71.8
-    "iOS" : 27.6
-    "Others" : 0.6
-```
+Dalam dunia teknologi modern, aplikasi mobile telah menjadi bagian integral dari kehidupan sehari-hari. Untuk membangun aplikasi mobile, kita perlu memahami berbagai pendekatan yang tersedia.
 
-### 🔄 Development Lifecycle Overview
+### 🏗️ Tiga Pendekatan Utama Pengembangan Mobile
 
-Proses pengembangan aplikasi mobile modern melibatkan beberapa tahap kritis:
+#### 1. 🎯 **Native Development**
+Pengembangan aplikasi yang dibuat khusus untuk satu platform menggunakan bahasa dan tools resmi platform tersebut.
 
-```mermaid
-flowchart TD
-    A[🎯 Ideation & Planning] --> B[🎨 UI/UX Design]
-    B --> C[⚡ Development]
-    C --> D[🧪 Testing]
-    D --> E[🚀 Deployment]
-    E --> F[📊 Monitoring & Updates]
-    F --> C
-    
-    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
-    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style E fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-```
+**Karakteristik:**
+- **iOS**: Swift/Objective-C + Xcode
+- **Android**: Kotlin/Java + Android Studio
+- **Performance**: Optimal dan cepat
+- **UI/UX**: Mengikuti design guidelines platform
+- **Development Cost**: Tinggi (butuh 2 tim terpisah)
 
-### 🎭 Frontend vs Backend
+#### 2. 🌐 **Hybrid Development**
+Pengembangan aplikasi menggunakan teknologi web (HTML, CSS, JavaScript) yang dibungkus dalam container native.
 
-**Frontend (Client-side):**
-- 👀 User Interface (UI)
-- 🎯 User Experience (UX)
-- 📱 Device-specific functionality
-- 🎨 Visual presentation
+**Karakteristik:**
+- **Technology**: Apache Cordova/PhoneGap, Ionic
+- **Performance**: Lebih lambat dari native
+- **UI/UX**: Terbatas, tidak selalu terasa natural
+- **Development Cost**: Rendah (satu codebase)
 
-**Backend (Server-side):**
-- 🗄️ Database management
-- 🔐 Authentication & security
-- 📡 API services
-- ☁️ Cloud infrastructure
+#### 3. ⚡ **Cross-Platform Development**
+Pengembangan aplikasi dengan satu codebase yang dapat berjalan di multiple platform dengan performance mendekati native.
 
----
+**Karakteristik:**
+- **Technology**: Flutter (Dart), React Native (JavaScript)
+- **Performance**: Mendekati native
+- **UI/UX**: High fidelity, custom rendering
+- **Development Cost**: Sedang (balance antara cost dan quality)
 
-## ⚖️ Perbandingan Pendekatan Pengembangan
+### 📊 Perbandingan Detail
 
-### 📊 Comparison Matrix
-
-| 🏷️ **Pendekatan** | 🔧 **Teknologi Inti** | ⚡ **Performa** | 🎨 **UI Fidelity** | 📦 **Basis Kode** | 💰 **Cost/Time** | 🌟 **Contoh** |
-|---|---|---|---|---|---|---|
-| **🏆 Native** | Swift/Kotlin | Terbaik | Tertinggi | Terpisah per platform | Tinggi | WhatsApp, Instagram |
-| **🌐 Hybrid** | HTML/CSS/JS | Rendah | Terbatas | Tunggal | Rendah | Aplikasi Cordova lama |
-| **🚀 Cross-Platform** | Dart/JavaScript | Mendekati native | Tinggi | Tunggal | Sedang | Google Pay, Alibaba |
-
-### 🔍 Detail Analysis
-
-#### 🏆 Native Development
-
-**Strengths:**
-- ⚡ Performa optimal dengan akses langsung ke hardware
-- 🎯 Full platform integration
-- 🛡️ Keamanan tingkat tinggi
-- 📱 Platform-specific features
-
-**Weaknesses:**
-- 💰 Biaya development tinggi (2x team)
-- ⏰ Time-to-market lebih lama
-- 🔄 Maintenance complexity
-- 👥 Butuh specialized developers
-
-#### 🌐 Hybrid Development
-
-**Strengths:**
-- 💰 Cost-effective untuk MVP
-- 🌐 Leverage web technologies
-- 👨‍💻 Single skillset requirement
-- 🚀 Rapid prototyping
-
-**Weaknesses:**
-- 🐌 Performance limitations
-- 📱 Limited native features access
-- 🎨 Inconsistent UI/UX
-- 🔋 Battery drain issues
-
-#### 🚀 Cross-Platform Development
-
-**Strengths:**
-- ⚖️ Balance antara performance dan cost
-- 🎨 Consistent UI across platforms
-- 🔄 Single codebase maintenance
-- 📈 Growing ecosystem support
-
-**Weaknesses:**
-- 📚 Learning curve untuk framework-specific concepts
-- 🔌 Dependency pada third-party tools
-- 📱 Beberapa platform features tetap butuh native code
-- 🔄 Framework evolution risks
+| Aspek | Native | Hybrid | Cross-Platform |
+|-------|--------|--------|----------------|
+| **⚡ Performance** | ⭐⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ |
+| **💰 Development Cost** | ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| **🎨 UI/UX Quality** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ |
+| **🔧 Maintenance** | ⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| **📱 Platform Features** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ |
 
 ---
 
-## 🎯 Mengapa Flutter? Mengapa Dart?
+## 🚀 Mengapa Flutter dan Dart?
 
-### 🚀 Flutter Value Proposition
+### 🎯 Flutter: Solusi Cross-Platform Modern
 
-Flutter menawarkan solusi **"Cross-Platform Native"** yang unik dalam industri:
+Flutter adalah UI toolkit dari Google yang memungkinkan pengembangan aplikasi cross-platform dengan performance tinggi dan UI yang konsisten.
 
-```mermaid
-flowchart LR
-    A[📝 Single Codebase] --> B[🎨 Custom Rendering Engine]
-    B --> C[⚡ Native Performance]
-    C --> D[📱 Platform Consistent UI]
-    D --> E[🚀 Fast Development]
-    
-    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
-    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style E fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-```
+**Keunggulan Flutter:**
 
-### 🎯 Mengapa Google Memilih Dart?
-
-**Technical Rationale:**
-
-1. **🔄 Dual Compilation Model**
-   - JIT (Just-In-Time) untuk hot reload development
-   - AOT (Ahead-Of-Time) untuk production performance
-
-2. **🎨 UI-Optimized Design**
-   - Object-oriented model cocok untuk widget architecture
-   - Garbage collection yang optimal untuk UI rendering
-
-3. **📱 Application-Focused**
-   - Dirancang khusus untuk client-side applications
-   - Berbeda dengan JavaScript (web-focused) atau Go (server-side)
-
-4. **🎯 Strategic Control**
-   - Full control atas development stack
-   - Tidak bergantung pada third-party language evolution
-
-### 📈 Industry Adoption
-
-**Major Companies Using Flutter:**
-- 🛒 **Alibaba**: 300+ million users (Xianyu app)
-- 🚗 **BMW & Toyota**: In-car infotainment systems
-- 📰 **The New York Times**: Cross-platform puzzle games
-- 🛍️ **eBay Motors**: Comprehensive marketplace app
-
----
-
-## ⚙️ Pengaturan Lingkungan Dart
-
-### 🔧 Installation Process
-
-**Step-by-step Setup:**
-
-1. **📥 Download Dart SDK**
-   - Visit: https://dart.dev/get-dart
-   - Pilih sesuai OS (Windows/macOS/Linux)
-
-2. **🔧 Environment Variables**
-   - Add Dart SDK ke system PATH
-   - Verify dengan `dart --version`
-
-3. **💻 IDE Setup**
-   - **VS Code**: Install Dart extension
-   - **Android Studio**: Install Dart plugin
-   - **IntelliJ IDEA**: Built-in Dart support
-
-### 🌐 Online Development Environment
-
-Untuk kemudahan belajar, kita akan menggunakan **DartPad** sebagai environment utama:
-
-**🌟 DartPad Features:**
-- ✅ No installation required
-- ✅ Instant code execution
-- ✅ Shareable code snippets
-- ✅ Built-in examples
-
-**🔗 Access:** https://dartpad.dev
-
----
-
-## 🚀 Dasar-Dasar Dart
-
-### 📝 Program Structure Fundamental
-
-Setiap program Dart dimulai dari **fungsi `main()`**:
-
+#### 🔥 **Hot Reload**
 ```dart
-void main() {
-  print('Hello, Dart World! 🌟');
-}
+// Ubah text ini
+Text('Hello World!')
+// Save file → Langsung terlihat perubahannya di emulator!
 ```
 
-```mermaid
-flowchart TD
-    A[🎯 Program Start] --> B[📝 Main Function Called]
-    B --> C[⚡ Execute Code Inside Main]
-    C --> D[📤 Output to Console]
-    D --> E[✅ Program End]
-    
-    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
-    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style E fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+📋 **Cara Kerja Hot Reload:**
+```
+🎯 START: Developer menulis code
+  ↓
+1️⃣ Save file (.dart) 
+  ↓
+2️⃣ Flutter detect changes
+  ↓  
+3️⃣ Compile hanya bagian yang berubah
+  ↓
+4️⃣ Inject ke running app
+  ↓
+✅ END: UI updated instantly (< 1 detik)
 ```
 
 🚀 **Coba Sekarang!** 
-Silakan copy code di atas dan coba jalankan di: https://dartpad.dev/
+Nanti saat praktikum, Anda akan merasakan keajaiban Hot Reload di: https://zapp.run/
 
-### 💬 Comments dan Documentation
-
+#### ⚡ **Single Codebase, Multiple Platforms**
 ```dart
-// Ini adalah single-line comment
-
-/*
- * Ini adalah multi-line comment
- * Berguna untuk penjelasan panjang
- */
-
-/// Documentation comment untuk fungsi
-/// Menggunakan triple slash
-void main() {
-  print('Belajar Dart itu mudah! 😊');
-}
+// Code yang sama berjalan di:
+// ✅ Android
+// ✅ iOS  
+// ✅ Web
+// ✅ Desktop (Windows, macOS, Linux)
 ```
 
-```mermaid
-flowchart LR
-    A[📝 Source Code] --> B{❓ Comment Type?}
-    B -->|//| C[📄 Single Line]
-    B -->|Multi| D[📄 Multi Line]
-    B -->|///| E[📚 Documentation]
-    C --> F[🚫 Ignored by Compiler]
-    D --> F
-    E --> G[📖 Used by Doc Generator]
-    
-    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
-    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style F fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
-    style G fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+#### 🎨 **Custom Rendering Engine**
+Flutter tidak menggunakan native widgets, tapi menggambar sendiri setiap pixel di layar menggunakan Skia Graphics Engine.
+
+```
+📊 **Rendering Process:**
+Dart Code → Flutter Framework → Skia Engine → Platform Canvas → Screen Pixels
 ```
 
-🚀 **Coba Sekarang!** 
-Copy code comment examples dan test di: https://dartpad.dev/
+### 💎 Mengapa Dart?
 
-### 🎨 String Interpolation
+Dart adalah bahasa pemrograman yang dirancang khusus untuk UI development modern.
 
+**Keunggulan Dart:**
+
+#### 🔄 **Just-In-Time (JIT) & Ahead-Of-Time (AOT) Compilation**
 ```dart
-void main() {
-  String nama = 'Alice';
-  int umur = 25;
-  
-  // String interpolation dengan $
-  print('Nama: $nama');
-  
-  // Expression dalam ${} 
-  print('Tahun lahir: ${2024 - umur}');
-  
-  // Kombinasi
-  print('$nama berumur $umur tahun dan lahir pada ${2024 - umur}');
-}
+// Development: JIT compilation (Hot Reload)
+// Production: AOT compilation (Fast startup, small size)
 ```
 
-```mermaid
-flowchart TD
-    A[📥 Input: Variables] --> B[🔄 String Template Processing]
-    B --> C{❓ Simple Variable?}
-    C -->|Yes| D[💫 Use dollar syntax]
-    C -->|No| E[🧮 Use expression syntax]
-    D --> F[📤 Generate Final String]
-    E --> F
-    F --> G[📄 Print Output]
-    
-    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
-    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style G fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+📋 **Compilation Flow:**
+```
+🎯 Development Mode (JIT):
+Source Code → JIT Compiler → Dart VM → Hot Reload ✨
+
+🎯 Production Mode (AOT):  
+Source Code → AOT Compiler → Native Machine Code → Fast App 🚀
 ```
 
-🚀 **Coba Sekarang!** 
-Experiment dengan string interpolation di: https://dartpad.dev/
+#### 🛡️ **Sound Null Safety**
+```dart
+// Dart mencegah null reference errors di compile time!
+String? name;  // Bisa null
+String title;  // Tidak bisa null
+```
+
+#### 📱 **UI-Focused Language Features**
+```dart
+// Cascade operator untuk styling
+Container()
+  ..width = 100
+  ..height = 100
+  ..color = Colors.blue;
+```
 
 ---
 
-## 📊 Variabel dan Tipe Data
+## ⚙️ Setup Environment Dart
 
-### 🏷️ Variable Declaration Methods
+### 📦 Instalasi Dart SDK
 
-Dart menyediakan beberapa cara untuk mendeklarasikan variabel:
+#### 🖥️ **Windows**
 
+**Step 1: Download Dart SDK**
+```bash
+# Via Chocolatey (Recommended)
+choco install dart-sdk
+
+# Atau download manual dari:
+# https://dart.dev/get-dart
+```
+
+**Step 2: Set PATH Environment**
+```bash
+# Tambahkan ke System PATH:
+C:\tools\dart-sdk\bin
+```
+
+**Step 3: Verify Installation**
+```bash
+dart --version
+```
+
+📋 **Verification Process:**
+```
+🎯 START: Open Command Prompt
+  ↓
+1️⃣ Type: dart --version
+  ↓
+2️⃣ System checks PATH
+  ↓
+3️⃣ Find dart.exe in dart-sdk/bin
+  ↓
+✅ END: Shows "Dart SDK version X.X.X"
+```
+
+#### 🍎 **macOS**
+
+```bash
+# Via Homebrew
+brew tap dart-lang/dart
+brew install dart
+
+# Verify
+dart --version
+```
+
+#### 🐧 **Linux**
+
+```bash
+# Via apt (Ubuntu/Debian)
+sudo apt update
+sudo apt install dart
+
+# Verify  
+dart --version
+```
+
+### 💻 **Setup IDE**
+
+#### 🟦 **VS Code (Recommended for Beginners)**
+
+**Step 1: Install VS Code**
+Download dari: https://code.visualstudio.com/
+
+**Step 2: Install Dart Extension**
+```
+🎯 VS Code Extensions:
+  ↓
+1️⃣ Search: "Dart"
+  ↓  
+2️⃣ Install: "Dart" by Dart Code
+  ↓
+3️⃣ Restart VS Code
+  ↓
+✅ END: Dart support ready!
+```
+
+#### 🟨 **DartPad (Online Testing)**
+
+Untuk testing cepat tanpa setup: https://dartpad.dev/
+
+---
+
+## 📝 Dasar-Dasar Bahasa Dart
+
+### 🚀 Program Dart Pertama
+
+💻 **Hello World Program:**
 ```dart
 void main() {
-  // 1. var - Type inference (direkomendasikan)
-  var nama = 'Bob';        // String otomatis
-  var umur = 30;           // int otomatis
-  var tinggi = 175.5;      // double otomatis
-  
-  // 2. Explicit type declaration
-  String kota = 'Jakarta';
-  int populasi = 10000000;
-  double latitude = -6.2088;
-  bool isCapital = true;
-  
-  // 3. final - Runtime constant
-  final currentTime = DateTime.now();
-  final greeting = 'Selamat datang!';
-  
-  // 4. const - Compile-time constant
-  const pi = 3.14159;
-  const appName = 'Flutter App';
-  
-  print('Info: $nama, $umur tahun, di $kota');
-  print('Konstanta: $pi, App: $appName');
+  print('Hello, World!');
 }
 ```
 
-```mermaid
-flowchart TD
-    A[📥 Variable Declaration] --> B{❓ Declaration Type?}
-    B -->|var| C[🤖 Type Inference]
-    B -->|explicit| D[📝 Manual Type]
-    B -->|final| E[🔒 Runtime Constant]
-    B -->|const| F[🏛️ Compile-time Constant]
-    
-    C --> G[⚡ Can be reassigned]
-    D --> G
-    E --> H[🚫 Cannot be reassigned]
-    F --> H
-    
-    G --> I[📊 Mutable Variable]
-    H --> J[🔐 Immutable Variable]
-    
-    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
-    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style G fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style H fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
-    style I fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style J fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+📋 **Step-by-Step Execution:**
+```
+🎯 START: Program dimulai
+  ↓
+1️⃣ Dart runtime mencari function main()
+  ↓
+2️⃣ Execute code dalam main()
+  ↓ 
+3️⃣ print() function dipanggil
+  ↓
+4️⃣ Text 'Hello, World!' dikirim ke console
+  ↓
+✅ END: Program selesai
 ```
 
 🚀 **Coba Sekarang!** 
-Test berbagai jenis variable declaration di: https://dartpad.dev/
+Copy code di atas dan jalankan di: https://zapp.run/
 
-### 🎯 Built-in Data Types
+### 📦 **Comments**
 
+💻 **Berbagai Jenis Komentar:**
+```dart
+// Single line comment
+
+/* 
+Multi-line comment
+Bisa lebih dari satu baris
+*/
+
+/// Documentation comment
+/// Biasanya untuk function atau class
+void myFunction() {
+  // Code here
+}
+```
+
+📋 **Comment Processing:**
+```
+🎯 Compiler reads file
+  ↓
+1️⃣ Identify comment markers (// /* ///)
+  ↓
+2️⃣ Skip comment content during compilation
+  ↓
+3️⃣ Process only actual code
+  ↓
+✅ Comments = ignored in final program
+```
+
+### 🏷️ **Variables dan Tipe Data**
+
+#### **Deklarasi Variable**
+
+💻 **Menggunakan `var` (Type Inference):**
 ```dart
 void main() {
-  // 🔢 Numbers
-  int siswa = 30;              // Integer (bilangan bulat)
-  double nilai = 85.7;         // Double (bilangan desimal)
-  num skor = 90;               // num bisa int atau double
+  var name = 'John';        // String (otomatis terdeteksi)
+  var age = 25;             // int (otomatis terdeteksi)  
+  var height = 175.5;       // double (otomatis terdeteksi)
+  var isStudent = true;     // bool (otomatis terdeteksi)
   
-  // 📝 Strings
-  String nama = 'Fakultas Teknik';
-  String deskripsi = "Program Studi Teknik Informatika";
-  String multiline = '''
-  Ini adalah string
-  dengan beberapa baris
+  print('Nama: $name');
+  print('Umur: $age');
+  print('Tinggi: $height');
+  print('Mahasiswa: $isStudent');
+}
+```
+
+📋 **Type Inference Process:**
+```
+🎯 var name = 'John';
+  ↓
+1️⃣ Dart analyzes assigned value: 'John'
+  ↓
+2️⃣ Detects quotes → String type
+  ↓
+3️⃣ Variable name gets type: String
+  ↓
+✅ name is now String type (immutable type)
+```
+
+🚀 **Coba Sekarang!** 
+Copy code di atas dan lihat hasilnya di: https://zapp.run/
+
+💻 **Explicit Type Declaration:**
+```dart
+void main() {
+  String firstName = 'Alice';
+  int score = 95;
+  double temperature = 36.5;
+  bool isPassed = true;
+  
+  print('Student: $firstName');
+  print('Score: $score');
+  print('Temperature: $temperature°C'); 
+  print('Passed: $isPassed');
+}
+```
+
+📋 **Explicit vs Inference:**
+```
+📊 Type Declaration Comparison:
+
+var name = 'John';          ←→    String name = 'John';
+     ↓                             ↓
+Type inferred by Dart       Type explicitly specified
+(Dart decides)              (Developer decides)
+     ↓                             ↓
+Same result: String type    Same result: String type
+```
+
+#### 🔒 **Konstanta: `final` vs `const`**
+
+💻 **Final - Runtime Constant:**
+```dart
+void main() {
+  final currentTime = DateTime.now();  // Nilai ditentukan saat runtime
+  final userName = 'Alice';            // Tidak bisa diubah setelah assigned
+  
+  print('Current time: $currentTime');
+  print('User: $userName');
+  
+  // userName = 'Bob';  // ❌ Error! final variable tidak bisa diubah
+}
+```
+
+💻 **Const - Compile Time Constant:**
+```dart
+void main() {
+  const pi = 3.14159;           // Nilai sudah ditentukan saat compile
+  const appName = 'MyApp';      // Compile-time constant
+  
+  print('Pi: $pi');
+  print('App: $appName');
+  
+  // const currentTime = DateTime.now();  // ❌ Error! 
+  // DateTime.now() hanya bisa diketahui saat runtime
+}
+```
+
+📋 **Final vs Const Comparison:**
+```
+🎯 FINAL:
+Compilation → Runtime → Value assigned → Cannot change
+                ↑
+            Value determined here
+
+🎯 CONST:  
+Compilation → Value determined → Runtime → Cannot change
+            ↑
+        Value determined here
+```
+
+#### 📊 **Tipe Data Built-in**
+
+💻 **Numbers:**
+```dart
+void main() {
+  // Integer (bilangan bulat)
+  int quantity = 42;
+  int negative = -10;
+  
+  // Double (bilangan desimal)  
+  double price = 19.99;
+  double pi = 3.14159;
+  
+  // num (parent type untuk int dan double)
+  num score = 85;      // Bisa int
+  num average = 87.5;  // Atau double
+  
+  print('Quantity: $quantity');
+  print('Price: \$${price}');
+  print('Score: $score');
+}
+```
+
+📋 **Number Type Hierarchy:**
+```
+📊 Dart Number Types:
+       num
+      ↙   ↘
+    int   double
+     ↓     ↓
+  42, -5  3.14, -2.5
+```
+
+🚀 **Coba Sekarang!** 
+Eksperimen dengan berbagai angka di: https://zapp.run/
+
+💻 **Strings:**
+```dart
+void main() {
+  // Single quotes
+  String message = 'Hello World';
+  
+  // Double quotes
+  String name = "Alice";
+  
+  // String interpolation
+  String greeting = 'Hello, $name!';
+  String calculation = 'The result is ${2 + 3}';
+  
+  // Multi-line string
+  String longText = '''
+  Ini adalah text
+  yang panjang dan
+  menggunakan beberapa baris
   ''';
   
-  // ✅ Boolean
-  bool isActive = true;
-  bool isCompleted = false;
-  
-  // 📋 Collections (Preview)
-  List<String> mataKuliah = ['Algoritma', 'Database', 'Flutter'];
-  Map<String, int> nilaiMahasiswa = {'Alice': 90, 'Bob': 85};
-  Set<int> anotherSet = new Set.from([1, 4, 6, 4, 1]);
-
-  print('Jumlah siswa: $siswa');
-  print('Rata-rata nilai: $nilai');
-  print('Status aktif: $isActive');
-  print('Mata kuliah: $mataKuliah');
-  print(anotherSet);
+  print(greeting);
+  print(calculation);
+  print(longText);
 }
 ```
 
-```mermaid
-flowchart LR
-    A[🗂️ Dart Data Types] --> B[🔢 Numbers]
-    A --> C[📝 Strings]
-    A --> D[✅ Booleans]
-    A --> E[📋 Collections]
-    
-    B --> B1[int]
-    B --> B2[double]
-    B --> B3[num]
-    
-    C --> C1[Single quotes]
-    C --> C2[Double quotes]
-    C --> C3[Triple quotes]
-    
-    D --> D1[true]
-    D --> D2[false]
-    
-    E --> E1[List]
-    E --> E2[Set]
-    E --> E3[Map]
-    
-    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
-    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style B1 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style B2 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style B3 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style C1 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style C2 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style C3 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style D1 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style D2 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style E1 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style E2 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style E3 fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+📋 **String Interpolation Process:**
+```
+🎯 String interpolation: 'Hello, $name!'
+  ↓
+1️⃣ Dart scans for $ symbol
+  ↓
+2️⃣ Finds variable name after $
+  ↓
+3️⃣ Gets value of name variable
+  ↓
+4️⃣ Replaces $name with actual value
+  ↓
+✅ Result: 'Hello, Alice!'
+```
+
+💻 **Booleans:**
+```dart
+void main() {
+  bool isOnline = true;
+  bool isCompleted = false;
+  
+  // Boolean dari comparison
+  bool isAdult = 20 >= 18;         // true
+  bool isEmpty = 'hello'.isEmpty;   // false
+  
+  print('Online: $isOnline');
+  print('Adult: $isAdult');
+  print('Empty: $isEmpty');
+}
+```
+
+### 🔧 **String Operations**
+
+💻 **String Methods:**
+```dart
+void main() {
+  String text = 'Flutter Development';
+  
+  print('Original: $text');
+  print('Length: ${text.length}');
+  print('Uppercase: ${text.toUpperCase()}');
+  print('Lowercase: ${text.toLowerCase()}');
+  print('Contains Flutter: ${text.contains('Flutter')}');
+  print('Starts with F: ${text.startsWith('F')}');
+  print('Substring: ${text.substring(0, 7)}');
+}
+```
+
+📋 **String Method Chain:**
+```
+🎯 text.toUpperCase().substring(0, 7)
+  ↓
+1️⃣ text = 'Flutter Development'
+  ↓
+2️⃣ toUpperCase() → 'FLUTTER DEVELOPMENT'  
+  ↓
+3️⃣ substring(0, 7) → 'FLUTTER'
+  ↓
+✅ Final result: 'FLUTTER'
 ```
 
 🚀 **Coba Sekarang!** 
-Eksperimen dengan berbagai tipe data di: https://dartpad.dev/
+Mainkan dengan string methods di: https://zapp.run/
 
 ---
 
-## 🛡️ Sound Null Safety
+## 🔒 Sound Null Safety
 
-### 🎯 Konsep Null Safety
+### 🛡️ **Apa itu Null Safety?**
 
-**Null Safety** adalah fitur modern Dart yang mencegah **null reference errors** - salah satu penyebab crash paling umum dalam programming.
+Null Safety adalah fitur Dart yang mencegah null reference errors pada compile time, bukan runtime.
 
-### 📚 Understanding Nullable vs Non-Nullable
-
+💻 **Nullable vs Non-nullable:**
 ```dart
 void main() {
-  // ✅ Non-nullable types (DEFAULT)
-  String nama = 'Alice';           // HARUS ada nilai
-  int umur = 25;                   // TIDAK boleh null
+  // Non-nullable (default)
+  String name = 'Alice';              // Harus memiliki nilai
+  int age = 25;                       // Tidak bisa null
   
-  // ❓ Nullable types (dengan ?)
-  String? email;                   // Boleh null
-  int? nomorTelepon;               // Boleh null
+  // Nullable (dengan ?)
+  String? nickname;                   // Bisa null
+  int? score;                         // Bisa null
   
-  // 🔧 Assignment
-  email = 'alice@email.com';       // OK
-  email = null;                    // OK juga
+  print('Name: $name');               // ✅ Safe
+  print('Nickname: $nickname');       // ✅ Safe (null ditampilkan)
   
-  // nama = null;                  // ❌ ERROR! Tidak boleh null
-  
-  print('Nama: $nama');
-  print('Email: $email');
-  print('Telepon: $nomorTelepon'); // akan print 'null'
+  // name = null;                     // ❌ Error! Non-nullable
+  nickname = null;                    // ✅ OK, karena nullable
 }
 ```
 
-```mermaid
-flowchart TD
-    A[📥 Variable Declaration] --> B{❓ Nullable Type?}
-    B -->|No ?| C[🛡️ Non-nullable]
-    B -->|With ?| D[❓ Nullable]
-    
-    C --> E[✅ Must have value]
-    C --> F[🚫 Cannot be null]
-    
-    D --> G[⚡ Can have value]
-    D --> H[⚪ Can be null]
-    
-    E --> I[🔐 Compile-time Safety]
-    F --> I
-    G --> J[🔄 Runtime Checking]
-    H --> J
-    
-    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
-    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style C fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style D fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style E fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style F fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style I fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+📋 **Null Safety Check:**
+```
+🎯 Variable Declaration Analysis:
+  ↓
+1️⃣ String name;  → Dart checks: "No ? mark"
+  ↓
+2️⃣ Mark as non-nullable → Must have value
+  ↓
+3️⃣ String? nickname; → Dart checks: "Has ? mark"  
+  ↓
+4️⃣ Mark as nullable → Can be null
+  ↓
+✅ Compile-time safety guaranteed
 ```
 
-🚀 **Coba Sekarang!** 
-Test nullable dan non-nullable types di: https://dartpad.dev/
+### ⚡ **Null-aware Operators**
 
-### 🔧 Null Safety Operators
+💻 **Null Check Operator (!):**
+```dart
+void main() {
+  String? nullableName;
+  
+  // Assign non-null value
+  nullableName = 'Bob';
+  
+  // Tell Dart: "I'm sure this is not null"
+  String definitelyName = nullableName!;
+  
+  print('Name: $definitelyName');
+  
+  // ⚠️ Hati-hati! Jika nullableName null, program akan crash
+}
+```
 
+💻 **Null-aware Access (?.):**
+```dart
+void main() {
+  String? nullableText;
+  
+  // Safe method call - returns null if object is null
+  int? length = nullableText?.length;
+  
+  print('Length: $length');  // Prints: Length: null
+  
+  nullableText = 'Hello';
+  length = nullableText?.length;
+  print('Length: $length');  // Prints: Length: 5
+}
+```
+
+📋 **Null-aware Operator Flow:**
+```
+🎯 nullableText?.length
+  ↓
+1️⃣ Check if nullableText is null
+  ↓                    ↓
+[NULL] ❌             [NOT NULL] ✅  
+  ↓                    ↓
+Return null           Call .length method
+  ↓                    ↓
+✅ Safe!              ✅ Safe!
+```
+
+💻 **Null Coalescing (??):**
 ```dart
 void main() {
   String? username;
-  String? email = 'user@example.com';
   
-  // 1. 🔍 Null-aware access operator (?.)
-  print('Email length: ${email?.length}');        // Aman dari null
-  print('Username length: ${username?.length}');  // Akan print 'null'
+  // Provide default value if null
+  String displayName = username ?? 'Guest';
   
-  // 2. 🎯 Null coalescing operator (??)
-  String displayName = username ?? 'Guest User';
-  print('Welcome, $displayName!');
+  print('Welcome, $displayName!');  // Welcome, Guest!
   
-  // 3. ⚡ Null-aware assignment (??=)
-  username ??= 'DefaultUser';  // Assign hanya jika null
-  print('Username sekarang: $username');
-  
-  // 4. 🚨 Null assertion operator (!) - HATI-HATI!
-  if (email != null) {
-    print('Pasti ada email: ${email!.toUpperCase()}');
-  }
+  username = 'Alice';
+  displayName = username ?? 'Guest';
+  print('Welcome, $displayName!');  // Welcome, Alice!
 }
 ```
 
-```mermaid
-flowchart TD
-    A[📥 Nullable Variable] --> B{❓ Check Access Type}
-    
-    B -->|?.| C[🔍 Safe Navigation]
-    B -->|??| D[🎯 Default Value]
-    B -->|??=| E[⚡ Conditional Assignment]
-    B -->|!| F[🚨 Force Unwrap]
-    
-    C --> G[✅ Returns null if variable is null]
-    D --> H[✅ Use default if null]
-    E --> I[✅ Assign only if null]
-    F --> J[⚠️ Runtime error if null]
-    
-    G --> K[📤 Safe Result]
-    H --> K
-    I --> K
-    J --> L[💥 Potential Crash]
-    
-    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
-    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style C fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style D fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style E fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style F fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
-    style G fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style H fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style I fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style J fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
-    style K fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style L fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+📋 **Null Coalescing Logic:**
+```
+🎯 username ?? 'Guest'
+  ↓
+1️⃣ Evaluate left side: username
+  ↓                    ↓
+[NULL] ❌             [NOT NULL] ✅
+  ↓                    ↓
+Use right side        Use left side
+'Guest'               username value
+  ↓                    ↓
+✅ Result             ✅ Result
 ```
 
 🚀 **Coba Sekarang!** 
-Practice null safety operators di: https://dartpad.dev/
+Eksperimen dengan null safety di: https://zapp.run/
 
-### 🎯 Practical Null Safety Example
+### 🎯 **Best Practices Null Safety**
 
+💻 **Practical Example:**
 ```dart
 void main() {
-  // Simulasi data user yang mungkin incomplete
-  Map<String, dynamic> userData = {
-    'name': 'Alice Johnson',
-    'age': 28,
-    // 'email' tidak ada
-    // 'phone' tidak ada
-  };
+  // ✅ Good: Initialize non-nullable variables
+  String appTitle = 'My Flutter App';
+  int version = 1;
   
-  // Safe data extraction
-  String name = userData['name'] ?? 'Unknown User';
-  int age = userData['age'] ?? 0;
-  String? email = userData['email'];
-  String? phone = userData['phone'];
+  // ✅ Good: Use nullable when value might not exist
+  String? userEmail;  // User might not be logged in
+  int? lastScore;     // Game might not be played yet
   
-  // Building user profile safely
-  print('=== USER PROFILE ===');
-  print('Name: $name');
-  print('Age: $age years old');
-  
-  // Safe email handling
-  if (email != null) {
-    print('Email: $email');
-    print('Email domain: ${email.split('@')[1]}');
-  } else {
-    print('Email: Not provided');
+  // ✅ Good: Safe null checking
+  if (userEmail != null) {
+    print('Email: $userEmail');
+    print('Email length: ${userEmail.length}'); // Safe after null check
   }
   
-  // Using null-aware operators
-  print('Contact: ${phone ?? 'No phone number'}');
-  print('Email length: ${email?.length ?? 0} characters');
+  // ✅ Good: Provide defaults
+  String greeting = userEmail != null 
+    ? 'Welcome back!' 
+    : 'Welcome, new user!';
   
-  // Creating safe display strings
-  String contactInfo = 'Reach via: ${email ?? phone ?? 'No contact info'}';
-  print(contactInfo);
+  print(greeting);
 }
 ```
 
-```mermaid
-flowchart TD
-    A[📥 Raw User Data] --> B[🔍 Extract Values]
-    B --> C{❓ Value Exists?}
-    
-    C -->|Yes| D[✅ Use Actual Value]
-    C -->|No| E[🎯 Use Default Value]
-    
-    D --> F[📊 Build Profile]
-    E --> F
-    
-    F --> G{❓ Need Safe Access?}
-    G -->|Yes| H[🛡️ Apply Null-aware Operators]
-    G -->|No| I[📤 Direct Usage]
-    
-    H --> J[📱 Safe Display]
-    I --> J
-    
-    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
-    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style D fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style H fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style J fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+📋 **Null Safety Benefits:**
 ```
+🎯 Without Null Safety:
+Runtime → Null Reference Error → App Crash 💥
 
-🚀 **Coba Sekarang!** 
-Experiment dengan data handling di: https://dartpad.dev/
+🎯 With Null Safety:  
+Compile Time → Null Check → Fix Before Build → Safe App ✅
+```
 
 ---
 
-## 💻 Praktikum 1: Dasar-Dasar Dart dan Pemecahan Masalah
+## 🧪 Praktikum 1: Dasar-Dasar Dart dan Pemecahan Masalah
 
-### 🎯 Objectives
+### 🎯 **Objektif Praktikum**
+Pada praktikum ini, Anda akan membuat program Dart yang mendemonstrasikan pemahaman tentang:
+- Variable declaration dan type inference
+- String manipulation dan interpolation  
+- Null safety implementation
+- Basic input/output operations
 
-Dalam praktikum ini, mahasiswa akan:
-1. ⚙️ Setup development environment
-2. 📝 Membuat program command-line pertama
-3. 🎮 Berinteraksi dengan user input
-4. 🧮 Implementasi basic calculations
-5. 🛡️ Practice null safety concepts
+### 📝 **Tugas 1: Personal Information Manager**
 
-### 📋 Task 1: Personal Information Manager
-
+💻 **Code Template:**
 ```dart
 void main() {
-  // TODO: Implementasikan personal information manager
+  // TODO: Lengkapi program ini
   
-  // 1. Deklarasi variabel untuk data pribadi
-  String nama = 'Nama Anda';
-  int umur = 20;
-  String? email;  // Bisa null
-  String? nomorTelepon;  // Bisa null
-  double tinggi = 170.5;
-  bool isStudent = true;
+  // 1. Deklarasikan variable untuk informasi personal
+  String fullName = '';           // Nama lengkap Anda
+  int age = 0;                    // Umur Anda  
+  double height = 0.0;            // Tinggi badan (cm)
+  String? nickname;               // Nickname (optional)
+  String university = '';         // Nama universitas
+  bool isStudent = true;          // Status mahasiswa
   
-  // 2. Simulasi input (dalam praktik nyata bisa dari stdin)
-  email = 'nama@email.com';
-  // nomorTelepon tetap null untuk demo
+  // 2. Assign nilai yang sesuai
+  // [Isi dengan data Anda]
   
-  // 3. Data processing dengan null safety
-  String displayEmail = email ?? 'Email belum diisi';
-  String displayPhone = nomorTelepon ?? 'Nomor telepon belum diisi';
+  // 3. Tampilkan informasi dengan format yang menarik
+  // [Gunakan string interpolation dan formatting]
   
-  // 4. Calculations
-  int birthYear = 2024 - umur;
-  double heightInFeet = tinggi / 30.48; // Konversi ke feet
+  // 4. Demonstrasikan null safety
+  // [Tampilkan nickname dengan safe access]
   
-  // 5. Output formatting
-  print('=== INFORMASI PRIBADI ===');
-  print('Nama: $nama');
-  print('Umur: $umur tahun');
-  print('Tahun lahir: $birthYear');
-  print('Tinggi: ${tinggi}cm (${heightInFeet.toStringAsFixed(2)} feet)');
-  print('Status: ${isStudent ? 'Mahasiswa' : 'Bukan mahasiswa'}');
-  print('Email: $displayEmail');
-  print('Telepon: $displayPhone');
-  
-  // 6. Advanced string manipulation
-  String initials = nama.split(' ').map((word) => word[0]).join('.');
-  print('Inisial: $initials');
-  
-  // 7. Conditional messaging
-  if (email != null && nomorTelepon != null) {
-    print('✅ Kontak lengkap tersedia');
-  } else {
-    print('⚠️ Mohon lengkapi informasi kontak');
-  }
+  // 5. Bonus: Hitung tahun lahir dari umur
+  // [Gunakan DateTime.now().year - age]
 }
 ```
 
-```mermaid
-flowchart TD
-    A[🎯 Start Program] --> B[📝 Variable Declaration]
-    B --> C[📥 Data Input/Assignment]
-    C --> D[🛡️ Null Safety Processing]
-    D --> E[🧮 Calculations]
-    E --> F[📊 Formatting Output]
-    F --> G[🎨 String Manipulation]
-    G --> H[❓ Conditional Logic]
-    H --> I[📤 Display Results]
-    I --> J[✅ Program Complete]
-    
-    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
-    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style D fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style J fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+💡 **Expected Output Example:**
+```
+================================
+    PERSONAL INFORMATION CARD
+================================
+👤 Full Name    : John Doe
+🎂 Age          : 20 years old  
+📏 Height       : 175.5 cm
+🎯 Nickname     : Johnny
+🏛️  University  : University of Technology
+📚 Status       : Active Student
+🎯 Birth Year   : 2004
+================================
 ```
 
-🚀 **Coba Sekarang!** 
-Complete Task 1 di: https://dartpad.dev/
+### 📝 **Tugas 2: Simple Calculator**
 
-### 📋 Task 2: Grade Calculator dengan Null Safety
-
+💻 **Challenge Program:**
 ```dart
 void main() {
-  // Simulasi data nilai mahasiswa
+  // Calculator untuk operasi dasar
+  double num1 = 15.5;
+  double num2 = 4.2;
+  
+  // TODO: Implementasikan operasi matematika
+  // 1. Penjumlahan
+  // 2. Pengurangan  
+  // 3. Perkalian
+  // 4. Pembagian
+  // 5. Modulo (gunakan %)
+  
+  // TODO: Tampilkan hasil dengan format yang rapi
+  // Contoh: "15.5 + 4.2 = 19.7"
+  
+  // TODO: Handle division by zero dengan null safety
+  double? divisionResult = num2 != 0 ? num1 / num2 : null;
+  
+  // TODO: Tampilkan hasil division dengan null-aware operator
+}
+```
+
+### 📝 **Tugas 3: String Manipulation**
+
+💻 **Text Processing Challenge:**
+```dart
+void main() {
+  String originalText = 'flutter development is fun and exciting';
+  
+  // TODO: Implementasikan text processing
+  // 1. Convert ke title case (setiap kata huruf pertama kapital)
+  // 2. Hitung jumlah kata
+  // 3. Hitung jumlah karakter (tanpa spasi)
+  // 4. Cek apakah text mengandung kata 'flutter'
+  // 5. Replace 'flutter' dengan 'FLUTTER'
+  // 6. Ekstrak 3 kata pertama
+  
+  // Hint: Gunakan split(), join(), contains(), replaceAll()
+}
+```
+
+📋 **Step-by-Step Processing Guide:**
+```
+🎯 String Processing Pipeline:
+  ↓
+1️⃣ Original: 'flutter development is fun and exciting'
+  ↓
+2️⃣ Split by space → ['flutter', 'development', 'is', 'fun', 'and', 'exciting']
+  ↓
+3️⃣ Process each word → Capitalize first letter
+  ↓
+4️⃣ Join back → 'Flutter Development Is Fun And Exciting'
+  ↓
+✅ Final processed string
+```
+
+### 🎯 **Tugas 4: Null Safety Practice**
+
+💻 **Safe Programming Exercise:**
+```dart
+void main() {
+  // Scenario: Data mahasiswa yang mungkin tidak lengkap
   String studentName = 'Alice Johnson';
-  String? midtermScore;  // Nullable - belum ada nilai
-  String? finalScore;    // Nullable - belum ada nilai
-  double? assignmentScore; // Nullable
+  int? studentId;                    // Belum di-assign
+  String? email;                     // Optional
+  double? gpa;                       // Belum ada nilai
   
-  // Input simulasi (beberapa nilai ada, beberapa tidak)
-  midtermScore = '85';
-  finalScore = '90';
-  // assignmentScore tetap null
+  // TODO: Implementasikan safe access patterns
+  // 1. Tampilkan student info dengan null-safe operators
+  // 2. Berikan default values untuk data yang null
+  // 3. Demonstrasikan conditional null checking
+  // 4. Gunakan null-aware operators (?., ??, !)
   
-  print('=== GRADE CALCULATOR ===');
-  print('Student: $studentName');
-  
-  // Safe conversion dengan null checking
-  double? midterm = midtermScore != null ? double.tryParse(midtermScore) : null;
-  double? final_ = finalScore != null ? double.tryParse(finalScore) : null;
-  
-  // Handling missing scores
-  print('Midterm: ${midterm ?? 'Not available'}');
-  print('Final: ${final_ ?? 'Not available'}');
-  print('Assignment: ${assignmentScore ?? 'Not submitted'}');
-  
-  // Calculate average hanya jika ada data
-  if (midterm != null && final_ != null) {
-    double average = (midterm + final_) / 2;
-    print('Average (Midterm + Final): ${average.toStringAsFixed(1)}');
-    
-    // Grade determination
-    String grade;
-    if (average >= 90) {
-      grade = 'A';
-    } else if (average >= 80) {
-      grade = 'B';
-    } else if (average >= 70) {
-      grade = 'C';
-    } else if (average >= 60) {
-      grade = 'D';
-    } else {
-      grade = 'F';
-    }
-    
-    print('Letter Grade: $grade');
-    
-    // With assignment bonus (if available)
-    if (assignmentScore != null) {
-      double totalWithAssignment = (midterm + final_ + assignmentScore) / 3;
-      print('Average with Assignment: ${totalWithAssignment.toStringAsFixed(1)}');
-    }
-  } else {
-    print('❌ Cannot calculate average - missing scores');
-  }
-  
-  // Missing score notification
-  List<String> missingScores = [];
-  if (midtermScore == null) missingScores.add('Midterm');
-  if (finalScore == null) missingScores.add('Final');
-  if (assignmentScore == null) missingScores.add('Assignment');
-  
-  if (missingScores.isNotEmpty) {
-    print('⚠️  Missing: ${missingScores.join(', ')}');
-  }
+  // Example scenarios:
+  // - Jika email null, tampilkan "Email not provided"
+  // - Jika GPA null, tampilkan "GPA not calculated yet"  
+  // - Jika studentId null, generate random ID
 }
 ```
 
-```mermaid
-flowchart TD
-    A[📚 Input Score Data] --> B{❓ Score Available?}
-    
-    B -->|Yes| C[🔄 Parse to Number]
-    B -->|No| D[⚪ Keep as null]
-    
-    C --> E{❓ Parse Successful?}
-    E -->|Yes| F[✅ Valid Number]
-    E -->|No| D
-    
-    F --> G[🧮 Calculate Average]
-    D --> H[⚠️ Mark as Missing]
-    
-    G --> I[📊 Determine Grade]
-    H --> J[📝 List Missing Scores]
-    
-    I --> K[📤 Display Results]
-    J --> K
-    
-    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
-    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style C fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style D fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
-    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style F fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style H fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
-    style I fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style J fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
-    style K fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-```
+### 🚀 **Testing & Submission**
 
-🚀 **Coba Sekarang!** 
-Complete Grade Calculator di: https://dartpad.dev/
+**Platform Testing:**
+1. **Primary**: Test semua code di https://zapp.run/
+2. **Alternative**: DartPad (https://dartpad.dev/)
+3. **Local**: Jika sudah setup environment
 
-### 📋 Task 3: String Manipulation Challenge
+**Submission Requirements:**
+- ✅ Semua 4 tugas completed dan tested
+- ✅ Code berjalan tanpa error  
+- ✅ Output sesuai dengan expected format
+- ✅ Demonstrasi pemahaman null safety
+- ✅ Komentar yang menjelaskan logic
 
-```dart
-void main() {
-  // Data strings untuk manipulasi
-  String? userInput = 'Dart Programming Language';
-  String? description;  // Null untuk testing
-  List<String> keywords = ['Dart', 'Flutter', 'Mobile', 'Development'];
-  
-  print('=== STRING MANIPULATION CHALLENGE ===');
-  
-  // 1. Basic string operations dengan null safety
-  if (userInput != null) {
-    print('Original: $userInput');
-    print('Length: ${userInput.length} characters');
-    print('Uppercase: ${userInput.toUpperCase()}');
-    print('Lowercase: ${userInput.toLowerCase()}');
-    
-    // Word count
-    List<String> words = userInput.split(' ');
-    print('Word count: ${words.length}');
-    print('Words: $words');
-    
-    // Character frequency (advanced)
-    Map<String, int> charCount = {};
-    for (String char in userInput.toLowerCase().split('')) {
-      if (char != ' ') {  // Skip spaces
-        charCount[char] = (charCount[char] ?? 0) + 1;
-      }
-    }
-    print('Character frequency: $charCount');
-  }
-  
-  // 2. Null handling demonstration
-  String safeDescription = description ?? 'No description provided';
-  print('Description: $safeDescription');
-  print('Description length: ${description?.length ?? 0}');
-  
-  // 3. List string operations
-  print('\n=== KEYWORDS PROCESSING ===');
-  print('Keywords: $keywords');
-  print('Joined: ${keywords.join(', ')}');
-  print('Total characters: ${keywords.join('').length}');
-  
-  // 4. String building dengan null-aware operations
-  String summary = 'Topic: ${userInput ?? 'Unknown'}';
-  summary += '\nKeywords: ${keywords.join(', ')}';
-  summary += '\nDescription: ${description ?? 'Not available'}';
-  
-  print('\n=== SUMMARY ===');
-  print(summary);
-  
-  // 5. Advanced: Create acronym
-  if (userInput != null) {
-    String acronym = userInput
-        .split(' ')
-        .map((word) => word.isNotEmpty ? word[0].toUpperCase() : '')
-        .join('');
-    print('Acronym: $acronym');
-  }
-}
-```
+### 💡 **Tips Success**
 
-```mermaid
-flowchart TD
-    A[📥 Input Strings] --> B{❓ String Not Null?}
-    
-    B -->|Yes| C[🔧 String Operations]
-    B -->|No| D[🛡️ Safe Default Value]
-    
-    C --> E[📏 Length & Case]
-    C --> F[🔤 Word Processing]
-    C --> G[📊 Character Analysis]
-    
-    E --> H[📝 Format Results]
-    F --> H
-    G --> H
-    
-    D --> I[⚠️ Default Message]
-    I --> H
-    
-    H --> J[🎯 Create Summary]
-    J --> K[🏷️ Generate Acronym]
-    K --> L[📤 Display Output]
-    
-    style A fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
-    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style C fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-    style D fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
-    style E fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style F fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style G fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style H fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style I fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
-    style J fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style K fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    style L fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
-```
-
-🚀 **Coba Sekarang!** 
-Challenge yourself with string manipulation di: https://dartpad.dev/
+1. **🧪 Test Frequently**: Test setiap perubahan code di Zapp.run
+2. **📖 Read Error Messages**: Dart error messages sangat informatif
+3. **🔍 Use dartfmt**: Format code Anda agar rapi dan readable
+4. **💬 Add Comments**: Jelaskan logic yang kompleks
+5. **🎯 Start Simple**: Mulai dengan implementasi basic, kemudian improve
 
 ---
 
 ## 📚 Glosarium
 
-| **Term** | **Definisi** | **Contoh** |
-|----------|--------------|------------|
-| **AOT** | Ahead-Of-Time compilation - kompilasi sebelum runtime | Flutter production builds |
-| **Cross-Platform** | Pengembangan aplikasi untuk multiple platform dengan single codebase | Flutter, React Native |
-| **Dart SDK** | Software Development Kit untuk bahasa Dart | Tools untuk compile dan run Dart |
-| **Final** | Variable yang hanya bisa di-assign sekali saat runtime | `final time = DateTime.now()` |
-| **Hybrid** | Aplikasi web yang dibungkus dalam container native | Cordova, PhoneGap |
-| **JIT** | Just-In-Time compilation - kompilasi saat runtime | Dart development mode |
-| **Native** | Aplikasi yang dikembangkan khusus untuk satu platform | Swift untuk iOS, Kotlin untuk Android |
-| **Null Safety** | System untuk mencegah null reference errors | `String?` vs `String` |
-| **PWA** | Progressive Web App - web app dengan fitur native-like | Twitter Lite, Pinterest |
-| **Sound Null Safety** | Null safety yang dijamin pada compile time | Dart 2.12+ feature |
-| **Type Inference** | Automatic detection tipe data berdasarkan value | `var name = 'John'` → String |
-| **Widget** | Building block UI dalam Flutter | Text, Container, Column |
+| **Term** | **Pengertian** |
+|----------|----------------|
+| **AOT** | Ahead-Of-Time compilation - kompilasi sebelum program dijalankan |
+| **JIT** | Just-In-Time compilation - kompilasi saat program berjalan |
+| **Cross-platform** | Aplikasi yang dapat berjalan di multiple platform dengan satu codebase |
+| **Hot Reload** | Fitur Flutter yang memungkinkan update UI secara real-time tanpa restart aplikasi |
+| **Null Safety** | Sistem type yang mencegah null reference errors pada compile time |
+| **Type Inference** | Kemampuan Dart untuk menentukan tipe data secara otomatis dari nilai yang di-assign |
+| **String Interpolation** | Teknik memasukkan variable ke dalam string menggunakan syntax $variable |
+| **Nullable Type** | Tipe data yang bisa berisi nilai null, ditandai dengan tanda ? |
+| **Non-nullable Type** | Tipe data yang tidak bisa berisi nilai null (default di Dart) |
+| **Cascade Operator** | Operator (..) yang memungkinkan multiple operations pada object yang sama |
 
 ---
 
 ## 📖 Referensi
 
-### 📚 Dokumentasi Resmi
-1. **Dart Language Tour**. (2024). *Dart.dev*. https://dart.dev/language
-2. **Flutter Architecture Overview**. (2024). *Flutter.dev*. https://flutter.dev/architecture
-3. **Null Safety in Dart**. (2024). *Dart.dev*. https://dart.dev/null-safety
-
-### 📊 Industry Reports
-4. Statista. (2024). *Cross-platform mobile frameworks used by global developers 2023*. https://www.statista.com/statistics/869224/worldwide-software-developer-working-hours/
-5. Stack Overflow. (2024). *Developer Survey 2024: Mobile Development Trends*. https://survey.stackoverflow.co/2024/
-
-### 📖 Academic Sources
-6. Chen, L., & Rodriguez, M. (2023). "Pedagogical Approaches to Teaching Cross-Platform Mobile Development." *Journal of Computer Science Education*, 15(3), 245-267.
-7. Kumar, S., et al. (2024). "Null Safety Implementation in Modern Programming Languages: A Comparative Study." *IEEE Transactions on Software Engineering*, 50(4), 892-908.
-
-### 🌐 Online Resources
-8. **DartPad Online IDE**. (2024). https://dartpad.dev
-9. **Flutter Community**. (2024). *Best Practices for Dart Programming*. https://flutter.dev/community
-10. **Zapp.run Flutter Playground**. (2024). https://zapp.run
+1. **Dart Language Tour**. (2024). *Dart Programming Language*. Diakses dari https://dart.dev/language
+2. **Flutter Documentation Team**. (2024). *Introduction to Dart*. Flutter.dev. Diakses dari https://docs.flutter.dev/get-started/fundamentals/dart  
+3. **Google Developer Documentation**. (2024). *Sound Null Safety in Dart*. Dart.dev. Diakses dari https://dart.dev/null-safety
+4. **Windmill, E.** (2023). *Beginning Flutter: A Hands-On Guide to App Development*. Wrox Press.
+5. **Miola, A.** (2022). *Flutter Complete Reference: Create Beautiful, Fast and Native Apps for Any Device*. Leanpub.
 
 ---
 
-## 📝 Catatan Pengajar
+## 🎯 Persiapan Minggu Depan
 
-### 🎯 Learning Outcomes Assessment
+Pada **Minggu 2**, kita akan mempelajari:
+- 🔄 **Control Flow**: if-else, loops, switch statements
+- ⚡ **Functions**: Parameters, return values, arrow functions  
+- 📊 **Collections**: List, Set, Map operations
+- 🧮 **Advanced Operators**: Logical, comparison, assignment
 
-**Indikator Keberhasilan:**
-- ✅ Mahasiswa dapat menjelaskan perbedaan pendekatan mobile development
-- ✅ Mahasiswa dapat menulis program Dart dasar dengan null safety
-- ✅ Mahasiswa dapat menggunakan berbagai tipe data dengan benar
-- ✅ Mahasiswa memahami konsep variable declaration yang tepat
-
-### 🎪 Tips Pengajaran
-
-1. **🎨 Visual Learning**: Gunakan analogi nyata untuk null safety (kotak kosong vs berisi)
-2. **🤝 Pair Programming**: Dorong mahasiswa untuk bekerja berpasangan dalam praktikum
-3. **🔄 Iterative Practice**: Berikan latihan berulang dengan complexity yang meningkat
-4. **🛠️ Hands-on First**: Prioritaskan practice daripada theory yang panjang
-
-### ⚠️ Common Pitfalls
-
-- **Null safety confusion**: Mahasiswa sering lupa perbedaan `?` dan `!`
-- **Type mixing**: Mencampur `int` dan `double` tanpa conversion
-- **String interpolation**: Lupa menggunakan `${}` untuk expression complex
-- **Variable declaration**: Tidak paham kapan pakai `var`, `final`, atau `const`
+**Persiapan yang disarankan:**
+1. ✅ Pastikan environment Dart sudah working dengan baik
+2. ✅ Complete semua praktikum Minggu 1
+3. ✅ Familiar dengan https://zapp.run/ untuk testing
+4. ✅ Review kembali null safety concepts
 
 ---
 
-## 🎯 Siap untuk Minggu Depan!
+*🎉 Selamat! Anda telah menyelesaikan dasar-dasar Dart. Minggu depan kita akan mulai membuat program yang lebih interaktif dan powerful!*
 
-**Minggu 2 Preview: Alur Kontrol, Fungsi, dan Koleksi Data**
-
-🔮 **Coming Next:**
-- 🎮 **Control Flow**: if-else, loops, switch statements
-- ⚡ **Functions**: parameters, return values, arrow functions
-- 📦 **Collections**: List, Set, Map operations
-- 🧩 **Algorithmic Thinking**: Problem-solving patterns
-
-**📚 Preparation:**
-- Review semua konsep null safety
-- Practice variable declarations
-- Explore DartPad untuk experimental coding
-
----
-
-*🎓 Happy Learning! Semoga perjalanan mobile development Anda menyenangkan dan produktif!*
+🚀 **Jangan lupa**: Practice makes perfect. Semakin sering Anda coding, semakin familiar dengan Dart syntax dan concepts!
