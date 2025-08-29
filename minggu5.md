@@ -1,32 +1,42 @@
-📱 Minggu 5: Arsitektur Widget Flutter
-Show Image
-Show Image
-Show Image
+# 📱 Minggu 5: Arsitektur Widget Flutter
 
-🎯 Tujuan Pembelajaran
+![Flutter Badge](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![Dart Badge](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![Widget Architecture](https://img.shields.io/badge/Widget-Architecture-purple?style=for-the-badge)
+
+---
+
+## 🎯 Tujuan Pembelajaran
+
 Setelah menyelesaikan materi minggu ini, mahasiswa diharapkan dapat:
 
-🧩 Menjelaskan prinsip inti "Segalanya adalah widget" di Flutter
-🌳 Mendeskripsikan peran dari Widget Tree, Element Tree, dan Render Tree
-🔄 Membedakan antara StatelessWidget dan StatefulWidget beserta siklus hidupnya
-⚡ Menggunakan setState() untuk memicu pembaruan UI dalam StatefulWidget
+- 🧩 **Menjelaskan** prinsip inti "Segalanya adalah widget" di Flutter
+- 🌳 **Mendeskripsikan** peran dari Widget Tree, Element Tree, dan Render Tree
+- 🔄 **Membedakan** antara StatelessWidget dan StatefulWidget beserta siklus hidupnya
+- ⚡ **Menggunakan** setState() untuk memicu pembaruan UI dalam StatefulWidget
 
+---
 
-📋 Outline Materi
+## 📋 Outline Materi
 
-🧩 Paradigma Widget: "Everything is a Widget"
-🌳 Tiga Pohon Flutter: Arsitektur Internal
-📄 StatelessWidget: Widget Statis
-🔄 StatefulWidget: Widget Dinamis
-⚡ Mengelola State dengan setState()
-💻 Praktikum 5: Aplikasi Penghitung Interaktif
+1. [🧩 Paradigma Widget: "Everything is a Widget"](#-paradigma-widget-everything-is-a-widget)
+2. [🌳 Tiga Pohon Flutter: Arsitektur Internal](#-tiga-pohon-flutter-arsitektur-internal)
+3. [📄 StatelessWidget: Widget Statis](#-statelesswidget-widget-statis)
+4. [🔄 StatefulWidget: Widget Dinamis](#-statefulwidget-widget-dinamis)
+5. [⚡ Mengelola State dengan setState()](#-mengelola-state-dengan-setstate)
+6. [💻 Praktikum 5: Aplikasi Penghitung Interaktif](#-praktikum-5-aplikasi-penghitung-interaktif)
 
+---
 
-🧩 Paradigma Widget: "Everything is a Widget"
-🎯 Konsep Fundamental
+## 🧩 Paradigma Widget: "Everything is a Widget"
+
+### 🎯 Konsep Fundamental
+
 Flutter mengadopsi filosofi "Everything is a Widget" yang berarti semua elemen UI dalam aplikasi Flutter adalah widget. Tidak peduli itu tombol, teks, layout, padding, atau bahkan aplikasi itu sendiri - semuanya adalah widget yang dapat dikombinasikan untuk membangun antarmuka pengguna.
-💻 Contoh Sederhana - Struktur Widget:
-dartimport 'package:flutter/material.dart';
+
+💻 **Contoh Sederhana - Struktur Widget:**
+```dart
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp()); // MyApp adalah widget
@@ -52,7 +62,10 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-📋 Alur Pemahaman Widget:
+```
+
+📋 **Alur Pemahaman Widget:**
+```
 🎯 START: runApp(MyApp())
   ↓
 1️⃣ MyApp widget dibuat → Returns MaterialApp widget
@@ -68,12 +81,18 @@ class MyApp extends StatelessWidget {
 6️⃣ Flutter renders semua widget menjadi UI di layar
   ↓
 ✅ END: Widget tree lengkap ditampilkan sebagai aplikasi
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Copy kode di atas dan jalankan di: https://zapp.run/
-🏗️ Widget sebagai Building Blocks
+
+### 🏗️ Widget sebagai Building Blocks
+
 Widget dalam Flutter seperti blok LEGO - setiap widget memiliki fungsi spesifik dan dapat dikombinasikan untuk membuat struktur yang lebih kompleks.
-💻 Contoh Komposisi Widget:
-dartimport 'package:flutter/material.dart';
+
+💻 **Contoh Komposisi Widget:**
+```dart
+import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -113,7 +132,10 @@ class WelcomeScreen extends StatelessWidget {
     );
   }
 }
-📋 Komposisi Widget Breakdown:
+```
+
+📋 **Komposisi Widget Breakdown:**
+```
 🎯 WelcomeScreen Widget
   ↓
 1️⃣ Scaffold (structure widget)
@@ -132,12 +154,18 @@ class WelcomeScreen extends StatelessWidget {
 3️⃣ Flutter combines all widgets → Complete UI screen
   ↓
 ✅ Result: Centered welcome screen with icon, texts, and button
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Eksperimen dengan komposisi widget di: https://zapp.run/
-🎨 Kategori Widget
+
+### 🎨 Kategori Widget
+
 Widget dalam Flutter dapat dikategorikan berdasarkan fungsinya:
-💻 Demonstrasi Kategori Widget:
-dartimport 'package:flutter/material.dart';
+
+💻 **Demonstrasi Kategori Widget:**
+```dart
+import 'package:flutter/material.dart';
 
 class WidgetCategoriesDemo extends StatelessWidget {
   @override
@@ -211,7 +239,10 @@ class WidgetCategoriesDemo extends StatelessWidget {
     );
   }
 }
-📋 Widget Categories Explained:
+```
+
+📋 **Widget Categories Explained:**
+```
 🧩 Widget Categories in Flutter:
 
 1️⃣ STRUCTURAL WIDGETS (Mengatur layout dan struktur)
@@ -240,15 +271,24 @@ class WidgetCategoriesDemo extends StatelessWidget {
    └── SizedBox (fixed size spacing)
 
 ✅ Semua kategori bekerja sama membentuk complete UI
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Test berbagai kategori widget di: https://zapp.run/
 
-🌳 Tiga Pohon Flutter: Arsitektur Internal
+---
+
+## 🌳 Tiga Pohon Flutter: Arsitektur Internal
+
 Flutter menggunakan tiga struktur pohon yang berbeda untuk mengelola UI secara efisien: Widget Tree, Element Tree, dan Render Tree. Memahami arsitektur ini penting untuk optimasi performa aplikasi.
-📝 Widget Tree: Konfigurasi UI
+
+### 📝 Widget Tree: Konfigurasi UI
+
 Widget Tree adalah blueprint atau konfigurasi UI yang dibuat oleh developer. Widget tree bersifat immutable (tidak dapat diubah).
-💻 Contoh Widget Tree:
-dartimport 'package:flutter/material.dart';
+
+💻 **Contoh Widget Tree:**
+```dart
+import 'package:flutter/material.dart';
 
 class SimpleWidgetTree extends StatelessWidget {
   @override
@@ -272,7 +312,10 @@ class SimpleWidgetTree extends StatelessWidget {
     );
   }
 }
-📋 Widget Tree Structure:
+```
+
+📋 **Widget Tree Structure:**
+```
 🌳 Widget Tree Structure:
 MaterialApp (root widget)
   └── Scaffold
@@ -292,12 +335,18 @@ MaterialApp (root widget)
 4️⃣ DECLARATIVE: Mendeskripsikan WHAT (apa yang ditampilkan)
   ↓
 ✅ Widget Tree = Blueprint untuk UI yang akan dibangun
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Bangun widget tree sederhana di: https://zapp.run/
-🔗 Element Tree: Pengelola Siklus Hidup
+
+### 🔗 Element Tree: Pengelola Siklus Hidup
+
 Element Tree mengelola siklus hidup widget dan menjaga referensi ke Widget Tree. Element tree bersifat mutable (dapat diubah).
-💻 Demonstrasi Element Tree Concept:
-dartimport 'package:flutter/material.dart';
+
+💻 **Demonstrasi Element Tree Concept:**
+```dart
+import 'package:flutter/material.dart';
 
 class ElementTreeDemo extends StatefulWidget {
   @override
@@ -342,7 +391,10 @@ class _ElementTreeDemoState extends State<ElementTreeDemo> {
     );
   }
 }
-📋 Element Tree Lifecycle:
+```
+
+📋 **Element Tree Lifecycle:**
+```
 🔗 Element Tree Management:
 
 🎯 Ketika showWidget = true:
@@ -366,12 +418,18 @@ class _ElementTreeDemoState extends State<ElementTreeDemo> {
 3️⃣ Mount element baru ke tree
   ↓
 ✅ Element Tree mengelola lifecycle: create → mount → unmount → dispose
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Test lifecycle management di: https://zapp.run/
-🎨 Render Tree: Rendering dan Layout
+
+### 🎨 Render Tree: Rendering dan Layout
+
 Render Tree bertanggung jawab untuk layout, painting, dan hit testing (deteksi touch). Ini adalah layer terakhir yang menghasilkan pixel di layar.
-💻 Contoh Render Tree Impact:
-dartimport 'package:flutter/material.dart';
+
+💻 **Contoh Render Tree Impact:**
+```dart
+import 'package:flutter/material.dart';
 
 class RenderTreeDemo extends StatefulWidget {
   @override
@@ -438,7 +496,10 @@ class _RenderTreeDemoState extends State<RenderTreeDemo> {
     );
   }
 }
-📋 Render Tree Operations:
+```
+
+📋 **Render Tree Operations:**
+```
 🎨 Render Tree Process:
 
 🎯 Initial Render:
@@ -471,12 +532,18 @@ class _RenderTreeDemoState extends State<RenderTreeDemo> {
    • Adjust touchable area for new size
   ↓
 ✅ Screen updates with smooth animation (AnimatedContainer)
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Lihat render tree dalam aksi di: https://zapp.run/
-🔄 Interaksi Tiga Pohon
+
+### 🔄 Interaksi Tiga Pohon
+
 Ketiga pohon bekerja sama untuk menghasilkan UI yang efisien dan responsif:
-💻 Demo Interaksi Ketiga Pohon:
-dartimport 'package:flutter/material.dart';
+
+💻 **Demo Interaksi Ketiga Pohon:**
+```dart
+import 'package:flutter/material.dart';
 
 class ThreeTreesDemo extends StatefulWidget {
   @override
@@ -520,7 +587,10 @@ class _ThreeTreesDemoState extends State<ThreeTreesDemo> {
     );
   }
 }
-📋 Three Trees Interaction Flow:
+```
+
+📋 **Three Trees Interaction Flow:**
+```
 🔄 When setState() called:
 
 🌳 WIDGET TREE LEVEL:
@@ -548,14 +618,22 @@ class _ThreeTreesDemoState extends State<ThreeTreesDemo> {
    • Other render objects untouched
   ↓
 ✅ RESULT: Efficient update - only changed parts re-rendered
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Amati efisiensi tiga pohon di: https://zapp.run/
 
-📄 StatelessWidget: Widget Statis
+---
+
+## 📄 StatelessWidget: Widget Statis
+
 StatelessWidget adalah widget yang tidak memiliki state yang dapat berubah. Setelah dibuat, semua propertinya tidak dapat dimodifikasi. Widget ini ideal untuk konten yang statis atau tidak berubah.
-🏗️ Struktur Dasar StatelessWidget
-💻 Template StatelessWidget:
-dartimport 'package:flutter/material.dart';
+
+### 🏗️ Struktur Dasar StatelessWidget
+
+💻 **Template StatelessWidget:**
+```dart
+import 'package:flutter/material.dart';
 
 class MyStatelessWidget extends StatelessWidget {
   // Properties (final - tidak dapat diubah)
@@ -610,7 +688,10 @@ class StatelessDemo extends StatelessWidget {
     );
   }
 }
-📋 StatelessWidget Lifecycle:
+```
+
+📋 **StatelessWidget Lifecycle:**
+```
 📄 StatelessWidget Lifecycle:
 
 🎯 Creation Phase:
@@ -638,11 +719,16 @@ class StatelessDemo extends StatelessWidget {
    • build() not called again unless parent rebuilds
   ↓
 ✅ RESULT: Static widget with consistent appearance
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Buat StatelessWidget kustom di: https://zapp.run/
-🎨 Contoh Praktis StatelessWidget
-💻 ProfileCard - StatelessWidget Complex:
-dartimport 'package:flutter/material.dart';
+
+### 🎨 Contoh Praktis StatelessWidget
+
+💻 **ProfileCard - StatelessWidget Complex:**
+```dart
+import 'package:flutter/material.dart';
 
 class ProfileCard extends StatelessWidget {
   final String name;
@@ -769,7 +855,10 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
-📋 Complex StatelessWidget Structure:
+```
+
+📋 **Complex StatelessWidget Structure:**
+```
 🏗️ ProfileCard Widget Structure:
 
 🎯 Input Properties (immutable):
@@ -795,11 +884,16 @@ name, email, avatarUrl, followers
    • Reusable for consistent stats display
   ↓
 ✅ Result: Complex but stateless profile card
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Bangun ProfileCard yang complex di: https://zapp.run/
-✅ Kapan Menggunakan StatelessWidget
-💻 Decision Guide - StatelessWidget Usage:
-dartimport 'package:flutter/material.dart';
+
+### ✅ Kapan Menggunakan StatelessWidget
+
+💻 **Decision Guide - StatelessWidget Usage:**
+```dart
+import 'package:flutter/material.dart';
 
 // ✅ GOOD: Static content display
 class WelcomeMessage extends StatelessWidget {
@@ -889,7 +983,10 @@ class StatelessUsageDemo extends StatelessWidget {
     );
   }
 }
-📋 StatelessWidget Usage Guidelines:
+```
+
+📋 **StatelessWidget Usage Guidelines:**
+```
 📄 When to use StatelessWidget:
 
 ✅ PERFECT FOR:
@@ -922,14 +1019,22 @@ class StatelessUsageDemo extends StatelessWidget {
    • Real-time data displays
   ↓
 ✅ Rule: If it doesn't change after creation, use StatelessWidget
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Practice dengan various StatelessWidget di: https://zapp.run/
 
-🔄 StatefulWidget: Widget Dinamis
+---
+
+## 🔄 StatefulWidget: Widget Dinamis
+
 StatefulWidget adalah widget yang memiliki state yang dapat berubah selama runtime. Widget ini ideal untuk konten yang interaktif atau dinamis yang perlu merespons input pengguna atau perubahan data.
-🏗️ Struktur Dasar StatefulWidget
-💻 Template StatefulWidget:
-dartimport 'package:flutter/material.dart';
+
+### 🏗️ Struktur Dasar StatefulWidget
+
+💻 **Template StatefulWidget:**
+```dart
+import 'package:flutter/material.dart';
 
 class MyStatefulWidget extends StatefulWidget {
   // Properties dari widget (immutable seperti StatelessWidget)
@@ -1036,7 +1141,10 @@ class StatefulDemo extends StatelessWidget {
     );
   }
 }
-📋 StatefulWidget Lifecycle:
+```
+
+📋 **StatefulWidget Lifecycle:**
+```
 🔄 StatefulWidget Lifecycle:
 
 🎯 CREATION PHASE:
@@ -1079,11 +1187,16 @@ class StatefulDemo extends StatelessWidget {
    • State object destroyed
   ↓
 ✅ Complete lifecycle managed automatically by Flutter
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Test complete StatefulWidget lifecycle di: https://zapp.run/
-🎮 Contoh Interaktif - Game Counter
-💻 Interactive Game Counter:
-dartimport 'package:flutter/material.dart';
+
+### 🎮 Contoh Interaktif - Game Counter
+
+💻 **Interactive Game Counter:**
+```dart
+import 'package:flutter/material.dart';
 
 class GameCounter extends StatefulWidget {
   final String playerName;
@@ -1256,7 +1369,10 @@ class GameScreen extends StatelessWidget {
     );
   }
 }
-📋 Interactive State Management:
+```
+
+📋 **Interactive State Management:**
+```
 🎮 Game Counter State Flow:
 
 🎯 Initial State:
@@ -1289,14 +1405,22 @@ score=0, lives=3, gameOver=false, statusMessage='Welcome Alice!'
    • build() called → UI back to initial state
   ↓
 ✅ State management handles all game logic and UI updates
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Main game counter interaktif di: https://zapp.run/
 
-⚡ Mengelola State dengan setState()
+---
+
+## ⚡ Mengelola State dengan setState()
+
 setState() adalah mekanisme fundamental dalam StatefulWidget untuk memberitahu Flutter bahwa state internal telah berubah dan UI perlu diperbarui. Memahami cara kerja setState() sangat penting untuk mengelola state dengan efisien.
-🔧 Cara Kerja setState()
-💻 Basic setState() Usage:
-dartimport 'package:flutter/material.dart';
+
+### 🔧 Cara Kerja setState()
+
+💻 **Basic setState() Usage:**
+```dart
+import 'package:flutter/material.dart';
 
 class SetStateDemo extends StatefulWidget {
   @override
@@ -1365,7 +1489,10 @@ class _SetStateDemoState extends State<SetStateDemo> {
     print('State updated without setState() - UI will NOT update!');
   }
 }
-📋 setState() Mechanism:
+```
+
+📋 **setState() Mechanism:**
+```
 ⚡ How setState() Works:
 
 🎯 When setState() is called:
@@ -1397,11 +1524,16 @@ class _SetStateDemoState extends State<SetStateDemo> {
 
 ❌ Without setState():
 State variables change → No rebuild triggered → UI remains old → User sees stale data
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Test perbedaan dengan dan tanpa setState() di: https://zapp.run/
-🎯 Best Practices setState()
-💻 setState() Best Practices:
-dartimport 'package:flutter/material.dart';
+
+### 🎯 Best Practices setState()
+
+💻 **setState() Best Practices:**
+```dart
+import 'package:flutter/material.dart';
 
 class SetStateBestPractices extends StatefulWidget {
   @override
@@ -1548,7 +1680,10 @@ class _SetStateBestPracticesState extends State<SetStateBestPractices> {
     }
   }
 }
-📋 setState() Best Practices Guide:
+```
+
+📋 **setState() Best Practices Guide:**
+```
 ⚡ setState() Best Practices:
 
 ✅ DO:
@@ -1586,11 +1721,16 @@ class _SetStateBestPracticesState extends State<SetStateBestPractices> {
    // These methods have specific purposes
   ↓
 ✅ Remember: setState() = "State changed, please rebuild UI"
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Practice good setState() patterns di: https://zapp.run/
-🔄 setState() vs Manual Rebuilds
-💻 Understanding When Rebuilds Happen:
-dartimport 'package:flutter/material.dart';
+
+### 🔄 setState() vs Manual Rebuilds
+
+💻 **Understanding When Rebuilds Happen:**
+```dart
+import 'package:flutter/material.dart';
 
 class RebuildDemo extends StatefulWidget {
   @override
@@ -1686,7 +1826,10 @@ class _RebuildDemoState extends State<RebuildDemo> {
     );
   }
 }
-📋 Rebuild Behavior Analysis:
+```
+
+📋 **Rebuild Behavior Analysis:**
+```
 🔄 Rebuild Behavior Explanation:
 
 🎯 Scenario 1: setState() called with state change
@@ -1720,44 +1863,54 @@ class _RebuildDemoState extends State<RebuildDemo> {
 ✅ Result: nonStateCounter now shows updated value in UI!
 
 🔑 Key Insight: setState() triggers rebuild, not state change itself
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Observe rebuild behavior di: https://zapp.run/
 
-💻 Praktikum 5: Aplikasi Penghitung Interaktif
+---
+
+## 💻 Praktikum 5: Aplikasi Penghitung Interaktif
+
 Dalam praktikum ini, kita akan membangun aplikasi penghitung yang mendemonstrasikan konsep StatelessWidget vs StatefulWidget, serta penggunaan setState() yang efektif.
-🎯 Tujuan Praktikum
+
+### 🎯 **Tujuan Praktikum**
+
 Setelah menyelesaikan praktikum ini, mahasiswa akan mampu:
 
-🔍 Menganalisis keterbatasan StatelessWidget untuk data yang berubah
-🏗️ Membangun StatefulWidget dengan lifecycle yang tepat
-⚡ Mengimplementasikan setState() untuk update UI yang efisien
-🎨 Merancang aplikasi interaktif dengan state management yang baik
+1. **🔍 Menganalisis** keterbatasan StatelessWidget untuk data yang berubah
+2. **🏗️ Membangun** StatefulWidget dengan lifecycle yang tepat
+3. **⚡ Mengimplementasikan** setState() untuk update UI yang efisien
+4. **🎨 Merancang** aplikasi interaktif dengan state management yang baik
 
-📋 Struktur Praktikum
-Phase 1: Foundation (30 menit)
+### 📋 **Struktur Praktikum**
 
-Setup dan pemahaman konsep dasar
-Implementasi StatelessWidget sederhana
-Identifikasi keterbatasan untuk interaktivitas
+#### **Phase 1: Foundation (30 menit)**
+- Setup dan pemahaman konsep dasar
+- Implementasi StatelessWidget sederhana
+- Identifikasi keterbatasan untuk interaktivitas
 
-Phase 2: Implementation (45 menit)
+#### **Phase 2: Implementation (45 menit)**  
+- Konversi ke StatefulWidget
+- Implementasi state management
+- Testing dan debugging
 
-Konversi ke StatefulWidget
-Implementasi state management
-Testing dan debugging
+#### **Phase 3: Enhancement (30 menit)**
+- Fitur lanjutan dan optimasi
+- Best practices implementation
+- Code review dan improvement
 
-Phase 3: Enhancement (30 menit)
+---
 
-Fitur lanjutan dan optimasi
-Best practices implementation
-Code review dan improvement
+### 📝 **Tugas 1: Memahami Keterbatasan StatelessWidget**
 
+**🎯 Objektif:** Membangun counter menggunakan StatelessWidget untuk memahami mengapa tidak cocok untuk data yang berubah.
 
-📝 Tugas 1: Memahami Keterbatasan StatelessWidget
-🎯 Objektif: Membangun counter menggunakan StatelessWidget untuk memahami mengapa tidak cocok untuk data yang berubah.
-⏱️ Estimasi Waktu: 15 menit
-💻 Template Awal - StatelessWidget Counter:
-dartimport 'package:flutter/material.dart';
+**⏱️ Estimasi Waktu:** 15 menit
+
+💻 **Template Awal - StatelessWidget Counter:**
+```dart
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(CounterApp());
@@ -1892,7 +2045,10 @@ class StatelessCounterScreen extends StatelessWidget {
     );
   }
 }
-📋 Langkah-langkah Implementasi:
+```
+
+📋 **Langkah-langkah Implementasi:**
+```
 🔍 Step-by-Step Analysis:
 
 1️⃣ SETUP (3 menit):
@@ -1916,14 +2072,22 @@ class StatelessCounterScreen extends StatelessWidget {
    • Apa keterbatasan StatelessWidget?
    ↓
 ✅ Expected Result: Counter tidak berfungsi, UI tetap menampilkan 0
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Implement dan analyze StatelessWidget limitations di: https://zapp.run/
 
-📝 Tugas 2: Implementasi Counter dengan StatefulWidget
-🎯 Objektif: Membangun counter yang fungsional menggunakan StatefulWidget dengan state management yang tepat.
-⏱️ Estimasi Waktu: 25 menit
-💻 Template StatefulWidget Counter:
-dartimport 'package:flutter/material.dart';
+---
+
+### 📝 **Tugas 2: Implementasi Counter dengan StatefulWidget**
+
+**🎯 Objektif:** Membangun counter yang fungsional menggunakan StatefulWidget dengan state management yang tepat.
+
+**⏱️ Estimasi Waktu:** 25 menit
+
+💻 **Template StatefulWidget Counter:**
+```dart
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(CounterApp());
@@ -2189,7 +2353,10 @@ class _StatefulCounterScreenState extends State<StatefulCounterScreen> {
     super.dispose();
   }
 }
-📋 Implementation Checklist:
+```
+
+📋 **Implementation Checklist:**
+```
 🏗️ StatefulWidget Implementation Guide:
 
 1️⃣ STRUCTURE SETUP (8 menit):
@@ -2216,14 +2383,22 @@ class _StatefulCounterScreenState extends State<StatefulCounterScreen> {
    • Color changes based on value
    • Celebration animation at milestones
    • Info cards showing even/odd, sign, absolute value
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Build complete interactive counter di: https://zapp.run/
 
-📝 Tugas 3: Multi-Counter Dashboard
-🎯 Objektif: Membangun aplikasi dengan multiple counter dan operasi global untuk memahami state management yang lebih kompleks.
-⏱️ Estimasi Waktu: 25 menit
-💻 Multi-Counter Implementation:
-dartimport 'package:flutter/material.dart';
+---
+
+### 📝 **Tugas 3: Multi-Counter Dashboard**
+
+**🎯 Objektif:** Membangun aplikasi dengan multiple counter dan operasi global untuk memahami state management yang lebih kompleks.
+
+**⏱️ Estimasi Waktu:** 25 menit
+
+💻 **Multi-Counter Implementation:**
+```dart
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(MultiCounterApp());
@@ -2624,7 +2799,10 @@ class _MultiCounterScreenState extends State<MultiCounterScreen> {
     return max - min;
   }
 }
-📋 Multi-Counter Implementation Guide:
+```
+
+📋 **Multi-Counter Implementation Guide:**
+```
 🎯 Multi-Counter Dashboard Features:
 
 1️⃣ INDIVIDUAL COUNTER MANAGEMENT (8 menit):
@@ -2650,14 +2828,22 @@ class _MultiCounterScreenState extends State<MultiCounterScreen> {
    • Pop-up menu for global actions
    • Statistics panel with live calculations
    • Professional UI with cards and animations
-🚀 Coba Sekarang!
+```
+
+🚀 **Coba Sekarang!** 
 Build advanced multi-counter dashboard di: https://zapp.run/
 
-📝 Tugas 4: Counter dengan Animasi (Bonus Challenge)
-🎯 Objektif: Implementasi counter dengan animasi dan efek visual untuk memahami integrasi animation dengan state management.
-⏱️ Estimasi Waktu: 20 menit (Opsional)
-💻 Animated Counter Template:
-dartimport 'package:flutter/material.dart';
+---
+
+### 📝 **Tugas 4: Counter dengan Animasi (Bonus Challenge)**
+
+**🎯 Objektif:** Implementasi counter dengan animasi dan efek visual untuk memahami integrasi animation dengan state management.
+
+**⏱️ Estimasi Waktu:** 20 menit (Opsional)
+
+💻 **Animated Counter Template:**
+```dart
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(AnimatedCounterApp());
@@ -2742,214 +2928,223 @@ class _AnimatedCounterScreenState extends State<AnimatedCounterScreen>
             end: Alignment.bottomCenter,
             colors: [
               Colors.deepPurple.shade400,
-              Colors.deepPurple.shade
-600,
-],
-),
-),
-child: Center(
-child: Column(
-mainAxisAlignment: MainAxisAlignment.center,
-children: [
-// Animated counter display
-AnimatedBuilder(
-animation: Listenable.merge([_scaleAnimation, _colorAnimation]),
-builder: (context, child) {
-return Transform.scale(
-scale: _scaleAnimation.value,
-child: Container(
-padding: EdgeInsets.all(20),
-decoration: BoxDecoration(
-color: Colors.white.withOpacity(0.9),
-borderRadius: BorderRadius.circular(20),
-boxShadow: [
-BoxShadow(
-color: Colors.black.withOpacity(0.1),
-blurRadius: 10,
-offset: Offset(0, 5),
-),
-],
-),
-child: Column(
-children: [
-Text(
-'Counter Value',
-style: TextStyle(
-fontSize: 18,
-color: Colors.grey.shade600,
-fontWeight: FontWeight.w300,
-),
-),
-SizedBox(height: 10),
-Text(
-'$counter',
-style: TextStyle(
-fontSize: 80,
-fontWeight: FontWeight.bold,
-color: _colorAnimation.value,
-),
-),
-],
-),
-),
-);
-},
-),
-          SizedBox(height: 60),
-          
-          // Animated control buttons
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Decrement button with animation
-              AnimatedContainer(
-                duration: Duration(milliseconds: 200),
-                transform: Matrix4.identity()..scale(counter <= 0 ? 0.8 : 1.0),
-                child: FloatingActionButton(
-                  onPressed: counter > 0 ? _decrementCounter : null,
-                  backgroundColor: counter > 0 ? Colors.red.shade400 : Colors.grey.shade300,
-                  heroTag: "decrement",
-                  child: Icon(
-                    Icons.remove,
-                    color: counter > 0 ? Colors.white : Colors.grey,
-                    size: 28,
-                  ),
-                ),
-              ),
-              
-              SizedBox(width: 50),
-              
-              // Reset button with rotation animation
-              AnimatedRotation(
-                turns: counter == 0 ? 0 : 1,
-                duration: Duration(milliseconds: 400),
-                child: FloatingActionButton(
-                  onPressed: counter != 0 ? _resetCounter : null,
-                  backgroundColor: counter != 0 ? Colors.grey.shade600 : Colors.grey.shade300,
-                  heroTag: "reset",
-                  child: Icon(
-                    Icons.refresh,
-                    color: counter != 0 ? Colors.white : Colors.grey,
-                    size: 28,
-                  ),
-                ),
-              ),
-              
-              SizedBox(width: 50),
-              
-              // Increment button with pulse animation
-              AnimatedContainer(
-                duration: Duration(milliseconds: 200),
-                transform: Matrix4.identity()..scale(1.0),
-                child: FloatingActionButton(
-                  onPressed: _incrementCounter,
-                  backgroundColor: Colors.green.shade400,
-                  heroTag: "increment",
-                  child: Icon(
-                    Icons.add,
-                    color: Colors.white,
-                    size: 28,
-                  ),
-                ),
-              ),
+              Colors.deepPurple.shade600,
             ],
           ),
-          
-          SizedBox(height: 40),
-          
-          // Milestone indicator
-          if (counter % 10 == 0 && counter > 0)
-            AnimatedOpacity(
-              opacity: 1.0,
-              duration: Duration(milliseconds: 500),
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                decoration: BoxDecoration(
-                  color: Colors.amber.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(25),
-                  border: Border.all(color: Colors.amber),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.star, color: Colors.amber, size: 20),
-                    SizedBox(width: 8),
-                    Text(
-                      'Milestone: $counter! 🎉',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Animated counter display
+              AnimatedBuilder(
+                animation: Listenable.merge([_scaleAnimation, _colorAnimation]),
+                builder: (context, child) {
+                  return Transform.scale(
+                    scale: _scaleAnimation.value,
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.9),
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 10,
+                            offset: Offset(0, 5),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Counter Value',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.grey.shade600,
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            '$counter',
+                            style: TextStyle(
+                              fontSize: 80,
+                              fontWeight: FontWeight.bold,
+                              color: _colorAnimation.value,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  );
+                },
               ),
-            ),
-        ],
+              
+              SizedBox(height: 60),
+              
+              // Animated control buttons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Decrement button with animation
+                  AnimatedContainer(
+                    duration: Duration(milliseconds: 200),
+                    transform: Matrix4.identity()..scale(counter <= 0 ? 0.8 : 1.0),
+                    child: FloatingActionButton(
+                      onPressed: counter > 0 ? _decrementCounter : null,
+                      backgroundColor: counter > 0 ? Colors.red.shade400 : Colors.grey.shade300,
+                      heroTag: "decrement",
+                      child: Icon(
+                        Icons.remove,
+                        color: counter > 0 ? Colors.white : Colors.grey,
+                        size: 28,
+                      ),
+                    ),
+                  ),
+                  
+                  SizedBox(width: 50),
+                  
+                  // Reset button with rotation animation
+                  AnimatedRotation(
+                    turns: counter == 0 ? 0 : 1,
+                    duration: Duration(milliseconds: 400),
+                    child: FloatingActionButton(
+                      onPressed: counter != 0 ? _resetCounter : null,
+                      backgroundColor: counter != 0 ? Colors.grey.shade600 : Colors.grey.shade300,
+                      heroTag: "reset",
+                      child: Icon(
+                        Icons.refresh,
+                        color: counter != 0 ? Colors.white : Colors.grey,
+                        size: 28,
+                      ),
+                    ),
+                  ),
+                  
+                  SizedBox(width: 50),
+                  
+                  // Increment button with pulse animation
+                  AnimatedContainer(
+                    duration: Duration(milliseconds: 200),
+                    transform: Matrix4.identity()..scale(1.0),
+                    child: FloatingActionButton(
+                      onPressed: _incrementCounter,
+                      backgroundColor: Colors.green.shade400,
+                      heroTag: "increment",
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        size: 28,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              
+              SizedBox(height: 40),
+              
+              // Milestone indicator
+              if (counter % 10 == 0 && counter > 0)
+                AnimatedOpacity(
+                  opacity: 1.0,
+                  duration: Duration(milliseconds: 500),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.amber.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(25),
+                      border: Border.all(color: Colors.amber),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.star, color: Colors.amber, size: 20),
+                        SizedBox(width: 8),
+                        Text(
+                          'Milestone: $counter! 🎉',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
       ),
-    ),
-  ),
-);
+    );
+  }
+  
+  void _incrementCounter() {
+    setState(() {
+      counter++;
+    });
+    _triggerAnimation();
+  }
+  
+  void _decrementCounter() {
+    setState(() {
+      counter--;
+    });
+    _triggerAnimation();
+  }
+  
+  void _resetCounter() {
+    setState(() {
+      counter = 0;
+    });
+    _triggerAnimation();
+    _colorController.reset();
+  }
+  
+  void _triggerAnimation() {
+    // Scale animation for counter display
+    _scaleController.forward().then((_) {
+      _scaleController.reverse();
+    });
+    
+    // Color animation for milestones
+    if (counter % 5 == 0 && counter > 0) {
+      _colorController.forward().then((_) {
+        _colorController.reverse();
+      });
+    }
+  }
 }
-void _incrementCounter() {
-setState(() {
-counter++;
-});
-_triggerAnimation();
-}
-void _decrementCounter() {
-setState(() {
-counter--;
-});
-_triggerAnimation();
-}
-void _resetCounter() {
-setState(() {
-counter = 0;
-});
-_triggerAnimation();
-_colorController.reset();
-}
-void _triggerAnimation() {
-// Scale animation for counter display
-scaleController.forward().then(() {
-_scaleController.reverse();
-});
-// Color animation for milestones
-if (counter % 5 == 0 && counter > 0) {
-  _colorController.forward().then((_) {
-    _colorController.reverse();
-  });
-}
-}
-}
+```
 
 📋 **Animation Integration Guide:**
+```
 🎬 Animated Counter Features:
+
 1️⃣ SCALE ANIMATION (5 menit):
-• Counter scales up when value changes
-• Elastic curve for bouncy effect
-• Automatic reverse after forward animation
-↓
+   • Counter scales up when value changes
+   • Elastic curve for bouncy effect
+   • Automatic reverse after forward animation
+   ↓
 2️⃣ COLOR ANIMATION (5 menit):
-• Color changes at milestones (every 5th count)
-• Smooth transition from purple to amber
-• ColorTween for smooth color interpolation
-↓
+   • Color changes at milestones (every 5th count)
+   • Smooth transition from purple to amber
+   • ColorTween for smooth color interpolation
+   ↓
 3️⃣ BUTTON ANIMATIONS (5 menit):
-• Decrement button scales down when disabled
-• Reset button rotates when counter is not zero
-• Visual feedback for button states
-↓
+   • Decrement button scales down when disabled
+   • Reset button rotates when counter is not zero
+   • Visual feedback for button states
+   ↓
 4️⃣ MILESTONE EFFECTS (5 menit):
-• Special indicator appears at multiples of 10
-• Animated opacity for smooth appearance
-• Star icon and celebration message
-↓
+   • Special indicator appears at multiples of 10
+   • Animated opacity for smooth appearance
+   • Star icon and celebration message
+   ↓
 ✅ Animation Best Practices:
-• Use TickerProviderStateMixin for multiple animations
-• Dispose animation controllers properly
-• Combine multiple animations with Listenable.merge
+   • Use TickerProviderStateMixin for multiple animations
+   • Dispose animation controllers properly
+   • Combine multiple animations with Listenable.merge
+```
 
 🚀 **Coba Sekarang!** 
 Experience animated counter interactions di: https://zapp.run/
@@ -2982,23 +3177,29 @@ Setelah menyelesaikan semua tugas, pastikan implementasi Anda mencakup:
 #### **🎯 Learning Outcomes Assessment**
 
 📋 **Self-Evaluation Checklist:**
+```
 🔍 After completing this praktikum, I can:
+
 ✅ BASIC CONCEPTS:
 □ Explain the difference between StatelessWidget and StatefulWidget
 □ Describe when to use each type of widget
 □ Understand the widget lifecycle (initState, build, dispose)
+
 ✅ STATE MANAGEMENT:
 □ Implement setState() correctly for UI updates
 □ Manage multiple state variables efficiently
 □ Handle state changes without blocking the UI
+
 ✅ UI DEVELOPMENT:
 □ Build interactive interfaces with dynamic content
 □ Provide visual feedback for user actions
 □ Create responsive and user-friendly designs
+
 ✅ ADVANCED FEATURES:
 □ Implement complex state logic (bonus)
 □ Integrate animations with state changes (bonus)
 □ Handle multiple counter instances simultaneously
+```
 
 #### **📝 Reflection Questions**
 
@@ -3112,20 +3313,23 @@ MaterialApp(
     ),
   ),
 );
-🎯 Skills yang Akan Dikembangkan:
+```
 
-Material Design implementation
-Widget composition untuk UI yang complex
-Asset management (images, fonts, icons)
-Styling dan theming aplikasi Flutter
-Best practices untuk UI development
+**🎯 Skills yang Akan Dikembangkan:**
+- Material Design implementation
+- Widget composition untuk UI yang complex
+- Asset management (images, fonts, icons)  
+- Styling dan theming aplikasi Flutter
+- Best practices untuk UI development
 
+---
 
-🎉 Selamat! Anda telah menguasai arsitektur widget Flutter dan state management dasar. Minggu depan kita akan mulai membangun UI yang lebih menarik dengan widget-widget fondamental!
-🚀 Keep Coding! Semakin banyak Anda practice dengan StatefulWidget dan setState(), semakin mahir Anda dalam mengelola state aplikasi Flutter!
-💡 Pro Tips untuk Week 6:
+*🎉 Selamat! Anda telah menguasai arsitektur widget Flutter dan state management dasar. Minggu depan kita akan mulai membangun UI yang lebih menarik dengan widget-widget fondamental!*
 
-Start thinking about UI as composition of widgets
-Practice combining different widget types
-Focus on user experience and interaction design
-Explore Material Design principles
+🚀 **Keep Coding!** Semakin banyak Anda practice dengan StatefulWidget dan setState(), semakin mahir Anda dalam mengelola state aplikasi Flutter!
+
+**💡 Pro Tips untuk Week 6:**
+- Start thinking about UI as composition of widgets
+- Practice combining different widget types
+- Focus on user experience and interaction design
+- Explore Material Design principles
