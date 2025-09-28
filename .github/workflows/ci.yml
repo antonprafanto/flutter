@@ -1,0 +1,227 @@
+name: 🚀 Continuous Integration
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # Job to check documentation and links
+  docs-check:
+    name: 📚 Documentation Check
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+
+    - name: 🔍 Check for broken links
+      uses: gaurav-nelson/github-action-markdown-link-check@v1
+      with:
+        use-quiet-mode: 'yes'
+        use-verbose-mode: 'yes'
+        config-file: '.github/workflows/markdown-link-check-config.json'
+
+    - name: 📝 Spell check
+      uses: streetsidesoftware/cspell-action@v5
+      with:
+        files: "**/*.md"
+        config: ".github/workflows/cspell.json"
+
+  # Job to validate Flutter projects
+  flutter-validation:
+    name: 🧪 Flutter Projects Validation
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        flutter-version: [3.16.x, 3.19.x]
+        project: [hello_world, counter_app, todo_list_app]
+
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+
+    - name: ☕ Setup Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: '17'
+
+    - name: 🦋 Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: ${{ matrix.flutter-version }}
+        channel: 'stable'
+        cache: true
+
+    - name: 📦 Get dependencies for ${{ matrix.project }}
+      working-directory: projects/${{ matrix.project }}
+      run: flutter pub get
+
+    - name: 🔍 Analyze ${{ matrix.project }}
+      working-directory: projects/${{ matrix.project }}
+      run: flutter analyze
+
+    - name: 🧪 Test ${{ matrix.project }}
+      working-directory: projects/${{ matrix.project }}
+      run: flutter test --coverage
+
+    - name: 🏗️ Build Android APK for ${{ matrix.project }}
+      working-directory: projects/${{ matrix.project }}
+      run: flutter build apk --debug
+
+    - name: 🌐 Build Web for ${{ matrix.project }}
+      working-directory: projects/${{ matrix.project }}
+      run: flutter build web
+
+    - name: 📊 Upload coverage to Codecov
+      if: matrix.flutter-version == '3.19.x'
+      uses: codecov/codecov-action@v3
+      with:
+        file: projects/${{ matrix.project }}/coverage/lcov.info
+        flags: ${{ matrix.project }}
+        name: ${{ matrix.project }}-coverage
+
+  # Job to check tutorial consistency
+  tutorial-consistency:
+    name: 📖 Tutorial Consistency Check
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: 📦 Install Python dependencies
+      run: |
+        pip install PyYAML requests beautifulsoup4
+
+    - name: 🔍 Check tutorial structure
+      run: |
+        python .github/scripts/check_tutorial_structure.py
+
+    - name: 📚 Validate section numbering
+      run: |
+        python .github/scripts/validate_sections.py
+
+    - name: 🔗 Check internal links
+      run: |
+        python .github/scripts/check_internal_links.py
+
+  # Job to validate code examples
+  code-validation:
+    name: 💻 Code Examples Validation
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+
+    - name: 🦋 Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.19.x'
+        channel: 'stable'
+
+    - name: 📦 Install dart code validator
+      run: dart pub global activate dart_code_metrics
+
+    - name: 🔍 Extract and validate code blocks
+      run: |
+        python .github/scripts/extract_code_blocks.py
+        python .github/scripts/validate_code_syntax.py
+
+  # Job to check accessibility
+  accessibility-check:
+    name: ♿ Accessibility Check
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+
+    - name: 🔍 Check markdown accessibility
+      run: |
+        # Check for alt text in images
+        find . -name "*.md" -exec grep -L "alt=" {} \; | while read file; do
+          if grep -q "!\[.*\](" "$file"; then
+            echo "Warning: $file may have images without alt text"
+          fi
+        done
+
+        # Check for proper heading structure
+        python .github/scripts/check_heading_structure.py
+
+  # Job to generate tutorial metrics
+  metrics:
+    name: 📊 Tutorial Metrics
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+
+    - name: 📊 Generate metrics
+      run: |
+        echo "## Tutorial Metrics" > metrics.md
+        echo "- Total sections: $(find docs -name "*.md" | wc -l)" >> metrics.md
+        echo "- Total words: $(wc -w docs/*.md | tail -1 | awk '{print $1}')" >> metrics.md
+        echo "- Total lines: $(wc -l docs/*.md | tail -1 | awk '{print $1}')" >> metrics.md
+        echo "- Project examples: $(find projects -name "pubspec.yaml" | wc -l)" >> metrics.md
+
+    - name: 📋 Upload metrics artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: tutorial-metrics
+        path: metrics.md
+
+  # Job for security scanning
+  security-scan:
+    name: 🔒 Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+
+    - name: 🔍 Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+
+    - name: 📤 Upload Trivy scan results
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+  # Final status check
+  ci-success:
+    name: ✅ CI Success
+    runs-on: ubuntu-latest
+    needs: [docs-check, flutter-validation, tutorial-consistency, code-validation, accessibility-check, metrics, security-scan]
+    if: always()
+
+    steps:
+    - name: 🎉 All checks passed
+      if: ${{ needs.docs-check.result == 'success' && needs.flutter-validation.result == 'success' && needs.tutorial-consistency.result == 'success' && needs.code-validation.result == 'success' }}
+      run: echo "All CI checks passed successfully!"
+
+    - name: ❌ Some checks failed
+      if: ${{ needs.docs-check.result != 'success' || needs.flutter-validation.result != 'success' || needs.tutorial-consistency.result != 'success' || needs.code-validation.result != 'success' }}
+      run: |
+        echo "Some CI checks failed:"
+        echo "- Docs check: ${{ needs.docs-check.result }}"
+        echo "- Flutter validation: ${{ needs.flutter-validation.result }}"
+        echo "- Tutorial consistency: ${{ needs.tutorial-consistency.result }}"
+        echo "- Code validation: ${{ needs.code-validation.result }}"
+        exit 1
