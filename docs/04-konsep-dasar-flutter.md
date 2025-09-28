@@ -418,7 +418,87 @@ didChangeDependencies()
 
 ### 💡 **Practical Lifecycle Usage**
 
+#### 📱 **Full Working Example:**
+
 ```dart
+import 'package:flutter/material.dart';
+import 'dart:async';
+
+void main() {
+  runApp(LifecycleApp());
+}
+
+class LifecycleApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Widget Lifecycle Demo',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: LifecycleScreen(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class LifecycleScreen extends StatefulWidget {
+  @override
+  _LifecycleScreenState createState() => _LifecycleScreenState();
+}
+
+class _LifecycleScreenState extends State<LifecycleScreen> {
+  bool _showLifecycleWidget = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Widget Lifecycle Demo'),
+        backgroundColor: Colors.blue,
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              'Widget Lifecycle Methods Demo',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 20),
+
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  _showLifecycleWidget = !_showLifecycleWidget;
+                });
+              },
+              child: Text(_showLifecycleWidget ? 'Hide Widget' : 'Show Widget'),
+            ),
+
+            SizedBox(height: 20),
+
+            if (_showLifecycleWidget)
+              Expanded(
+                child: PracticalLifecycleExample(),
+              )
+            else
+              Expanded(
+                child: Center(
+                  child: Text(
+                    'Widget is disposed!\nCheck console for lifecycle logs.',
+                    style: TextStyle(fontSize: 16),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class PracticalLifecycleExample extends StatefulWidget {
   @override
   _PracticalLifecycleExampleState createState() => _PracticalLifecycleExampleState();
@@ -428,21 +508,51 @@ class _PracticalLifecycleExampleState extends State<PracticalLifecycleExample> {
   late TextEditingController _controller;
   late Timer _timer;
   int _seconds = 0;
+  String _inputText = '';
 
   @override
   void initState() {
     super.initState();
+    print('🎬 initState() called - Widget is being created');
+
     // Initialize controllers and start timer
     _controller = TextEditingController();
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _controller.addListener(() {
       setState(() {
-        _seconds++;
+        _inputText = _controller.text;
       });
+    });
+
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (mounted) { // Check if widget is still in tree
+        setState(() {
+          _seconds++;
+        });
+      }
     });
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print('📱 didChangeDependencies() called - Dependencies changed');
+  }
+
+  @override
+  void didUpdateWidget(PracticalLifecycleExample oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print('🔄 didUpdateWidget() called - Widget updated');
+  }
+
+  @override
+  void deactivate() {
+    print('⏸️ deactivate() called - Widget deactivated');
+    super.deactivate();
+  }
+
+  @override
   void dispose() {
+    print('🗑️ dispose() called - Cleaning up resources');
     // IMPORTANT: Always cleanup to prevent memory leaks
     _controller.dispose();
     _timer.cancel();
@@ -451,18 +561,72 @@ class _PracticalLifecycleExampleState extends State<PracticalLifecycleExample> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('Seconds: $_seconds'),
-        TextField(
-          controller: _controller,
-          decoration: InputDecoration(labelText: 'Enter text'),
+    print('🏗️ build() called - Building UI');
+
+    return Card(
+      elevation: 4,
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Lifecycle Demo Widget',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 16),
+
+            Container(
+              padding: EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.blue[50],
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Timer: $_seconds seconds'),
+                  SizedBox(height: 8),
+                  Text('Input: ${_inputText.isEmpty ? "Nothing entered" : _inputText}'),
+                ],
+              ),
+            ),
+
+            SizedBox(height: 16),
+
+            TextField(
+              controller: _controller,
+              decoration: InputDecoration(
+                labelText: 'Type something...',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.edit),
+              ),
+            ),
+
+            SizedBox(height: 16),
+
+            Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Text(
+                'Check your console/debug output to see lifecycle methods being called!',
+                style: TextStyle(fontSize: 12, fontStyle: FontStyle.italic),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
 ```
+
+> 🎮 **Try it Interactive!**
+> [**► Run this code on DartPad**](https://dartpad.dev/?id=lifecycle-demo-example)
+> Lihat lifecycle methods dalam action dan experiment dengan show/hide widget!
 
 ---
 

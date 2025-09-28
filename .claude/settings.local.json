@@ -10,7 +10,10 @@
       "Bash(git init:*)",
       "Bash(git remote add:*)",
       "Bash(git branch:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\n🚀 Initial commit: Complete Flutter Tutorial for Beginners\n\n✨ Features:\n- 15 comprehensive tutorial sections (Indonesian)\n- 3 complete Flutter projects with full implementation\n- Interactive elements with DartPad links\n- Self-assessment quizzes and coding exercises\n- Professional troubleshooting matrix\n- Code review templates and guidelines\n- GitHub infrastructure (CI/CD, templates, workflows)\n\n📚 Tutorial Sections:\n- 01-15: From introduction to advanced topics\n- Learning enhancement: glossary, cheat-sheets, resources\n- Reference docs: troubleshooting, code review\n\n🎯 Projects:\n- hello_world: Basic Flutter app\n- counter_app: State management with Provider\n- todo_list_app: Complete CRUD application\n\n🛠️ GitHub Features:\n- Issue templates (bug, feature, question)\n- Pull request template\n- CI/CD workflows (testing, GitHub Pages)\n- Comprehensive documentation\n\n🔧 Development Tools:\n- Contributing guidelines\n- FAQ and troubleshooting\n- Code review checklist\n- Performance optimization guides\n\n🎓 Learning Experience:\n- Progressive difficulty (beginner to intermediate)\n- Hands-on exercises and practical projects\n- Self-assessment tools and progress tracking\n- Community support structure\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)",
+      "Bash(git fetch:*)"
     ],
     "deny": [],
     "ask": []

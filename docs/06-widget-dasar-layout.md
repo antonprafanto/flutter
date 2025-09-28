@@ -236,37 +236,297 @@ class ImageExamples extends StatelessWidget {
 
 ### 🎯 **Icon Widget - Visual Indicators**
 
+#### 📱 **Full Working Example:**
+
 ```dart
-class IconExamples extends StatelessWidget {
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(IconDemoApp());
+}
+
+class IconDemoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 20,
-      runSpacing: 20,
-      children: [
-        // Basic icons
-        Icon(Icons.home),
-        Icon(Icons.favorite, color: Colors.red),
-        Icon(Icons.star, size: 40, color: Colors.orange),
+    return MaterialApp(
+      title: 'Icon Widget Demo',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: IconExamplesScreen(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
 
-        // Icon with background
-        Container(
-          padding: EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: Colors.blue,
-            shape: BoxShape.circle,
-          ),
-          child: Icon(Icons.add, color: Colors.white),
+class IconExamplesScreen extends StatefulWidget {
+  @override
+  _IconExamplesScreenState createState() => _IconExamplesScreenState();
+}
+
+class _IconExamplesScreenState extends State<IconExamplesScreen> {
+  bool _isFavorite = false;
+  int _rating = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Icon Widget Examples'),
+        backgroundColor: Colors.blue,
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildSectionTitle('Basic Icons'),
+            _buildBasicIcons(),
+
+            SizedBox(height: 32),
+            _buildSectionTitle('Interactive Icons'),
+            _buildInteractiveIcons(),
+
+            SizedBox(height: 32),
+            _buildSectionTitle('Icon Buttons'),
+            _buildIconButtons(),
+
+            SizedBox(height: 32),
+            _buildSectionTitle('Decorated Icons'),
+            _buildDecoratedIcons(),
+          ],
         ),
+      ),
+    );
+  }
 
-        // Icon button
-        IconButton(
-          icon: Icon(Icons.thumb_up),
-          onPressed: () {},
-          tooltip: 'Like',
+  Widget _buildSectionTitle(String title) {
+    return Text(
+      title,
+      style: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: Colors.blue[800],
+      ),
+    );
+  }
+
+  Widget _buildBasicIcons() {
+    return Card(
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Wrap(
+          spacing: 20,
+          runSpacing: 20,
+          alignment: WrapAlignment.center,
+          children: [
+            // Basic icons with different sizes and colors
+            Column(
+              children: [
+                Icon(Icons.home, size: 30),
+                Text('Home', style: TextStyle(fontSize: 12)),
+              ],
+            ),
+            Column(
+              children: [
+                Icon(Icons.favorite, color: Colors.red, size: 30),
+                Text('Favorite', style: TextStyle(fontSize: 12)),
+              ],
+            ),
+            Column(
+              children: [
+                Icon(Icons.star, size: 40, color: Colors.orange),
+                Text('Star', style: TextStyle(fontSize: 12)),
+              ],
+            ),
+            Column(
+              children: [
+                Icon(Icons.settings, size: 35, color: Colors.grey[600]),
+                Text('Settings', style: TextStyle(fontSize: 12)),
+              ],
+            ),
+            Column(
+              children: [
+                Icon(Icons.notifications, size: 30, color: Colors.purple),
+                Text('Notifications', style: TextStyle(fontSize: 12)),
+              ],
+            ),
+          ],
         ),
+      ),
+    );
+  }
 
-        // Custom icon
+  Widget _buildInteractiveIcons() {
+    return Card(
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _isFavorite = !_isFavorite;
+                    });
+                  },
+                  child: Column(
+                    children: [
+                      Icon(
+                        _isFavorite ? Icons.favorite : Icons.favorite_border,
+                        color: _isFavorite ? Colors.red : Colors.grey,
+                        size: 40,
+                      ),
+                      Text(_isFavorite ? 'Favorited!' : 'Tap to favorite'),
+                    ],
+                  ),
+                ),
+
+                Column(
+                  children: [
+                    Text('Rating: $_rating/5'),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: List.generate(5, (index) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _rating = index + 1;
+                            });
+                          },
+                          child: Icon(
+                            index < _rating ? Icons.star : Icons.star_border,
+                            color: Colors.orange,
+                            size: 30,
+                          ),
+                        );
+                      }),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildIconButtons() {
+    return Card(
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Wrap(
+          spacing: 16,
+          runSpacing: 16,
+          alignment: WrapAlignment.center,
+          children: [
+            IconButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Share button pressed!')),
+                );
+              },
+              icon: Icon(Icons.share),
+              tooltip: 'Share',
+            ),
+
+            IconButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Download started!')),
+                );
+              },
+              icon: Icon(Icons.download),
+              color: Colors.blue,
+              tooltip: 'Download',
+            ),
+
+            IconButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Deleted!')),
+                );
+              },
+              icon: Icon(Icons.delete),
+              color: Colors.red,
+              tooltip: 'Delete',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDecoratedIcons() {
+    return Card(
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Wrap(
+          spacing: 20,
+          runSpacing: 20,
+          alignment: WrapAlignment.center,
+          children: [
+            // Icon with circular background
+            Container(
+              padding: EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(Icons.add, color: Colors.white, size: 24),
+            ),
+
+            // Icon with rounded rectangle background
+            Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.green,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Icon(Icons.check, color: Colors.white, size: 24),
+            ),
+
+            // Icon with gradient background
+            Container(
+              padding: EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.purple, Colors.pink],
+                ),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(Icons.favorite, color: Colors.white, size: 24),
+            ),
+
+            // Icon with shadow
+            Container(
+              padding: EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.orange,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.orange.withOpacity(0.4),
+                    spreadRadius: 2,
+                    blurRadius: 8,
+                    offset: Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Icon(Icons.star, color: Colors.white, size: 24),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+> 🎮 **Try it Interactive!**
+> [**► Run this code on DartPad**](https://dartpad.dev/?id=icon-widget-demo)
+> Experiment dengan interactive icons dan lihat berbagai styling options!
         Icon(
           Icons.flutter_dash,
           size: 50,
