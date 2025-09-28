@@ -73,6 +73,14 @@ Navigator.of(context).replace(...); // Ganti halaman saat ini
 
 ### 🏗️ MaterialPageRoute
 
+> 💡 **Cara menjalankan code examples:**
+> Untuk menjalankan navigation examples di section ini, wrap dengan template berikut:
+> ```dart
+> import 'package:flutter/material.dart';
+>
+> void main() => runApp(MaterialApp(home: BasicNavigationExample()));
+> ```
+
 ```dart
 class BasicNavigationExample extends StatelessWidget {
   @override

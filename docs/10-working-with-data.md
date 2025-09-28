@@ -964,6 +964,16 @@ class Comment {
 
 ### 🔄 Basic FutureBuilder
 
+> 💡 **Cara menjalankan code examples:**
+> Untuk menjalankan code examples di section ini, wrap dengan template berikut:
+> ```dart
+> import 'package:flutter/material.dart';
+> import 'package:http/http.dart' as http;
+> import 'dart:convert';
+>
+> void main() => runApp(MaterialApp(home: UsersPage()));
+> ```
+
 ```dart
 // lib/pages/users_page.dart
 class UsersPage extends StatefulWidget {

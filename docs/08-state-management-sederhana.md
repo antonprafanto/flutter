@@ -24,6 +24,14 @@
 
 ### 🔍 **State Definition & Concepts**
 
+> 💡 **Cara menjalankan code examples:**
+> Untuk menjalankan code examples di section ini, wrap dengan template berikut:
+> ```dart
+> import 'package:flutter/material.dart';
+>
+> void main() => runApp(MaterialApp(home: StateExplanation()));
+> ```
+
 ```dart
 // State adalah data yang bisa berubah dan mempengaruhi UI
 class StateExplanation extends StatefulWidget {

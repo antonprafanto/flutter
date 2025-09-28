@@ -24,6 +24,14 @@
 
 ### 🔍 **Styling Hierarchy Overview**
 
+> 💡 **Cara menjalankan code examples:**
+> Untuk menjalankan widget examples di section ini, wrap dengan template berikut:
+> ```dart
+> import 'package:flutter/material.dart';
+>
+> void main() => runApp(MaterialApp(home: Scaffold(body: YourWidget())));
+> ```
+
 ```dart
 // Flutter styling inheritance flow
 MaterialApp(                        // 1. App-level theme
