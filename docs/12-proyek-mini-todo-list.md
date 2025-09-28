@@ -27,6 +27,39 @@ Dalam proyek ini, Anda akan menggabungkan semua pengetahuan Flutter untuk memban
 
 ---
 
+> 💡 **Cara menjalankan code examples:**
+> Setiap contoh kode di section ini sudah lengkap dan siap dijalankan. Copy seluruh kode (termasuk import dan main function) ke dalam file dart baru atau ganti class name sesuai kebutuhan.
+>
+> **Template wrapper untuk semua examples:**
+> ```dart
+> import 'package:flutter/material.dart';
+>
+> void main() {
+>   runApp(MyApp());
+> }
+>
+> class MyApp extends StatelessWidget {
+>   @override
+>   Widget build(BuildContext context) {
+>     return MaterialApp(
+>       title: 'Todo List App',
+>       theme: ThemeData(
+>         colorSchemeSeed: Colors.indigo,
+>         useMaterial3: true,
+>         brightness: Brightness.light,
+>       ),
+>       darkTheme: ThemeData(
+>         colorSchemeSeed: Colors.blue,
+>         useMaterial3: true,
+>         brightness: Brightness.dark,
+>       ),
+>       home: YourWidgetName(), // ← Ganti dengan nama widget contoh
+>       debugShowCheckedModeBanner: false,
+>     );
+>   }
+> }
+> ```
+
 ## 📚 Daftar Isi
 
 1. [Project Overview & Planning](#project-overview--planning)

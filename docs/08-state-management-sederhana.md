@@ -25,14 +25,66 @@
 ### 🔍 **State Definition & Concepts**
 
 > 💡 **Cara menjalankan code examples:**
-> Untuk menjalankan code examples di section ini, wrap dengan template berikut:
+> Setiap contoh kode di section ini sudah lengkap dan siap dijalankan. Copy seluruh kode (termasuk import dan main function) ke dalam file dart baru atau ganti class name sesuai kebutuhan.
+>
+> **Template wrapper untuk semua examples:**
 > ```dart
 > import 'package:flutter/material.dart';
 >
-> void main() => runApp(MaterialApp(home: StateExplanation()));
+> void main() {
+>   runApp(MyApp());
+> }
+>
+> class MyApp extends StatelessWidget {
+>   @override
+>   Widget build(BuildContext context) {
+>     return MaterialApp(
+>       title: 'Flutter App',
+>       theme: ThemeData(
+>         colorSchemeSeed: Colors.indigo,
+>         useMaterial3: true,
+>         brightness: Brightness.light,
+>       ),
+>       darkTheme: ThemeData(
+>         colorSchemeSeed: Colors.blue,
+>         useMaterial3: true,
+>         brightness: Brightness.dark,
+>       ),
+>       home: StateExplanation(), // ← Ganti dengan nama widget contoh
+>       debugShowCheckedModeBanner: false,
+>     );
+>   }
+> }
 > ```
 
 ```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter App',
+      theme: ThemeData(
+        colorSchemeSeed: Colors.indigo,
+        useMaterial3: true,
+        brightness: Brightness.light,
+      ),
+      darkTheme: ThemeData(
+        colorSchemeSeed: Colors.blue,
+        useMaterial3: true,
+        brightness: Brightness.dark,
+      ),
+      home: StateExplanation(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
 // State adalah data yang bisa berubah dan mempengaruhi UI
 class StateExplanation extends StatefulWidget {
   @override

@@ -25,11 +25,36 @@
 ### 🔍 **Styling Hierarchy Overview**
 
 > 💡 **Cara menjalankan code examples:**
-> Untuk menjalankan widget examples di section ini, wrap dengan template berikut:
+> Setiap contoh kode di section ini sudah lengkap dan siap dijalankan. Copy seluruh kode (termasuk import dan main function) ke dalam file dart baru atau ganti class name sesuai kebutuhan.
+>
+> **Template wrapper untuk semua examples:**
 > ```dart
 > import 'package:flutter/material.dart';
 >
-> void main() => runApp(MaterialApp(home: Scaffold(body: YourWidget())));
+> void main() {
+>   runApp(MyApp());
+> }
+>
+> class MyApp extends StatelessWidget {
+>   @override
+>   Widget build(BuildContext context) {
+>     return MaterialApp(
+>       title: 'Flutter App',
+>       theme: ThemeData(
+>         colorSchemeSeed: Colors.indigo,
+>         useMaterial3: true,
+>         brightness: Brightness.light,
+>       ),
+>       darkTheme: ThemeData(
+>         colorSchemeSeed: Colors.blue,
+>         useMaterial3: true,
+>         brightness: Brightness.dark,
+>       ),
+>       home: YourWidgetName(), // ← Ganti dengan nama widget contoh
+>       debugShowCheckedModeBanner: false,
+>     );
+>   }
+> }
 > ```
 
 ```dart
